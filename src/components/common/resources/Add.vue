@@ -1,0 +1,137 @@
+<template>
+    <b-modal id="add-resource-modal" title="Add New Resource" :hide-footer=hideFooter>
+        <form enctype="multipart/form-data">
+            <div id="details">
+                <div class="form-group"  v-if="user.role == 'ADMIN'">
+                    <label>Select Company <span class="err">*</span></label>
+                    <select class="form-control" v-model="resource.company">
+                        <option selected value="">Select</option>
+                        <option v-for="cl in companiesList" :value="cl.id" v-bind:key="cl.id">{{ cl.company_name }}
+                        </option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Title <span class="err">*</span></label>
+                    <input type="text" class="form-control" id="title" placeholder="Title" v-model="resource.title">
+                </div>
+                <div class="form-group">
+                    <label>Description<span class="err">*</span></label>
+                    <textarea class="form-control" id="description" placeholder="Description"
+                        v-model="resource.description"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Link<span class="err">*</span></label>
+                    <input type="text" class="form-control" id="link" placeholder="Link" v-model="resource.link">
+                </div>
+                <div class="form-group">
+                    <label>File<span class="err">*</span></label>
+                    <input type="file" class="form-control" id="file" ref="file" @change="fileOnChange">
+                </div>
+                <div class="form-group">
+                    <label>Visibility<span class="err">*</span></label>
+                    <input type="radio" id="visibility" v-model="resource.visibility" value="PRIVATE"> PRIVATE
+                    <input type="radio" id="visibility" v-model="resource.visibility" value="PUBLIC"> PUBLIC
+                </div>
+                <button type="button" @click="addResource" class="btn btn-primary"
+                    :disabled="resource.disabled">Submit</button>
+            </div>
+        </form>
+    </b-modal>
+</template>
+
+<script>
+/* eslint-disable */
+import AppMixin from '../../../mixins/AppMixin'
+import Api from '../../../router/api'
+export default {
+    name: 'Add',
+    mixins: [AppMixin],
+    props: {
+        getResourcesList: {
+            type: Function
+        }
+    },
+    data() {
+        return {
+            hideFooter: true,
+            resource: {
+                'link': '',
+                'company': '',
+                'title': '',
+                'description': '',
+                'file': '',
+                'visibility': '',
+                'disabled': false,
+            },
+        }
+    },
+    methods: {
+        fileOnChange: function (e) {
+            let that = this;
+            this.resource.file = this.$refs.file.files[0];
+        },
+        addResource: function (e) {
+            e.preventDefault();
+            let that = this;
+            if (!that.resource.title || !that.resource.description) {
+                this.$swal({
+                    icon: "error",
+                    title: "error",
+                    text: "Please fill title and description fields",
+                    showConfirmButton: true
+                });
+            } else if (that.resource.link == '' && that.resource.file == '') {
+                this.$swal({
+                    icon: "error",
+                    title: "error",
+                    text: "Please fill link or upload file fields",
+                    showConfirmButton: true
+                });
+            } else {
+                that.resource.disabled = true;
+                const formData = new FormData();
+                formData.append('file', that.resource.file);
+                formData.append('link', that.resource.link);
+                formData.append('description', that.resource.description);
+                formData.append('title', that.resource.title);
+                formData.append('visibility', that.resource.visibility);
+                formData.append('company', that.resource.company);
+
+                Api.addResource(formData).then(response => {
+                    that.resource.disabled = false;
+
+                    let headers = {
+                        'Content-Type': 'multipart/form-data',
+                        'Access-Control-Allow-Origin': '*'
+                    }
+                    this.$swal({
+                        icon: "success",
+                        title: "Success",
+                        text: "Company resource created successfully",
+                        showConfirmButton: true
+                    }).then(function () {
+                        that.$bvModal.hide('add-resource-modal')
+                        that.getResourcesList()
+                    });
+                }
+                ).catch((error) => {
+                    that.resource.disabled = false;
+                    this.$swal({
+                        icon: "error",
+                        title: "error",
+                        text: error.response.data.message,
+                        showConfirmButton: true
+                    }).then(function () {
+                        that.resource.disabled = false;
+                    });
+                });
+            }
+        },
+
+
+    },
+    mounted() {
+        this.getCompaniesList()
+    }
+}
+</script>
