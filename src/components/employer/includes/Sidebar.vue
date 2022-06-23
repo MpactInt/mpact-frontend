@@ -43,6 +43,9 @@
         <li>
           <router-link to="/employer/request-workshop">Request for Workshop</router-link>
         </li>
+         <li>
+          <router-link to="/employer/feedback-by-employees">Feedback by Employees</router-link>
+        </li>
         <li>
           <a href="javascript:void(0)" @click="showUserList = !showUserList">One to One Chat <i class="fa fa-angle-down"
               aria-hidden="true"></i>

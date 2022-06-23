@@ -1,7 +1,7 @@
 <template>
   <div class="main-content ml-4">
     <div class="row mt-3">
-      <CustomSurvey v-if="pg.length" :surveyProp="pg"></CustomSurvey>
+      <CustomSurvey v-if="pg.length" :surveyProp="pg" :submitPopupSurvey="submitPopupSurvey"></CustomSurvey>
     </div>
     <div class="row mt-3">
       <div class="col-md-8">
@@ -88,6 +88,13 @@ export default {
         this.pg = response.data.res;
       });
     },
+    submitPopupSurvey: function (survey) {
+      let data = JSON.stringify(survey.data, null, 3)
+      this.surveyRes = JSON.parse(data)
+      Api.submitPopupSurvey(this.surveyRes).then(response => {
+
+      });
+    }
   },
   created() {
     this.getTodoListDashboard();

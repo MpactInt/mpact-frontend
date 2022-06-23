@@ -5,7 +5,7 @@
                 <i class="fa fa-arrow-left white"></i>
             </button>
         </router-link>
-        <h3>Popup Survey Answers</h3>
+        <h3>Check In Survey Answers</h3>
         <label>{{ survey.question }}</label>
         <div class="row mt-3">
             <table class="table">
@@ -14,12 +14,12 @@
                     <td>Employee Name</td>
                     <td>Answer</td>
                 </tr>
-                <tr v-if="popupSurveyLength" v-for="p in popupSurvey.data" v-bind:key="p.id">
+                <tr v-if="checkInSurveyLength" v-for="p in checkInSurvey.data" v-bind:key="p.id">
                     <td>{{ p.company_name }}</td>
                     <td>{{ p.first_name }} {{ p.last_name }}</td>
                     <td>{{ p.answer }}</td>
                 </tr>
-                <tr v-if="!popupSurveyLength">
+                <tr v-if="!checkInSurveyLength">
                     <td colspan="5">No Data Found</td>
                 </tr>
             </table>
@@ -35,17 +35,17 @@ export default {
     mixins: [AppMixin],
     data() {
         return {
-            popupSurvey: {},
-            popupSurveyLength: 0,
+            checkInSurvey: {},
+            checkInSurveyLength: 0,
             survey: {}
         }
     },
     components: {
     },
     methods: {
-        getPopupSurvey: function (id) {
+        getCheckInSurvey: function (id) {
             let that = this
-            Api.getPopupSurvey(id).then(response => {
+            Api.getCheckInSurvey(id).then(response => {
                 that.survey = response.data.res
             }).catch((error) => {
                 this.$swal({
@@ -58,11 +58,11 @@ export default {
             });
 
         },
-        getPopupSurveyAnswerList: function (id) {
+        getCheckInSurveyAnswerList: function (id) {
             let that = this
-            Api.getPopupSurveyAnswerList(id).then(response => {
-                that.popupSurvey = response.data.res
-                that.popupSurveyLength = that.popupSurvey.data.length
+            Api.getCheckInSurveyAnswerList(id).then(response => {
+                that.checkInSurvey = response.data.res
+                that.checkInSurveyLength = that.checkInSurvey.data.length
             }).catch((error) => {
                 this.$swal({
                     icon: "error",
@@ -76,8 +76,8 @@ export default {
         }
     },
     mounted() {
-        this.getPopupSurvey(this.$route.params.id)
-        this.getPopupSurveyAnswerList(this.$route.params.id)
+        this.getCheckInSurvey(this.$route.params.id)
+        this.getCheckInSurveyAnswerList(this.$route.params.id)
     }
 }
 </script>

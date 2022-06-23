@@ -9,7 +9,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto cutom-menu-list">
                     <li class="nav-item">
-                        <a class="nav-link pd-link" href="#">Check-In</a>
+                        <router-link class="nav-link pd-link" to="/employee/feedback-to-company">Feedback to Company</router-link>
                     </li>
                     <li class="nav-item">
                         <router-link class="nav-link pd-link" to="/employee/ask-question">Ask a question </router-link>

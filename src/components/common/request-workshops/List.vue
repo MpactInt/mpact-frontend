@@ -35,7 +35,7 @@
                     <td v-if="user.role == 'ADMIN'">{{ r.company_name }}</td>
                     <td>{{ r.name }}</td>
                     <td>{{ r.workshop_focus }}</td>
-                    <td>{{ r.desired_date}}</td>
+                    <td>{{ r.desired_date | timeAgo}}</td>
                     <td>{{ r.workshop_length }}</td>
                     <td>{{ r.workshop_type }}</td>
                     <td>{{ r.audience }}</td>

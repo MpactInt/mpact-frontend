@@ -1,6 +1,6 @@
 <template>
     <div class="main-content">
-        <h3>Request Workshop</h3>
+        <h3>Workshop Requests</h3>
         <List></List>
     </div>
 </template>

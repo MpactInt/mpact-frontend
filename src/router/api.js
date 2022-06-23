@@ -262,8 +262,8 @@ class Api {
     getPopupSurvey(id){
         return axiosCommon.get('/get-popup-survey/'+id)
     }
-    getPopupSurveyAnswerList(){
-        return axiosCommon.get('/get-popup-survey-answer-list')
+    getPopupSurveyAnswerList(id){
+        return axiosCommon.get('/get-popup-survey-answer-list/'+id)
     }
     addPopupSurvey(data) {
         return axiosCommon.post('/add-popup-survey', data)
@@ -306,6 +306,56 @@ class Api {
     }
     sendEmail(){
         return axiosCommon.get('/send-email')
+    }
+    
+    getCheckInSurveyList() {
+        return axiosCommon.post('/get-check-in-survey-list')
+    }
+    getCheckInSurvey(id){
+        return axiosCommon.get('/get-check-in-survey/'+id)
+    }
+    getCheckInSurveyAnswerList(){
+        return axiosCommon.get('/get-check-in-survey-answer-list')
+    }
+    addCheckInSurvey(data) {
+        return axiosCommon.post('/add-check-in-survey', data)
+    }
+    updateCheckInSurvey(data) {
+        return axiosCommon.post('/update-check-in-survey', data)
+    }
+    deleteCheckInSurvey(id) {
+        return axiosCommon.get('/delete-check-in-survey/' + id)
+    }
+    getCheckInSurveyQuestions(id){
+        return axiosCommon.get('/get-check-in-survey-questions/'+id)
+    }
+    submitCheckInSurvey(data,id){
+        return axiosCommon.post('/submit-check-in-survey/'+id,data)
+    }
+    submitCompanyFeedback(data){
+        return axiosCommon.post('/submit-company-feedback',data)
+    }
+    getFeedbackList(page){
+        return axiosCommon.get('/get-company-feedback-list?page='+page)
+    }
+
+    addWorkshop(data, headers) {
+        return axiosCommon.post('/add-workshop', data, headers)
+    }
+    updateWorkshop(data, headers) {
+        return axiosCommon.post('/update-workshop', data, headers)
+    }
+    getWorkshop(id) {
+        return axiosCommon.get('/get-workshop/' + id)
+    }
+    getWorkshopsList(page, data) {
+        return axiosCommon.post('/get-workshops-list' + '?page=' + page, data)
+    }
+    deleteWorkshop(id) {
+        return axiosCommon.get('/delete-workshop/' + id)
+    }
+    registerForWorkshop(id){
+        return axiosCommon.get('/register-for-workshop/' + id)
     }
 }
 export default new Api()

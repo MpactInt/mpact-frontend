@@ -13,7 +13,7 @@ SurveyVue.StylesManager.applyTheme("defaultV2");
 
 export default {
     name: "CustomSurvey",
-    props: ['surveyProp'],
+    props: ['surveyProp','submitPopupSurvey'],
     data() {
         var json = {
             title: "Popup Survey",
@@ -39,13 +39,7 @@ export default {
         };
     },
     methods: {
-        submitPopupSurvey: function (survey) {
-            let data = JSON.stringify(survey.data, null, 3)
-            this.surveyRes = JSON.parse(data)
-            Api.submitPopupSurvey(this.surveyRes).then(response => {
-
-            });
-        }
+       
     },
     mounted() {
     }

@@ -26,6 +26,9 @@
           <router-link to="/employee/profile">Profile</router-link>
         </li>
         <li>
+          <router-link to="/employee/workshops">Workshops</router-link>
+        </li>
+        <li>
           <router-link to="/employee/announcements">Announcements or Updates</router-link>
         </li>
         <li>

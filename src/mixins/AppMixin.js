@@ -62,6 +62,17 @@ export default {
         'toolkit': [],
         'guideBook': ''
       },
+      workshopUpdate:{
+        'id':'',
+        'title': '',
+        'description': '',
+        'image': '',
+        'total_hours': '',
+        'date': '',
+        'instructor': '',
+        'additional_info': '',
+        'disabled': false,
+      },
       toolkitPath: '',
       todoUpdate: {
         id: '',
@@ -75,8 +86,15 @@ export default {
       profileType: [],
       popupSurvey: {},
       popupSurveyLength: 0,
+      checkInSurvey: {},
+      checkInSurveyLength: 0,
       todoList: [],
       workshopList: [],
+      workshopsList: {},
+      workshopsLength: 0,
+      filePath: '',
+      path:'',
+      registered:false
     }
   },
   methods: {
@@ -192,6 +210,39 @@ export default {
         that.toolkitPath = response.data.toolkitPath
       });
     },
+    getWorkshop: function (id) {
+      let that = this
+      Api.getWorkshop(id).then(response => {
+        that.$bvModal.show('update-workshop-modal')
+        that.workshopUpdate.id = response.data.res.id
+        that.workshopUpdate.title = response.data.res.title
+        that.workshopUpdate.total_hours = response.data.res.total_hours
+        that.workshopUpdate.description = response.data.res.description
+        that.workshopUpdate.additional_info = response.data.res.additional_info
+        that.workshopUpdate.image = response.data.res.image
+        that.workshopUpdate.date = response.data.res.date
+        that.workshopUpdate.instructor = response.data.res.instructor
+        that.path = response.data.path
+        that.registered = response.data.registered
+      });
+    },
+    getWorkshopsList: function (page = 1) {
+      let that = this
+      Api.getWorkshopsList(page, {}).then(response => {
+        let that = this
+        that.workshopsList = response.data.res
+        that.workshopsLength = that.workshopsList.length
+        that.filePath = response.data.path
+      }
+      ).catch((error) => {
+        this.$swal({
+          icon: "error",
+          title: "error",
+          text: error.response.data.message,
+          showConfirmButton: true
+        });
+      });
+    },
     getCompaniesList: function () {
       let that = this
       Api.getCompaniesList().then(response => {
@@ -288,6 +339,21 @@ export default {
         });
       });
     },
+    getCheckInSurveyList: function () {
+      let that = this
+      Api.getCheckInSurveyList().then(response => {
+        that.checkInSurvey = response.data.res
+        that.checkInSurveyLength = that.checkInSurvey.data.length
+      }).catch((error) => {
+        this.$swal({
+          icon: "error",
+          title: "error",
+          text: error.response.data.message,
+          showConfirmButton: true
+        }).then(function () {
+        });
+      });
+    },
     getTodoListDashboard: function () {
       let that = this
       Api.getTodoListDashboard().then(response => {
@@ -372,6 +438,5 @@ export default {
   created() {
     this.user = JSON.parse(localStorage.getItem("userData"));
     this.checkUserAuth()
-
   }
 }

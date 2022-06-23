@@ -9,7 +9,10 @@ import Registration from '@/components/Registration'
 import Login from '@/components/Login'
 import Plan from '@/components/Plan'
 import ResetPassword from '@/components/ResetPassword'
+import SubmitCheckInSurvey from '@/components/SubmitCheckInSurvey'
+
 /******Load Employer Components*********/
+
 import AskQuestion from '@/components/employer/AskQuestion'
 import WelcomeNote from '@/components/employer/WelcomeNote'
 import Profile from '@/components/employer/Profile'
@@ -29,6 +32,7 @@ import Opportunity from '@/components/employer/Opportunity'
 import Todo from '@/components/employer/Todo'
 import ViewTodo from '@/components/employer/ViewTodo'
 import RequestWorkshop from '@/components/employer/RequestWorkshop'
+import FeedbackEmployee from '@/components/employer/FeedbackEmployee'
 
 /********Load employee components */
 
@@ -40,6 +44,9 @@ import EmpAskQuestion from '@/components/employee/AskQuestion'
 import EmpTodo from '@/components/employee/Todo'
 import EmpViewTodo from '@/components/employee/ViewTodo'
 import EmpRequestWorkshop from '@/components/employee/RequestWorkshop'
+import EmpCompanyFeedback from '@/components/employee/CompanyFeedback'
+import EmpWorkshop from '@/components/employee/Workshops'
+import EmpViewWorkshop from '@/components/employee/ViewWorkshop'
 
 /********Load admin components */
 
@@ -55,8 +62,11 @@ import AdminCompanies from '@/components/admin/Companies'
 import AdminEmployeeProfileType from '@/components/admin/EmployeeProfileType'
 import AdminPopupSurveys from '@/components/admin/PopupSurvey'
 import AdminPopupSurveyView from '@/components/admin/PopupSurveyView'
+import AdminCheckInSurveys from '@/components/admin/CheckInSurvey'
+import AdminCheckInSurveyView from '@/components/admin/CheckInSurveyView'
 import AdminEmployeeProfileTypeView from '@/components/admin/EmployeeProfileTypeView'
 import AdminSendEmail from '@/components/admin/SendEmail'
+import AdminWorkshop from '@/components/admin/Workshop'
 
 Vue.use(Router)
 
@@ -112,6 +122,12 @@ export const router = new Router({
       name: 'Reset Password',
       component: ResetPassword
     },
+    {
+      path: '/submit-checkin-survey/:link',
+      name: 'SubmitCheckInSurvey',
+      component: SubmitCheckInSurvey
+    },
+ 
     {
       path: '/login',
       name: 'Login',
@@ -250,6 +266,13 @@ export const router = new Router({
       component: RequestWorkshop,
       meta: { requiresAuth: true, employerAuth: true, employeeAuth: false, adminAuth: false }
     },
+    {
+      path: '/employer/feedback-by-employees',
+      beforeEnter: guardMyroute,
+      name: 'FeedbackEmployee',
+      component: FeedbackEmployee,
+      meta: { requiresAuth: true, employerAuth: true, employeeAuth: false, adminAuth: false }
+    },
 
     // routes for employees
     {
@@ -322,6 +345,28 @@ export const router = new Router({
       component: EmpRequestWorkshop,
       meta: { requiresAuth: true, employerAuth: false, employeeAuth: true, adminAuth: false }
     },
+    {
+      path: '/employee/feedback-to-company',
+      beforeEnter: guardMyroute,
+      name: 'CompanyFeeback',
+      component: EmpCompanyFeedback,
+      meta: { requiresAuth: true, employerAuth: false, employeeAuth: true, adminAuth: false }
+    },
+    {
+      path: '/employee/workshops',
+      beforeEnter: guardMyroute,
+      name: 'Workshops',
+      component: EmpWorkshop,
+      meta: { requiresAuth: true, employerAuth: false, employeeAuth: true, adminAuth: false }
+    },
+    {
+      path: '/employee/workshop/:id',
+      beforeEnter: guardMyroute,
+      name: 'ViewWorkshop',
+      component: EmpViewWorkshop,
+      meta: { requiresAuth: true, employerAuth: false, employeeAuth: true, adminAuth: false }
+    },
+  
     //routes for admin
     {
       path: '/admin/dashboard',
@@ -415,10 +460,38 @@ export const router = new Router({
       meta: { requiresAuth: true, employerAuth: false, employeeAuth: false, adminAuth: true }
     },
     {
+      path: '/admin/check-in-surveys',
+      beforeEnter: guardMyroute,
+      name: 'CheckInSurveys',
+      component: AdminCheckInSurveys,
+      meta: { requiresAuth: true, employerAuth: false, employeeAuth: false, adminAuth: true }
+    },
+    {
+      path: '/admin/check-in-survey/:id',
+      beforeEnter: guardMyroute,
+      name: 'ViewCheckInSurvey',
+      component: AdminCheckInSurveyView,
+      meta: { requiresAuth: true, employerAuth: false, employeeAuth: false, adminAuth: true }
+    },
+    {
       path: '/admin/send-email',
       beforeEnter: guardMyroute,
       name: 'SendEmail',
       component: AdminSendEmail,
+      meta: { requiresAuth: true, employerAuth: false, employeeAuth: false, adminAuth: true }
+    },
+    {
+      path: '/admin/workshops',
+      beforeEnter: guardMyroute,
+      name: 'AdminWorkshop',
+      component: AdminWorkshop,
+      meta: { requiresAuth: true, employerAuth: false, employeeAuth: false, adminAuth: true }
+    },
+    {
+      path: '/admin/view-workshop/:id',
+      beforeEnter: guardMyroute,
+      name: 'AdminWorkshop',
+      component: AdminWorkshop,
       meta: { requiresAuth: true, employerAuth: false, employeeAuth: false, adminAuth: true }
     },
   ],

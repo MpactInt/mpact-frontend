@@ -25,7 +25,7 @@
           <router-link to="/admin/todo">To Do</router-link>
         </li>
         <li>
-          <router-link to="/admin/request-workshop">Request for Workshop</router-link>
+          <router-link to="/admin/request-workshop">Workshop Requests</router-link>
         </li>
         <li>
           <router-link to="/admin/ask-your-care-team">Ask Your Care Team</router-link>
@@ -40,7 +40,13 @@
           <router-link to="/admin/popup-surveys">Popup Surveys</router-link>
         </li>
         <li>
+          <router-link to="/admin/check-in-surveys">Check In Surveys</router-link>
+        </li>
+        <li>
           <router-link to="/admin/send-email">Send Email</router-link>
+        </li>
+         <li>
+          <router-link to="/admin/workshops">Workshops</router-link>
         </li>
       </ul>
       <div class="logout-btn-box"><button class="logout-btn btn" @click="logout">Logout</button></div>
