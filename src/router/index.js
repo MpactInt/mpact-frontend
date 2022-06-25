@@ -497,7 +497,7 @@ export const router = new Router({
     },
   ],
   mode: 'history',
-  base: '/dist',
+  base: '/',
 })
 
 router.beforeEach((to, from, next) => {

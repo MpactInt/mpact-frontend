@@ -82,7 +82,7 @@
                   <span class="custom-checkmark"></span>
                 </label>
               </p>
-              <button type="submit" class="d-block btn btn-primary">Submit</button>
+              <button type="submit" class="d-block btn btn-primary" :disabled="chargebeeUser.disabled">Submit</button>
             </form>
           </div>
         </div>
@@ -179,6 +179,7 @@ export default {
 
           }
           ).catch((error) => {
+             that.chargebeeUser.disabled = false;
             this.$swal({
               icon: "error",
               title: "error",

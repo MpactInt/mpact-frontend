@@ -1,5 +1,5 @@
 <template>
-    <div class="main-content">
+    <div class="col-md-9">
         <router-link to="/admin/popup-surveys">
             <button class="btn-primary">
                 <i class="fa fa-arrow-left white"></i>

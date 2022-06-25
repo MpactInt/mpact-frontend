@@ -231,18 +231,19 @@ input.form-control, select.form-control, .custom-file-input {
     padding: 12px 20px;
 }
 .sidebar {
-    width: 390px !important;
+    /* width: 390px !important; */
     background: #090446;
     /* position: absolute; */
-    left: 0;
+    /* left: 0; */
     min-height: 100vh;
     color: #fff;
     padding: 50px 3%;
     overflow: hidden;
-    overflow-y: auto;
+    /* overflow-y: auto; */
     height: 100;
    /* padding-top: 136px;*/
-    margin-left: -15px;
+    /* margin-left: -15px; */
+    margin-left: 12px;
 }
 .user-info {
   display: flex;

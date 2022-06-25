@@ -2,7 +2,7 @@
 /* eslint-disable */
 </script>
 <template>
-    <div class="main-content">
+    <div class="col-md-9">
         <h3>Feedback by Employees</h3>
         <div class="row">
 

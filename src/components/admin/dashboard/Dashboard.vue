@@ -1,5 +1,5 @@
 <template>
-  <div class="main-content">
+  <div class="col-md-9">
     <h3>Admin Dashboard</h3>
   </div>
 </template>

@@ -1,5 +1,5 @@
 <template>
-  <div class="main-content ml-4">
+  <div class="col-md-9 ml-4">
     <div class="row mt-3">
       <CustomSurvey v-if="pg.length" :surveyProp="pg" :submitPopupSurvey="submitPopupSurvey"></CustomSurvey>
     </div>

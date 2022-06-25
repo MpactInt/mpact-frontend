@@ -1,5 +1,5 @@
 <template>
-    <div class="main-content">
+    <div class="col-md-9">
         <h3>Send Email</h3>
         <button @click="sendEmail" class="btn btn-primary" :disabled="disabled">Send Email</button>
     </div>

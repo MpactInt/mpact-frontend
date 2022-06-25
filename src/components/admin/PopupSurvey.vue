@@ -1,5 +1,5 @@
 <template>
-    <div class="main-content">
+    <div class="col-md-9">
         <h3>Popup Survey Questions</h3>
         <div class="row">
             <div class="col-md-3">

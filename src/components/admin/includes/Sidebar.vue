@@ -1,5 +1,5 @@
 <template>
-  <div class="sidebar">
+  <div class="col-md-2 sidebar">
     <div class="user-info">
       <div class="user-img"><img class="logo-img" src="../../../assets/images/user-img.png"></div>
       <div class="user-detail">
