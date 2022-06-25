@@ -73,6 +73,7 @@ export default {
         'additional_info': '',
         'disabled': false,
       },
+      workshopUpdateUserList:[],
       toolkitPath: '',
       todoUpdate: {
         id: '',
@@ -223,6 +224,7 @@ export default {
         that.workshopUpdate.date = response.data.res.date
         that.workshopUpdate.instructor = response.data.res.instructor
         that.path = response.data.path
+        that.workshopUpdateUserList = response.data.res.users
         that.registered = response.data.registered
       });
     },

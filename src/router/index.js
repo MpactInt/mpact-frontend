@@ -67,6 +67,7 @@ import AdminCheckInSurveyView from '@/components/admin/CheckInSurveyView'
 import AdminEmployeeProfileTypeView from '@/components/admin/EmployeeProfileTypeView'
 import AdminSendEmail from '@/components/admin/SendEmail'
 import AdminWorkshop from '@/components/admin/Workshop'
+import AdminWorkshopView from '@/components/admin/WorkshopView'
 
 Vue.use(Router)
 
@@ -490,8 +491,8 @@ export const router = new Router({
     {
       path: '/admin/view-workshop/:id',
       beforeEnter: guardMyroute,
-      name: 'AdminWorkshop',
-      component: AdminWorkshop,
+      name: 'AdminWorkshopView',
+      component: AdminWorkshopView,
       meta: { requiresAuth: true, employerAuth: false, employeeAuth: false, adminAuth: true }
     },
   ],

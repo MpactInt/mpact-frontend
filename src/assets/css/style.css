@@ -231,7 +231,7 @@ input.form-control, select.form-control, .custom-file-input {
     padding: 12px 20px;
 }
 .sidebar {
-    width: 390px;
+    width: 390px !important;
     background: #090446;
     /* position: absolute; */
     left: 0;
