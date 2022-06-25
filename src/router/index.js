@@ -496,8 +496,8 @@ export const router = new Router({
       meta: { requiresAuth: true, employerAuth: false, employeeAuth: false, adminAuth: true }
     },
   ],
-  mode: 'history'
-
+  mode: 'history',
+  base: '/dist',
 })
 
 router.beforeEach((to, from, next) => {
