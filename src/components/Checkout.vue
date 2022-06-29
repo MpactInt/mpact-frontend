@@ -69,8 +69,14 @@
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" id="country" placeholder="Country"
+                                        <select class="form-control" id="country" placeholder="Select Country"
                                             v-model="companyData.billingAddress.country">
+                                            <option v-for="c in countries" :value="c.code" v-bind:key="c.id">
+                                                {{ c.name }}
+                                            </option>
+                                        </select>
+                                        <!-- <input type="text" class="form-control" id="country" placeholder="Country"
+                                            v-model="companyData.billingAddress.country"> -->
                                     </div>
                                 </div>
                                 <button type="submit" class="d-block btn btn-primary">Submit</button>
@@ -134,10 +140,18 @@ export default {
                 'link': ''
             },
             estimateData: [],
-            cartItems: []
+            cartItems: [],
+            countries: []
         }
     },
     methods: {
+        getCountries: function () {
+            let that = this;
+            that.companyData.link = that.$route.params.link
+            Api.getCountries(that.companyData).then(response => {
+                that.countries = response.data.res
+            })
+        },
         validateForm: function (e) {
             e.preventDefault();
             let that = this;
@@ -172,6 +186,7 @@ export default {
     },
     mounted() {
         this.getCompanyDetails(this.$route.params.link)
+        this.getCountries()
     }
 }
 </script>

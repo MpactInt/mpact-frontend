@@ -11,6 +11,9 @@ class Api {
     createSubscription(data) {
         return axiosCommon.post('/create-subscription', data)
     }
+    getCountries(data) {
+        return axiosCommon.get('/get-countries')
+    }
     updatePaymentStatus(link) {
         return axiosCommon.get('/update-payment-status/' + link)
     }
