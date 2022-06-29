@@ -12,6 +12,9 @@
         <li>
           <router-link to="/admin/dashboard">Home</router-link>
         </li>
+          <li>
+          <router-link to="/admin/welcome-note">Welcome Note</router-link>
+        </li>
         <li>
           <router-link to="/admin/steps-configuration">Steps Configuration</router-link>
         </li>
@@ -47,6 +50,9 @@
         </li>
          <li>
           <router-link to="/admin/workshops">Workshops</router-link>
+        </li>
+          <li>
+          <router-link to="/admin/meetings">Zoom Meetings</router-link>
         </li>
       </ul>
       <div class="logout-btn-box"><button class="logout-btn btn" @click="logout">Logout</button></div>

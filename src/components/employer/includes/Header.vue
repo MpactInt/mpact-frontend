@@ -16,7 +16,7 @@
                     </li>
                     <li class="nav-item">
                         <router-link class="nav-link btn custom-btn" to="/employer/request-workshop">
-                            <div class="gradient-btn">Request for a workshop</div>
+                            <div class="gradient-btn">Request a Custom Workshop</div>
                         </router-link>
                     </li>
                 </ul>

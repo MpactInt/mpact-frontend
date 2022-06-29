@@ -62,8 +62,8 @@ export default {
         'toolkit': [],
         'guideBook': ''
       },
-      workshopUpdate:{
-        'id':'',
+      workshopUpdate: {
+        'id': '',
         'title': '',
         'description': '',
         'image': '',
@@ -71,9 +71,10 @@ export default {
         'date': '',
         'instructor': '',
         'additional_info': '',
+        'meeting_type':'',
         'disabled': false,
       },
-      workshopUpdateUserList:[],
+      workshopUpdateUserList: [],
       toolkitPath: '',
       todoUpdate: {
         id: '',
@@ -92,10 +93,15 @@ export default {
       todoList: [],
       workshopList: [],
       workshopsList: {},
+      workshopsListSelect: [],
+      meetingsList: {},
+      meetingRecordingLength:0,
+      meetingRecordingList:{},
+      meetingsLength: 0,
       workshopsLength: 0,
       filePath: '',
-      path:'',
-      registered:false
+      path: '',
+      registered: false
     }
   },
   methods: {
@@ -223,6 +229,7 @@ export default {
         that.workshopUpdate.image = response.data.res.image
         that.workshopUpdate.date = response.data.res.date
         that.workshopUpdate.instructor = response.data.res.instructor
+        that.workshopUpdate.meeting_type = response.data.res.meeting_type
         that.path = response.data.path
         that.workshopUpdateUserList = response.data.res.users
         that.registered = response.data.registered
@@ -244,6 +251,56 @@ export default {
           showConfirmButton: true
         });
       });
+    },
+    getWorkshopsListForSelect: function () {
+      let that = this
+      Api.getWorkshopsListForSelect().then(response => {
+        let that = this
+        that.workshopsListSelect = response.data.res
+      }
+      ).catch((error) => {
+        this.$swal({
+          icon: "error",
+          title: "error",
+          text: error.response.data.message,
+          showConfirmButton: true
+        });
+      });
+    },
+    getMeetingsList: function (page = 1) {
+      let that = this
+      Api.getMeetingsList(page, {}).then(response => {
+        let that = this
+        that.meetingsList = response.data.res
+        that.meetingsLength = that.meetingsList.data.length
+      }
+      ).catch((error) => {
+        this.$swal({
+          icon: "error",
+          title: "error",
+          text: error.response.data.message,
+          showConfirmButton: true
+        });
+      });
+
+    },
+    getMeetingRecordingsList: function (id,page = 1) {
+      let that = this
+      Api.getMeetingRecordingsList(id,page, {}).then(response => {
+        let that = this
+        that.meetingRecordingsList = response.data.res.data.recording_files
+        console.log(that.meetingRecordingsList)
+        that.meetingRecordingLength = that.meetingRecordingsList.length
+      }
+      ).catch((error) => {
+        this.$swal({
+          icon: "error",
+          title: "error",
+          text: "in error",
+          showConfirmButton: true
+        });
+      });
+
     },
     getCompaniesList: function () {
       let that = this
@@ -433,7 +490,7 @@ export default {
         const container = $("#chat-gui");
         console.log(container)
         var h = $("#chat-gui")[0].scrollHeight
-        $("#chat-gui").animate({ scrollTop: h },'fast')
+        $("#chat-gui").animate({ scrollTop: h }, 'fast')
       }, 100)
     }
   },

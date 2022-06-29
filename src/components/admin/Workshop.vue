@@ -26,6 +26,7 @@
           <td>Total Hours</td>
           <td>Date</td>
           <td>Instructor</td>
+          <td>Meeting Type</td>
           <td>Additional Info</td>
           <td>Action</td>
         </tr>
@@ -36,6 +37,7 @@
           <td>{{ r.total_hours }}</td>
           <td>{{ r.date | timeAgo }}</td>
           <td>{{ r.instructor }}</td>
+          <td>{{ r.meeting_type }}</td>
           <td><span v-html="r.additional_info"></span></td>
           <td>
             <button class="btn btn-primary" @click="getWorkshop(r.id)"><i class="fa fa-pencil"></i></button>
@@ -80,6 +82,13 @@
               v-model="workshop.instructor">
           </div>
           <div class="form-group">
+            <label>Meeting Type <span class="err">*</span></label>
+            <select class="form-control" v-model="workshop.meeting_type">
+              <option value="IN_PERSON">In Person</option>
+              <option value="ZOOM">Zoom</option>
+            </select>
+          </div>
+          <div class="form-group">
             <label>Additional Info<span class="err">*</span></label>
             <vue2-tinymce-editor v-model="workshop.additional_info" placeholder="Additional Info"></vue2-tinymce-editor>
           </div>
@@ -121,8 +130,16 @@
               v-model="workshopUpdate.instructor">
           </div>
           <div class="form-group">
+            <label>Meeting Type <span class="err">*</span></label>
+            <select class="form-control" v-model="workshopUpdate.meeting_type">
+              <option value="IN_PERSON">In Person</option>
+              <option value="ZOOM">Zoom</option>
+            </select>
+          </div>
+          <div class="form-group">
             <label>Additional Info<span class="err">*</span></label>
-            <vue2-tinymce-editor v-model="workshopUpdate.additional_info" placeholder="Additional Info"></vue2-tinymce-editor>
+            <vue2-tinymce-editor v-model="workshopUpdate.additional_info" placeholder="Additional Info">
+            </vue2-tinymce-editor>
           </div>
           <div class="form-group">
             <label>Upload Image <span class="err">*</span></label>
@@ -161,6 +178,7 @@ export default {
         'date': '',
         'instructor': '',
         'additional_info': '',
+        'meeting_type': '',
         'disabled': false,
       },
 
@@ -198,6 +216,7 @@ export default {
         formData.append('instructor', that.workshop.instructor)
         formData.append('date', that.workshop.date)
         formData.append('additional_info', that.workshop.additional_info)
+        formData.append('meeting_type', that.workshop.meeting_type)
         let headers = {
           'Content-Type': 'multipart/form-data',
           'Access-Control-Allow-Origin': '*'
@@ -268,7 +287,7 @@ export default {
       e.preventDefault()
       let that = this;
       console.log(that.workshopUpdate)
-      if (!that.workshopUpdate.title || !that.workshopUpdate.description || !that.workshopUpdate.image || !that.workshopUpdate.total_hours || !that.workshopUpdate.instructor || !that.workshopUpdate.date || !that.workshopUpdate.additional_info) {
+      if (!that.workshopUpdate.title || !that.workshopUpdate.description || !that.workshopUpdate.total_hours || !that.workshopUpdate.instructor || !that.workshopUpdate.date || !that.workshopUpdate.additional_info) {
         this.$swal({
           icon: "error",
           title: "error",
@@ -286,6 +305,7 @@ export default {
         formData.append('instructor', that.workshopUpdate.instructor)
         formData.append('date', that.workshopUpdate.date)
         formData.append('additional_info', that.workshopUpdate.additional_info)
+        formData.append('meeting_type', that.workshopUpdate.meeting_type)
         let headers = {
           'Content-Type': 'multipart/form-data',
           'Access-Control-Allow-Origin': '*'

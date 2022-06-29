@@ -2,6 +2,7 @@
   <div class="col-md-9">
     <div class="row">
       <div class="col-lg-8">
+        <p><b>Guided Transformation</b></p>
         <div class="row step-card-section">
           <div class="col-lg-4 col-md-6 mb-3 cpd" v-for="step in stepsList" v-bind:key="step.id">
             <div class="card custom-card">
@@ -9,12 +10,12 @@
                 <img class="card-img-top" :src="filePath + '/' + step.image" alt="Card image cap">
                 <div class="card-body">
                   <h5 class="card-title text-blue f-14">{{ step.title }}</h5>
-                  <div class="progress-bar-green">
+                  <!-- <div class="progress-bar-green">
                     <div class="progress">
                       <div class="progress-bar" role="progressbar" style="width: 40%" aria-valuenow="25"
                         aria-valuemin="0" aria-valuemax="100">40%</div>
                     </div>
-                  </div>
+                  </div> -->
                 </div>
               </router-link>
             </div>
@@ -42,7 +43,7 @@
             </p>
             <li v-if="announcementsList.length" v-for="ad in announcementsList" v-bind:key="ad.id">
               <h5 class="text-blue">{{ ad.title }}</h5>
-              <p class="text-blue op-7">{{ ad.description }}</p>
+              <p class="text-blue op-7">{{ ad.description | truncate(50) }}</p>
             </li>
             <p v-if="!announcementsList.length">No Data Found</p>
           </ul>

@@ -32,7 +32,7 @@
                         <button class="btn btn-primary" @click="getPopupSurvey(p)"><i class="fa fa-pencil"></i></button>
                         <button class="btn btn-danger" @click="deletePopupSurvey(p.id)"><i
                                 class="fa fa-trash"></i></button>
-                        <router-link class="btn btn-primary" :to="'/admin/check-in-survey/' + p.id"><i class="fa fa-eye"></i>
+                        <router-link class="btn btn-primary" :to="'/admin/popup-survey/' + p.id"><i class="fa fa-eye"></i>
                         </router-link>
                     </td>
                 </tr>

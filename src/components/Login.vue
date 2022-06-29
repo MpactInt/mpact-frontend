@@ -33,7 +33,7 @@
                   Password?</a></p>
               <div class="account-box-link text-gray">
                 Don't have account? <span>
-                  <router-link class="text-blue bold" to="/">Create Company</router-link>
+                  <router-link class="text-blue bold" to="/">Subscribe Now</router-link>
                 </span>
               </div>
             </form>

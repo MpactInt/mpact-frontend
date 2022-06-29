@@ -9,6 +9,7 @@
             <span>Registration Link</span>
           </div>
         </router-link>
+        <p>Use this link to send an invite to your team in order to expedite platform registration.</p>
       </div>
       <div class="col-md-3">
         <router-link to="/employer/team-management/employees">
@@ -17,6 +18,9 @@
             <span>Employees</span>
           </div>
         </router-link>
+        <p>
+          Manage your employee list (add or delete team members). You can also monitor login activity.
+        </p>
       </div>
       <div class="col-md-3">
         <router-link to="/employer/team-management/invitations">
@@ -25,6 +29,8 @@
             <span>Invitations</span>
           </div>
         </router-link>
+        <p>If you have already sent a link to team members or added a new employee, use this link to monitor
+outstanding invites to the platform.</p>
       </div>
       <!-- <div class="col-md-3">
         <div class="icons">

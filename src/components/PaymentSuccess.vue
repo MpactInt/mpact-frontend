@@ -2,10 +2,11 @@
     <section class="login-section">
         <div class="login-inner">
             <div class="login-box">
-                <h5>You Payment Completed Successfully</h5>
+                <!-- <h5>You Payment Completed Successfully</h5>
                 <p>
                     Please <router-link to="/login">Login</router-link> to continue
-                </p>
+                </p> -->
+                <button class="btn btn-primary">Loading...</button>
             </div>
         </div>
     </section>
@@ -37,7 +38,11 @@ export default {
                         window.location = '/employee/dashboard'
                     }
                 } else {
-                    window.location = '/admin/dashboard'
+                    if (response.data.user) {
+                        window.location = '/admin/dashboard'
+                    } else {
+                        window.location = '/admin/companies'
+                    }
                 }
             })
         }

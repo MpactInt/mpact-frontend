@@ -110,3 +110,12 @@
 .plans-inner{
   border-radius: 5px;
 }
+
+.siderbar-link{
+  height: 500px !important;
+}
+
+.siderbar-link ul{
+  overflow-y: scroll !important;
+  height: 100% !important;
+}

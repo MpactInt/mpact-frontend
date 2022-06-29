@@ -68,6 +68,9 @@ import AdminEmployeeProfileTypeView from '@/components/admin/EmployeeProfileType
 import AdminSendEmail from '@/components/admin/SendEmail'
 import AdminWorkshop from '@/components/admin/Workshop'
 import AdminWorkshopView from '@/components/admin/WorkshopView'
+import AdminMeeting from '@/components/admin/Meeting'
+import AdminMeetingRecording from '@/components/admin/MeetingRecording'
+import AdminWelcomeNote from '@/components/admin/WelcomeNote'
 
 Vue.use(Router)
 
@@ -128,7 +131,7 @@ export const router = new Router({
       name: 'SubmitCheckInSurvey',
       component: SubmitCheckInSurvey
     },
- 
+
     {
       path: '/login',
       name: 'Login',
@@ -367,7 +370,7 @@ export const router = new Router({
       component: EmpViewWorkshop,
       meta: { requiresAuth: true, employerAuth: false, employeeAuth: true, adminAuth: false }
     },
-  
+
     //routes for admin
     {
       path: '/admin/dashboard',
@@ -495,6 +498,32 @@ export const router = new Router({
       component: AdminWorkshopView,
       meta: { requiresAuth: true, employerAuth: false, employeeAuth: false, adminAuth: true }
     },
+    {
+      path: '/admin/meetings',
+      beforeEnter: guardMyroute,
+      name: 'AdminMeeting',
+      component: AdminMeeting,
+      meta: { requiresAuth: true, employerAuth: false, employeeAuth: false, adminAuth: true }
+    },
+    {
+      path: '/admin/meeting-recordings/:id',
+      beforeEnter: guardMyroute,
+      name: 'AdminMeetingRecording',
+      component: AdminMeetingRecording,
+      meta: { requiresAuth: true, employerAuth: false, employeeAuth: false, adminAuth: true }
+    },
+    {
+      path: '/admin/checkout/:link',
+      name: 'Checkout',
+      component: Checkout,
+      meta: { requiresAuth: true, employerAuth: false, employeeAuth: false, adminAuth: true }
+    },
+    {
+      path: '/admin/welcome-note',
+      name: 'WelcomeNote',
+      component: AdminWelcomeNote,
+      meta: { requiresAuth: true, employerAuth: false, employeeAuth: false, adminAuth: true }
+    },
   ],
   mode: 'history',
   base: '/',
@@ -558,7 +587,7 @@ router.beforeEach((to, from, next) => {
       }
       else if (u.role == "COMPANY" && c.role == "COMPANY_ADMIN") {
         next('employer/dashboard')
-      } 
+      }
       else {
         next('admin/dashboard')
       }

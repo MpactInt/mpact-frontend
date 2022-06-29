@@ -85,14 +85,30 @@ class Api {
     getAllAnnouncementsList(id, data, page) {
         return axiosCommon.post('/get-all-announcements-list/' + id + '?page=' + page, data)
     }
-
     addWelcomeNote(data) {
         return axiosCommon.post('/add-welcome-note', data)
+    }
+    addWelcomeNoteCompany(data) {
+        return axiosCommon.post('/add-welcome-note-company', data)
+    }
+    updateWelcomeNoteCompany(data){
+        return axiosCommon.post('/update-welcome-note-company', data)
+    }
+    deleteWelcomeNote(id) {
+        return axiosCommon.get('/delete-welcome-note/'+id)
     }
     getWelcomeNote() {
         return axiosCommon.get('/get-welcome-note')
     }
-
+    getWelcomeNoteList(page){
+        return axiosCommon.get('/get-welcome-note-list?page='+page)
+    }
+    getSingleWelcomeNote(id){
+        return axiosCommon.get('/get-single-welcome-note/'+id)
+    }
+    getSingleWelcomeNoteCompany(){
+        return axiosCommon.get('/get-single-welcome-note-company')
+    }
     uploadLogo(data, headers) {
         return axiosCommon.post('/upload-logo', data, headers)
     }
@@ -259,11 +275,11 @@ class Api {
     getPopupSurveyList() {
         return axiosCommon.post('/get-popup-survey-list')
     }
-    getPopupSurvey(id){
-        return axiosCommon.get('/get-popup-survey/'+id)
+    getPopupSurvey(id) {
+        return axiosCommon.get('/get-popup-survey/' + id)
     }
-    getPopupSurveyAnswerList(id){
-        return axiosCommon.get('/get-popup-survey-answer-list/'+id)
+    getPopupSurveyAnswerList(id) {
+        return axiosCommon.get('/get-popup-survey-answer-list/' + id)
     }
     addPopupSurvey(data) {
         return axiosCommon.post('/add-popup-survey', data)
@@ -292,29 +308,29 @@ class Api {
     getSection3(id) {
         return axiosCommon.get('/get-section3/' + id)
     }
-    deleteSection3Image(id){
+    deleteSection3Image(id) {
         return axiosCommon.get('/delete-section3-image/' + id)
     }
-    getEmployeeDashboardCms(){
+    getEmployeeDashboardCms() {
         return axiosCommon.get('/get-employee-dashboard-cms')
     }
-    getSurveyQuestionsDashboard(){
+    getSurveyQuestionsDashboard() {
         return axiosCommon.get('/get-survey-questions-dashboard')
     }
-    submitPopupSurvey(data){
-        return axiosCommon.post('/submit-popup-survey',data)
+    submitPopupSurvey(data) {
+        return axiosCommon.post('/submit-popup-survey', data)
     }
-    sendEmail(){
+    sendEmail() {
         return axiosCommon.get('/send-email')
     }
-    
+
     getCheckInSurveyList() {
         return axiosCommon.post('/get-check-in-survey-list')
     }
-    getCheckInSurvey(id){
-        return axiosCommon.get('/get-check-in-survey/'+id)
+    getCheckInSurvey(id) {
+        return axiosCommon.get('/get-check-in-survey/' + id)
     }
-    getCheckInSurveyAnswerList(){
+    getCheckInSurveyAnswerList() {
         return axiosCommon.get('/get-check-in-survey-answer-list')
     }
     addCheckInSurvey(data) {
@@ -326,17 +342,17 @@ class Api {
     deleteCheckInSurvey(id) {
         return axiosCommon.get('/delete-check-in-survey/' + id)
     }
-    getCheckInSurveyQuestions(id){
-        return axiosCommon.get('/get-check-in-survey-questions/'+id)
+    getCheckInSurveyQuestions(id) {
+        return axiosCommon.get('/get-check-in-survey-questions/' + id)
     }
-    submitCheckInSurvey(data,id){
-        return axiosCommon.post('/submit-check-in-survey/'+id,data)
+    submitCheckInSurvey(data, id) {
+        return axiosCommon.post('/submit-check-in-survey/' + id, data)
     }
-    submitCompanyFeedback(data){
-        return axiosCommon.post('/submit-company-feedback',data)
+    submitCompanyFeedback(data) {
+        return axiosCommon.post('/submit-company-feedback', data)
     }
-    getFeedbackList(page){
-        return axiosCommon.get('/get-company-feedback-list?page='+page)
+    getFeedbackList(page) {
+        return axiosCommon.get('/get-company-feedback-list?page=' + page)
     }
 
     addWorkshop(data, headers) {
@@ -354,8 +370,37 @@ class Api {
     deleteWorkshop(id) {
         return axiosCommon.get('/delete-workshop/' + id)
     }
-    registerForWorkshop(id){
+    registerForWorkshop(id) {
         return axiosCommon.get('/register-for-workshop/' + id)
+    }
+    getWorkshopsListForSelect() {
+        return axiosCommon.get('/get-workshops-list-for-select')
+    }
+
+
+    addMeeting(data) {
+        return axiosCommon.post('/add-meeting', data)
+    }
+    updateMeeting(data) {
+        return axiosCommon.post('/update-meeting', data)
+    }
+    getMeeting(id) {
+        return axiosCommon.get('/get-meeting/' + id)
+    }
+    getMeetingsList(page, data) {
+        return axiosCommon.post('/get-meetings-list' + '?page=' + page, data)
+    }
+    deleteMeeting(id) {
+        return axiosCommon.get('/delete-meeting/' + id)
+    }
+    getMeetingRecordingsList(id, page, data) {
+        return axiosCommon.get('/get-meeting-recording-list/' + id + '?page=' + page, data)
+    }
+    updateProfileCompany(data, headers) {
+        return axiosCommon.post('/update-profile-company', data, headers)
+    }
+    getWelcomeNoteCompanies() {
+        return axiosCommon.get('/get-welcome-note-company-list')
     }
 }
 export default new Api()

@@ -49,8 +49,8 @@
                 <textarea class="form-control" placeholder="Requirements" v-model="workshop.requirements"></textarea>
             </div>
             <div class="form-group">
-                <label>Expactations <span class="err">*</span></label>
-                <textarea class="form-control" placeholder="Expactations" v-model="workshop.expectations"></textarea>
+                <label>Expectations <span class="err">*</span></label>
+                <textarea class="form-control" placeholder="Expectations" v-model="workshop.expectations"></textarea>
             </div>
             <div class="form-group">
                 <button type="button" class="btn btn-primary" @click="requestWorkshop"
@@ -98,8 +98,7 @@ export default {
             let that = this;
             console.log(that.workshop)
             if (!that.workshop.name || !that.workshop.workshop_focus || !that.workshop.desired_date ||
-                !that.workshop.workshop_length || !that.workshop.workshop_type || !that.workshop.audience || !that.workshop.requirements ||
-                !that.workshop.expectations) {
+                !that.workshop.workshop_length || !that.workshop.workshop_type) {
                 this.$swal({
                     icon: "error",
                     title: "error",

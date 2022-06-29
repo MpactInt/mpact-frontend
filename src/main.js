@@ -4,7 +4,7 @@
 
 import Vue from 'vue'
 import App from './App'
-import {router} from './router'
+import { router } from './router'
 import VueSweetalert2 from 'vue-sweetalert2'
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 import moment from 'moment'
@@ -62,18 +62,30 @@ Vue.filter('replaceUndescore', function (value) {
 Vue.filter('removeTimestampFromFileName', function (value) {
   if (value) {
     let res = value.split('_')
-    return res[res.length-1]
+    return res[res.length - 1]
     console.log(res)
     console.log(res.shift())
 
   }
 });
 
+Vue.filter('truncate', function (data, num) {
+  let reqdString = ''
+  if (data.length > num) {
+    for (let i = 0; i < num; i++) {
+      reqdString += data[i]
+    }
+    return reqdString + '...';
+  }else{
+    return data
+  }
+});
+
 window.Echo = new Echo({
-    broadcaster: 'pusher',
-    key: '5e314755f239abbafcd9', //Add your pusher key here
-    cluster: 'ap2',
-    forceTLS: true,
+  broadcaster: 'pusher',
+  key: '5e314755f239abbafcd9', //Add your pusher key here
+  cluster: 'ap2',
+  forceTLS: true,
 });
 
 new Vue({

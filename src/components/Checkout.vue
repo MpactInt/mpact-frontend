@@ -1,5 +1,5 @@
 <template>
-    <section class="login-section">
+    <section class="col-md-9 login-section">
         <div class="login-inner">
             <div class="col-md-12 p-5">
                 <form class="login-from" @submit="validateForm" ref="createCompanyForm">
@@ -90,7 +90,7 @@
                                         Total :
                                     </div>
                                     <div class="col-md-3">
-                                        {{ estimateData[0].invoice_estimate.total / 100 }}
+                                        {{ estimateData / 100 }}
                                     </div>
                                 </div>
                             </div>
@@ -149,7 +149,8 @@ export default {
         createEstimate: function () {
             let that = this
             Api.createEstimate(that.companyData).then(response => {
-                that.estimateData = response.data.res
+                that.estimateData = response.data.res[0].invoice_estimate.total
+                console.log(response.data.res[0].invoice_estimate.total)
                 that.cartItems = response.data.res[0].invoice_estimate.line_items
             })
         },

@@ -14,20 +14,33 @@
 <script>
 /* eslint-disable */
 import AppMixin from '../../mixins/AppMixin'
-
+import Api from '../../router/api'
 export default {
   name: 'WelcomeNote',
   mixins: [AppMixin],
   data() {
     return {
-
+      note:{}
     }
   },
   methods: {
-
+    getSingleWelcomeNoteCompany:function(){
+      let that = this
+      Api.getSingleWelcomeNoteCompany().then(response => {
+        that.note = response.data.res
+      }
+      ).catch((error) => {
+        this.$swal({
+          icon: "error",
+          title: "error",
+          text: error.response.data.message,
+          showConfirmButton: true
+        })
+      });
+    }
   },
   created() {
-    this.getWelcomeNote();
+    this.getSingleWelcomeNoteCompany();
   }
 }
 </script>
