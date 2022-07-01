@@ -79,6 +79,15 @@
                                             v-model="companyData.billingAddress.country"> -->
                                     </div>
                                 </div>
+                                <div class="col-md-12">
+                                    <p class="term-condition"><label class="custom-container text-gray">Pay Offline
+                                            <input type="checkbox" id="terms" value="off"
+                                                v-model="companyData.payOffline">
+                                            <span class="custom-checkmark"></span>
+                                        </label>
+                                    </p>
+                                </div>
+
                                 <button type="submit" class="d-block btn btn-primary">Submit</button>
                             </div>
                             <div class="col-md-4">
@@ -137,7 +146,8 @@ export default {
                 },
                 'disabled': false,
                 'terms': '',
-                'link': ''
+                'link': '',
+                'payOffline':''
             },
             estimateData: [],
             cartItems: [],

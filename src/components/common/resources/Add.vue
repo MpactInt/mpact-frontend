@@ -20,11 +20,11 @@
                         v-model="resource.description"></textarea>
                 </div>
                 <div class="form-group">
-                    <label>Link<span class="err">*</span></label>
+                    <label>Link</label>
                     <input type="text" class="form-control" id="link" placeholder="Link" v-model="resource.link">
                 </div>
                 <div class="form-group">
-                    <label>File<span class="err">*</span></label>
+                    <label>File</label>
                     <input type="file" class="form-control" id="file" ref="file" @change="fileOnChange">
                 </div>
                 <div class="form-group">
@@ -112,6 +112,12 @@ export default {
                         showConfirmButton: true
                     }).then(function () {
                         that.$bvModal.hide('add-resource-modal')
+                        that.resource.company = ''
+                        that.resource.title = ''
+                        that.resource.description = ''
+                        that.resource.visibility = ''
+                        that.resource.link = ''
+                        that.$refs.file.value = null;
                         that.getResourcesList()
                     });
                 }

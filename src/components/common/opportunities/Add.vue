@@ -78,7 +78,8 @@ export default {
                         showConfirmButton: true
                     }).then(function () {
                         that.opportunity.disabled = false
-                        that.opportunity.content = ''
+                        that.opportunity.description = ''
+                        that.opportunity.company = ''
                         that.$bvModal.hide('add-opportunity-modal')
                         that.getOpportunityList()
                     });

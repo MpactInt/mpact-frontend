@@ -49,11 +49,6 @@
                 </div>
             </div>
         </div>
-        <p class="term-condition"><label class="custom-container text-gray">Terms and Conditons Here.
-                <input type="checkbox" id="terms" v-model="chargebeeUser.terms">
-                <span class="custom-checkmark"></span>
-            </label>
-        </p>
         <button type="submit" class="d-block btn btn-primary" :disabled="chargebeeUser.disabled">Submit</button>
     </form>
 </template>
@@ -86,7 +81,7 @@ export default {
                 'addon': '',
                 'logo': '',
                 'disabled': false,
-                terms: ''
+                // terms: ''
             },
             subscriptionPlans: [],
             hideFooter: true,
@@ -110,7 +105,7 @@ export default {
                     showConfirmButton: true
                 });
             }
-            else if (!that.chargebeeUser.companyname || !that.chargebeeUser.email || !that.chargebeeUser.password || !that.chargebeeUser.domain || !that.chargebeeUser.employees || !that.chargebeeUser.terms) {
+            else if (!that.chargebeeUser.companyname || !that.chargebeeUser.email || !that.chargebeeUser.password || !that.chargebeeUser.domain || !that.chargebeeUser.employees) {
                 this.$swal({
                     icon: "error",
                     title: "error",
@@ -130,7 +125,6 @@ export default {
                 formData.append('password', that.chargebeeUser.password);
                 formData.append('addon', that.chargebeeUser.addon);
                 formData.append('logo', that.chargebeeUser.logo);
-
                 axios.post(APP_URL + '/create-company', formData,
                     {
                         headers: {

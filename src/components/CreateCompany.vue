@@ -37,13 +37,13 @@ export default {
   data() {
     return {
       msg: 'Create Company',
-    
+
     }
   },
-  components:{Add},
+  components: { Add },
   methods: {
 
-   
+
   },
   mounted() {
   }

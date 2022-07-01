@@ -136,6 +136,12 @@ export default {
                     }).then(function () {
                         that.workshop.title = ''
                         that.workshop.description = ''
+                        that.workshop.total_hours = ''
+                        that.workshop.instructor = ''
+                        that.workshop.date = ''
+                        that.workshop.meeting_type = ''
+                        that.workshop.company = ''
+                        that.workshop.additional_info = ''
                         that.$refs.image.value = null;
                         that.$bvModal.hide('add-workshop-modal')
                         that.getWorkshopsLists()

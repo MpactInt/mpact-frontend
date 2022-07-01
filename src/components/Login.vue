@@ -88,17 +88,23 @@ export default {
         that.user.disabled = true;
         Api.login(that.user).then(response => {
           that.user.disabled = false;
-          window.localStorage.setItem('token', response.data.access_token)
-          window.localStorage.setItem('userData', JSON.stringify(response.data.user))
           if (response.data.company) {
-            window.localStorage.setItem('companyData', JSON.stringify(response.data.company))
-            if (response.data.company.role == 'COMPANY_ADMIN') {
-               window.location = '/employer/dashboard'
+            if (response.data.company.role == 'COMPANY_ADMIN' && response.data.company.chargebee_subscription_id) {
+              window.localStorage.setItem('token', response.data.access_token)
+              window.localStorage.setItem('userData', JSON.stringify(response.data.user))
+              window.localStorage.setItem('companyData', JSON.stringify(response.data.company))
+              window.location = '/employer/dashboard'
+            } else if (response.data.company.role == 'COMPANY_ADMIN' && !response.data.company.chargebee_subscription_id) {
+              window.location = '/checkout/' + response.data.company.employee_registration_link
             } else {
-               window.location = '/employee/dashboard'
+              window.localStorage.setItem('token', response.data.access_token)
+              window.localStorage.setItem('userData', JSON.stringify(response.data.user))
+              window.location = '/employee/dashboard'
             }
-          }else{
-               window.location = '/admin/dashboard'
+          } else {
+            window.localStorage.setItem('token', response.data.access_token)
+            window.localStorage.setItem('userData', JSON.stringify(response.data.user))
+            window.location = '/admin/dashboard'
           }
         }
           // if (response.data.user.last_login) {
@@ -115,55 +121,55 @@ export default {
             showConfirmButton: true
           });
         });
-  }
-},
-sendEmail: function () {
-  let that = this;
-  if (!that.forgotPass.email) {
-    this.$swal({
-      icon: "error",
-      title: "error",
-      text: "Please Enter Email",
-      showConfirmButton: true
-    });
-  } else {
-    that.forgotPass.disabled = true;
-    Api.forgotPasswordSendEmail(that.forgotPass).then(response => {
-      that.forgotPass.disabled = false;
-      that.forgotPass.email = '';
-      this.$swal({
-        icon: "success",
-        title: "success",
-        text: "Email sent successfully",
-        showConfirmButton: true
-      }).then(() => {
-        that.$bvModal.hide('forgot-pass-modal')
-      });
-    }
-    ).catch((error) => {
-      that.forgotPass.disabled = false;
-      this.$swal({
-        icon: "error",
-        title: "error",
-        text: error.response.data.message,
-        showConfirmButton: true
-      });
-    });
-  }
+      }
+    },
+    sendEmail: function () {
+      let that = this;
+      if (!that.forgotPass.email) {
+        this.$swal({
+          icon: "error",
+          title: "error",
+          text: "Please Enter Email",
+          showConfirmButton: true
+        });
+      } else {
+        that.forgotPass.disabled = true;
+        Api.forgotPasswordSendEmail(that.forgotPass).then(response => {
+          that.forgotPass.disabled = false;
+          that.forgotPass.email = '';
+          this.$swal({
+            icon: "success",
+            title: "success",
+            text: "Email sent successfully",
+            showConfirmButton: true
+          }).then(() => {
+            that.$bvModal.hide('forgot-pass-modal')
+          });
+        }
+        ).catch((error) => {
+          that.forgotPass.disabled = false;
+          this.$swal({
+            icon: "error",
+            title: "error",
+            text: error.response.data.message,
+            showConfirmButton: true
+          });
+        });
+      }
 
-}
+    }
   },
-mounted() {
-  if (this.isLoggedIn) {
-   if (this.user.role == "COMPANY") {
+  mounted() {
+    if (this.isLoggedIn) {
+      if (this.user.role == "COMPANY") {
         this.$router.push('/employer/dashbaord')
       } else if (this.user.role == "COMPANY_EMP") {
         this.$router.push('/employee/dashbaord')
       } else {
         this.$router.push('/admin/dashbaord')
       }
+    }
   }
-}
 }
 </script>
 
