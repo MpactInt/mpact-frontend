@@ -29,25 +29,27 @@
                     <td>Audience</td>
                     <td>Requirements</td>
                     <td>Expectations</td>
-                    <!-- <td v-if="user.role == 'ADMIN'">Action</td> -->
+                    <td>Status</td>
+                    <td>Action</td>
                 </tr>
                 <tr v-if="workshopsLength" v-for="r in workshops.data" v-bind:key="r.id">
                     <td v-if="user.role == 'ADMIN'">{{ r.company_name }}</td>
                     <td>{{ r.name }}</td>
                     <td>{{ r.workshop_focus }}</td>
-                    <td>{{ r.desired_date | timeAgo}}</td>
+                    <td>{{ r.desired_date | timeAgo }}</td>
                     <td>{{ r.workshop_length }}</td>
                     <td>{{ r.workshop_type }}</td>
                     <td>{{ r.audience }}</td>
                     <td>{{ r.requirements }}</td>
                     <td>{{ r.expectations }}</td>
+                    <td>{{r.status}}</td>
                     <td>
-                        <!-- <button v-if="user.role == 'ADMIN'" class="btn btn-primary" @click="getWorkshop(r.id)"><i
-                                class="fa fa-pencil"></i></button>
-                        <button v-if="user.role == 'ADMIN'" class="btn btn-danger" @click="deleteWorkshop(r.id)"><i
-                                class="fa fa-trash"></i></button>
-                        <button v-if="user.role != 'ADMIN' && r.status == 'NEW'" class="btn btn-primary" @click="completeWorkshop(r.id)"><i
-                                class="fa fa-check"></i></button> -->
+                        <button v-if="user.role != 'ADMIN'" class="btn btn-danger"
+                            @click="deleteRequestWorkshop(r.id)"><i class="fa fa-trash"></i></button>
+                        <button v-if="user.role == 'ADMIN' && r.status == 'NEW'" class="btn btn-primary"
+                            @click="acceptRequestWorkshop(r.id)"><i class="fa fa-check"></i></button>
+                        <button v-if="user.role == 'ADMIN' && r.status == 'NEW'" class="btn btn-danger"
+                            @click="rejectRequestWorkshop(r.id)"><i class="fa fa-times"></i></button>
                     </td>
                 </tr>
                 <tr v-if="!workshopsLength">
@@ -85,7 +87,7 @@ export default {
         }
     },
     methods: {
-        deleteWorkshop: function (id) {
+        deleteRequestWorkshop: function (id) {
             let that = this
             this.$swal({
                 title: 'Are you sure?',
@@ -98,11 +100,11 @@ export default {
                 showLoaderOnConfirm: true
             }).then((result) => {
                 if (result.value) {
-                    Api.deleteWorkshop(id).then(response => {
+                    Api.deleteRequestWorkshop(id).then(response => {
                         this.$swal({
                             icon: "success",
                             title: "Success",
-                            text: "Workshop deleted successfully",
+                            text: "Workshop request deleted successfully",
                             showConfirmButton: true
                         }).then(function () {
                             that.getWorkshopList()
@@ -120,9 +122,9 @@ export default {
                 }
             });
         },
-        getWorkshopList: function (page=1) {
+        getWorkshopList: function (page = 1) {
             let that = this;
-            Api.getWorkshopList(that.getWorkshopData,page).then(response => {
+            Api.getWorkshopList(that.getWorkshopData, page).then(response => {
                 that.workshops = response.data.res
                 that.workshopsLength = that.workshops.data.length
             }).catch((error) => {
@@ -134,6 +136,76 @@ export default {
                 }).then(function () {
                     that.workshop.disabled = false;
                 });
+            });
+        },
+        acceptRequestWorkshop: function (id) {
+            let that = this
+            this.$swal({
+                title: 'Are you sure?',
+                text: 'You want to accept this request ?',
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes',
+                cancelButtonText: 'No',
+                showCloseButton: true,
+                showLoaderOnConfirm: true
+            }).then((result) => {
+                if (result.value) {
+                    Api.acceptRequestWorkshop(id).then(response => {
+                        this.$swal({
+                            icon: "success",
+                            title: "Success",
+                            text: "Workshop request accepted successfully",
+                            showConfirmButton: true
+                        }).then(function () {
+                            that.getWorkshopList()
+                        });
+                    }).catch((error) => {
+                        this.$swal({
+                            icon: "error",
+                            title: "error",
+                            text: error.response.data.message,
+                            showConfirmButton: true
+                        }).then(function () {
+                            that.workshop.disabled = false;
+                        });
+                    });
+                }
+            });
+        },
+        rejectRequestWorkshop: function (id) {
+            let that = this
+            this.$swal({
+                title: 'Are you sure?',
+                text: 'You want to reject this request ?',
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes',
+                cancelButtonText: 'No',
+                showCloseButton: true,
+                showLoaderOnConfirm: true
+            }).then((result) => {
+                if (result.value) {
+                    Api.rejectRequestWorkshop(id).then(response => {
+                        this.$swal({
+                            icon: "success",
+                            title: "Success",
+                            text: "Workshop request rejected successfully",
+                            showConfirmButton: true
+                        }).then(function () {
+                            that.getWorkshopList()
+                        });
+                    }).catch((error) => {
+                        this.$swal({
+                            icon: "error",
+                            title: "error",
+                            text: error.response.data.message,
+                            showConfirmButton: true
+                        }).then(function () {
+                            that.workshop.disabled = false;
+                        });
+                    });
+                }
             });
         },
     },

@@ -19,6 +19,7 @@ import Profile from '@/components/employer/Profile'
 import Dashboard from '@/components/employer/dashboard/Dashboard'
 import MembershipDetails from '@/components/employer/MembershipDetails'
 import Resources from '@/components/employer/Resources'
+import Workshop from '@/components/employer/Workshop'
 import TeamManagement from '@/components/employer/team-management/TeamManagement'
 import RegistrationLink from '@/components/employer/team-management/RegistrationLink'
 import Employees from '@/components/employer/team-management/Employees'
@@ -194,6 +195,13 @@ export const router = new Router({
       meta: { requiresAuth: true, employerAuth: true, employeeAuth: false, adminAuth: false }
     },
     {
+      path: '/employer/workshops',
+      beforeEnter: guardMyroute,
+      name: 'Workshop',
+      component: Workshop,
+      meta: { requiresAuth: true, employerAuth: true, employeeAuth: false, adminAuth: false }
+    },
+    {
       path: '/employer/ask-question',
       beforeEnter: guardMyroute,
       name: 'AskQuestion',
@@ -277,7 +285,13 @@ export const router = new Router({
       component: FeedbackEmployee,
       meta: { requiresAuth: true, employerAuth: true, employeeAuth: false, adminAuth: false }
     },
-
+    {
+      path: '/employer/view-workshop/:id',
+      beforeEnter: guardMyroute,
+      name: 'AdminWorkshopView',
+      component: AdminWorkshopView,
+      meta: { requiresAuth: true, employerAuth: true, employeeAuth: false, adminAuth: false }
+    },
     // routes for employees
     {
       path: '/employee/dashboard',

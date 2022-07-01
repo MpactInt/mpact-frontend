@@ -2,13 +2,13 @@
     <b-modal id="update-resource-modal" title="Update Resource" :hide-footer=hideFooter>
         <form enctype="multipart/form-data">
             <div id="details">
-                <div class="form-group"  v-if="user.role == 'ADMIN'">
+                <div class="form-group" v-if="user.role == 'ADMIN'">
                     <label>Select Company <span class="err">*</span></label>
-                    <select class="form-control" v-model="resourceUpdate.company">
-                        <option selected value="">Select</option>
-                        <option v-for="cl in companiesList" :value="cl.id" v-bind:key="cl.id">{{ cl.company_name }}
-                        </option>
-                    </select>
+                    <multiselect v-model="resourceUpdate.company" :options="companiesListMultiselect"
+                        group-values="values" group-label="selectAll" :multiple="true" :group-select="true"
+                        placeholder="Type to search" track-by="name" label="name">
+                        <span slot="noResult">Oops! No elements found. Consider changing the search query.</span>
+                    </multiselect>
                 </div>
                 <div class="form-group">
                     <label>Title <span class="err">*</span></label>
@@ -21,11 +21,11 @@
                         v-model="resourceUpdate.description"></textarea>
                 </div>
                 <div class="form-group">
-                    <label>Link<span class="err">*</span></label>
+                    <label>Link</label>
                     <input type="text" class="form-control" id="link" placeholder="Link" v-model="resourceUpdate.link">
                 </div>
                 <div class="form-group">
-                    <label>File<span class="err">*</span></label>
+                    <label>File</label>
                     <input type="file" class="form-control" id="file" ref="fileUpdate" @change="updateFileOnChange">
                 </div>
                 <div class="form-group">
@@ -88,8 +88,9 @@ export default {
                 formData.append('title', that.resourceUpdate.title);
                 formData.append('id', that.resourceUpdate.id)
                 formData.append('visibility', that.resourceUpdate.visibility);
-                formData.append('company', that.resourceUpdate.company);
-
+                if (that.user.role == "ADMIN") {
+                    formData.append('company', JSON.stringify(that.resourceUpdate.company));
+                }
                 Api.updateResource(formData).then(response => {
                     that.resourceUpdate.disabled = false;
                     this.$swal({
@@ -110,7 +111,7 @@ export default {
                         text: error.response.data.message,
                         showConfirmButton: true
                     }).then(function () {
-                        that.resource.disabled = false;
+                        that.resourceUpdate.disabled = false;
                     });
                 });
             }
@@ -118,7 +119,10 @@ export default {
 
     },
     mounted() {
-        this.getCompaniesList()
+        this.getCompaniesListMultiselect()
+    },
+    created() {
+        console.log(this.resourceUpdate)
     }
 }
 </script>

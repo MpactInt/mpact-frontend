@@ -84,8 +84,8 @@
           </div>
           <div class="form-group">
             <label>Host Video <span class="err">*</span></label>
-            <input type="radio" class="form-control" v-model="meeting.host_video" value="1">ON
-            <input type="radio" class="form-control" v-model="meeting.host_video" value="0">OFF
+            <input type="radio" v-model="meeting.host_video" value="1">ON
+            <input type="radio" v-model="meeting.host_video" value="0">OFF
           </div>
           <div class="form-group">
             <label>Participant Video <span class="err">*</span></label>

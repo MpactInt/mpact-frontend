@@ -3,11 +3,11 @@
         <form>
             <div class="form-group">
                 <label>Select Company <span class="err">*</span></label>
-                <select class="form-control" v-model="todoUpdate.company">
-                    <option selected value="">Select</option>
-                    <option v-for="cl in companiesList" :value="cl.id" v-bind:key="cl.id">{{ cl.company_name }}
-                    </option>
-                </select>
+                <multiselect v-model="todoUpdate.company" :options="companiesListMultiselect" group-values="values"
+                    group-label="selectAll" :multiple="true" :group-select="true" placeholder="Type to search"
+                    track-by="name" label="name">
+                    <span slot="noResult">Oops! No elements found. Consider changing the search query.</span>
+                </multiselect>
             </div>
             <div class="form-group">
                 <label>Title</label>
@@ -81,7 +81,7 @@ export default {
         },
     },
     mounted() {
-        this.getCompaniesList()
+        this.getCompaniesListMultiselect()
     }
 }
 </script>

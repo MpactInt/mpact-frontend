@@ -27,7 +27,7 @@
           <td  v-if="user.role == 'ADMIN'">Action</td>
         </tr>
         <tr v-if="opportunitiesLength" v-for="r in opportunities.data" v-bind:key="r.id">
-          <td v-if="user.role == 'ADMIN'">{{ r.company_name }}</td>
+          <td v-if="user.role == 'ADMIN'"><span v-for="c in r.company" v-bind:key="c.id">{{ c.company_name }},</span></td>
           <td>
             <p v-html="r.content"></p>
           </td>
@@ -65,6 +65,7 @@ export default {
         id: '',
         company: '',
         description: '',
+        company:'',
         disabled: false
       },
       opportunities: {
@@ -77,7 +78,7 @@ export default {
       let that = this;
       Api.getOpportunity(id).then(response => {
         that.opportunityUpdate.id = response.data.res.id
-        that.opportunityUpdate.company = response.data.res.company_id
+        that.opportunityUpdate.company = response.data.res.company
         that.opportunityUpdate.description = response.data.res.description
         that.$bvModal.show('update-opportunity-modal')
       }).catch((error) => {

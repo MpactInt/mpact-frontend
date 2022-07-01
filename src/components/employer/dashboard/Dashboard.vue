@@ -51,7 +51,7 @@
       </div>
     </div>
     <div class="row pt-4 pb-5">
-      <div class="col-lg-4 col-md-6 mb-3 ">
+      <div class="col-lg-3 col-md-6 mb-3 ">
         <div class="resource-box">
           <h2 class="text-blue bold mb-2">Resources </h2>
           <router-link to="/employer/resources">View All</router-link>
@@ -67,7 +67,7 @@
           <p v-if="!resourcesList.length">No Data Found</p>
         </div>
       </div>
-      <div class="col-lg-4 col-md-6 mb-3 ">
+      <div class="col-lg-3 col-md-6 mb-3 ">
         <div class="resource-box">
           <!-- <p class="info-icon cursor-pointer"><img src="../../../assets/images/info-icon.png"></p> -->
           <h2 class="text-blue bold mb-3">Opportunities</h2>
@@ -76,20 +76,36 @@
           <div v-if="!opprotunity.content">No Data Found</div>
         </div>
       </div>
-      <div class="col-lg-4 col-md-6 mb-3 ">
+      <div class="col-lg-3 col-md-6 mb-3 ">
         <div class="resource-box">
           <h2 class="text-blue bold mb-3"><span class="primary-text rotated">"</span>To Do<span
               class="primary-text rotated">"</span></h2>
           <router-link to="/employer/todo">View All</router-link>
-          <ul class="to-do-list"  v-if="todoList.length">
+          <ul class="to-do-list" v-if="todoList.length">
             <li v-for="todo in todoList" v-bind:key="todo.id">
-              <router-link :to="'/employer/todo/'+todo.id">Item #{{todo.id}}</router-link>
-              <p class="text-blue op-7">{{todo.title}}</p>
+              <router-link :to="'/employer/todo/' + todo.id">Item #{{ todo.id }}</router-link>
+              <p class="text-blue op-7">{{ todo.title }}</p>
             </li>
           </ul>
           <p v-if="!todoList.length">
             No Data Found
           </p>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 mb-3 ">
+        <div class="resource-box">
+          <h2 class="text-blue bold mb-2">Workshops </h2>
+          <router-link to="/employer/workshops">View All</router-link>
+          <ul v-if="workshopsList.length" class="resource-list mt-3">
+            <!-- <li class="">Assignment <span class="list-icon count">7</span></li> -->
+            <li v-for="rl in workshopsList" class="" v-bind:key="rl.id">{{ rl.title }}
+              <span class="list-icon">
+                <a href="javascript:void(0)">
+                  <img src="../../../assets/images/chevron-left-icon.png">
+                </a></span>
+            </li>
+          </ul>
+          <p v-if="!workshopsList.length">No Data Found</p>
         </div>
       </div>
     </div>
@@ -106,6 +122,7 @@ export default {
   mixins: [AppMixin],
   data() {
     return {
+      workshopsList:[],
       resourcesList: [],
       announcementsList: [],
       stepsList: [],
@@ -176,6 +193,21 @@ export default {
           showConfirmButton: true
         });
       });
+    },
+    getWorkshopsListDashboard: function () {
+      let that = this
+      Api.getWorkshopsListDashboard().then(response => {
+        let that = this
+        that.workshopsList = response.data.res
+      }
+      ).catch((error) => {
+        this.$swal({
+          icon: "error",
+          title: "error",
+          text: error.response.data.message,
+          showConfirmButton: true
+        });
+      });
     }
   },
   created() {
@@ -185,6 +217,7 @@ export default {
     this.getOpportunityListDashboard()
     this.getTodoListDashboard()
     this.getRequestedWorkshopListDashboard()
+    this.getWorkshopsListDashboard()
   }
 }
 </script>

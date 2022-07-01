@@ -32,8 +32,8 @@ class Api {
     logout() {
         return axiosCommon.get('/logout')
     }
-    sendEmail(data) {
-        return axiosCommon.post('/send-email', data)
+    forgotPasswordSendEmail(data) {
+        return axiosCommon.post('/forgot-password-send-email', data)
     }
     resetPassword(data, url) {
         return axiosCommon.post('/' + url, data)
@@ -236,11 +236,23 @@ class Api {
     getWorkshopList(data, page) {
         return axiosCommon.post('/get-workshop-list' + '?page=' + page, data)
     }
+    getWorkshopsListDashboard(){
+        return axiosCommon.get('/get-workshop-list-dashboard')
+    }
+    deleteRequestWorkshop(id) {
+        return axiosCommon.get('/delete-request-workshop/' + id)
+    }
+    acceptRequestWorkshop(id) {
+        return axiosCommon.get('/accept-request-workshop/' + id)
+    }
+    rejectRequestWorkshop(id) {
+        return axiosCommon.get('/reject-request-workshop/' + id)
+    }
     requestWorkshop(data) {
         return axiosCommon.post('/request-workshop', data)
     }
     getRequestedWorkshopListDashboard() {
-        return axiosCommon.get('/get-workshop-list-dashboard')
+        return axiosCommon.get('/get-request-workshop-list-dashboard')
     }
     submitAskQuestion(data) {
         return axiosCommon.post('/ask-question', data)
@@ -357,7 +369,6 @@ class Api {
     getFeedbackList(page) {
         return axiosCommon.get('/get-company-feedback-list?page=' + page)
     }
-
     addWorkshop(data, headers) {
         return axiosCommon.post('/add-workshop', data, headers)
     }
@@ -379,8 +390,6 @@ class Api {
     getWorkshopsListForSelect() {
         return axiosCommon.get('/get-workshops-list-for-select')
     }
-
-
     addMeeting(data) {
         return axiosCommon.post('/add-meeting', data)
     }

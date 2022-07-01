@@ -41,15 +41,15 @@
                 </select>
             </div>
             <div class="form-group">
-                <label>Audience <span class="err">*</span></label>
+                <label>Audience</label>
                 <textarea class="form-control" placeholder="Audience" v-model="workshop.audience"></textarea>
             </div>
             <div class="form-group">
-                <label>Requirements <span class="err">*</span></label>
+                <label>Requirements</label>
                 <textarea class="form-control" placeholder="Requirements" v-model="workshop.requirements"></textarea>
             </div>
             <div class="form-group">
-                <label>Expectations <span class="err">*</span></label>
+                <label>Expectations</label>
                 <textarea class="form-control" placeholder="Expectations" v-model="workshop.expectations"></textarea>
             </div>
             <div class="form-group">

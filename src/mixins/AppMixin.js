@@ -39,6 +39,12 @@ export default {
       },
       empList: [],
       companiesList: [],
+      companiesListMultiselect: [
+        {
+          selectAll: 'Select All',
+          values: []
+        }
+      ],
       showUserList: false,
       empChat: {},
       downloadData: {
@@ -64,14 +70,18 @@ export default {
       },
       workshopUpdate: {
         'id': '',
+        'comapny': '',
         'title': '',
         'description': '',
         'image': '',
+        'img':'',
         'total_hours': '',
         'date': '',
+        'date_time':'',
         'instructor': '',
         'additional_info': '',
-        'meeting_type':'',
+        'meeting_type': '',
+        'companies': '',
         'disabled': false,
       },
       workshopUpdateUserList: [],
@@ -95,13 +105,18 @@ export default {
       workshopsList: {},
       workshopsListSelect: [],
       meetingsList: {},
-      meetingRecordingLength:0,
-      meetingRecordingList:{},
+      meetingRecordingLength: 0,
+      meetingRecordingList: {},
       meetingsLength: 0,
       workshopsLength: 0,
       filePath: '',
       path: '',
-      registered: false
+      registered: false,
+      getWorkshopData: {
+        'sortBy': '',
+        'keyword': ''
+      },
+      workshopPath:''
     }
   },
   methods: {
@@ -226,21 +241,22 @@ export default {
         that.workshopUpdate.total_hours = response.data.res.total_hours
         that.workshopUpdate.description = response.data.res.description
         that.workshopUpdate.additional_info = response.data.res.additional_info
-        that.workshopUpdate.image = response.data.res.image
-        that.workshopUpdate.date = response.data.res.date
+        that.workshopUpdate.img = response.data.res.image
+        that.workshopUpdate.date = new Date(response.data.res.date*1000)
         that.workshopUpdate.instructor = response.data.res.instructor
         that.workshopUpdate.meeting_type = response.data.res.meeting_type
-        that.path = response.data.path
+        that.workshopUpdate.companies = response.data.res.company
+        that.workshopPath = response.data.path
         that.workshopUpdateUserList = response.data.res.users
         that.registered = response.data.registered
       });
     },
     getWorkshopsList: function (page = 1) {
       let that = this
-      Api.getWorkshopsList(page, {}).then(response => {
+      Api.getWorkshopsList(page, that.getWorkshopData).then(response => {
         let that = this
         that.workshopsList = response.data.res
-        that.workshopsLength = that.workshopsList.length
+        that.workshopsLength = that.workshopsList.data.length
         that.filePath = response.data.path
       }
       ).catch((error) => {
@@ -284,9 +300,9 @@ export default {
       });
 
     },
-    getMeetingRecordingsList: function (id,page = 1) {
+    getMeetingRecordingsList: function (id, page = 1) {
       let that = this
-      Api.getMeetingRecordingsList(id,page, {}).then(response => {
+      Api.getMeetingRecordingsList(id, page, {}).then(response => {
         let that = this
         that.meetingRecordingsList = response.data.res.data.recording_files
         console.log(that.meetingRecordingsList)
@@ -321,7 +337,7 @@ export default {
       let that = this;
       Api.getTodo(id).then(response => {
         that.todoUpdate.id = response.data.res.id
-        that.todoUpdate.company = response.data.res.company_id
+        that.todoUpdate.company = response.data.res.company
         that.todoUpdate.title = response.data.res.title
         that.todoUpdate.description = response.data.res.description
         that.todoUpdate.status = response.data.res.status
@@ -492,7 +508,22 @@ export default {
         var h = $("#chat-gui")[0].scrollHeight
         $("#chat-gui").animate({ scrollTop: h }, 'fast')
       }, 100)
-    }
+    },
+    getCompaniesListMultiselect: function () {
+      let that = this
+      Api.getCompaniesList().then(response => {
+        let that = this
+        that.companiesListMultiselect[0].values = response.data.res
+      }
+      ).catch((error) => {
+        this.$swal({
+          icon: "error",
+          title: "error",
+          text: error.response.data.message,
+          showConfirmButton: true
+        });
+      });
+    },
   },
   created() {
     this.user = JSON.parse(localStorage.getItem("userData"));

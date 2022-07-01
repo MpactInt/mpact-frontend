@@ -26,7 +26,7 @@
         <td v-if="user.role == 'ADMIN' || company.role == 'COMPANY_ADMIN'">Action</td>
       </tr>
       <tr v-if="resourcesLength" v-for="r in resourcesList.data" v-bind:key="r.id">
-        <td  v-if="user.role == 'ADMIN'">{{ r.company_name }}</td>
+        <td  v-if="user.role == 'ADMIN'"><span v-for="c in r.company" v-bind:key="c.id">{{ c.company_name }},</span></td>
         <td>{{ r.title }}</td>
         <td>{{ r.description }}</td>
         <td><span v-if="r.link">{{ r.link }}</span><span v-if="!r.link">NA</span></td>
@@ -51,7 +51,8 @@
 
   </div>
 </template>
-
+<style src="vue-multiselect/dist/vue-multiselect.min.css">
+</style>
 <script>
 /* eslint-disable */
 import AppMixin from '../../../mixins/AppMixin'
@@ -164,7 +165,7 @@ export default {
         that.resourceUpdate.link = response.data.res.link == null ? '' : response.data.res.link
         that.resourceUpdate.showFile = response.data.res.file
         that.resourceUpdate.visibility = response.data.res.visibility
-        that.resourceUpdate.company = response.data.res.company_id
+        that.resourceUpdate.company = response.data.res.company
         that.filePath = response.data.path
       });
     },

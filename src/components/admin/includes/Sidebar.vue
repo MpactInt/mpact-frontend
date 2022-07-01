@@ -27,6 +27,9 @@
         <li>
           <router-link to="/admin/todo">To Do</router-link>
         </li>
+          <li>
+          <router-link to="/admin/workshops">Workshops</router-link>
+        </li>
         <li>
           <router-link to="/admin/request-workshop">Workshop Requests</router-link>
         </li>
@@ -47,9 +50,6 @@
         </li>
         <li>
           <router-link to="/admin/send-email">Send Email</router-link>
-        </li>
-         <li>
-          <router-link to="/admin/workshops">Workshops</router-link>
         </li>
           <li>
           <router-link to="/admin/meetings">Zoom Meetings</router-link>

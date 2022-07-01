@@ -4,7 +4,7 @@
     <div class="mt-5">
       <div class="row mb-3">
         <div class="col-md-3">
-          <img :src="path + '/' + workshopUpdate.image" />
+          <img :src="workshopPath + '/' + workshopUpdate.img" />
         </div>
         <div class="col-md-9">
           <div class="row">

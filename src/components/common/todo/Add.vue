@@ -3,7 +3,7 @@
         <form>
             <div class="form-group">
                 <label>Select Company <span class="err">*</span></label>
-                <multiselect v-model="todo.company" :options="companiesList" group-values="values"
+                <multiselect v-model="todo.company" :options="companiesListMultiselect" group-values="values"
                     group-label="selectAll" :multiple="true" :group-select="true" placeholder="Type to search"
                     track-by="name" label="name">
                     <span slot="noResult">Oops! No elements found. Consider changing the search query.</span>
@@ -43,13 +43,6 @@ export default {
     },
     data() {
         return {
-            companiesList: [
-                {
-                    selectAll: 'Select All',
-                    values: []
-                }
-            ],
-
             hideFooter: true,
             todo: {
                 company: '',
@@ -98,25 +91,9 @@ export default {
                 });
             }
         },
-
-        getCompaniesList: function () {
-            let that = this
-            Api.getCompaniesList().then(response => {
-                let that = this
-                that.companiesList[0].values = response.data.res
-            }
-            ).catch((error) => {
-                this.$swal({
-                    icon: "error",
-                    title: "error",
-                    text: error.response.data.message,
-                    showConfirmButton: true
-                });
-            });
-        },
     },
     mounted() {
-        this.getCompaniesList()
+        this.getCompaniesListMultiselect()
     }
 }
 </script>

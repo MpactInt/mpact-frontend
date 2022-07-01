@@ -6,7 +6,7 @@
                 <p>
                     Please <router-link to="/login">Login</router-link> to continue
                 </p> -->
-                <button class="btn btn-primary">Loading...</button>
+                <b>Loading...</b>
             </div>
         </div>
     </section>

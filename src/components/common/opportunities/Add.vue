@@ -4,13 +4,7 @@
         <form>
             <div class="form-group">
                 <label>Select Company <span class="err">*</span></label>
-                <!-- <select class="form-control" v-model="opportunity.company">
-                            <option selected value="">Select</option>
-                            <option v-for="cl in companiesList" :value="cl.id" v-bind:key="cl.id">{{ cl.company_name
-                            }}
-                            </option>
-                        </select> -->
-                <multiselect v-model="opportunity.company" :options="companiesList" group-values="values"
+                <multiselect v-model="opportunity.company" :options="companiesListMultiselect" group-values="values"
                     group-label="selectAll" :multiple="true" :group-select="true" placeholder="Type to search"
                     track-by="name" label="name">
                     <span slot="noResult">Oops! No elements found. Consider changing the search query.</span>
@@ -117,7 +111,7 @@ export default {
         },
     },
     mounted() {
-        this.getCompaniesList()
+        this.getCompaniesListMultiselect()
     }
 }
 </script>

@@ -2,13 +2,13 @@
     <b-modal id="add-resource-modal" title="Add New Resource" :hide-footer=hideFooter>
         <form enctype="multipart/form-data">
             <div id="details">
-                <div class="form-group"  v-if="user.role == 'ADMIN'">
+                <div class="form-group" v-if="user.role == 'ADMIN'">
                     <label>Select Company <span class="err">*</span></label>
-                    <select class="form-control" v-model="resource.company">
-                        <option selected value="">Select</option>
-                        <option v-for="cl in companiesList" :value="cl.id" v-bind:key="cl.id">{{ cl.company_name }}
-                        </option>
-                    </select>
+                    <multiselect v-model="resource.company" :options="companiesListMultiselect" group-values="values"
+                        group-label="selectAll" :multiple="true" :group-select="true" placeholder="Type to search"
+                        track-by="name" label="name">
+                        <span slot="noResult">Oops! No elements found. Consider changing the search query.</span>
+                    </multiselect>
                 </div>
                 <div class="form-group">
                     <label>Title <span class="err">*</span></label>
@@ -95,8 +95,9 @@ export default {
                 formData.append('description', that.resource.description);
                 formData.append('title', that.resource.title);
                 formData.append('visibility', that.resource.visibility);
-                formData.append('company', that.resource.company);
-
+                if (that.user.role == "ADMIN") {
+                    formData.append('company', JSON.stringify(that.resource.company));
+                }
                 Api.addResource(formData).then(response => {
                     that.resource.disabled = false;
 
@@ -131,7 +132,7 @@ export default {
 
     },
     mounted() {
-        this.getCompaniesList()
+        this.getCompaniesListMultiselect()
     }
 }
 </script>

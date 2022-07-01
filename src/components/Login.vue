@@ -128,7 +128,7 @@ sendEmail: function () {
     });
   } else {
     that.forgotPass.disabled = true;
-    Api.sendEmail(that.forgotPass).then(response => {
+    Api.forgotPasswordSendEmail(that.forgotPass).then(response => {
       that.forgotPass.disabled = false;
       that.forgotPass.email = '';
       this.$swal({

@@ -5,7 +5,7 @@
         <div class="p-4 col-md-3 offset-md-1 login-inner mb-5 plans-inner" v-for="p in plans" v-bind:key="p.id">
           <router-link :to="'/create-company?plan=' + p.id + '&periodUnit='+p.periodUnit+'&planType='+p.itemId">
             <h5><b>{{ p.name }}</b></h5>
-             <p v-html="'-> '+ p.description.replace(/(?:\r\n|\r|\n)/g, '<br /> -> ')">
+             <p v-if="p.description" v-html="'-> '+ p.description.replace(/(?:\r\n|\r|\n)/g, '<br /> -> ')">
               <!-- {{ p.description }} -->
             </p>
           </router-link>
