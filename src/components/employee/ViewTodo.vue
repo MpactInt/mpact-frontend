@@ -1,13 +1,15 @@
 <template>
-  <div class="col-md-9">
-    <router-link to="/employee/todo">
-      <button class="btn-primary">
-        <i class="fa fa-arrow-left white"></i>
-      </button>
-    </router-link>
-    <div class="row mt-5">
-     <h4>{{todoUpdate.title}}</h4>
-     <p>{{todoUpdate.description}}</p>
+  <div class="employee-hero-section">
+    <div class="container">
+      <router-link to="/employee/todo">
+        <button class="btn-primary">
+          <i class="fa fa-arrow-left white"></i>
+        </button>
+      </router-link>
+      <div class="row mt-5">
+        <h4>{{ todoUpdate.title }}</h4>
+        <p>{{ todoUpdate.description }}</p>
+      </div>
     </div>
   </div>
 </template>
@@ -22,7 +24,7 @@ export default {
   mixins: [AppMixin],
   data() {
     return {
-     
+
     }
   },
   methods: {

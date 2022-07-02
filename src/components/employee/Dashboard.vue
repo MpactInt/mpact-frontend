@@ -79,9 +79,12 @@
               </div>
               <div class="event-name text-light-blue "><span>{{wl.title}}</span></div>
               <div class="event-action">
-                <a class="nav-link btn custom-btn" href="#">
+                <button v-if="!wl.registered" class="nav-link btn custom-btn" @click="registerForWorkshop(wl.id)">
                   <div class="gradient-btn">Register Now</div>
-                </a>
+                </button>
+                <button v-if="wl.registered" class="nav-link btn custom-btn">
+                  <div class="gradient-btn">Registered</div>
+                </button>
               </div>
             </div>
           </div>
@@ -123,6 +126,18 @@ export default {
     }
   },
   methods: {
+     registerForWorkshop: function (id) {
+      let that = this
+      Api.registerForWorkshop(id).then(response => {
+        this.$swal({
+          icon: "success",
+          title: "Success",
+          text: "You have successfully registered for workshop",
+          showConfirmButton: true
+        });
+        this.getWorkshopsListDashboard()
+      })
+    },
     getSurveyQuestionsDashboard: function () {
       Api.getSurveyQuestionsDashboard().then(response => {
         this.pg = response.data.res;

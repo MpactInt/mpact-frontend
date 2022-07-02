@@ -1,7 +1,9 @@
 <template>
-    <div class="col-md-9">
-        <h3>To Do</h3>
-        <List></List>
+    <div class="employee-hero-section">
+        <div class="container">
+            <h3>To Do</h3>
+            <List></List>
+        </div>
     </div>
 </template>
 <script>
@@ -14,14 +16,14 @@ export default {
     mixins: [AppMixin],
     data() {
         return {
-         
+
         }
     },
     components: {
         List
     },
     methods: {
-     
+
     },
     mounted() {
     }

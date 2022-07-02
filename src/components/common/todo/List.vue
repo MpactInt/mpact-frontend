@@ -27,7 +27,8 @@
                     <td>Action</td>
                 </tr>
                 <tr v-if="todosLength" v-for="r in todos.data" v-bind:key="r.id">
-                    <td v-if="user.role == 'ADMIN'"><span v-for="c in r.company" v-bind:key="c.id">{{ c.company_name }},</span></td>
+                    <td v-if="user.role == 'ADMIN'"><span v-for="c in r.company" v-bind:key="c.id">{{ c.company_name
+                    }},</span></td>
                     <td>{{ r.title }}</td>
                     <td>{{ r.description }}</td>
                     <td>{{ r.status }}</td>
@@ -36,10 +37,12 @@
                                 class="fa fa-pencil"></i></button>
                         <button v-if="user.role == 'ADMIN'" class="btn btn-danger" @click="deleteTodo(r.id)"><i
                                 class="fa fa-trash"></i></button>
-                        <button v-if="user.role != 'ADMIN' && r.status == 'NEW' && company.role=='COMPANY_ADMIN'" class="btn btn-primary" @click="completeTodo(r.id)"><i
-                                class="fa fa-check"></i></button>
-                         <router-link v-if="user.role!='ADMIN'" class="btn btn-primary" :to="'/employer/todo/'+r.id"><i
-                                class="fa fa-eye"></i></router-link>
+                        <button v-if="user.role != 'ADMIN' && r.status == 'NEW' && company.role == 'COMPANY_ADMIN'"
+                            class="btn btn-primary" @click="completeTodo(r.id)"><i class="fa fa-check"></i></button>
+                        <router-link v-if="user.role != 'ADMIN' && company.role == 'COMPANY_ADMIN'" class="btn btn-primary"
+                            :to="'/employer/todo/' + r.id"><i class="fa fa-eye"></i></router-link>
+                        <router-link v-if="user.role != 'ADMIN' && company.role == 'COMPANY_EMP'" class="btn btn-primary"
+                            :to="'/employee/todo/' + r.id"><i class="fa fa-eye"></i></router-link>
                     </td>
                 </tr>
                 <tr v-if="!todosLength">
@@ -149,7 +152,7 @@ export default {
         },
         getTodoList: function (page = 1) {
             let that = this;
-            Api.getTodoList(that.getTodoData,page).then(response => {
+            Api.getTodoList(that.getTodoData, page).then(response => {
                 that.todos = response.data.res
                 that.todosLength = that.todos.data.length
             }).catch((error) => {

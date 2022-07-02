@@ -42,6 +42,7 @@
                                 </template>
                                 <b-dropdown-item to="/employee/announcements">Announcements or Updates</b-dropdown-item>
                                 <b-dropdown-item to="/employee/resources">Resources</b-dropdown-item>
+                                <b-dropdown-item to="/employee/todo">TODOS</b-dropdown-item>
                                 <b-dropdown-item to="/employee/message-my-team">Message My Team</b-dropdown-item>
                                 <b-dropdown-divider></b-dropdown-divider>
                                 <b-dropdown-item @click="logout">Logout</b-dropdown-item>
