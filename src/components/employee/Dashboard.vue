@@ -1,69 +1,109 @@
 <template>
-  <div class="col-md-9 ml-4">
-    <div class="row mt-3">
-      <CustomSurvey v-if="pg.length" :surveyProp="pg" :submitPopupSurvey="submitPopupSurvey"></CustomSurvey>
-    </div>
-    <div class="row mt-3">
-      <div class="col-md-8">
-        <h1><b>{{ section1.title }}</b></h1>
-        <p>{{ section1.description }}</p>
-      </div>
-      <div class="col-md-4">
-        <img :src="section1.image" />
-      </div>
-      <div class="row mt-3">
-        <div class="col-md-12">
-          <h2><b>{{ section2.title }}</b></h2>
-          <p>{{ section2.description }}</p>
+  <div>
+    <div class="employee-hero-section">
+      <div class="container">
+        <div class="row content-center">
+          <CustomSurvey v-if="pg.length" :surveyProp="pg" :submitPopupSurvey="submitPopupSurvey"></CustomSurvey>
         </div>
-      </div>
-    </div>
-    <div class="row mt-5">
-      <div class="col-md-6">
-        <h1><b>{{ section3.title }}</b></h1>
-        <p>
-          {{ section3.description }}
-        </p>
-        <button class="logout-btn btn">Continue Learning</button>
-      </div>
-      <div class="col-md-6">
-        <div class="row">
-          <div class="col-md-4 mt-4" v-for="img in section3.image" v-bind:key="img.id">
-            <img :src="section3.path + '/' + img.image" />
+        <div class="row content-center">
+          <div class="col-md-7">
+            <div class="left-side">
+              <h1 class="text-blue bold">
+                <!-- Welcome to <span class="primary-text"> Your Persnalized
+                  <br>Learning Journey</span> -->
+                {{ section1.title }}
+              </h1>
+              <p class="p-text text-blue f-18">{{ section1.description }}</p>
+            </div>
+          </div>
+          <div class="col-md-5">
+            <div class="right-side">
+              <div class="img-container">
+                <img :src="section1.image" class="hero-img" />
+                <!-- <img src="../../assets/images/hero.png" class="hero-img" alt=""> -->
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
-    <div class="row mt-5">
-      <div class="col-lg-6 col-md-6">
-        <ul class="work-progress-list">
-          <p>
-            <b class="mb-5">Requested Workshops </b>
-            <router-link to="/employee/request-workshop">View All</router-link>
-          </p>
-          <li v-if="workshopList.length" v-for="wl in workshopList" v-bind:key="wl.id">
-            <h5 class="text-blue">{{ wl.name }}</h5>
-          </li>
-          <p v-if="!workshopList.length">No Data Found</p>
-        </ul>
-      </div>
-      <div class="col-lg-6 col-md-6">
-        <div class="resource-box">
-          <h2 class="text-blue bold mb-3"><span class="primary-text rotated">"</span>To Do<span
-              class="primary-text rotated">"</span></h2>
-          <router-link to="/employee/todo">View All</router-link>
-          <ul class="to-do-list" v-if="todoList.length">
-            <li v-for="todo in todoList" v-bind:key="todo.id">
-              <router-link :to="'/employee/todo/' + todo.id">Item #{{ todo.id }}</router-link>
-              <p class="text-blue op-7">{{ todo.title }}</p>
-            </li>
-          </ul>
-          <p v-if="!todoList.length">
-            No Data Found
-          </p>
+    <!-- Hero end -->
+
+    <div class="learning-sention">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <h2 class="text-blue bold ">{{ section2.title }}</h2>
+            <p class="p-text text-blue f-18">{{ section2.description }}</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 col-lg-6">
+            <h2 class="text-blue bold text-big">
+              <!-- Nec faucibus placerat <br>habitant vulputate <br>tortor <span class="primary-text">mauris</span>. -->
+              {{ section3.title }}
+            </h2>
+            <p class="text-blue f-18">{{ section3.description }}</p>
+            <div>
+              <router-link to="/employee/my-learning-plan" class="continue-btn btn">See More</router-link>
+            </div>
+          </div>
+          <div class="col-md-12 col-lg-6">
+            <div class="row">
+              <div class="col-xs-6 col-md-4 col-lg-4 mb-2" v-for="img in section3.image" v-bind:key="img.id">
+                <div class="overlay">
+                  <img :src="section3.path + '/' + img.image" />
+                  <div class="overlay-content">
+                    <h5 class="text-overlay">Morbi gravida turpis <br>fames nama.</h5>
+                    <p class="overlay-description text-blue">Diam non vestibulum, netus <br> facilisis nunc
+                      quis vitae praesent <br> odio.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
+    <!-- learnar-section- end -->
+
+    <div class="event-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 col-lg-6">
+            <h2 class="event-title text-blue bold">Upcoming <span class="primary-text">Workshops</span>.</h2>
+            <div class="event-details" v-for="wl in workshopsListDashboard" v-bind:key="wl.id">
+              <div class="event-date">
+                <span class="text-blue">{{wl.date|timeStampToDate}}</span>
+                <!-- <sup class="text-gray">May</sup> -->
+              </div>
+              <div class="event-name text-light-blue "><span>{{wl.title}}</span></div>
+              <div class="event-action">
+                <a class="nav-link btn custom-btn" href="#">
+                  <div class="gradient-btn">Register Now</div>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-12 col-lg-6">
+            <div class="pd-left">
+              <h2 class="text-blue bold mb-3"><span class="primary-text rotated">"</span>Steps to Help<span
+                  class="primary-text rotated">"</span></h2>
+              <div class="">
+
+                <ul class="to-do-list">
+                  <li  v-for="todo in todoList" v-bind:key="todo.id">
+                    <h5 class="text-blue">{{todo.title}}</h5>
+                    <p class="text-blue">{{todo.description}}</p>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end event section -->
   </div>
 </template>
 
@@ -103,6 +143,7 @@ export default {
     this.getSection2(this.company.profile_type_id);
     this.getSection3(this.company.profile_type_id);
     this.getSurveyQuestionsDashboard();
+    this.getWorkshopsListDashboard()
   },
 }
 </script>

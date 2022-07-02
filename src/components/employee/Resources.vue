@@ -1,7 +1,9 @@
 <template>
-  <div class="col-md-9">
-    <h1>Resources</h1>
-    <List></List>
+  <div class="employee-hero-section">
+    <div class="container">
+      <h1 class="text-blue bold">Resources</h1>
+        <List></List>
+    </div>
   </div>
 </template>
 
@@ -13,10 +15,10 @@ import List from '../common/resources/List.vue'
 export default {
   name: 'Resources',
   mixins: [AppMixin],
-  components:{List},
+  components: { List },
   data() {
     return {
-   
+
     }
   },
   methods: {

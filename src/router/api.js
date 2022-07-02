@@ -287,6 +287,9 @@ class Api {
     downloadProfileTypeFile(id) {
         return axiosCommon.get('/download-profile-type-file/' + id, { responseType: 'blob' })
     }
+    downloadLearningTools(id){
+        return axiosCommon.get('/download-learning-tools/' + id, { responseType: 'blob' })
+    }
     getPopupSurveyList() {
         return axiosCommon.post('/get-popup-survey-list')
     }

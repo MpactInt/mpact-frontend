@@ -99,6 +99,7 @@ export default {
             } else {
               window.localStorage.setItem('token', response.data.access_token)
               window.localStorage.setItem('userData', JSON.stringify(response.data.user))
+              window.localStorage.setItem('companyData', JSON.stringify(response.data.company))
               window.location = '/employee/dashboard'
             }
           } else {

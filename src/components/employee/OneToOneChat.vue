@@ -1,8 +1,7 @@
 <template>
   <div class="employee-hero-section">
     <div class="container">
-      <h1 class="text-blue bold">Announcements</h1>
-        <List></List>
+      <OneToOneChat></OneToOneChat>
     </div>
   </div>
 </template>
@@ -10,21 +9,20 @@
 <script>
 /* eslint-disable */
 import AppMixin from '../../mixins/AppMixin'
-import List from '../common/announcements/List.vue'
-
+import OneToOneChat from '../common/chat/OneToOneChat.vue'
 export default {
-  name: 'AnnouncementList',
+  name: 'MessageMyTeam',
   mixins: [AppMixin],
-  components: { List },
+  components: { OneToOneChat },
   data() {
     return {
-
     }
   },
   methods: {
 
   },
-  mounted() {
+  created() {
+
   }
 }
 </script>

@@ -11,11 +11,11 @@
         </div>
         <FooterEmployer></FooterEmployer>
       </section>
-      <section class="employee-dashboard-section" v-if="user.role == 'COMPANY' && company.role=='COMPANY_EMP'">
+      <section class="employee-section" v-if="user.role == 'COMPANY' && company.role=='COMPANY_EMP'">
         <HeaderEmployee></HeaderEmployee>
         <div class="content">
           <div class="row">
-            <SidebarEmployee v-if="isLoggedIn"></SidebarEmployee>
+            <!-- <SidebarEmployee v-if="isLoggedIn"></SidebarEmployee> -->
             <router-view :key="$route.fullPath" />
           </div>
         </div>

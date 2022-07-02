@@ -1,6 +1,5 @@
 <template>
   <div class="col-md-9">
-    <h1>Ask Your Care Team</h1>
     <div class="row form-group col-md-4">
       <textarea class="form-control" id="ask-question" v-model="askQuestion.description"
         placeholder="Ask Your Care Team"></textarea>

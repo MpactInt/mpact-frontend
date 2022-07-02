@@ -1,24 +1,24 @@
 <template>
   <div class="col-md-9">
-    <CommonProfile></CommonProfile>
+    <h1>Message My Team</h1>
+    <MessageMyTeamVue></MessageMyTeamVue>
   </div>
 </template>
 
 <script>
 /* eslint-disable */
-import AppMixin from '../../mixins/AppMixin'
-import CommonProfile from '../common/CommonProfile.vue'
+import AppMixin from'../../mixins/AppMixin'
+import MessageMyTeamVue from '../common/chat/MessageMyTeam.vue'
 export default {
-  name: 'Profile',
+  name: 'MessageMyTeam',
   mixins: [AppMixin],
-  components: { CommonProfile },
+  components:{MessageMyTeamVue},
   data() {
     return {
-
+      
     }
   },
   methods: {
-
   },
   created() {
   }

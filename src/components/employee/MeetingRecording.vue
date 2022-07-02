@@ -1,7 +1,9 @@
 <template>
-  <div class="col-md-9">
-    <MeetingRecording></MeetingRecording>
- </div>
+  <div class="employee-hero-section">
+    <div class="container">
+      <MeetingRecording></MeetingRecording>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -16,7 +18,7 @@ export default {
   name: 'AdminMeetingRecording',
   mixins: [AppMixin],
   components: {
-    Vue2TinymceEditor, DatePicker,MeetingRecording
+    Vue2TinymceEditor, DatePicker, MeetingRecording
   },
   data() {
     return {
@@ -25,7 +27,7 @@ export default {
   methods: {
 
   },
- 
+
 }
 </script>
 

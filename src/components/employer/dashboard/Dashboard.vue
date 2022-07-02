@@ -96,16 +96,16 @@
         <div class="resource-box">
           <h2 class="text-blue bold mb-2">Workshops </h2>
           <router-link to="/employer/workshops">View All</router-link>
-          <ul v-if="workshopsList.length" class="resource-list mt-3">
+          <ul v-if="workshopsListDashboard.length" class="resource-list mt-3">
             <!-- <li class="">Assignment <span class="list-icon count">7</span></li> -->
-            <li v-for="rl in workshopsList" class="" v-bind:key="rl.id">{{ rl.title }}
+            <li v-for="rl in workshopsListDashboard" class="" v-bind:key="rl.id">{{ rl.title }}
               <span class="list-icon">
                 <a href="javascript:void(0)">
                   <img src="../../../assets/images/chevron-left-icon.png">
                 </a></span>
             </li>
           </ul>
-          <p v-if="!workshopsList.length">No Data Found</p>
+          <p v-if="!workshopsListDashboard.length">No Data Found</p>
         </div>
       </div>
     </div>
@@ -122,7 +122,6 @@ export default {
   mixins: [AppMixin],
   data() {
     return {
-      workshopsList:[],
       resourcesList: [],
       announcementsList: [],
       stepsList: [],
@@ -194,21 +193,6 @@ export default {
         });
       });
     },
-    getWorkshopsListDashboard: function () {
-      let that = this
-      Api.getWorkshopsListDashboard().then(response => {
-        let that = this
-        that.workshopsList = response.data.res
-      }
-      ).catch((error) => {
-        this.$swal({
-          icon: "error",
-          title: "error",
-          text: error.response.data.message,
-          showConfirmButton: true
-        });
-      });
-    }
   },
   created() {
     this.getAnnouncementsList()

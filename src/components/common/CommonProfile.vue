@@ -1,6 +1,5 @@
 <template>
-  <div class="col-md-9">
-    <h1>Profile</h1>
+  <div>
     <div class="col-md-12">
       <div class="row">
         <div class="col-md-4">

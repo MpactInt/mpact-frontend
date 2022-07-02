@@ -33,15 +33,17 @@
           <td>{{ r.title }}</td>
           <td>{{ r.topic }}</td>
           <td>{{ r.agenda }}</td>
-          <td><span v-if="r.type == 1">Instant</span> <span v-else-if="r.type == 2">Scheduled</span><span v-else-if="r.type == 3">Recurring</span><span v-else>Fixed</span></td>
+          <td><span v-if="r.type == 1">Instant</span> <span v-else-if="r.type == 2">Scheduled</span><span
+              v-else-if="r.type == 3">Recurring</span><span v-else>Fixed</span></td>
           <td>{{ r.start_time | timeAgo }}</td>
           <td>{{ r.duration }}</td>
-          <td>{{r.passcode}}</td>
+          <td>{{ r.passcode }}</td>
           <td>
             <!-- <button class="btn btn-primary" @click="getWorkshop(r.id)"><i class="fa fa-pencil"></i></button>
             <button class="btn btn-danger" @click="deleteWorkshop(r.id)"><i class="fa fa-trash"></i></button> -->
             <a class="btn btn-primary" target="_blank" :href="r.start_url">Start Meeting</a>
-            <router-link class="btn btn-primary" :to="'/admin/meeting-recordings/'+r.meeting_id">View Recordings</router-link>
+            <router-link class="btn btn-primary" :to="'/admin/meeting-recordings/' + r.meeting_id">View Recordings
+            </router-link>
           </td>
         </tr>
         <tr v-if="!meetingsLength">
@@ -103,7 +105,6 @@
     </b-modal>
     <!--Update meeting modal popup-->
     <b-modal id="update-modal" title="Update Workshop" :hide-footer=hideFooter size="lg" no-fade no-enforce-focus>
-
     </b-modal>
   </div>
 </template>
@@ -133,8 +134,8 @@ export default {
         'type': '',
         'date': '',
         'duration': '',
-        'participant_video':'',
-        'host_video':'',
+        'participant_video': '',
+        'host_video': '',
         'disabled': false,
       },
 

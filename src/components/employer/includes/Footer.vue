@@ -1,5 +1,7 @@
 <template>
-    <div class="row col-md-12 footer">
-        Footer
-    </div>
+    <footer>
+      <div class="container">
+        <p class="copyright">All right reserved @mpactinternational</p>
+      </div>
+    </footer>
 </template>

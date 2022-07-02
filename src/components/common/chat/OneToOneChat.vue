@@ -1,9 +1,9 @@
 <template>
-  <div class="col-md-9 chat-div">
+  <div class="chat-div">
     <h1>Chat with {{ empChat.first_name }} {{ empChat.last_name }}</h1>
     <p class="text-center" v-if="groupData.limit < total"><button class="btn btn-primary load-more"
         @click="loadMoreMessages">Load More Messages</button></p>
-    <div class="chat-gui" id="chat-gui">
+    <div v-chat-scroll class="chat-gui" id="chat-gui" ref="scroll_content" style="height: 500px; overflow-y: scroll">
       <div class="chat-list" v-if="messagesList.length" v-for="m in messagesList" v-bind:key="m.id"
         v-bind:class="(authUser.emp_id == m.sender_id) ? 'text-right' : ''">
         <p>

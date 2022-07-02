@@ -1,5 +1,8 @@
 <template>
-  <AskQuestionEmployer></AskQuestionEmployer>
+  <div>
+    <h1>Ask Your Care Team</h1>
+    <AskQuestionEmployer></AskQuestionEmployer>
+  </div>
 </template>
 
 <script>
@@ -8,14 +11,14 @@ import AskQuestionEmployer from '../common/AskQuestion.vue'
 import Api from '../../router/api'
 export default {
   name: 'AskQuestion',
-  components:{AskQuestionEmployer},
+  components: { AskQuestionEmployer },
   data() {
     return {
-     
+
     }
   },
   methods: {
-  
+
   },
   mounted() {
   }

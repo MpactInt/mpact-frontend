@@ -68,6 +68,7 @@ export default {
         'toolkit': [],
         'guideBook': ''
       },
+      workshopMeetings:[],
       workshopUpdate: {
         'id': '',
         'comapny': '',
@@ -116,7 +117,9 @@ export default {
         'sortBy': '',
         'keyword': ''
       },
-      workshopPath:''
+      workshopPath:'',
+      workshopsListDashboard:[],
+      iframeSrc:''
     }
   },
   methods: {
@@ -232,6 +235,10 @@ export default {
         that.toolkitPath = response.data.toolkitPath
       });
     },
+    openMeetingModal: function (url) {
+      this.$bvModal.show('zoom-meeting-modal')
+      this.iframeSrc = url
+    },
     getWorkshop: function (id) {
       let that = this
       Api.getWorkshop(id).then(response => {
@@ -246,9 +253,25 @@ export default {
         that.workshopUpdate.instructor = response.data.res.instructor
         that.workshopUpdate.meeting_type = response.data.res.meeting_type
         that.workshopUpdate.companies = response.data.res.company
+        that.workshopMeetings = response.data.res.meetings
         that.workshopPath = response.data.path
         that.workshopUpdateUserList = response.data.res.users
         that.registered = response.data.registered
+      });
+    },
+    getWorkshopsListDashboard: function () {
+      let that = this
+      Api.getWorkshopsListDashboard().then(response => {
+        let that = this
+        that.workshopsListDashboard = response.data.res
+      }
+      ).catch((error) => {
+        this.$swal({
+          icon: "error",
+          title: "error",
+          text: error.response.data.message,
+          showConfirmButton: true
+        });
       });
     },
     getWorkshopsList: function (page = 1) {
@@ -366,6 +389,24 @@ export default {
       ).catch((error) => {
 
       });
+    },
+    downloadLearningTools: function (id, file) {
+      Api.downloadLearningTools(id)
+        .then(response => {
+          let blob = new Blob([response.data])
+          let link = document.createElement('a')
+          link.href = window.URL.createObjectURL(blob)
+          link.download = file
+          link.click()
+        }
+        ).catch((error) => {
+          this.$swal({
+            icon: "error",
+            title: "error",
+            text: error.response.data.message,
+            showConfirmButton: true
+          });
+        });
     },
     downloadProfileTypeFile: function (id, file) {
       Api.downloadProfileTypeFile(id)

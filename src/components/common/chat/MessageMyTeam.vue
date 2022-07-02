@@ -1,6 +1,5 @@
 <template>
-  <div class="col-md-9 chat-div">
-    <h1>Message My Team</h1>
+  <div class="chat-div">
     <p class="text-center" v-if="groupData.limit < total"><button class="btn btn-primary load-more"
         @click="loadMoreMessages">Load More Messages</button></p>
     <div v-chat-scroll class="chat-gui" id="chat-gui" ref="scroll_content" style="height: 500px; overflow-y: scroll">

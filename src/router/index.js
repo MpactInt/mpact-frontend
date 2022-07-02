@@ -26,8 +26,8 @@ import Employees from '@/components/employer/team-management/Employees'
 import Invitations from '@/components/employer/team-management/Invitations'
 import Announcements from '@/components/employer/Announcements'
 import Settings from '@/components/employer/Settings'
-import MessageMyTeam from '@/components/common/chat/MessageMyTeam'
-import OneToOneChat from '@/components/common/chat/OneToOneChat'
+import MessageMyTeam from '@/components/employer/MessageMyTeam'
+import OneToOneChat from '@/components/employer/OneToOneChat'
 import ViewStep from '@/components/employer/dashboard/ViewStep'
 import Opportunity from '@/components/employer/Opportunity'
 import Todo from '@/components/employer/Todo'
@@ -48,6 +48,11 @@ import EmpRequestWorkshop from '@/components/employee/RequestWorkshop'
 import EmpCompanyFeedback from '@/components/employee/CompanyFeedback'
 import EmpWorkshop from '@/components/employee/Workshops'
 import EmpViewWorkshop from '@/components/employee/ViewWorkshop'
+import EmpMessageMyTeam from '@/components/employee/MessageMyTeam'
+import EmpOneToOneChat from '@/components/employee/OneToOneChat'
+import EmpWelcomeNote from '@/components/employee/WelcomeNote'
+import EmpLearningPlan from '@/components/employee/LearningPlan'
+import EmpMeetingRecording from '@/components/employee/MeetingRecording'
 
 /********Load admin components */
 
@@ -311,14 +316,14 @@ export const router = new Router({
       path: '/employee/message-my-team',
       beforeEnter: guardMyroute,
       name: 'MessageMyTeam',
-      component: MessageMyTeam,
+      component: EmpMessageMyTeam,
       meta: { requiresAuth: true, employerAuth: false, employeeAuth: true, adminAuth: false }
     },
     {
       path: '/employee/one-to-one-chat/:id',
       beforeEnter: guardMyroute,
       name: 'OneToOneChat',
-      component: OneToOneChat,
+      component: EmpOneToOneChat,
       meta: { requiresAuth: true, employerAuth: false, employeeAuth: true, adminAuth: false }
     },
     {
@@ -384,7 +389,27 @@ export const router = new Router({
       component: EmpViewWorkshop,
       meta: { requiresAuth: true, employerAuth: false, employeeAuth: true, adminAuth: false }
     },
-
+    {
+      path: '/employee/welcome-note',
+      beforeEnter: guardMyroute,
+      name: 'WelcomeNote',
+      component: EmpWelcomeNote,
+      meta: { requiresAuth: true, employerAuth: false, employeeAuth: true, adminAuth: false }
+    },
+    {
+      path: '/employee/my-learning-plan',
+      beforeEnter: guardMyroute,
+      name: 'LearningPlan',
+      component: EmpLearningPlan,
+      meta: { requiresAuth: true, employerAuth: false, employeeAuth: true, adminAuth: false }
+    },
+    {
+      path: '/employee/meeting-recordings/:id',
+      beforeEnter: guardMyroute,
+      name: 'EmpMeetingRecording',
+      component: EmpMeetingRecording,
+      meta: { requiresAuth: true, employerAuth: false, employeeAuth: true, adminAuth: false }
+    },
     //routes for admin
     {
       path: '/admin/dashboard',

@@ -1,8 +1,8 @@
 <template>
   <div class="employee-hero-section">
     <div class="container">
-      <h1 class="text-blue bold">Announcements</h1>
-        <List></List>
+      <h1>Message My Team</h1>
+      <MessageMyTeamVue></MessageMyTeamVue>
     </div>
   </div>
 </template>
@@ -10,21 +10,19 @@
 <script>
 /* eslint-disable */
 import AppMixin from '../../mixins/AppMixin'
-import List from '../common/announcements/List.vue'
-
+import MessageMyTeamVue from '../common/chat/MessageMyTeam.vue'
 export default {
-  name: 'AnnouncementList',
+  name: 'MessageMyTeam',
   mixins: [AppMixin],
-  components: { List },
+  components: { MessageMyTeamVue },
   data() {
     return {
 
     }
   },
   methods: {
-
   },
-  mounted() {
+  created() {
   }
 }
 </script>

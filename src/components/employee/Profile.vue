@@ -1,5 +1,10 @@
 <template>
-  <CommonProfile></CommonProfile>
+  <div class="employee-hero-section">
+    <div class="container">
+      <!-- <h1 class="text-blue bold">Feeback to comapny admin</h1> -->
+        <CommonProfile></CommonProfile>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -9,14 +14,14 @@ import CommonProfile from '../common/CommonProfile.vue'
 export default {
   name: 'Profile',
   mixins: [AppMixin],
-  components:{CommonProfile},
+  components: { CommonProfile },
   data() {
     return {
-    
+
     }
   },
   methods: {
- 
+
   },
   created() {
   }
