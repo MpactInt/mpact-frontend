@@ -60,6 +60,17 @@ Vue.filter('replaceUndescore', function (value) {
   }
 });
 
+Vue.filter('totalAmount', function (value) {
+  // let formatted = new Intl.NumberFormat('tr-TR', { currency: 'USD', minimumFractionDigits: 2}).format(value);
+  // let arr = formatted.split(',');
+
+  // return arr[0] + ',' + arr[1] + '';
+  return value.toLocaleString()
+});
+Vue.filter('replaceDescription', function (value) {
+  return '<i class="fa fa-check"></i>' + value.replace(/(?:\r\n|\r|\n)/g, '<br /> <i class="fa fa-check"></i> ')
+});
+
 Vue.filter('removeTimestampFromFileName', function (value) {
   if (value) {
     let res = value.split('_')
@@ -77,7 +88,7 @@ Vue.filter('truncate', function (data, num) {
       reqdString += data[i]
     }
     return reqdString + '...';
-  }else{
+  } else {
     return data
   }
 });

@@ -10,6 +10,7 @@ import Login from '@/components/Login'
 import Plan from '@/components/Plan'
 import ResetPassword from '@/components/ResetPassword'
 import SubmitCheckInSurvey from '@/components/SubmitCheckInSurvey'
+import SubmitPostWorkshopSurvey from '@/components/SubmitPostWorkshopSurvey'
 
 /******Load Employer Components*********/
 
@@ -70,6 +71,8 @@ import AdminPopupSurveys from '@/components/admin/PopupSurvey'
 import AdminPopupSurveyView from '@/components/admin/PopupSurveyView'
 import AdminCheckInSurveys from '@/components/admin/CheckInSurvey'
 import AdminCheckInSurveyView from '@/components/admin/CheckInSurveyView'
+import AdminPostWorkshopSurveys from '@/components/admin/PostWorkshopSurvey'
+import AdminPostWorkshopSurveyView from '@/components/admin/PostWorkshopSurveyView'
 import AdminEmployeeProfileTypeView from '@/components/admin/EmployeeProfileTypeView'
 import AdminSendEmail from '@/components/admin/SendEmail'
 import AdminWorkshop from '@/components/admin/Workshop'
@@ -137,7 +140,11 @@ export const router = new Router({
       name: 'SubmitCheckInSurvey',
       component: SubmitCheckInSurvey
     },
-
+    {
+      path: '/submit-post-workshop-survey/:link/:w_id',
+      name: 'SubmitPostWorkshopSurvey',
+      component: SubmitPostWorkshopSurvey
+    },
     {
       path: '/login',
       name: 'Login',
@@ -514,6 +521,20 @@ export const router = new Router({
       beforeEnter: guardMyroute,
       name: 'ViewCheckInSurvey',
       component: AdminCheckInSurveyView,
+      meta: { requiresAuth: true, employerAuth: false, employeeAuth: false, adminAuth: true }
+    },
+    {
+      path: '/admin/post-workshop-surveys',
+      beforeEnter: guardMyroute,
+      name: 'PostWorkshopSurvey',
+      component: AdminPostWorkshopSurveys,
+      meta: { requiresAuth: true, employerAuth: false, employeeAuth: false, adminAuth: true }
+    },
+    {
+      path: '/admin/post-workshop-survey/:id',
+      beforeEnter: guardMyroute,
+      name: 'PostWorkshopSurveyView',
+      component: AdminPostWorkshopSurveyView,
       meta: { requiresAuth: true, employerAuth: false, employeeAuth: false, adminAuth: true }
     },
     {

@@ -8,7 +8,7 @@ body {
   -moz-box-sizing: border-box;
   font-family: "Montserrat", sans-serif !important;
   font-weight: 500;
-  color: #4C4C4D;
+  color: #090446;
   /* background-color: #f4fdfc;*/
 }
 
@@ -600,10 +600,30 @@ p.copyright {
 /* ================================================= */
 /* START CLASSES PAGE CSS  */
 /* ================================================= */
+section.live-classe {
+  padding-top: 50px;
+  padding-bottom: 20px;
+}
 
 .live-classe .col-md-6.content-middle {
   display: flex;
   align-items: center;
+}
+
+.card-post {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 2.5rem;
+}
+
+.card-post .card-image {
+  width: 28%;
+}
+
+.card-post .card-content {
+  width: 72%;
+  padding-left: 0.5rem;
 }
 
 .content-middle h2.title {
@@ -616,6 +636,12 @@ p.copyright {
   font-size: 18px;
   font-weight: 400;
   color: #090446;
+}
+
+.course-middle-details .fa {
+  margin-right: 0.5rem;
+  color: #c2095a;
+  font-size: 16px;
 }
 
 .clases-blogs h4.title {
@@ -659,6 +685,194 @@ a.btn.btn-read-more {
 .clases-blogs .row.row-mb {
   margin-bottom: 40px;
 }
+
+/* ================================================= */
+/* START INNOVATIVE TEAM PAGE CSS  */
+/* ================================================= */
+section.team-section {
+  padding: 50px 0 20px 0;
+}
+
+.team-card-post {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
+}
+
+.team-card-image {
+  width: 14%;
+
+}
+
+.team-card-post img {
+  border-radius: 4px;
+}
+
+.team-card-content {
+  width: 86%;
+}
+
+.team-card-content h4.title {
+  color: #c2095a;
+  font-weight: 600;
+}
+
+.team-card-content .course-middle-details .time p,
+.team-card-content .course-middle-details .place p {
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.team-card-content .btn-read-more {
+  text-transform: uppercase;
+}
+
+.article-information {
+  border-top: 1px solid #eaeaea;
+  padding-top: 2rem;
+}
+
+h3.post-title {
+  font-size: 22px;
+  font-weight: 600;
+  color: #c2095a;
+  margin-bottom: 1rem;
+}
+
+p.post-description {
+  font-weight: 400;
+  font-size: 18px;
+}
+
+.content-refrence h6.ref-title {
+  font-size: 20px;
+  font-weight: 600;
+  font-style: italic;
+  padding: 1.5rem 0;
+}
+
+.content-refrence .video-url {
+  font-weight: 400;
+  color: #090446;
+}
+
+.content-refrence .homework-title {
+  font-style: normal;
+}
+
+ul.ref-information li {
+  line-height: 1.9;
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.purpose-learn {
+  padding-bottom: 3rem;
+}
+
+.purpose-learn h6.learn-title {
+  font-size: 20px;
+  font-weight: 600;
+  padding: 1.5rem 0;
+}
+
+ul.learn-topic li {
+  line-height: 1.9;
+  font-size: 18px;
+  font-weight: 400;
+}
+
+
+/*  END INNOVATIVE TEAM PAGE CS */
+
+/* ================================================= */
+/* START PRICING CARD PAGE CSS  */
+/* ================================================= */
+h2.pricing-title {
+  text-align: center;
+  font-size: 46px;
+  font-weight: 800;
+  padding: 50px 20px;
+  color: #090446;
+  ;
+}
+
+
+.card-color {
+  background: hwb(34deg 37% 0% / 80%);
+
+}
+
+.pricing-card {
+  padding: 2.5rem;
+  border-radius: 1rem;
+  max-width: 95%;
+  margin: auto;
+  margin-bottom: 10%;
+}
+
+.card-type {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.card-price {
+  font-size: 36px;
+  font-weight: 800;
+  padding: 0.5rem 0;
+}
+
+.user-plan {
+  font-size: 16px;
+  font-weight: 600;
+  padding-bottom: 0.5rem;
+}
+
+.info-list {
+  margin-bottom: 1.5rem;
+}
+
+.info-list ul.list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.info-list ul.list li {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.8;
+}
+
+.info-list ul.list li>i.fa {
+  color: #fff;
+  font-size: 10px;
+  background: #090446;
+  padding: 5px;
+  border-radius: 50%;
+  margin-right: 0.5rem;
+}
+
+.btn-pricing {
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  background: #090446;
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+}
+
+.btn-pricing:hover {
+  color: #fff;
+  background: #090446;
+  opacity: 1;
+
+}
+
+
+/* ================================================= */
+/* END  PRICING CARD PAGE CSS  */
+/* ================================================= */
 
 footer.footer-bg {
   background: #090446;
@@ -878,6 +1092,15 @@ footer.footer-bg .copyright p.text {
 
   /* Start css for class page  */
 
+  .card-post {
+    align-items: flex-start
+  }
+
+
+  .card-post .card-content {
+    padding-left: 2rem;
+  }
+
   .footer-bottom {
     flex-direction: column;
   }
@@ -984,7 +1207,27 @@ footer.footer-bg .copyright p.text {
     margin-bottom: 20px;
   }
 
+  .card-post {
+    flex-direction: column;
+  }
+
+  .card-post .card-image {
+    width: 100%;
+  }
+
+  .card-post .card-content {
+    width: 100%;
+    padding-left: 0;
+  }
+
+  /* css for innvovative team cards */
+  .team-card-image {
+    width: 80%;
+
+  }
+
+  .team-card-content {
+    width: 100%
+  }
   /* end css for class page mobile view */
-
-
 }

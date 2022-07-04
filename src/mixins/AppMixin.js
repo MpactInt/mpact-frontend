@@ -101,6 +101,8 @@ export default {
       popupSurveyLength: 0,
       checkInSurvey: {},
       checkInSurveyLength: 0,
+      postWorkshopSurvey: {},
+      postWorkshopSurveyLength: 0,
       todoList: [],
       workshopList: [],
       workshopsList: {},
@@ -460,6 +462,21 @@ export default {
       Api.getCheckInSurveyList().then(response => {
         that.checkInSurvey = response.data.res
         that.checkInSurveyLength = that.checkInSurvey.data.length
+      }).catch((error) => {
+        this.$swal({
+          icon: "error",
+          title: "error",
+          text: error.response.data.message,
+          showConfirmButton: true
+        }).then(function () {
+        });
+      });
+    },
+    getPostWorkshopSurveyList: function () {
+      let that = this
+      Api.getPostWorkshopSurveyList().then(response => {
+        that.postWorkshopSurvey = response.data.res
+        that.postWorkshopSurveyLength = that.postWorkshopSurvey.data.length
       }).catch((error) => {
         this.$swal({
           icon: "error",

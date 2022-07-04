@@ -366,6 +366,37 @@ class Api {
     submitCheckInSurvey(data, id) {
         return axiosCommon.post('/submit-check-in-survey/' + id, data)
     }
+
+    
+    getPostWorkshopSurveyList() {
+        return axiosCommon.post('/get-post-workshop-survey-list')
+    }
+    getPostWorkshopSurvey(id) {
+        return axiosCommon.get('/get-post-workshop-survey/' + id)
+    }
+    getPostWorkshopSurveyAnswerList() {
+        return axiosCommon.get('/get-post-workshop-survey-answer-list')
+    }
+    addPostWorkshopSurvey(data) {
+        return axiosCommon.post('/add-post-workshop-survey', data)
+    }
+    updatePostWorkshopSurvey(data) {
+        return axiosCommon.post('/update-post-workshop-survey', data)
+    }
+    deletePostWorkshopSurvey(id) {
+        return axiosCommon.get('/delete-post-workshop-survey/' + id)
+    }
+    getPostWorkshopSurveyQuestions(id) {
+        return axiosCommon.get('/get-post-workshop-survey-questions/' + id )
+    }
+    submitPostWorkshopSurvey(data, id,w_id) {
+        return axiosCommon.post('/submit-post-workshop-survey/' + id+ '/'+w_id, data)
+    }
+    sendPostWorkshopSurveyEmail(id) {
+        return axiosCommon.get('/send-post-workshop-survey-email/'+id)
+    }
+
+ 
     submitCompanyFeedback(data) {
         return axiosCommon.post('/submit-company-feedback', data)
     }
@@ -396,8 +427,8 @@ class Api {
     addMeeting(data) {
         return axiosCommon.post('/add-meeting', data)
     }
-    updateMeeting(data) {
-        return axiosCommon.post('/update-meeting', data)
+    updateMeeting(id,data) {
+        return axiosCommon.post('/update-meeting/'+id, data)
     }
     getMeeting(id) {
         return axiosCommon.get('/get-meeting/' + id)

@@ -97,7 +97,7 @@
                                         {{ ci.description }} :
                                     </div>
                                     <div class="col-md-3">
-                                        {{ ci.amount / 100 }}
+                                        {{ ci.amount / 100 | totalAmount }} {{currencyCode}}
                                     </div>
                                 </div>
                                 <div class="col-md-12 row cart-item">
@@ -105,7 +105,7 @@
                                         Total :
                                     </div>
                                     <div class="col-md-3">
-                                        {{ estimateData / 100 }}
+                                        {{ estimateData / 100 | totalAmount}} {{currencyCode}}
                                     </div>
                                 </div>
                             </div>
@@ -151,7 +151,8 @@ export default {
             },
             estimateData: [],
             cartItems: [],
-            countries: []
+            countries: [],
+            currencyCode:''
         }
     },
     methods: {
@@ -174,7 +175,7 @@ export default {
             let that = this
             Api.createEstimate(that.companyData).then(response => {
                 that.estimateData = response.data.res[0].invoice_estimate.total
-                console.log(response.data.res[0].invoice_estimate.total)
+                that.currencyCode = response.data.res[0].invoice_estimate.currency_code
                 that.cartItems = response.data.res[0].invoice_estimate.line_items
             })
         },

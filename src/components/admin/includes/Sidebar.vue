@@ -49,6 +49,9 @@
           <router-link to="/admin/check-in-surveys">Check In Surveys</router-link>
         </li>
         <li>
+          <router-link to="/admin/post-workshop-surveys">Post Workshop Surveys</router-link>
+        </li>
+        <li>
           <router-link to="/admin/send-email">Send Email</router-link>
         </li>
           <li>

@@ -1,22 +1,24 @@
 <template>
     <div class="col-md-9">
-        <router-link to="/admin/check-in-surveys">
+        <router-link to="/admin/post-workshop-surveys">
             <button class="btn-primary">
                 <i class="fa fa-arrow-left white"></i>
             </button>
         </router-link>
-        <h3>Check In Survey Answers</h3>
+        <h3>Post Workshop Survey Answers</h3>
         <label>{{ survey.question }}</label>
         <div class="row mt-3">
             <table class="table">
                 <tr>
                     <td>Company Name</td>
                     <td>Employee Name</td>
+                    <td>Workshop Title</td>
                     <td>Answer</td>
                 </tr>
                 <tr v-if="checkInSurveyLength" v-for="p in checkInSurvey.data" v-bind:key="p.id">
                     <td>{{ p.company_name }}</td>
                     <td>{{ p.first_name }} {{ p.last_name }}</td>
+                    <td>{{ p.title }}</td>
                     <td>{{ p.answer }}</td>
                 </tr>
                 <tr v-if="!checkInSurveyLength">
@@ -31,7 +33,7 @@
 import AppMixin from '../../mixins/AppMixin'
 import Api from '../../router/api'
 export default {
-    name: 'CheckInSurveyView',
+    name: 'PostWorkshopSurveyView',
     mixins: [AppMixin],
     data() {
         return {
@@ -43,9 +45,9 @@ export default {
     components: {
     },
     methods: {
-        getCheckInSurvey: function (id) {
+        getPostWorkshopSurvey: function (id) {
             let that = this
-            Api.getCheckInSurvey(id).then(response => {
+            Api.getPostWorkshopSurvey(id).then(response => {
                 that.survey = response.data.res
             }).catch((error) => {
                 this.$swal({
@@ -58,9 +60,9 @@ export default {
             });
 
         },
-        getCheckInSurveyAnswerList: function (id) {
+        getPostWorkshopSurveyAnswerList: function (id) {
             let that = this
-            Api.getCheckInSurveyAnswerList(id).then(response => {
+            Api.getPostWorkshopSurveyAnswerList(id).then(response => {
                 that.checkInSurvey = response.data.res
                 that.checkInSurveyLength = that.checkInSurvey.data.length
             }).catch((error) => {
@@ -76,8 +78,8 @@ export default {
         }
     },
     mounted() {
-        this.getCheckInSurvey(this.$route.params.id)
-        this.getCheckInSurveyAnswerList(this.$route.params.id)
+        this.getPostWorkshopSurvey(this.$route.params.id)
+        this.getPostWorkshopSurveyAnswerList(this.$route.params.id)
     }
 }
 </script>

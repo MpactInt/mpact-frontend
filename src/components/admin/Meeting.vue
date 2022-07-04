@@ -41,9 +41,13 @@
           <td>
             <!-- <button class="btn btn-primary" @click="getWorkshop(r.id)"><i class="fa fa-pencil"></i></button>
             <button class="btn btn-danger" @click="deleteWorkshop(r.id)"><i class="fa fa-trash"></i></button> -->
-            <a class="btn btn-primary" target="_blank" :href="r.start_url">Start Meeting</a>
+            <a v-if="r.status != 'end'" class="btn btn-primary" target="_blank" :href="r.start_url">Start Meeting</a>
             <router-link class="btn btn-primary" :to="'/admin/meeting-recordings/' + r.meeting_id">View Recordings
             </router-link>
+            <button v-if="r.status != 'end'" class="btn btn-primary" @click="endMeeting(r.meeting_id)">End
+              Meeting</button>
+            <button v-if="r.status == 'end'" class="btn btn-primary" @click="sendPostWorkshopSurveyEmail(r.workshop_id)"
+              :disabled="disabled">Send Survey</button>
           </td>
         </tr>
         <tr v-if="!meetingsLength">
@@ -138,7 +142,7 @@ export default {
         'host_video': '',
         'disabled': false,
       },
-
+      disabled: false,
       getWorkshopData: {
         'sortBy': '',
         'keyword': ''
@@ -190,27 +194,28 @@ export default {
         });
       }
     },
-    deleteWorkshop: function (id) {
+    endMeeting: function (id) {
       let that = this
       this.$swal({
         title: 'Are you sure?',
-        text: 'All the related info will be deleted, you wont be able to revert !',
+        text: 'You want to end this meeting',
         type: 'warning',
         showCancelButton: true,
-        confirmButtonText: 'Yes Delete it!',
-        cancelButtonText: 'No, Keep it!',
+        confirmButtonText: 'Yes',
+        cancelButtonText: 'No',
         showCloseButton: true,
         showLoaderOnConfirm: true
       }).then((result) => {
         if (result.value) {
-          Api.deleteWorkshop(id).then(response => {
+          var data = { 'action': 'end' }
+          Api.updateMeeting(id, data).then(response => {
             this.$swal({
               icon: "success",
               title: "success",
-              text: "Deleted Successfully",
+              text: "Meeting Ended Successfully",
               showConfirmButton: true
             }).then(() => {
-              that.getWorkshopsList()
+              that.getMeetingsList()
             });
           }
           ).catch((error) => {
@@ -224,56 +229,28 @@ export default {
         }
       })
     },
-    updateWorkshop: function (e) {
-      e.preventDefault()
-      let that = this;
-      console.log(that.meetingUpdate)
-      if (!that.meetingUpdate.title || !that.meetingUpdate.description || !that.meetingUpdate.image || !that.meetingUpdate.total_hours || !that.meetingUpdate.instructor || !that.meetingUpdate.date || !that.meetingUpdate.additional_info) {
+    sendPostWorkshopSurveyEmail: function (id) {
+      Api.sendPostWorkshopSurveyEmail(id).then(response => {
+        that.disabled = true;
+        this.$swal({
+          icon: "success",
+          title: "Success",
+          text: "Post Workshop Survey sent successfully",
+          showConfirmButton: true
+        }).then(function () {
+          that.disabled = false
+        });
+      }).catch((error) => {
         this.$swal({
           icon: "error",
           title: "error",
-          text: "Please fill all required fields",
+          text: error.response.data.message,
           showConfirmButton: true
+        }).then(function () {
+          that.disabled = false;
         });
-      } else {
-        that.meetingUpdate.disabled = true;
-        const formData = new FormData();
-        formData.append('id', that.meetingUpdate.id);
-        formData.append('image', that.meetingUpdate.image)
-        formData.append('title', that.meetingUpdate.title)
-        formData.append('description', that.meetingUpdate.description)
-        formData.append('total_hours', that.meetingUpdate.total_hours)
-        formData.append('instructor', that.meetingUpdate.instructor)
-        formData.append('date', that.meetingUpdate.date)
-        formData.append('additional_info', that.meetingUpdate.additional_info)
-        let headers = {
-          'Content-Type': 'multipart/form-data',
-          'Access-Control-Allow-Origin': '*'
-        }
-        Api.updateWorkshop(formData, headers).then(response => {
-          that.meetingUpdate.disabled = false;
-          this.$swal({
-            icon: "success",
-            title: "Success",
-            text: "Workshop details updated successfully",
-            showConfirmButton: true
-          }).then(function () {
-            that.meetingUpdate.disabled = false;
-            that.$bvModal.hide('update-modal')
-            that.getWorkshopsList()
-          });
-        }).catch((error) => {
-          this.$swal({
-            icon: "error",
-            title: "error",
-            text: error.response.data.message,
-            showConfirmButton: true
-          }).then(function () {
-            that.meetingUpdate.disabled = false;
-          });
-        });
-      }
-    },
+      });
+    }
   },
   mounted() {
     this.getMeetingsList()
