@@ -3,9 +3,6 @@
     <div class="employee-hero-section">
       <div class="container">
         <div class="row content-center">
-          <CustomSurvey v-if="pg.length" :surveyProp="pg" :submitPopupSurvey="submitPopupSurvey"></CustomSurvey>
-        </div>
-        <div class="row content-center">
           <div class="col-md-7">
             <div class="left-side">
               <h1 class="text-blue bold">
@@ -32,9 +29,14 @@
     <div class="learning-sention">
       <div class="container">
         <div class="row">
-          <div class="col-md-12">
+          <div class="col-md-6">
             <h2 class="text-blue bold ">{{ section2.title }}</h2>
             <p class="p-text text-blue f-18">{{ section2.description }}</p>
+          </div>
+          <div class="col-md-6">
+            <h2 class="text-blue bold mb-0">Popup Survey</h2>
+            <CustomSurvey v-if="pg.length" :surveyProp="pg" :submitPopupSurvey="submitPopupSurvey"></CustomSurvey>
+            <BarChart :data="chartData"></BarChart>
           </div>
         </div>
         <div class="row">
@@ -50,15 +52,16 @@
           </div>
           <div class="col-md-12 col-lg-6">
             <div class="row">
-              <div class="col-xs-6 col-md-4 col-lg-4 mb-2" v-for="img in section3.image" v-bind:key="img.id">
-                <div class="overlay">
-                  <img :src="section3.path + '/' + img.image" />
-                  <div class="overlay-content">
-                    <h5 class="text-overlay">Morbi gravida turpis <br>fames nama.</h5>
-                    <p class="overlay-description text-blue">Diam non vestibulum, netus <br> facilisis nunc
-                      quis vitae praesent <br> odio.</p>
+              <div class="col-xs-6 col-md-4 col-lg-4 mb-2" v-for="img in learningPlan" v-bind:key="img.id">
+                <router-link :to="'/employee/my-learning-plan/' + img.id">
+                  <div class="overlay">
+                    <img :src="learningPlanPath + '/' + img.image" />
+                    <div class="overlay-content">
+                      <h5 class="text-overlay">{{ img.title }}</h5>
+                      <p class="overlay-description text-blue">{{ img.description }}</p>
+                    </div>
                   </div>
-                </div>
+                </router-link>
               </div>
             </div>
           </div>
@@ -74,10 +77,10 @@
             <h2 class="event-title text-blue bold">Upcoming <span class="primary-text">Workshops</span>.</h2>
             <div class="event-details" v-for="wl in workshopsListDashboard" v-bind:key="wl.id">
               <div class="event-date">
-                <span class="text-blue">{{wl.date|timeStampToDate}}</span>
+                <span class="text-blue">{{ wl.date | timeStampToDate }}</span>
                 <!-- <sup class="text-gray">May</sup> -->
               </div>
-              <div class="event-name text-light-blue "><span>{{wl.title}}</span></div>
+              <div class="event-name text-light-blue "><span>{{ wl.title }}</span></div>
               <div class="event-action">
                 <button v-if="!wl.registered" class="nav-link btn custom-btn" @click="registerForWorkshop(wl.id)">
                   <div class="gradient-btn">Register Now</div>
@@ -95,9 +98,9 @@
               <div class="">
 
                 <ul class="to-do-list">
-                  <li  v-for="todo in todoList" v-bind:key="todo.id">
-                    <h5 class="text-blue">{{todo.title}}</h5>
-                    <p class="text-blue">{{todo.description}}</p>
+                  <li v-for="todo in todoList" v-bind:key="todo.id">
+                    <h5 class="text-blue">{{ todo.title }}</h5>
+                    <p class="text-blue">{{ todo.description }}</p>
                   </li>
                 </ul>
               </div>
@@ -115,18 +118,22 @@
 import AppMixin from '../../mixins/AppMixin'
 import Api from '../../router/api'
 import CustomSurvey from './CustomSurvey.vue'
+import BarChart from '../common/BarChart.vue'
 
 export default {
   name: "Dashboard",
   mixins: [AppMixin],
-  components: { CustomSurvey },
+  components: { CustomSurvey, BarChart },
   data() {
     return {
       pg: [],
+      learningPlan: [],
+      learningPlanPath: '',
+      chartData: []
     }
   },
   methods: {
-     registerForWorkshop: function (id) {
+    registerForWorkshop: function (id) {
       let that = this
       Api.registerForWorkshop(id).then(response => {
         this.$swal({
@@ -149,6 +156,35 @@ export default {
       Api.submitPopupSurvey(this.surveyRes).then(response => {
 
       });
+    },
+    getLearningPlanListDashboard: function () {
+      let that = this
+      Api.getLearningPlanListDashboard().then(response => {
+        that.learningPlan = response.data.res
+        that.learningPlanPath = response.data.path
+      }).catch((error) => {
+        this.$swal({
+          icon: "error",
+          title: "error",
+          text: error.response.data.message,
+          showConfirmButton: true
+        }).then(function () {
+        });
+      });
+    },
+    getChartData: function () {
+      let that = this
+      Api.getChartData().then(response => {
+        that.chartData = response.data.res
+      }).catch((error) => {
+        this.$swal({
+          icon: "error",
+          title: "error",
+          text: error.response.data.message,
+          showConfirmButton: true
+        }).then(function () {
+        });
+      });
     }
   },
   created() {
@@ -159,10 +195,20 @@ export default {
     this.getSection3(this.company.profile_type_id);
     this.getSurveyQuestionsDashboard();
     this.getWorkshopsListDashboard()
+    this.getLearningPlanListDashboard()
+    this.getChartData()
   },
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
+<style>
+.sd-page {
+  padding: 0 !important;
+}
 
+.sd-root-modern {
+  background: transparent !important;
+}
 </style>
+

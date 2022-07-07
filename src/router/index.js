@@ -53,6 +53,7 @@ import EmpMessageMyTeam from '@/components/employee/MessageMyTeam'
 import EmpOneToOneChat from '@/components/employee/OneToOneChat'
 import EmpWelcomeNote from '@/components/employee/WelcomeNote'
 import EmpLearningPlan from '@/components/employee/LearningPlan'
+import EmpLearningPlanView from '@/components/employee/LearningPlanView'
 import EmpMeetingRecording from '@/components/employee/MeetingRecording'
 
 /********Load admin components */
@@ -80,7 +81,8 @@ import AdminWorkshopView from '@/components/admin/WorkshopView'
 import AdminMeeting from '@/components/admin/Meeting'
 import AdminMeetingRecording from '@/components/admin/MeetingRecording'
 import AdminWelcomeNote from '@/components/admin/WelcomeNote'
-
+import AdminLearningPlan from '@/components/admin/LearningPlan'
+import AdminLearningPlanView from '@/components/admin/LearningPlanView'
 Vue.use(Router)
 
 function guardMyroute(to, from, next) {
@@ -411,6 +413,14 @@ export const router = new Router({
       meta: { requiresAuth: true, employerAuth: false, employeeAuth: true, adminAuth: false }
     },
     {
+      path: '/employee/my-learning-plan/:id',
+      beforeEnter: guardMyroute,
+      name: 'LearningPlanView',
+      component: EmpLearningPlanView,
+      meta: { requiresAuth: true, employerAuth: false, employeeAuth: true, adminAuth: false }
+    },
+ 
+    {
       path: '/employee/meeting-recordings/:id',
       beforeEnter: guardMyroute,
       name: 'EmpMeetingRecording',
@@ -582,6 +592,18 @@ export const router = new Router({
       path: '/admin/welcome-note',
       name: 'WelcomeNote',
       component: AdminWelcomeNote,
+      meta: { requiresAuth: true, employerAuth: false, employeeAuth: false, adminAuth: true }
+    },
+    {
+      path: '/admin/learning-plan',
+      name: 'AdminLearningPlan',
+      component: AdminLearningPlan,
+      meta: { requiresAuth: true, employerAuth: false, employeeAuth: false, adminAuth: true }
+    },
+    {
+      path: '/admin/learning-plan/:id',
+      name: 'AdminLearningPlanView',
+      component: AdminLearningPlanView,
       meta: { requiresAuth: true, employerAuth: false, employeeAuth: false, adminAuth: true }
     },
   ],

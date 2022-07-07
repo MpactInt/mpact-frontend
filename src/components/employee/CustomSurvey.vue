@@ -16,7 +16,7 @@ export default {
     props: ['surveyProp','submitPopupSurvey'],
     data() {
         var json = {
-            title: "Popup Survey",
+            title: "",
             showProgressBar: "bottom",
             goNextPageAutomatic: true,
             showNavigationButtons: false,

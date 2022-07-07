@@ -2,7 +2,9 @@
     <div class="container">
         <div class="header">
             <nav class="navbar navbar-expand-lg navbar-light ">
-                <router-link class="navbar-brand" to="/employee/dashboard"><img src="../../../assets/images/logo.png">
+                <router-link v-if="!company.company_logo" class="navbar-brand" to="/employee/dashboard"><img src="../../../assets/images/logo.png">
+                </router-link>
+                <router-link v-if="company.company_logo" class="navbar-brand" to="/employee/dashboard"><img :src="company.company_logo">
                 </router-link>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">

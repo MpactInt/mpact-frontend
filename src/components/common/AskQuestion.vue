@@ -1,6 +1,6 @@
 <template>
-  <div class="col-md-9">
-    <div class="row form-group col-md-4">
+  <div class="">
+    <div class="row form-group">
       <textarea class="form-control" id="ask-question" v-model="askQuestion.description"
         placeholder="Ask Your Care Team"></textarea>
     </div>

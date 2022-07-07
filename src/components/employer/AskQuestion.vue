@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="col-md-10">
     <h1>Ask Your Care Team</h1>
     <AskQuestionEmployer></AskQuestionEmployer>
   </div>

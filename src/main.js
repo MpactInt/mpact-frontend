@@ -22,6 +22,7 @@ import './assets/css/style.css'
 import './assets/css/custom.css'
 import VueChatScroll from 'vue-chat-scroll'
 import Multiselect from 'vue-multiselect'
+import HighchartsVue from "highcharts-vue";
 
 global.jQuery = require('jquery')
 var $ = global.jQuery
@@ -33,6 +34,7 @@ Vue.use(IconsPlugin)
 Vue.use(VueChatScroll)
 Vue.component('pagination', LaravelVuePagination)
 Vue.component('multiselect', Multiselect)
+Vue.use(HighchartsVue);
 
 Vue.config.productionTip = false
 

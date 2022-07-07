@@ -42,6 +42,9 @@
         <li>
           <router-link to="/admin/employee-profile-type">Employee Profile Type</router-link>
         </li>
+         <li>
+          <router-link to="/admin/learning-plan">Learning Plan</router-link>
+        </li>
         <li>
           <router-link to="/admin/popup-surveys">Popup Surveys</router-link>
         </li>

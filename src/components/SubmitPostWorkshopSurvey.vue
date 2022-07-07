@@ -7,7 +7,6 @@
             <h1>Mpact International</h1>
             <h5>Post Workshop Survey</h5>
             <CustomSurvey v-if="pg.length" :surveyProp="pg" :submitPopupSurvey="submitPostWorkshopSurvey"></CustomSurvey>
-
           </div>
         </div>
       </div>

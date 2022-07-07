@@ -448,5 +448,44 @@ class Api {
     getWelcomeNoteCompanies() {
         return axiosCommon.get('/get-welcome-note-company-list')
     }
+
+    addLearningPlan(data) {
+        return axiosCommon.post('/add-learning-plan', data)
+    }
+    updateLearningPlan(data) {
+        return axiosCommon.post('/update-learning-plan', data)
+    }
+    deleteLearningPlan(id) {
+        return axiosCommon.get('/delete-learning-plan/' + id)
+    }
+    getLearningPlan(id) {
+        return axiosCommon.get('/get-learning-plan/' + id)
+    }
+    getLearningPlanList(page, data) {
+        return axiosCommon.post('/get-learning-plan-list' + '?page=' + page, data)
+    }
+    getLearningPlanListDashboard(page, data) {
+        return axiosCommon.post('/get-learning-plan-list-dashboard')
+    }
+    
+    getLearningPlanFiles(id){
+        return axiosCommon.get('/get-learning-plan-files/'+id)
+    }
+    addLearningPlanFile(data) {
+        return axiosCommon.post('/add-learning-plan-file', data)
+    }
+    updateLearningPlanFile(data) {
+        return axiosCommon.post('/update-learning-plan-file', data)
+    }
+    deleteLearningPlanFile(id) {
+        return axiosCommon.get('/delete-learning-plan-file/' + id)
+    }
+    downloadLearningPlanFile(id) {
+        return axiosCommon.get('/download-learning-plan-file/' + id, { responseType: 'blob' })
+    }
+    getChartData(){
+        return axiosCommon.get('/get-chart-data')
+    }
+
 }
 export default new Api()

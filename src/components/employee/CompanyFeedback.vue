@@ -1,7 +1,7 @@
 <template>
   <div class="employee-hero-section">
     <div class="container">
-      <h1 class="text-blue bold">Feeback to comapny admin</h1>
+      <h1 class="text-blue bold">Feeback to company admin</h1>
       <div class="row">
         <div class="form-group">
           <textarea class="form-control" id="ask-question" v-model="feedback.description"

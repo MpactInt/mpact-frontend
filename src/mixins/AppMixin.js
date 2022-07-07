@@ -68,17 +68,17 @@ export default {
         'toolkit': [],
         'guideBook': ''
       },
-      workshopMeetings:[],
+      workshopMeetings: [],
       workshopUpdate: {
         'id': '',
-        'comapny': '',
+        'company': '',
         'title': '',
         'description': '',
         'image': '',
-        'img':'',
+        'img': '',
         'total_hours': '',
         'date': '',
-        'date_time':'',
+        'date_time': '',
         'instructor': '',
         'additional_info': '',
         'meeting_type': '',
@@ -119,9 +119,20 @@ export default {
         'sortBy': '',
         'keyword': ''
       },
-      workshopPath:'',
-      workshopsListDashboard:[],
-      iframeSrc:''
+      workshopPath: '',
+      workshopsListDashboard: [],
+      iframeSrc: '',
+      learningPlanLength: 0,
+      learningPlan: {},
+      learningPlanPath: '',
+      planSingle: {
+        'profile_type': '',
+        'title': '',
+        'description': '',
+        'image': '',
+        'disabled': false
+      },
+      planFiles: [],
     }
   },
   methods: {
@@ -251,7 +262,7 @@ export default {
         that.workshopUpdate.description = response.data.res.description
         that.workshopUpdate.additional_info = response.data.res.additional_info
         that.workshopUpdate.img = response.data.res.image
-        that.workshopUpdate.date = new Date(response.data.res.date*1000)
+        that.workshopUpdate.date = new Date(response.data.res.date * 1000)
         that.workshopUpdate.instructor = response.data.res.instructor
         that.workshopUpdate.meeting_type = response.data.res.meeting_type
         that.workshopUpdate.companies = response.data.res.company
@@ -581,6 +592,59 @@ export default {
           showConfirmButton: true
         });
       });
+    },
+    getLearningPlanList: function (page = 1) {
+      let that = this
+      Api.getLearningPlanList(page).then(response => {
+        that.learningPlan = response.data.res
+        that.learningPlanLength = that.learningPlan.data.length
+        that.learningPlanPath = response.data.path
+      }).catch((error) => {
+        this.$swal({
+          icon: "error",
+          title: "error",
+          text: error.response.data.message,
+          showConfirmButton: true
+        }).then(function () {
+        });
+      });
+    },
+    getLearningPlanFiles: function () {
+      let that = this
+      Api.getLearningPlan(that.$route.params.id).then(response => {
+        that.planSingle.profile_type = response.data.res.profile_type
+        that.planSingle.title = response.data.res.title
+        that.planSingle.description = response.data.res.description
+        that.planSingle.image = response.data.res.image
+        that.planFiles = response.data.res.files
+        that.filePath = response.data.path
+      }).catch((error) => {
+        this.$swal({
+          icon: "error",
+          title: "error",
+          text: error.response.data.message,
+          showConfirmButton: true
+        }).then(function () {
+        });
+      });
+    },
+    downloadLearningPlanFile: function (id, file) {
+      Api.downloadLearningPlanFile(id)
+        .then(response => {
+          let blob = new Blob([response.data])
+          let link = document.createElement('a')
+          link.href = window.URL.createObjectURL(blob)
+          link.download = file
+          link.click()
+        }
+        ).catch((error) => {
+          this.$swal({
+            icon: "error",
+            title: "error",
+            text: error.response.data.message,
+            showConfirmButton: true
+          });
+        });
     },
   },
   created() {

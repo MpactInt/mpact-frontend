@@ -66,17 +66,6 @@
                             v-model="section3.description"></textarea>
                     </div>
                     <div class="form-group">
-                        <label>Image</label>
-                        <input class="form-control" type="file" ref="imageMultiple" multiple />
-                    </div>
-                    <div class="form-group row " v-if="section3.image.length">
-                        <label>Uploaded Image</label><br>
-                        <div class="col-md-4" v-for="img in section3.image" v-bind:key="img.id">
-                            <i class="cursor-pointer fa fa-trash" @click="deleteSection3Image(img.id)"></i>
-                            <img :src="section3.path + '/' + img.image" height="75" width="75" />
-                        </div>
-                    </div>
-                    <div class="form-group">
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </div>
                 </form>
@@ -199,7 +188,7 @@ export default {
             e.preventDefault()
             let that = this;
             console.log(that.section1);
-            if (!that.section3.title || !that.section3.description || !that.section3.image) {
+            if (!that.section3.title || !that.section3.description) {
                 this.$swal({
                     icon: "error",
                     title: "error",
@@ -209,10 +198,6 @@ export default {
             } else {
                 that.section3.disabled = true;
                 const formData = new FormData();
-                for (var i = 0; i < this.$refs.imageMultiple.files.length; i++) {
-                    let file = this.$refs.imageMultiple.files[i];
-                    formData.append('image[' + i + ']', file);
-                }
                 // formData.append('image', that.section3.image);
                 formData.append('title', that.section3.title);
                 formData.append('description', that.section3.description);
@@ -242,32 +227,7 @@ export default {
                 });
             }
         },
-        deleteSection3Image: function (id) {
-            let that = this
-            this.$swal({
-                title: 'Are you sure?',
-                text: 'All the related info will be deleted, you wont be able to revert !',
-                type: 'warning',
-                showCancelButton: true,
-                confirmButtonText: 'Yes Delete it!',
-                cancelButtonText: 'No, Keep it!',
-                showCloseButton: true,
-                showLoaderOnConfirm: true
-            }).then((result) => {
-                if (result.value) {
-                    Api.deleteSection3Image(id).then(response => {
-                        this.$swal({
-                            icon: "success",
-                            title: "Success",
-                            text: "Deleted successfully",
-                            showConfirmButton: true
-                        }).then(function () {
-                            that.getSection3()
-                        });
-                    })
-                }
-            })
-        },
+       
         getProfileType: function () {
             let that = this
             Api.getProfileType(this.$route.params.id).then(response => {
