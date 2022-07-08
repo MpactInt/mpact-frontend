@@ -36,7 +36,7 @@
           <div class="col-md-6">
             <h2 class="text-blue bold mb-0">Popup Survey</h2>
             <CustomSurvey v-if="pg.length" :surveyProp="pg" :submitPopupSurvey="submitPopupSurvey"></CustomSurvey>
-            <BarChart :chartData="res" :question="chartData.question"></BarChart>
+            <BarChart v-else :chartData="res" :question="chartData.question"></BarChart>
           </div>
         </div>
         <div class="row">
@@ -148,14 +148,18 @@ export default {
       })
     },
     getSurveyQuestionsDashboard: function () {
+      let that = this;
       Api.getSurveyQuestionsDashboard().then(response => {
         this.pg = response.data.res;
+        that.getChartData()
       });
     },
     submitPopupSurvey: function (survey) {
+      let that = this;
       let data = JSON.stringify(survey.data, null, 3)
       this.surveyRes = JSON.parse(data)
       Api.submitPopupSurvey(this.surveyRes).then(response => {
+        that.getSurveyQuestionsDashboard();
 
       });
     },
@@ -179,7 +183,10 @@ export default {
       Api.getChartData().then(response => {
         that.chartData = response.data.res
         that.chartDataPer = response.data.per
-        this.res.push([this.chartData.option_1, this.chartDataPer.per1], [this.chartData.option_2, this.chartDataPer.per2],
+        while (that.res.length > 0) {
+          that.res.pop();
+        }
+        that.res.push([this.chartData.option_1, this.chartDataPer.per1], [this.chartData.option_2, this.chartDataPer.per2],
           [this.chartData.option_3, this.chartDataPer.per3], [this.chartData.option_4, this.chartDataPer.per4])
       }).catch((error) => {
         this.$swal({
@@ -201,7 +208,6 @@ export default {
     this.getSurveyQuestionsDashboard();
     this.getWorkshopsListDashboard()
     this.getLearningPlanListDashboard()
-    this.getChartData()
   },
 }
 </script>

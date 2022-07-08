@@ -20,8 +20,6 @@ export default {
     components: {
         highcharts: Chart
     },
-
-
     data() {
         return {
             res:[],
