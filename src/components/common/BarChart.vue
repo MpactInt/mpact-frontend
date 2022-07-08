@@ -15,7 +15,7 @@ stockInit(Highcharts);
 
 
 export default {
-    props: ['data'],
+    props: ['chartData','question'],
 
     components: {
         highcharts: Chart
@@ -24,13 +24,14 @@ export default {
 
     data() {
         return {
+            res:[],
             chartOptions: {
                 chart: {
                     type: 'bar',
                     marginLeft: 150
                 },
                 title: {
-                    text: 'Popup Survey by emplyees'
+                    text: this.question
                 },
                 // subtitle: {
                 //     text: 'Source: <a href="https://highcharts.uservoice.com/forums/55896-highcharts-javascript-api">UserVoice</a>'
@@ -41,7 +42,7 @@ export default {
                         text: null
                     },
                     min: 0,
-                    max: 4,
+                    max: 3,
                     scrollbar: {
                         enabled: false
                     },
@@ -70,14 +71,14 @@ export default {
                 },
                 series: [{
                     name: 'Votes',
-                    data: [["1 Rating", 10],
-                    ["2 Rating", 57],
-                    ["3 Rating", 52],
-                    ["4 Rating", 42],
-                    ["5 Rating", 39],]
+                    data: this.chartData
                 }]
             }
         };
+    },
+    mounted() {
+        console.log(this.chartData)
+      
     }
 };
 </script>

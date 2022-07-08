@@ -36,7 +36,7 @@
           <div class="col-md-6">
             <h2 class="text-blue bold mb-0">Popup Survey</h2>
             <CustomSurvey v-if="pg.length" :surveyProp="pg" :submitPopupSurvey="submitPopupSurvey"></CustomSurvey>
-            <BarChart :data="chartData"></BarChart>
+            <BarChart :chartData="res" :question="chartData.question"></BarChart>
           </div>
         </div>
         <div class="row">
@@ -129,7 +129,9 @@ export default {
       pg: [],
       learningPlan: [],
       learningPlanPath: '',
-      chartData: []
+      chartData: [],
+      chartDataPer: [],
+      res: []
     }
   },
   methods: {
@@ -176,6 +178,9 @@ export default {
       let that = this
       Api.getChartData().then(response => {
         that.chartData = response.data.res
+        that.chartDataPer = response.data.per
+        this.res.push([this.chartData.option_1, this.chartDataPer.per1], [this.chartData.option_2, this.chartDataPer.per2],
+          [this.chartData.option_3, this.chartDataPer.per3], [this.chartData.option_4, this.chartDataPer.per4])
       }).catch((error) => {
         this.$swal({
           icon: "error",

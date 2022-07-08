@@ -230,6 +230,7 @@ export default {
       })
     },
     sendPostWorkshopSurveyEmail: function (id) {
+      let that = this;
       Api.sendPostWorkshopSurveyEmail(id).then(response => {
         that.disabled = true;
         this.$swal({
