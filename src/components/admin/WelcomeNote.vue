@@ -65,7 +65,7 @@
             accept=".jpg, .jpeg, .png" />
         </div>
         <div class="form-group">
-          <button type="submit" class="btn btn-primary" :disabled="note.disabled">Update</button>
+          <button type="submit" class="btn btn-primary" :disabled="note.disabled">Add</button>
         </div>
       </form>
     </b-modal>

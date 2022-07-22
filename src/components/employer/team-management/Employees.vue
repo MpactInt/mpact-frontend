@@ -68,11 +68,11 @@
           <div class="form-group">
             <label>First Name <span class="err">*</span></label>
             <input type="text" class="form-control" id="firstname" placeholder="First Name"
-              v-model="employee.firstname">
+              v-model="employee.firstname" @keypress="alphabetsOnly">
           </div>
           <div class="form-group">
             <label>Last Name <span class="err">*</span></label>
-            <input type="text" class="form-control" id="lastname" placeholder="Last Name" v-model="employee.lastname">
+            <input type="text" class="form-control" id="lastname" placeholder="Last Name" v-model="employee.lastname" @keypress="alphabetsOnly">
           </div>
           <div class="form-group">
             <label>Role<span class="err">*</span></label>
@@ -101,12 +101,12 @@
         <div id="update-details">
           <div class="form-group">
             <label>First Name <span class="err">*</span></label>
-            <input type="text" class="form-control" id="firstname" placeholder="First Name"
+            <input type="text" class="form-control" id="firstname" placeholder="First Name" @keypress="alphabetsOnly"
               v-model="employeeUpdate.firstname">
           </div>
           <div class="form-group">
             <label>Last Name <span class="err">*</span></label>
-            <input type="text" class="form-control" id="lastname" placeholder="Last Name"
+            <input type="text" class="form-control" id="lastname" placeholder="Last Name" @keypress="alphabetsOnly"
               v-model="employeeUpdate.lastname">
           </div>
           <div class="form-group">

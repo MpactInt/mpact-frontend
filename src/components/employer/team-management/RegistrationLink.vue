@@ -45,7 +45,7 @@ export default {
         'email': '',
         'link': '',
         'company_name': '',
-        'company_id':'',
+        'company_id': '',
         'disabled': false
       },
       linkCopied: false
@@ -80,6 +80,7 @@ export default {
           });
         }
         ).catch((error) => {
+          that.sendEmail.disabled = false
           this.$swal({
             icon: "error",
             title: "error",

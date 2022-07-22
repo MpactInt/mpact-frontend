@@ -16,13 +16,13 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <input type="text" class="form-control" id="firstname" placeholder="First Name"
-                                            v-model="companyData.billingAddress.firstname">
+                                            v-model="companyData.billingAddress.firstName" @keypress="alphabetsOnly">
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <input type="text" class="form-control" id="lastname" placeholder="Last Name"
-                                            v-model="companyData.billingAddress.lastname">
+                                            v-model="companyData.billingAddress.lastName" @keypress="alphabetsOnly">
                                     </div>
                                 </div>
                                 <div class="col-md-12">
@@ -64,13 +64,14 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <input type="text" class="form-control" id="zip" placeholder="Zipcode"
-                                            v-model="companyData.billingAddress.zip">
+                                            v-model="companyData.billingAddress.zip" @keypress="numbersOnly">
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <select class="form-control" id="country" placeholder="Select Country"
                                             v-model="companyData.billingAddress.country">
+                                            <option value="">Select Country</option>
                                             <option v-for="c in countries" :value="c.code" v-bind:key="c.id">
                                                 {{ c.name }}
                                             </option>
@@ -79,15 +80,6 @@
                                             v-model="companyData.billingAddress.country"> -->
                                     </div>
                                 </div>
-                                <div class="col-md-12">
-                                    <p class="term-condition"><label class="custom-container text-gray">Pay Offline
-                                            <input type="checkbox" id="terms" value="off"
-                                                v-model="companyData.payOffline">
-                                            <span class="custom-checkmark"></span>
-                                        </label>
-                                    </p>
-                                </div>
-
                                 <button type="submit" class="d-block btn btn-primary">Submit</button>
                             </div>
                             <div class="col-md-4">
@@ -97,7 +89,7 @@
                                         {{ ci.description }} :
                                     </div>
                                     <div class="col-md-3">
-                                        {{ ci.amount / 100 | totalAmount }} {{currencyCode}}
+                                        {{ ci.amount / 100 | totalAmount }} {{ currencyCode }}
                                     </div>
                                 </div>
                                 <div class="col-md-12 row cart-item">
@@ -105,7 +97,7 @@
                                         Total :
                                     </div>
                                     <div class="col-md-3">
-                                        {{ estimateData / 100 | totalAmount}} {{currencyCode}}
+                                        {{ estimateData / 100 | totalAmount }} {{ currencyCode }}
                                     </div>
                                 </div>
                             </div>
@@ -147,12 +139,12 @@ export default {
                 'disabled': false,
                 'terms': '',
                 'link': '',
-                'payOffline':''
+                'payOffline': ''
             },
             estimateData: [],
             cartItems: [],
             countries: [],
-            currencyCode:''
+            currencyCode: ''
         }
     },
     methods: {
@@ -166,10 +158,22 @@ export default {
         validateForm: function (e) {
             e.preventDefault();
             let that = this;
-            that.companyData.link = that.$route.params.link
-            Api.createSubscription(that.companyData).then(response => {
-                window.location = response.data.res.url
-            })
+            console.log(that.companyData)
+            if (that.companyData.billingAddress.firstName == '' || that.companyData.billingAddress.lastName == '' || that.companyData.billingAddress.email == '' ||
+                that.companyData.employees == '' || that.companyData.billingAddress.company == '' || that.companyData.billingAddress.address == '' ||
+                that.companyData.billingAddress.city == '' || that.companyData.billingAddress.state == '' || that.companyData.billingAddress.zip == '' || that.companyData.billingAddress.country == '') {
+                this.$swal({
+                    icon: "error",
+                    title: "Error",
+                    text: "Please fill all required fields",
+                    showConfirmButton: true
+                });
+            } else {
+                that.companyData.link = that.$route.params.link
+                Api.createSubscription(that.companyData).then(response => {
+                    window.location = response.data.res.url
+                })
+            }
         },
         createEstimate: function () {
             let that = this

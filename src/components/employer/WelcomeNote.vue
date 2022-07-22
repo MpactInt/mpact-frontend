@@ -1,13 +1,18 @@
 <template>
   <div class="col-md-9">
     <h1>Welcome Note</h1>
-    <p>
-      {{ note.title }}
-    </p>
-    <p v-html="note.description"></p>
-    <p>
-      <img :src="note.image"/>
-    </p>
+    <div v-if="note">
+      <p>
+        {{ note.title }}
+      </p>
+      <p v-html="note.description"></p>
+      <p>
+        <img :src="note.image" />
+      </p>
+    </div>
+    <div v-if="!note">
+      Welcome Note not added
+    </div>
   </div>
 </template>
 
@@ -20,11 +25,11 @@ export default {
   mixins: [AppMixin],
   data() {
     return {
-      note:{}
+      note: {}
     }
   },
   methods: {
-    getSingleWelcomeNoteCompany:function(){
+    getSingleWelcomeNoteCompany: function () {
       let that = this
       Api.getSingleWelcomeNoteCompany().then(response => {
         that.note = response.data.res

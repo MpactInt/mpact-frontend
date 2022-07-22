@@ -646,6 +646,25 @@ export default {
           });
         });
     },
+    alphabetsOnly: function(e){
+      console.log(e.target.value)
+      let char = String.fromCharCode(e.keyCode); // Get the character
+      if(/^[A-Za-z]+$/.test(char)) {
+        return true; 
+      }else{
+        e.preventDefault();
+      }
+    },
+    numbersOnly: function(e){
+      console.log(e.target.value)
+      let char = String.fromCharCode(e.keyCode); // Get the character
+      if(/^[0-9]+$/.test(char)) {
+        return true; 
+      }else{
+        e.preventDefault();
+      }
+    }
+    
   },
   created() {
     this.user = JSON.parse(localStorage.getItem("userData"));

@@ -22,13 +22,13 @@
           <div class="form-group">
             <label>First Name <span class="err">*</span></label>
             <input type="text" class="form-control" id="firstname" placeholder="First Name"
-              v-model="chargebeeUser.firstname" @focus="removeError">
+              v-model="chargebeeUser.firstname" @focus="removeError" @keypress="alphabetsOnly">
           </div>
 
           <div class="form-group">
             <label>Last Name <span class="err">*</span></label>
             <input type="text" class="form-control" id="lastname" placeholder="Last Name"
-              v-model="chargebeeUser.lastname" @focus="removeError">
+              v-model="chargebeeUser.lastname" @focus="removeError" @keypress="alphabetsOnly">
           </div>
           <div class="form-group">
             <label>Address <span class="err">*</span></label>

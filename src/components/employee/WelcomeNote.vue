@@ -2,13 +2,18 @@
   <div class="employee-hero-section">
     <div class="container">
       <h1>Welcome Note</h1>
-      <p>
-        {{ note.title }}
-      </p>
-      <p v-html="note.description"></p>
-      <p>
-        <img :src="note.image" />
-      </p>
+      <div v-if="note">
+        <p>
+          {{ note.title }}
+        </p>
+        <p v-html="note.description"></p>
+        <p>
+          <img :src="note.image" />
+        </p>
+      </div>
+      <div v-if="!note">
+        Welcome Note not added
+      </div>
     </div>
   </div>
 </template>

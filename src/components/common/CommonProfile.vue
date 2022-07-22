@@ -47,12 +47,12 @@
           <div class="form-group">
             <label>First Name <span class="err">*</span></label>
             <input type="text" class="form-control" id="firstname" placeholder="First Name"
-              v-model="profileUpdate.first_name">
+              v-model="profileUpdate.first_name" @keypress="alphabetsOnly">
           </div>
           <div class="form-group">
             <label>Last Name <span class="err">*</span></label>
             <input type="text" class="form-control" id="lastname" placeholder="Last Name"
-              v-model="profileUpdate.last_name">
+              v-model="profileUpdate.last_name" @keypress="alphabetsOnly">
           </div>
           <div class="form-group" v-if="authUser.role != 'COMPANY_EMP'">
             <label>Company Name <span class="err">*</span></label>

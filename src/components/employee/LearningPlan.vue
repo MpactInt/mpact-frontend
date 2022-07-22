@@ -22,7 +22,7 @@
       <section class="clases-blogs">
         <div class="container">
           <div class="col-md-12 col-lg-6">
-            <div class="row">
+            <div class="row" v-if="learningPlanLength">
               <div class="col-xs-6 col-md-4 col-lg-4 mb-2" v-for="img in learningPlan.data" v-bind:key="img.id">
               <router-link :to="'/employee/my-learning-plan/'+img.id">
                 <div class="overlay">
@@ -35,8 +35,10 @@
                 </router-link>
               </div>
             </div>
+             <div class="row" v-if="!learningPlanLength">
+            No data found
+            </div>
             <pagination :data="learningPlan" @pagination-change-page="getLearningPlanList" />
-
           </div>
         </div>
       </section>

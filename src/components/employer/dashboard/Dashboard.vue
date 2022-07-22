@@ -4,7 +4,7 @@
       <div class="col-lg-8">
         <p><b>Guided Transformation</b></p>
         <div class="row step-card-section">
-          <div class="col-lg-4 col-md-6 mb-3 cpd" v-for="step in stepsList" v-bind:key="step.id">
+          <div class="col-lg-4 col-md-6 mb-3 cpd" v-if="stepsList.length" v-for="step in stepsList" v-bind:key="step.id">
             <div class="card custom-card">
               <router-link :to="'/employer/view-step/' + step.id">
                 <img class="card-img-top" :src="filePath + '/' + step.image" alt="Card image cap">
@@ -20,6 +20,7 @@
               </router-link>
             </div>
           </div>
+          <div v-if="!stepsList.length">No data found</div>
         </div>
       </div>
       <div class="col-lg-4">

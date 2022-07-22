@@ -13,7 +13,7 @@
             <div class="col-md-12">
                 <div class="form-group">
                     <input type="text" class="form-control" id="companyname" placeholder="Company/Organization Name"
-                        v-model="chargebeeUser.companyname">
+                        v-model="chargebeeUser.companyname" >
                 </div>
             </div>
             <div class="col-md-12">

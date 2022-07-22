@@ -24,13 +24,13 @@
                 <div class="col-md-6">
                   <div class="form-group">
                     <input type="text" class="form-control" id="firstname" placeholder="First Name"
-                      v-model="employee.firstname">
+                      v-model="employee.firstname" @keypress="alphabetsOnly">
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
                     <input type="text" class="form-control" id="lastname" placeholder="Last Name"
-                      v-model="employee.lastname">
+                      v-model="employee.lastname" @keypress="alphabetsOnly">
                   </div>
                 </div>
               </div>

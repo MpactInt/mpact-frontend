@@ -2,7 +2,7 @@
   <div>
     <div class="employee-hero-section">
       <div class="container">
-        <div class="row content-center">
+        <div class="row content-center" v-if="section1.id">
           <div class="col-md-7">
             <div class="left-side">
               <h1 class="text-blue bold">
@@ -28,7 +28,7 @@
 
     <div class="learning-sention">
       <div class="container">
-        <div class="row">
+        <div class="row" v-if="section2.id">
           <div class="col-md-6">
             <h2 class="text-blue bold ">{{ section2.title }}</h2>
             <p class="p-text text-blue f-18">{{ section2.description }}</p>
@@ -39,7 +39,7 @@
             <BarChart v-else :chartData="res" :question="chartData.question"></BarChart>
           </div>
         </div>
-        <div class="row">
+        <div class="row" v-if="section3.id">
           <div class="col-md-12 col-lg-6">
             <h2 class="text-blue bold text-big">
               <!-- Nec faucibus placerat <br>habitant vulputate <br>tortor <span class="primary-text">mauris</span>. -->
@@ -75,7 +75,8 @@
         <div class="row">
           <div class="col-md-12 col-lg-6">
             <h2 class="event-title text-blue bold">Upcoming <span class="primary-text">Workshops</span>.</h2>
-            <div class="event-details" v-for="wl in workshopsListDashboard" v-bind:key="wl.id">
+            <div v-if="workshopsListDashboard.length" class="event-details" v-for="wl in workshopsListDashboard"
+              v-bind:key="wl.id">
               <div class="event-date">
                 <span class="text-blue">{{ wl.date | timeStampToDate }}</span>
                 <!-- <sup class="text-gray">May</sup> -->
@@ -90,19 +91,24 @@
                 </button>
               </div>
             </div>
+            <div v-if="!workshopsListDashboard.length">
+              No data found
+            </div>
           </div>
           <div class="col-md-12 col-lg-6">
             <div class="pd-left">
               <h2 class="text-blue bold mb-3"><span class="primary-text rotated">"</span>Steps to Help<span
                   class="primary-text rotated">"</span></h2>
-              <div class="">
-
+              <div class="" v-if="todoList.length">
                 <ul class="to-do-list">
                   <li v-for="todo in todoList" v-bind:key="todo.id">
                     <h5 class="text-blue">{{ todo.title }}</h5>
                     <p class="text-blue">{{ todo.description }}</p>
                   </li>
                 </ul>
+              </div>
+              <div v-if="!todoList.length">
+                No data found
               </div>
             </div>
           </div>

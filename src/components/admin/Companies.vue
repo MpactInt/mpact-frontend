@@ -73,13 +73,13 @@
         <div class="col-md-12">
           <div class="form-group">
             <input type="text" class="form-control" id="firstname" placeholder="First Name"
-              v-model="chargebeeUser.firstname">
+              v-model="chargebeeUser.firstname" @keypress="alphabetsOnly">
           </div>
         </div>
         <div class="col-md-12">
           <div class="form-group">
             <input type="text" class="form-control" id="lastname" placeholder="Last Name"
-              v-model="chargebeeUser.lastname">
+              v-model="chargebeeUser.lastname" @keypress="alphabetsOnly">
           </div>
         </div>
         <div class="col-md-12">
