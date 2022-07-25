@@ -23,6 +23,9 @@ class Api {
     getPlans() {
         return axiosCommon.get('/get-plans')
     }
+    getPlans2() {
+        return axiosCommon.get('/get-plans2')
+    }
     getAddons() {
         return axiosCommon.get('/get-addons')
     }

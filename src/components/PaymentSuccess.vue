@@ -28,9 +28,9 @@ export default {
     methods: {
         updatePaymentStatus: function () {
             Api.updatePaymentStatus(this.$route.params.link).then(response => {
-                window.localStorage.setItem('token', response.data.access_token)
-                window.localStorage.setItem('userData', JSON.stringify(response.data.user))
                 if (response.data.company) {
+                    window.localStorage.setItem('token', response.data.access_token)
+                    window.localStorage.setItem('userData', JSON.stringify(response.data.user))
                     window.localStorage.setItem('companyData', JSON.stringify(response.data.company))
                     if (response.data.company.role == 'COMPANY_ADMIN') {
                         window.location = '/employer/dashboard'
@@ -38,11 +38,11 @@ export default {
                         window.location = '/employee/dashboard'
                     }
                 } else {
-                    if (response.data.user) {
-                        window.location = '/admin/dashboard'
-                    } else {
-                        window.location = '/admin/companies'
-                    }
+                    // if (response.data.user) {
+                    //     window.location = '/admin/dashboard'
+                    // } else {
+                         window.location = '/admin/companies'
+                    // }
                 }
             })
         }

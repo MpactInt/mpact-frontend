@@ -50,7 +50,7 @@
       <form>
         <div class="form-group">
           <label>Remaining Hours</label>
-          <input class="form-control" type="text" v-model="updateData.remainingHours" />
+          <input class="form-control" type="text" v-model="updateData.remainingHours" @keypress="numbersOnly" />
         </div>
         <div class="form-group">
           <button type="button" class="btn btn-primary" @click="updateHours"
@@ -59,7 +59,7 @@
       </form>
     </b-modal>
     <b-modal id="add-modal" size="lg" title="Add New Company" :hide-footer=hideFooter no-fade no-enforce-focus>
-      <Add :modal=1></Add>
+      <Add :modalAdd=1></Add>
     </b-modal>
 
     <b-modal id="update-modal" size="lg" title="Update Company" :hide-footer=hideFooter no-fade no-enforce-focus>
@@ -108,8 +108,11 @@
 
 import Add from '../common/companies/Add.vue'
 import Api from '../../router/api'
+import AppMixin from '../../mixins/AppMixin'
+
 export default {
   name: 'Companies',
+  mixins: [AppMixin],
   data() {
     return {
       hideFooter: true,
@@ -169,27 +172,36 @@ export default {
     },
     updateHours: function () {
       let that = this;
-      Api.updateHours(that.updateData).then(response => {
-        this.$swal({
-          icon: "success",
-          title: "Success",
-          text: "Hours updated successfully",
-          showConfirmButton: true
-        }).then(function () {
-          that.updateData.disabled = false
-          that.$bvModal.hide('update-hours-modal')
-          that.getCompaniesList()
-        });
-      }).catch((error) => {
-        that.updateData.disabled = false
+      if (!that.updateData.remainingHours) {
         this.$swal({
           icon: "error",
           title: "error",
-          text: error.response.data.message,
+          text: "Please fill all required fields",
           showConfirmButton: true
-        }).then(function () {
         });
-      });
+      } else {
+        Api.updateHours(that.updateData).then(response => {
+          this.$swal({
+            icon: "success",
+            title: "Success",
+            text: "Hours updated successfully",
+            showConfirmButton: true
+          }).then(function () {
+            that.updateData.disabled = false
+            that.$bvModal.hide('update-hours-modal')
+            that.getCompaniesList()
+          });
+        }).catch((error) => {
+          that.updateData.disabled = false
+          this.$swal({
+            icon: "error",
+            title: "error",
+            text: error.response.data.message,
+            showConfirmButton: true
+          }).then(function () {
+          });
+        });
+      }
     },
     onFileChange: function () {
       let that = this

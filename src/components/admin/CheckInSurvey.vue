@@ -118,7 +118,7 @@ export default {
 
         addCheckInSurvey: function (e) {
             let that = this;
-            if (!that.addData.question) {
+            if (!that.addData.question || !that.addData.minDesc || !that.addData.maxDesc) {
                 this.$swal({
                     icon: "error",
                     title: "error",
@@ -162,7 +162,7 @@ export default {
         },
         updateCheckInSurvey: function (e) {
             let that = this;
-            if (!that.updateData.question) {
+            if (!that.updateData.question || !that.updateData.minDesc || !that.updateData.maxDesc) {
                 this.$swal({
                     icon: "error",
                     title: "error",

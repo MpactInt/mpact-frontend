@@ -156,7 +156,7 @@ export default {
         updateProfileTypeF: function (e) {
             e.preventDefault()
             let that = this;
-            if (!that.updateProfileType.profileType || !that.updateProfileType.file) {
+            if (!that.updateProfileType.profileType) {
                 this.$swal({
                     icon: "error",
                     title: "error",

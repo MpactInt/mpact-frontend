@@ -429,6 +429,12 @@ export const router = new Router({
     },
     //routes for admin
     {
+      path: '/admin/payment-success/:link',
+      name: 'PaymentSuccess',
+      component: PaymentSuccess,
+      meta: { requiresAuth: true, employerAuth: false, employeeAuth: false, adminAuth: true }
+    },
+    {
       path: '/admin/dashboard',
       beforeEnter: guardMyroute,
       name: 'Dashboard',
