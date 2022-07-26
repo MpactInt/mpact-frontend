@@ -45,23 +45,23 @@
             no-enforce-focus>
             <form>
                 <div class="form-group">
-                    <label>Question</label>
+                    <label>Question <span class="err">*</span></label>
                     <input class="form-control" type="text" v-model="addData.question" placeholder="Question" />
                 </div>
                 <div class="form-group">
-                    <label>Option 1</label>
+                    <label>Option 1 <span class="err">*</span></label>
                     <input class="form-control" type="text" v-model="addData.option_1" placeholder="Option 1" />
                 </div>
                 <div class="form-group">
-                    <label>Option 2</label>
+                    <label>Option 2 <span class="err">*</span></label>
                     <input class="form-control" type="text" v-model="addData.option_2" placeholder="Option 2" />
                 </div>
                 <div class="form-group">
-                    <label>Option 3</label>
+                    <label>Option 3 <span class="err">*</span></label>
                     <input class="form-control" type="text" v-model="addData.option_3" placeholder="Option 3" />
                 </div>
                 <div class="form-group">
-                    <label>Option 4</label>
+                    <label>Option 4 <span class="err">*</span></label>
                     <input class="form-control" type="text" v-model="addData.option_4" placeholder="Option 4" />
                 </div>
                 <div class="form-group">
@@ -74,23 +74,23 @@
             no-enforce-focus>
          <form>
                 <div class="form-group">
-                    <label>Question</label>
+                    <label>Question <span class="err">*</span></label>
                     <input class="form-control" type="text" v-model="updateData.question" placeholder="Question" />
                 </div>
                 <div class="form-group">
-                    <label>Option 1</label>
+                    <label>Option 1 <span class="err">*</span></label>
                     <input class="form-control" type="text" v-model="updateData.option_1" placeholder="Option 1" />
                 </div>
                 <div class="form-group">
-                    <label>Option 2</label>
+                    <label>Option 2 <span class="err">*</span></label>
                     <input class="form-control" type="text" v-model="updateData.option_2" placeholder="Option 2" />
                 </div>
                 <div class="form-group">
-                    <label>Option 3</label>
+                    <label>Option 3 <span class="err">*</span></label>
                     <input class="form-control" type="text" v-model="updateData.option_3" placeholder="Option 3" />
                 </div>
                 <div class="form-group">
-                    <label>Option 4</label>
+                    <label>Option 4 <span class="err">*</span></label>
                     <input class="form-control" type="text" v-model="updateData.option_4" placeholder="Option 4" />
                 </div>
                 <div class="form-group">

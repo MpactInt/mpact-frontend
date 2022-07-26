@@ -39,12 +39,12 @@
             no-enforce-focus>
             <form enctype="multipart/form-data" @submit="addProfileTypeF">
                 <div class="form-group">
-                    <label>Profile Type</label>
+                    <label>Profile Type <span class="err">*</span></label>
                     <input class="form-control" type="text" v-model="addProfileType.profileType"
                         placeholder="Profile Type" />
                 </div>
                 <div class="form-group">
-                    <label>Upload File</label>
+                    <label>Upload File <span class="err">*</span></label>
                     <input class="form-control" type="file" ref="file" @change="fileOnChange" />
                 </div>
                 <div class="form-group">
@@ -56,12 +56,12 @@
             no-enforce-focus>
             <form @submit="updateProfileTypeF" enctype="multipart/form-data">
                 <div class="form-group">
-                    <label>Title</label>
+                    <label>Title <span class="err">*</span></label>
                     <input class="form-control" type="text" v-model="updateProfileType.profileType"
                         placeholder="Title" />
                 </div>
                 <div class="form-group">
-                    <label>Upload File</label>
+                    <label>Upload File <span class="err">*</span></label>
                     <input class="form-control" type="file" ref="update_file" @change="updateFileOnChange" />
                 </div>
                 <div class="form-group">

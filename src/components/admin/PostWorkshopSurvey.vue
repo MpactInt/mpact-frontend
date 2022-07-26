@@ -43,15 +43,15 @@
             no-enforce-focus>
             <form>
                 <div class="form-group">
-                    <label>Question</label>
+                    <label>Question <span class="err">*</span></label>
                     <input class="form-control" type="text" v-model="addData.question" placeholder="Question" />
                 </div>
                 <div class="form-group">
-                    <label>Min Rating Description</label>
+                    <label>Min Rating Description <span class="err">*</span></label>
                     <input class="form-control" type="text" v-model="addData.minDesc" placeholder="Min Rating Description" />
                 </div>
                 <div class="form-group">
-                    <label>Max Rating Description</label>
+                    <label>Max Rating Description <span class="err">*</span></label>
                     <input class="form-control" type="text" v-model="addData.maxDesc" placeholder="Max Rating Description" />
                 </div>
                 <div class="form-group">
@@ -64,15 +64,15 @@
             no-enforce-focus>
             <form>
                 <div class="form-group">
-                    <label>Question</label>
+                    <label>Question <span class="err">*</span></label>
                     <input class="form-control" type="text" v-model="updateData.question" placeholder="Question" />
                 </div>
                 <div class="form-group">
-                    <label>Min Rating Description</label>
+                    <label>Min Rating Description <span class="err">*</span></label>
                     <input class="form-control" type="text" v-model="updateData.minDesc" placeholder="Min Rating Description" />
                 </div>
                 <div class="form-group">
-                    <label>Max Rating Description</label>
+                    <label>Max Rating Description <span class="err">*</span></label>
                     <input class="form-control" type="text" v-model="updateData.maxDesc" placeholder="Max Rating Description" />
                 </div>
                 <div class="form-group">
@@ -114,7 +114,7 @@ export default {
 
         addPostWorkshopSurvey: function (e) {
             let that = this;
-            if (!that.addData.question) {
+            if (!that.addData.question || !that.addData.minDesc || !that.addData.maxDesc) {
                 this.$swal({
                     icon: "error",
                     title: "error",
@@ -158,7 +158,7 @@ export default {
         },
         updatePostWorkshopSurvey: function (e) {
             let that = this;
-            if (!that.updateData.question) {
+            if (!that.updateData.question || !that.updateData.minDesc || !that.updateData.maxDesc) {
                 this.$swal({
                     icon: "error",
                     title: "error",

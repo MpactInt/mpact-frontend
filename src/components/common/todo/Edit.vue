@@ -10,11 +10,11 @@
                 </multiselect>
             </div>
             <div class="form-group">
-                <label>Title</label>
+                <label>Title <span class="err">*</span></label>
                 <input class="form-control" type="text" v-model="todoUpdate.title" placeholder="Title" />
             </div>
             <div class="form-group">
-                <label>Description</label>
+                <label>Description <span class="err">*</span></label>
                 <textarea class="form-control" v-model="todoUpdate.description" placeholder="Description">
                 </textarea>
             </div>

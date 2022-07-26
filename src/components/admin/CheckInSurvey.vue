@@ -43,16 +43,16 @@
             no-enforce-focus>
             <form>
                 <div class="form-group">
-                    <label>Question</label>
+                    <label>Question <span class="err">*</span></label>
                     <input class="form-control" type="text" v-model="addData.question" placeholder="Question" />
                 </div>
                 <div class="form-group">
-                    <label>Min Rating Description</label>
+                    <label>Min Rating Description <span class="err">*</span></label>
                     <input class="form-control" type="text" v-model="addData.minDesc"
                         placeholder="Min Rating Description" />
                 </div>
                 <div class="form-group">
-                    <label>Max Rating Description</label>
+                    <label>Max Rating Description <span class="err">*</span></label>
                     <input class="form-control" type="text" v-model="addData.maxDesc"
                         placeholder="Max Rating Description" />
                 </div>
@@ -66,16 +66,16 @@
             no-enforce-focus>
             <form>
                 <div class="form-group">
-                    <label>Question</label>
+                    <label>Question <span class="err">*</span></label>
                     <input class="form-control" type="text" v-model="updateData.question" placeholder="Question" />
                 </div>
                 <div class="form-group">
-                    <label>Min Rating Description</label>
+                    <label>Min Rating Description <span class="err">*</span></label>
                     <input class="form-control" type="text" v-model="updateData.minDesc"
                         placeholder="Min Rating Description" />
                 </div>
                 <div class="form-group">
-                    <label>Max Rating Description</label>
+                    <label>Max Rating Description <span class="err">*</span></label>
                     <input class="form-control" type="text" v-model="updateData.maxDesc"
                         placeholder="Max Rating Description" />
                 </div>

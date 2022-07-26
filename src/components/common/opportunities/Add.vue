@@ -11,7 +11,7 @@
                 </multiselect>
             </div>
             <div class="form-group">
-                <label>Content</label>
+                <label>Content <span class="err">*</span></label>
                 <vue2-tinymce-editor v-model="opportunity.description" placeholder="Content">
                 </vue2-tinymce-editor>
             </div>

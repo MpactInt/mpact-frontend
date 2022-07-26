@@ -6,16 +6,16 @@
         <form @submit="addWelcomeNote" ref="addWelcomeNoteForm" enctype="multipart/form-data">
           <div class="form-group">
             <label><b>Welcome</b></label><br>
-            <label>Title</label>
+            <label>Title <span class="err">*</span></label>
             <input type="text" class="form-control" id="welcome_note" v-model="note.title" placeholder="Title"
               autocomplete="off" />
           </div>
           <div class="form-group">
-            <label>Description</label>
+            <label>Description <span class="err">*</span></label>
             <vue2-tinymce-editor v-model="note.description" placeholder="Description"></vue2-tinymce-editor>
           </div>
           <div class="form-group">
-            <label>Upload Image</label> <input type="file" ref="welcome_image" id="welcome_image"
+            <label>Upload Image <span class="err">*</span></label> <input type="file" ref="welcome_image" id="welcome_image"
               @change="imageOnChange" accept=".jpg, .jpeg, .png" />
           </div>
           <div class="form-group" v-if="note.image">
@@ -30,7 +30,7 @@
       <div class="col-md-6">
         <form @submit="uploadLogo" ref="createCompanyForm" enctype="multipart/form-data">
           <div class="form-group">
-            <label><b>Change Logo</b></label>
+            <label><b>Change Logo <span class="err">*</span></b></label>
             <input type="file" class="form-control" ref="logo" id="logo" @change="fileOnChange"
               accept=".jpg, .jpeg, .png" />
           </div>
@@ -41,15 +41,18 @@
 
         <label><b>Change Password</b></label>
         <div class="form-group">
-          <input type="password" class="form-control" id="password" placeholder="Enter Old Password"
+          <label>Enter Old Password <span class="err">*</span></label>
+          <input type="password" class="form-control" id="password" placeholder="Old Password"
             v-model="changePass.oldPassword">
         </div>
         <div class="form-group">
-          <input type="password" class="form-control" id="password" placeholder="Enter New Password"
+          <label>Enter New Password <span class="err">*</span></label>
+          <input type="password" class="form-control" id="password" placeholder="New Password"
             v-model="changePass.newPassword">
         </div>
         <div class="form-group">
-          <input type="password" class="form-control" id="cpassword" placeholder="Retype New Password"
+          <label>Retype New Password <span class="err">*</span></label>
+          <input type="password" class="form-control" id="cpassword" placeholder="New Password"
             v-model="changePass.confirmNewPassword">
         </div>
         <div class="form-group">

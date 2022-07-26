@@ -54,9 +54,9 @@
         <li>
           <router-link to="/admin/post-workshop-surveys">Post Workshop Surveys</router-link>
         </li>
-        <li>
+        <!-- <li>
           <router-link to="/admin/send-email">Send Email</router-link>
-        </li>
+        </li> -->
           <li>
           <router-link to="/admin/meetings">Zoom Meetings</router-link>
         </li>

@@ -52,16 +52,16 @@
           </multiselect>
         </div>
         <div class="form-group">
-          <label>Title</label>
+          <label>Title <span class="err">*</span></label>
           <input type="text" class="form-control" id="welcome_note" v-model="note.title" placeholder="Title"
             autocomplete="off" />
         </div>
         <div class="form-group">
-          <label>Description</label>
+          <label>Description <span class="err">*</span></label>
           <vue2-tinymce-editor v-model="note.description" placeholder="Description"></vue2-tinymce-editor>
         </div>
         <div class="form-group">
-          <label>Upload Image</label> <input type="file" ref="welcome_image" id="welcome_image" @change="imageOnChange"
+          <label>Upload Image <span class="err">*</span></label> <input type="file" ref="welcome_image" id="welcome_image" @change="imageOnChange"
             accept=".jpg, .jpeg, .png" />
         </div>
         <div class="form-group">
@@ -81,16 +81,16 @@
           </multiselect>
         </div>
         <div class="form-group">
-          <label>Title</label>
+          <label>Title <span class="err">*</span></label>
           <input type="text" class="form-control" id="welcome_note" v-model="noteUpdate.title" placeholder="Title"
             autocomplete="off" />
         </div>
         <div class="form-group">
-          <label>Description</label>
+          <label>Description <span class="err">*</span></label>
           <vue2-tinymce-editor v-model="noteUpdate.description" placeholder="Description"></vue2-tinymce-editor>
         </div>
         <div class="form-group">
-          <label>Upload Image</label> <input type="file" ref="welcome_image_update" id="welcome_image_update"
+          <label>Upload Image <span class="err">*</span></label> <input type="file" ref="welcome_image_update" id="welcome_image_update"
             @change="imageOnChangeUpdate" accept=".jpg, .jpeg, .png" />
         </div>
 

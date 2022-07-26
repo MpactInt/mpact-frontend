@@ -15,7 +15,7 @@
     <div class="row" v-if="company.plan_type!='One-Time-Users-Plan'">
       <div class="col-md-6">
         <div class="form-group">
-          <label>Select Addon</label>
+          <label>Select Addon <span class="err">*</span></label>
           <select type="text" class="form-control" id="addon" placeholder="Addon" v-model="chargebeeUser.addon">
             <option v-for="plan in addons" v-bind:value="plan.id" v-bind:key="plan.id">{{ plan.name }}
             </option>
@@ -43,7 +43,7 @@ export default {
       planDetails: [],
       addons: [],
       chargebeeUser: {
-        addons: '',
+        addon: '',
         disabled: false
       }
     }

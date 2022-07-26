@@ -2,20 +2,20 @@
     <b-modal id="update-announcement-modal" title="Update Announcement" :hide-footer=hideFooter>
         <form>
             <div class="form-group">
-                <!-- <label>Title<span class="err">*</span></label> -->
+                <label>Title <span class="err">*</span></label>
                 <input type="text" class="form-control" v-model="announcementUpdate.title" :maxlength=totalTitleChar
                     id="title" placeholder="Title" @keypress="titleCharCountUpdate" />
                 <p>Remaining Characters {{ remainingTitleChar }}</p>
             </div>
             <div class="form-group">
-                <!-- <label>Description<span class="err">*</span></label> -->
+                <label>Description <span class="err">*</span></label>
                 <textarea type="text" class="form-control" id="description" placeholder="Description"
                     @keypress="descriptionCharCountUpdate" v-model="announcementUpdate.description"
                     :maxlength=totalDescriptionChar></textarea>
                 <p>Remaining Characters {{ remainingDescriptionChar }}</p>
             </div>
             <div class="form-group">
-                <!-- <label>Select Date<span class="err">*</span></label><br> -->
+                <label>Select Date <span class="err">*</span></label><br>
                 <date-picker v-model="announcementUpdate.date" type="datetime" :use12h="format" placeholder="Date"
                     :default-value="announcementUpdate.date" :disabled-date="disabledRange"></date-picker>
             </div>
