@@ -39,7 +39,7 @@
                             <b-dropdown id="dropdown-1" size="lg" variant="link" no-caret>
                                 <template #button-content>
                                     <div class="avtar">
-                                        <img src="../../../assets/images/profile-img.jpg" alt="user-image">
+                                        <img :src="company.profile_image" alt="user-image" class="profile-image">
                                     </div>
                                 </template>
                                 <b-dropdown-item to="/employee/announcements">Announcements or Updates</b-dropdown-item>

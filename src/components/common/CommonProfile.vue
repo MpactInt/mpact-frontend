@@ -114,7 +114,8 @@ export default {
           showConfirmButton: true
         }).then(function () {
           $('.profile-img').attr('src', response.data.res.profile_image)
-        });
+          $('.profile-image').attr('src', response.data.res.profile_image)
+      });
       }
       ).catch((error) => {
         this.$swal({
@@ -148,6 +149,8 @@ export default {
             that.profileUpdate.disabled = false;
             that.$bvModal.hide('update-profile-modal')
             that.getAuthUser()
+            $('.c-name').text(that.profileUpdate.company_name)
+            $('.f-name').text(that.profileUpdate.first_name + ' ' +that.profileUpdate.last_name)
           });
         }
         ).catch((error) => {

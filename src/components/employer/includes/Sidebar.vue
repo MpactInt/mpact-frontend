@@ -3,8 +3,8 @@
     <div class="user-info">
       <div class="user-img"><img class="logo-img" :src="company.company_logo"></div>
       <div class="user-detail">
-        <h5>{{ company.company_name }}</h5>
-        <p class="mb-0">{{ company.first_name }} {{ company.last_name }} </p>
+        <h5 class="c-name">{{ company.company_name }}</h5>
+        <p class="mb-0 f-name">{{ company.first_name }} {{ company.last_name }} </p>
       </div>
     </div>
     <div class="siderbar-link">
