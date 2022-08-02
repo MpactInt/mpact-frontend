@@ -12,7 +12,7 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ml-auto cutom-menu-list">
-                        <li class="nav-item">
+                       <!--  <li class="nav-item">
                             <router-link class="nav-link" to="/employee/welcome-note">Welcome Note</router-link>
                         </li>
                         <li class="nav-item">
@@ -29,13 +29,13 @@
                         <li class="nav-item">
                             <router-link class="nav-link pd-link" to="/employee/ask-question">Ask a Question
                             </router-link>
-                        </li>
+                        </li> -->
                         <li class="nav-item">
                             <router-link class="nav-link btn custom-btn" to="/employee/workshops">
                                 <div class="gradient-btn">Register for a Workshop</div>
                             </router-link>
                         </li>
-                        <li class="nav-item">
+                      <!--   <li class="nav-item">
                             <b-dropdown id="dropdown-1" size="lg" variant="link" no-caret>
                                 <template #button-content>
                                     <div class="avtar">
@@ -49,7 +49,7 @@
                                 <b-dropdown-divider></b-dropdown-divider>
                                 <b-dropdown-item @click="logout">Logout</b-dropdown-item>
                             </b-dropdown>
-                        </li>
+                        </li> -->
                     </ul>
                 </div>
             </nav>
