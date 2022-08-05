@@ -1,23 +1,15 @@
 <template>
-  <div class="employee-hero-section">
-    <div class="container">
-      <h1>Welcome Note</h1>
-      <div v-if="note">
-        <p>
-          {{ note.title }}
-        </p>
-        <p v-html="note.description"></p>
-        <p>
-          <img :src="note.image" />
-        </p>
+  <section class="employee-welcome-note-section mb-5">
+      <h2  class="page-title text-left  d-inline-block">Welcome <span >Note</span></h2>
+      <h3 class="section-title pink-color mb-0">Hello Employees</h3>
+      <h4  class="page-sub-title">{{ note.title }}</h4>
+      <div class="color-border mb-5">
+        <div class="color-border-box">
+          <iframe  height="480" src="https://www.youtube.com/embed/D0UnqGm_miA" title="Dummy Video For Website" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
       </div>
-      <div v-if="!note">
-        Welcome Note not added
-      </div>
-    </div>
-  </div>
+  </section>
 </template>
-
 <script>
 /* eslint-disable */
 import AppMixin from '../../mixins/AppMixin'

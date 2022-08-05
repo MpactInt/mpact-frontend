@@ -13,22 +13,17 @@
       </section>
       <section class="employee-section" v-if="user.role == 'COMPANY' && company.role=='COMPANY_EMP'">
         <HeaderEmployee></HeaderEmployee>
-        <div class="content">
-          <div class="row">
-            <!-- <SidebarEmployee v-if="isLoggedIn"></SidebarEmployee> -->
-            <router-view :key="$route.fullPath" />
+         <div class="container-fluid p-0">
+          <div class="d-flex">
+              <div class=" sidebar"><SidebarEmployee v-if="isLoggedIn"></SidebarEmployee></div><main class="main-col"><router-view :key="$route.fullPath" /></main>
           </div>
         </div>
         <FooterEmployee></FooterEmployee>
       </section>
-
       <section class="employee-dashboard-section" v-if="user.role == 'ADMIN'">
         <HeaderAdmin></HeaderAdmin>
-        <div class="content">
-          <div class="row">
-            <SidebarAdmin v-if="isLoggedIn"></SidebarAdmin>
-            <router-view :key="$route.fullPath" />
-          </div>
+        <div class="container-fluid p-0">
+          <div class="row"><div class=" sidebar"><SidebarAdmin v-if="isLoggedIn"></SidebarAdmin></div><main class="main-col"><router-view :key="$route.fullPath" /></main></div>
         </div>
         <FooterAdmin></FooterAdmin>
       </section>
@@ -38,7 +33,6 @@
     </div>
   </div>
 </template>
-
 <script>
 /* eslint-disable */
 

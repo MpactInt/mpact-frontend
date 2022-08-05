@@ -111,11 +111,155 @@
   border-radius: 5px;
 }
 
-.siderbar-link{
-  height: 500px !important;
+
+.employee-dashboard-popup-survey {
+    background-image: url(../images/survey-bg.svg);
+    background-repeat: no-repeat;
+    background-size: 100%;
 }
 
-.siderbar-link ul{
-  overflow-y: scroll !important;
-  height: 100% !important;
+.popup-survey-box {
+    border: 15px solid #ADB9CA;
+    padding: 70px;
+    margin-bottom: 50px;
+        background: #fff
+}
+
+.popup-survey-box h4 {
+    font-style: normal;
+    font-weight: 900;
+    font-size: 28px;
+    line-height: 38px;
+    color: #C2095A;
+    margin-bottom: 30px;
+}
+.cbx {
+  -webkit-user-select: none;
+  user-select: none;
+  cursor: pointer;
+  padding: 6px 8px;
+  border-radius: 6px;
+  overflow: hidden;
+  transition: all 0.2s ease;
+}
+
+label.cbx {
+    background: #ADB9CA;
+    padding: 17px 20px;
+    margin: 10px;
+    display: inline-flex;
+        align-items: center;
+    justify-content: center;
+}
+
+.cbx span {
+    margin: 0 6px;
+}
+
+.cbx > img {
+    filter: grayscale(1) brightness(1.1);
+}
+.cbx:not(:last-child) {
+  margin-right: 6px;
+}
+.cbx:hover {
+  background: rgba(0,119,255,0.06);
+}
+.cbx span {
+  float: left;
+  vertical-align: middle;
+  transform: translate3d(0, 0, 0);
+  font-style: normal;
+font-weight: 500;
+font-size: 18px;
+line-height: 25px;
+
+color: #4C4C4D;
+}
+.cbx span:first-child {
+  position: relative;
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
+  transform: scale(1);
+  border: 1px solid #cccfdb;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 1px rgba(0,16,75,0.05);
+}
+.cbx span:first-child svg {
+  position: absolute;
+  top: 3px;
+  left: 2px;
+  fill: none;
+  stroke: #fff;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 16px;
+  stroke-dashoffset: 16px;
+  transition: all 0.3s ease;
+  transition-delay: 0.1s;
+  transform: translate3d(0, 0, 0);
+}
+.cbx span:last-child {
+  padding-left: 8px;
+  line-height: 18px;
+}
+.cbx:hover span:first-child {
+  border-color: #07f;
+}
+.inp-cbx {
+  position: absolute;
+  visibility: hidden;
+}
+.inp-cbx:checked + .cbx span:first-child {
+background: #fff;
+    border-color: #fff;
+  animation: wave 0.4s ease;
+  background-image: url('../images/check-box.svg');
+      background-repeat: no-repeat;
+    background-position: center;
+}
+.inp-cbx:checked + .cbx span:first-child svg {
+  stroke-dashoffset: 0;
+  display: none;
+}
+
+.inp-cbx:checked + .cbx {
+    background: #40AC48;
+}
+
+.inp-cbx:checked + .cbx > img {
+    filter: brightness(1);
+}
+.inp-cbx:checked + .cbx span{
+  color: #fff;
+}
+.inline-svg {
+  position: absolute;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+  user-select: none;
+}
+
+@-moz-keyframes wave {
+  50% {
+    transform: scale(0.9);
+  }
+}
+@-webkit-keyframes wave {
+  50% {
+    transform: scale(0.9);
+  }
+}
+@-o-keyframes wave {
+  50% {
+    transform: scale(0.9);
+  }
+}
+@keyframes wave {
+  50% {
+    transform: scale(0.9);
+  }
 }
