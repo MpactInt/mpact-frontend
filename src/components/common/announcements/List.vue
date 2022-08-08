@@ -8,9 +8,9 @@
                     <option value="date">Date</option>
                 </select>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-6">
                 <input type="text" v-model="searchData.keyword" class="form-control" placeholder="Search By Keyword"
-                    v-on:keyup="getAnnouncementsList" />
+                    v-on:keyup="getAnnouncementsList" /><span class="search"></span>
             </div>
             <div class="col-md-3">
 
@@ -21,10 +21,10 @@
         </div>
         <table class="table">
             <tr>
-                <td>Title</td>
-                <td>Description</td>
-                <td>Date</td>
-                <td  v-if="company.role == 'COMPANY_ADMIN'">Action</td>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Date</th>
+                <th  v-if="company.role == 'COMPANY_ADMIN'">Action</th>
             </tr>
             <tr v-if="announcementsLength" v-for="a in announcementList.data" v-bind:key="a.id">
                 <td>{{ a.title }}</td>
@@ -43,7 +43,7 @@
                 </td>
             </tr>
             <tr v-if="!announcementsLength">
-                <td colsapn="3">No Data Found</td>
+                <td colspan="3">No Data Found</td>
             </tr>
         </table>
         <pagination :data="announcementList" @pagination-change-page="getAnnouncementsList" />

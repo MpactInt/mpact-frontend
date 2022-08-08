@@ -20,10 +20,10 @@
       </div>
       <table class="table">
         <tr>
-          <td>Title</td>
-          <td>Overview</td>
-          <td>Image</td>
-          <td>Action</td>
+          <th>Title</th>
+          <th>Overview</th>
+          <th>Image</th>
+          <th>Action</th>
         </tr>
         <tr v-if="stepsLength" v-for="r in stepsList" v-bind:key="r.id">
           <td>{{ r.title }}</td>

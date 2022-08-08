@@ -1,10 +1,8 @@
 <template>
-  <div class="employee-hero-section">
-    <div class="container">
-      <h1 class="text-blue bold">Ask Your Care Team</h1>
+  <section class="employee-ask-question-section half-cut-bg">
+      <h1 class="page-title text-left">Ask Your <span>Care Team</span></h1>
       <AskQuestionEmployee></AskQuestionEmployee>
-    </div>
-  </div>
+  </section>
 </template>
 
 <script>

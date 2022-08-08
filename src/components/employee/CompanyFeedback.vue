@@ -1,22 +1,19 @@
 <template>
-  <div class="employee-hero-section">
-    <div class="container">
-      <h1 class="text-blue bold">Feeback to company admin</h1>
-      <div class="row">
-        <div class="form-group">
+  <section class="employee-company-feedback-section">
+      <h1 class="page-title text-left">Feeback to <span>company admin</span></h1>
+       <div class="card-box">
           <textarea class="form-control" id="ask-question" v-model="feedback.description"
             placeholder="Feedback to company admin"></textarea>
-        </div>
-        <div class="form-group">
+
+        <div class="form-group mt-2">
           <input type="checkbox" v-model="feedback.anonymous" /> Anonymous
         </div>
-        <div class="form-group mt-2">
+        <div class="form-group mt-4">
           <button type="button" :disabled="feedback.disabled" class="btn btn-primary"
             @click="submitCompanyFeedback">Submit</button>
         </div>
-      </div>
-    </div>
-  </div>
+        </div>
+  </section>
 </template>
 
 <script>

@@ -576,32 +576,25 @@ section.live-classe {
 }
 
 .card-post {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  margin-bottom: 2.5rem;
+      margin-bottom: 70px;
 }
 
 .card-post .card-image {
-  width: 28%;
+  width: 50%;
 }
 
-.card-post .card-content {
-  width: 72%;
-  padding-left: 0.5rem;
+.course-details {
+    padding-left: 40px;
 }
 
-.content-middle h2.title {
-  color: #c2095a;
-  text-transform: uppercase;
-  font-weight: 600;
+
+.clases-blogs .course-details p {
+    font-weight: 900;
+    font-size: 20px;
+    line-height: 33px;
+    color: #090446;
 }
 
-.content-middle p.text {
-  font-size: 18px;
-  font-weight: 400;
-  color: #090446;
-}
 
 .course-middle-details .fa {
   margin-right: 0.5rem;
@@ -615,16 +608,9 @@ section.live-classe {
   font-weight: 600;
 }
 
-.clases-blogs .time p {
-  font-size: 14px;
-  font-weight: 400;
+.clases-blogs .course-details p img {
+    margin-right: 10px;
 }
-
-.clases-blogs .place p {
-  font-size: 14px;
-  font-weight: 400;
-}
-
 .course-middle-details {
   display: flex;
   justify-content: flex-start;
@@ -643,9 +629,6 @@ a.btn.btn-read-more {
   font-weight: 400;
 }
 
-.clases-blogs {
-  padding: 70px 0px;
-}
 
 .clases-blogs .row.row-mb {
   margin-bottom: 40px;
@@ -1057,8 +1040,8 @@ footer.footer-bg .copyright p.text {
 
   /* Start css for class page  */
 
-  .card-post {
-    align-items: flex-start
+  .card-post {    
+    margin-bottom: 70px;
   }
 
 

@@ -57,7 +57,7 @@
                 </div>
               </div>
               <div class="col-md-12">
-                <a href="#"  @click="getProfile" class="btn-primary btn">
+                <a href="#"  @click="getProfile" class="btn-primary btn mt-4">
                   Edit Profile
                 </a>
               </div>

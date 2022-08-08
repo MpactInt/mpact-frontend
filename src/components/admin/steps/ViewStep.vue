@@ -1,5 +1,5 @@
 <template>
-  <div class="col-md-9">
+<div>
     <router-link to="/admin/steps-configuration">
       <button class="btn-primary">
         <i class="fa fa-arrow-left white"></i>
@@ -91,7 +91,7 @@
         </div>
       </div>
     </div>
-  </div>
+    </div>
 </template>
 
 <script>

@@ -1,10 +1,10 @@
 <template>
-  <div class="employee-hero-section">
+  <section class="employee-announcements-section half-cut-bg">
     <div class="container">
-      <h1 class="text-blue bold">Announcements</h1>
+      <h1 class="page-title mt-0 text-left">Announcements</h1>
         <List></List>
     </div>
-  </div>
+  </section> 
 </template>
 
 <script>

@@ -35,11 +35,10 @@
   margin-top: 200px;
 }
 
-.chat-list {
-  box-shadow: 0px 2px 12px rgb(0 0 0 / 9%);
-  padding: 20px
+.chat-list .border-radius-50 {
+    width: 30px;
+    height: 30px;
 }
-
 .ml-6 {
   margin-left: 4rem;
 }
@@ -94,11 +93,47 @@ margin-top: 15px;
   /* max-height: 500px; */
 }
 
+
 .chat-gui {
-  overflow-y: auto;
-  height: 100%;
+    overflow-y: auto;
+    max-height: 55vh;
+    padding: 30px;
+    background: #fff;
 }
 
+
+.chat-gui::-webkit-scrollbar
+{
+    width: 4px;
+}
+
+.input-group {
+    background: #FFFFFF;
+    box-shadow: 0px -6px 10px rgb(0 0 0 / 6%);
+    padding: 10px 15px;
+}
+.input-group input.form-control {
+    background: rgba(173, 185, 202, 0.2);
+    border-radius: 36px;
+    border: 0;
+    padding: 14px;
+    height: 50px;
+}
+button.paper-attachment {
+    border: 0;
+    position: absolute;
+    right: 70px;
+    top: 20px;
+    z-index: 9;
+}
+button.send-msg {
+    border: 0;
+    padding: 0;
+    border-radius: 0px 20px 20px 0px !important;
+    display: inline-block;
+    margin-left: -2px !important;
+    z-index: 9;
+}
 .desc-box {
   border: 1px solid;
   padding: 20px;
