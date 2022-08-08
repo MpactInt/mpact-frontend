@@ -547,6 +547,9 @@ opacity: 0.8;
     opacity: 1 ;
 }
 
+.logout-btn-box {
+    padding: 0 40px;
+}
 .employee-welcome-note-section {
     background-image: url('../images/about-bg.jpg');
     background-repeat: no-repeat;
@@ -749,6 +752,14 @@ opacity: 0.8;
 .page-title span{
   color: #C2095A;
 }
+.yello-color,
+.page-title span.yello-color{
+  color: #FEB95F !important;
+}
+.white-color,
+.page-title span.white-color{
+  color: #fff !important;
+}
 
 .page-sub-title {
     font-style: normal;
@@ -917,15 +928,15 @@ margin-bottom: 25px;
 
 
 footer {
-    padding: 30px 25px;
+    padding: 20px 25px;
     background: #C2095A;
-    background: #fff;
-    border-top: 3px solid #090446;
+    /*background: #fff;*/
+    /*border-top: 3px solid #090446;*/
 }
 
 p.copyright {
     text-align: center;
-    color: #090446;
+    color: #fff;
     margin: 0;
     font-style: normal;
     font-weight: 500;
@@ -953,6 +964,10 @@ p.copyright {
 .btn:hover{
   opacity: .5;
   background: #feb95f;
+}
+
+.btn.gradient-color-btn {
+    background: linear-gradient(90deg, #090446 0%, #C2095A 100%);
 }
 .custom-btn {
     background-image: linear-gradient(90deg, #FEB95F, #C2095A);
@@ -1048,11 +1063,25 @@ p.copyright {
     display: block;
 }
 
+.half-cut-bg {
+    background-image: url(../images/my-learning-plan-bg.svg);
+    background-size: cover;
+    background-position: bottom right;
+    width: 100%;
+}
 .my-learning-plan {
     background-image: url(../images/my-learning-plan-bg.svg);
     background-size: cover;
     background-position: bottom right;
     width: 100%;
+}
+
+.my-learning-plan.home-learning-bg {
+    background-image: url(../images/home-learning-bg.svg);
+    background-size: 100%;
+    background-position: bottom right;
+    width: 100%;
+    background-repeat: no-repeat;
 }
 
 .card {
@@ -1106,6 +1135,95 @@ p.copyright {
 .links:hover img, .link:hover img {
 left: 10px;
 }
+
+.upcoming-workshops {
+    background-image: url(../images/upcoming-workshops.svg);
+    background-size: 100%;
+    background-position: bottom right;
+    width: 100%;
+    background-repeat: no-repeat;
+}
+
+.workshops-slider span {
+    display: flex;
+    align-items: center;
+    padding-right: 20px;
+    color: #000;
+}
+
+.workshops-slider span img.icon {
+    margin-right: 4px;
+}
+
+.steps-box .steps-count {
+    background: #fff;
+    box-shadow: 0px 0px 19.8056px rgb(0 0 0 / 20%);
+    min-width: 105px;
+    width: 105px;
+    height: 105px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 80px;
+    position: relative;
+
+}
+
+
+.steps-box {
+    display: flex;
+    align-items: center;
+    margin-bottom: 50px;
+}
+
+.steps-box .steps-count span {
+    width: 45px;
+    height: 45px;
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background: #090446;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+}
+
+.steps-box .pera {
+    padding-left: 30px;
+}
+
+.logout-btn.btn {
+    background: #fff;
+    color: #090446;
+    padding: 10px 25px !important;
+    height: auto;
+    width: auto; 
+    margin-bottom: 50px;
+}
+
+
+.profile-details label {
+    margin: 0;
+    color: #090446;
+    font-size: 18px;
+    white-space: nowrap;
+    padding-right: 40px;
+    min-width: 50%;
+    word-break: break-all;
+}
+.profile-details span {
+    font-size: 18px;
+    font-weight: bolder;
+    word-break: break-all;
+}
+
+
+
+
+
+
 
 
 

@@ -51,7 +51,7 @@
           </router-link>
         </li>
       </ul>
-      <div class="logout-btn-box"><button class="logout-btn btn" @click="logout">Logout</button></div>
+      <div class="logout-btn-box"><button class="logout-btn btn" @click="logout"><img src="../../../assets/images/logout.svg" alt="logout" /> Logout</button></div>
     </div>
   </div>
   <!-- siderbar end -->

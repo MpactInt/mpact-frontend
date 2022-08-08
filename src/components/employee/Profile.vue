@@ -1,9 +1,7 @@
 <template>
-  <div class="employee-hero-section">
-    <div class="container">
+  <div class="employee-profile-section">
       <!-- <h1 class="text-blue bold">Feeback to company admin</h1> -->
         <CommonProfile></CommonProfile>
-    </div>
   </div>
 </template>
 
