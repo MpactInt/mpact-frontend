@@ -1,10 +1,9 @@
 <template>
-    <div class="employee-hero-section">
-        <div class="container">
-            <h3>To Do</h3>
+    <section class="employee-todo-section half-cut-bg">
+        
+            <h3 class="page-title text-left mt-0"><span>To Do</span></h3>
             <List></List>
-        </div>
-    </div>
+    </section>
 </template>
 <script>
 /* eslint-disable */

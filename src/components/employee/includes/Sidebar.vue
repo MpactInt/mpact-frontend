@@ -9,16 +9,6 @@
     </div>
     <div class="siderbar-link">
       <ul>
-        <!-- <li><a href="#">Profile</a></li>
-        <li><a href="#">Step-by-Step Transformation</a></li>
-        <li><a href="#">My Organization</a></li>
-        <li><a href="#">My Membership </a></li>
-        <li><a href="#">Request Support</a></li>
-        <li><a href="#">Request Workshop</a></li>
-        <li><a href="#">Ask Your Care Team</a></li>
-        <li><a href="#">Our Assessment</a></li>
-        <li><a href="#">Message My Team</a></li>
-        <li><a href="#">Customer Support</a></li> -->
         <li>
           <router-link to="/employee/dashboard">Home</router-link>
         </li>
@@ -33,6 +23,24 @@
         </li>
         <li>
           <router-link to="/employee/resources">Resources</router-link>
+        </li>
+        <li>
+          <router-link to="/employee/welcome-note">Welcome Note</router-link>
+        </li>
+        <li>
+          <router-link to="/employee/profile">Profile</router-link>
+        </li>
+        <li>
+          <router-link to="/employee/feedback-to-company">Feedback to Company
+          </router-link>
+        </li>
+        <li>
+          <router-link to="/employee/my-learning-plan">My Learning Plan
+          </router-link>
+        </li>
+        <li>
+          <router-link to="/employee/ask-question">Ask a Question
+          </router-link>
         </li>
         <li>
           <router-link to="/employee/message-my-team">Message My Team</router-link>
@@ -51,7 +59,7 @@
           </router-link>
         </li>
       </ul>
-      <div class="logout-btn-box"><button class="logout-btn btn" @click="logout">Logout</button></div>
+      <div class="logout-btn-box"><button class="logout-btn btn" @click="logout"><img src="../../../assets/images/logout.svg" alt="logout" /> Logout</button></div>
     </div>
   </div>
   <!-- siderbar end -->

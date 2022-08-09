@@ -7,9 +7,9 @@
                     <option value="title">Title</option>
                 </select>
             </div>
-            <div class="col-md-3">
-                <input type="text" v-model="getTodoData.keyword" class="form-control" placeholder="Search"
-                    v-on:keyup="getTodoList" />
+            <div class="col-md-6">
+                <input type="search" v-model="getTodoData.keyword" class="form-control" placeholder="Search"
+                    v-on:keyup="getTodoList" /><span class="search-icon"></span>
             </div>
             <div class="col-md-3">
             </div>
@@ -20,29 +20,29 @@
         <div class="row mt-3">
             <table class="table">
                 <tr>
-                    <td v-if="user.role == 'ADMIN'">Company Name</td>
-                    <td>Title</td>
-                    <td>Description</td>
-                    <td>Status</td>
-                    <td>Action</td>
+                    <th v-if="user.role == 'ADMIN'">Company Name</th>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Status</th>
+                    <th>Action</th>
                 </tr>
                 <tr v-if="todosLength" v-for="r in todos.data" v-bind:key="r.id">
                     <td v-if="user.role == 'ADMIN'"><span v-for="c in r.company" v-bind:key="c.id">{{ c.company_name
                     }},</span></td>
                     <td>{{ r.title }}</td>
                     <td>{{ r.description }}</td>
-                    <td>{{ r.status }}</td>
+                    <td><small class="pink-color">{{ r.status }}</small> </td>
                     <td>
                         <button v-if="user.role == 'ADMIN'" class="btn btn-primary" @click="getTodo(r.id)"><i
                                 class="fa fa-pencil"></i></button>
                         <button v-if="user.role == 'ADMIN'" class="btn btn-danger" @click="deleteTodo(r.id)"><i
                                 class="fa fa-trash"></i></button>
                         <button v-if="user.role != 'ADMIN' && r.status == 'NEW' && company.role == 'COMPANY_ADMIN'"
-                            class="btn btn-primary" @click="completeTodo(r.id)"><i class="fa fa-check"></i></button>
-                        <router-link v-if="user.role != 'ADMIN' && company.role == 'COMPANY_ADMIN'" class="btn btn-primary"
-                            :to="'/employer/todo/' + r.id"><i class="fa fa-eye"></i></router-link>
-                        <router-link v-if="user.role != 'ADMIN' && company.role == 'COMPANY_EMP'" class="btn btn-primary"
-                            :to="'/employee/todo/' + r.id"><i class="fa fa-eye"></i></router-link>
+                            class="" @click="completeTodo(r.id)"><i class="fa fa-check mt-2 pink-color"></i></button>
+                        <router-link v-if="user.role != 'ADMIN' && company.role == 'COMPANY_ADMIN'" class=""
+                            :to="'/employer/todo/' + r.id"><i class="fa fa-eye mt-2 pink-color"></i></router-link>
+                        <router-link v-if="user.role != 'ADMIN' && company.role == 'COMPANY_EMP'" class=""
+                            :to="'/employee/todo/' + r.id"><i class="fa fa-eye mt-2 pink-color"></i></router-link>
                     </td>
                 </tr>
                 <tr v-if="!todosLength">

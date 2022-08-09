@@ -1,7 +1,7 @@
 <template>
   <div class="">
     <section class="employee-dashboard-hero-section">
-      <h2  class="page-title mb-0 text-left  d-inline-block">Pricing and <span >Plans</span></h2>
+      <h2  class="page-title mb-0 text-left  d-inline-block">About the <span class="yello-color">Program</span></h2>
       <h4  class="page-sub-title">This section will be the opening to the learning journey</h4>
       <img src="../../assets/images/about-frame.svg" class="hero-img" alt="">
     </section>
@@ -23,8 +23,9 @@
         <input class="inp-cbx" id="evening" type="checkbox" />
         <label class="cbx" for="evening"><span> <svg width="12px" height="10px"> <use xlink:href="#check"></use> </svg></span><span>Not Well</span><img src="../../assets/images/not-well.png" alt="reaction" /></label>
       </div>
-    </section><section class="my-learning-plan">
-      <h2 class="page-title text-left mb-0  d-inline-block">Learning <span>About Self</span> </h2>
+    </section>
+    <section class="my-learning-plan home-learning-bg">
+      <h2 class="page-title text-left mb-0  d-inline-block">Learning <span class="yello-color">About Self</span> </h2>
       <h4 class="page-sub-title">This section will have all of the learning.</h4>
       <div class="row">
         <div class="col-md-6 col-lg-4">
@@ -82,7 +83,65 @@
         </div>
       </div>
     </section>
-<!-- <div class="employee-hero-section ">
+    <section class="upcoming-workshops">
+       <h2 class="page-title text-left   d-inline-block">Upcoming  <span class="white-color">Workshops</span> </h2>
+       <div class="workshops-slider">
+            <!-- Swiper -->
+            <div class="swiper mySwiper">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide">
+
+                  <img src="../../assets/images/workshop.jpg" class="w-100 workshops-img" alt="workshops image" />
+                  <h3 class="section-title mt-4 mb-2">Overcoming Imposter Syndrome</h3>
+
+                  <div class="d-flex flex-wrap">
+                    <span> <img src="../../assets/images/clock.svg" class="icon" alt="workshops image" /> Time.5 Hour(s)</span>
+                    <span> <img src="../../assets/images/avtar.svg" class="icon" alt="workshops image" /> Leader: Dr. Maisha Cobb</span>
+                  </div>
+
+                  <a href="#" class="btn gradient-color-btn mt-4 mb-5">Registered</a>
+                </div>
+                <div class="swiper-slide">
+
+                  <img src="../../assets/images/workshop.jpg" class="w-100 workshops-img" alt="workshops image" />
+                  <h3 class="section-title mt-4 mb-2">Overcoming Imposter Syndrome</h3>
+
+                  <div class="d-flex flex-wrap">
+                    <span> <img src="../../assets/images/clock.svg" class="icon" alt="workshops image" /> Time.5 Hour(s)</span>
+                    <span> <img src="../../assets/images/avtar.svg" class="icon" alt="workshops image" /> Leader: Dr. Maisha Cobb</span>
+                  </div>
+
+                  <a href="#" class="btn gradient-color-btn mt-4 mb-5">Registered</a>
+                </div>
+
+              </div>
+            </div>
+      </div>
+    </section>
+    <section class="steps-to-help">
+       <h2 class="page-title text-left   d-inline-block">"Steps to <span class="white-color">Help"</span> </h2>
+
+       <div class="steps-box">
+         <div class="steps-count">
+           Test <span>01</span>
+         </div>
+         <div class="pera">
+           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi id quam ut dui tristique semper. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi id quam ut dui tristique semper.</p>
+         </div>
+       </div>
+       <div class="steps-box">
+         <div class="steps-count">
+           To Do <span>01</span>
+         </div>
+         <div class="pera">
+           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi id quam ut dui tristique semper.</p>
+         </div>
+       </div>
+
+
+      <a href="#" class="btn mt-4 mb-5">View All</a>
+     </section>
+    <!-- <div class="employee-hero-section ">
 <div class="container">
 <div class="row content-center" v-if="section1.id">
 <div class="col-md-7">
@@ -204,6 +263,7 @@ No data found
   import CustomSurvey from './CustomSurvey.vue'
   import BarChart from '../common/BarChart.vue'
 
+
   export default {
     name: "Dashboard",
     mixins: [AppMixin],
@@ -294,6 +354,8 @@ No data found
       this.getLearningPlanListDashboard()
     },
   }
+  // var swiper = new Swiper(".mySwiper", {});
+   
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

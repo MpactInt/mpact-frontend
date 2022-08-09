@@ -1,10 +1,8 @@
 <template>
-  <div class="employee-hero-section">
-    <div class="container">
-      <h1 class="text-blue bold">Resources</h1>
+  <section class="employee-resources-section half-cut-bg">
+      <h1 class="page-title text-left mt-0"><span>Resources</span></h1>
         <List></List>
-    </div>
-  </div>
+  </section>
 </template>
 
 <script>

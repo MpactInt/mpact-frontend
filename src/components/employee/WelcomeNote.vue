@@ -5,7 +5,8 @@
       <h4  class="page-sub-title">{{ note.title }}</h4>
       <div class="color-border mb-5">
         <div class="color-border-box">
-          <iframe  height="480" src="https://www.youtube.com/embed/D0UnqGm_miA" title="Dummy Video For Website" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <!-- <iframe  height="480" src="https://www.youtube.com/embed/D0UnqGm_miA" title="Dummy Video For Website" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+          <img :src="note.image" class="w-100" alt="image" />
         </div>
       </div>
   </section>

@@ -23,7 +23,7 @@
       <section class="employee-dashboard-section" v-if="user.role == 'ADMIN'">
         <HeaderAdmin></HeaderAdmin>
         <div class="container-fluid p-0">
-          <div class="row"><div class=" sidebar"><SidebarAdmin v-if="isLoggedIn"></SidebarAdmin></div><main class="main-col"><router-view :key="$route.fullPath" /></main></div>
+          <div class="d-flex"><div class=" sidebar"><SidebarAdmin v-if="isLoggedIn"></SidebarAdmin></div><main class="main-col"><router-view :key="$route.fullPath" /></main></div>
         </div>
         <FooterAdmin></FooterAdmin>
       </section>

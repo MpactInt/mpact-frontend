@@ -1,6 +1,5 @@
 <template>
-  <div class="employee-hero-section">
-    <div class="container">
+  <section class="employee-learning-plan-view-section half-cut-bg">
       <section class="live-classe">
         <div class="container">
           <div class="row">
@@ -38,8 +37,7 @@
           </div>
         </div>
       </section>
-    </div>
-  </div>
+  </section>
 </template>
 
 <script>

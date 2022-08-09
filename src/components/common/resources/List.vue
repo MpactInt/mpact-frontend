@@ -17,13 +17,13 @@
     </div>
     <table class="table">
       <tr>
-        <td v-if="user.role == 'ADMIN'">Company Name</td>
-        <td>Title</td>
-        <td>Description</td>
-        <td>Link</td>
-        <td>File</td>
-        <td>Visibility</td>
-        <td v-if="user.role == 'ADMIN' || company.role == 'COMPANY_ADMIN'">Action</td>
+        <th v-if="user.role == 'ADMIN'">Company Name</th>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Link</th>
+        <th>File</th>
+        <th>Visibility</th>
+        <th v-if="user.role == 'ADMIN' || company.role == 'COMPANY_ADMIN'">Action</th>
       </tr>
       <tr v-if="resourcesLength" v-for="r in resourcesList.data" v-bind:key="r.id">
         <td  v-if="user.role == 'ADMIN'"><span v-for="c in r.company" v-bind:key="c.id">{{ c.company_name }},</span></td>

@@ -1,10 +1,9 @@
 <template>
-  <div class="">
-    <div class="row form-group">
+  <div class="card-box">
       <textarea class="form-control" id="ask-question" v-model="askQuestion.description"
         placeholder="Ask Your Care Team"></textarea>
-    </div>
-    <div class="form-group">
+
+    <div class="form-group mt-4">
       <button type="button" :disabled="askQuestion.disabled" class="btn btn-primary" @click="submitAskQuestion">Submit</button>
     </div>
   </div>

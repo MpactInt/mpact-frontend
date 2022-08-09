@@ -1,19 +1,17 @@
 <template>
-  <div class="employee-hero-section">
+  <div class="employee-workshops-section pink-pattern-bg">
     <div class="container">
       <section class="live-classe">
         <div class="container">
           <div class="row">
-            <div class="col-md-6 content-middle">
-              <div class="class-content">
-                <h2 class="title">Workshops</h2>
-                <p class="text">Browse our 100% live online classes led by top instructors and coaches. Choose from our
-                  upcoming schedule or browse all the classes we offer.</p>
-              </div>
+            <div class="col-md-12">
+                <h2 class="page-title mb-0 text-left">Workshops</h2>
+                <h3 class="page-sub-title">Browse our 100% live online classes led by top instructors and coaches. Choose from our
+                  upcoming schedule or browse all the classes we offer.</h3>
             </div>
-            <div class="col-md-6">
-              <div class="classes-seminar">
-                <img src="../../assets/images/class-meeting.jpg" alt="">
+            <div class="col-md-12">
+              <div class="classes-seminar  color-border">
+                <img src="../../assets/images/class-meeting.jpg" class="w-100" alt="meeting img">
               </div>
             </div>
           </div>
@@ -21,7 +19,6 @@
       </section>
 
       <section class="clases-blogs">
-        <div class="container">
           <!-- <div class="row row-mb" v-if="workshopsLength" v-for="w in workshopsList.data" v-bind:key="w.id">
             <div class="col-md-4">
               <div class="course-banner"><img :src="filePath + '/' + w.image" alt=""></div>
@@ -51,30 +48,26 @@
             No Workshops Found
           </div> -->
           <div class="card-post" v-if="workshopsLength" v-for="w in workshopsList.data" v-bind:key="w.id">
-            <div class="card-image">
-              <div class="course-banner"><img :src="filePath + '/' + w.image"  alt=""></div>
-            </div>
-            <div class="card-content">
+
+                <h4 class="section-title mb-0">{{ w.title }}</h4>
+                  <h5 class="page-sub-title mb-4">{{ w.description }}</h5>
+            <div class="d-flex flex-wrap align-items-center">
+              <div class="card-image">
+                <img :src="filePath + '/' + w.image" class="w-100" alt="images" />
+              </div>
               <div class="course-details">
-                <h4 class="title">{{ w.title }}</h4>
-                <div class="course-middle-details">
-                  <div class="time">
-                    <p><span><i aria-hidden="true" class="fa fa-clock-o"></i></span>Time<span>{{ w.total_hours }} Hour(s)</span></p>
+                  <div class="time w-100">
+                    <p><span><img src="../../assets/images/avtar.svg" alt="icon" /> </span>Time<span>{{ w.total_hours }} Hour(s)</span></p>
                   </div>
-                  <div class="place">
-                    <p> <span><i aria-hidden="true" class="fa fa-user-circle-o"></i></span>Leader: <span>{{ w.instructor }}</span></p>
+                  <div class="place w-100">
+                    <p> <span><img src="../../assets/images/clock.svg" alt="icon" /></span>Leader: <span>{{ w.instructor }}</span></p>
                   </div>
-                </div>
-                <div class="course-description">
-                  <p>{{ w.description }}</p>
-                </div>
                 <div class="read-more">
-                  <router-link :to="'/employee/workshop/' + w.id" class="btn btn-read-more">Read More</router-link>
+                  <router-link :to="'/employee/workshop/' + w.id" class="btn">Read More</router-link>
                 </div>
               </div>
             </div>
           </div>
-        </div>
       </section>
     </div>
   </div>

@@ -20,6 +20,7 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 import './assets/css/employee-style.css'
 import './assets/css/style.css'
 import './assets/css/custom.css'
+import './assets/fonts/stylesheet.css'
 import VueChatScroll from 'vue-chat-scroll'
 import Multiselect from 'vue-multiselect'
 import HighchartsVue from "highcharts-vue";

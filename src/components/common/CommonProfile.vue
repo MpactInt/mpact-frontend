@@ -1,8 +1,8 @@
 <template>
-  <div>
+  <section class="half-cut-bg">
     <div class="col-md-12">
       <div class="row">
-        <div class="col-md-4">
+        <!-- <div class="col-md-4">
           <div class="profile-sidebar">
             <img class="profile-img" :src="authUser.profile_image" />
             <i class="fa fa-camera update-img-icon" aria-hidden="true" @click="$refs.file.click()"></i>
@@ -14,27 +14,53 @@
                   aria-hidden="true"></i>{{ authUser.company_domain }}</a>
             </div>
           </div>
+        </div> -->
+
+        <div class="col-md-12">
+           <h2 class="page-title text-left my-0  d-inline-block">{{ authUser.first_name }} <span>{{ authUser.last_name }}</span> </h2>
+           <h2 class="page-sub-title mb-3">{{ authUser.company_name }}</h2>
+            <a class=" link mb-5 d-inline-block" :href="authUser.company_domain" target="_blank"><i class="fa fa-globe mr-2"
+                        aria-hidden="true"></i>{{ authUser.company_domain }}</a>
         </div>
-        <div class="col-md-8">
-          <button class="btn-primary float-right" @click="getProfile"><i class="fa fa-pencil"></i></button>
+        <div class="col-md-12">
+          <!-- <button class="btn-primary float-right" @click="getProfile"><i class="fa fa-pencil"></i></button> -->
           <div class="profile-main">
-            <div class="profile-details">
-              <label class="w-25">Full Name</label> <span>{{ authUser.first_name }} {{ authUser.last_name }} </span>
-            </div>
-            <div class="profile-details">
-              <label class="w-25">Company Name</label> <span>{{ authUser.company_name }}</span>
-            </div>
-            <div class="profile-details">
-              <label class="w-25">Email</label> <span>{{ user.email }}</span>
-            </div>
-            <div class="profile-details">
-              <label class="w-25">Role</label> <span>{{ authUser.role | replaceUndescore }}</span>
-            </div>
-            <div class="profile-details" v-if="authUser.role == 'COMPANY_EMP'">
-              <label class="w-25">Profile Type</label> <span>{{ authUser.profile_type}}</span>
-            </div>
-            <div class="profile-details border-bottom-0">
-              <label class="w-25">Total Employees</label> <span>{{ authUser.total_employees }}</span>
+            <div class="row">
+              <div class="col-md-12">                
+                <div class="profile-sidebar">
+                  <img class="profile-img" :src="authUser.profile_image" />
+                  <i class="fa fa-camera update-img-icon" aria-hidden="true" @click="$refs.file.click()"></i>
+                  <input type="file" ref="file" class="d-none" @change="uploadProfileImage" accept=".jpeg, .jpg, .png">
+                
+                </div>
+              </div>
+              <div class="col-md-6">
+                  <div class="profile-details">
+                    <label class="w-50">Full Name</label> <span>{{ authUser.first_name }} {{ authUser.last_name }} </span>
+                  </div>
+                  <div class="profile-details">
+                    <label class="w-50">Email</label> <span>{{ user.email }}</span>
+                  </div>
+                  <div class="profile-details" v-if="authUser.role == 'COMPANY_EMP'">
+                    <label class="w-50">Profile Type</label> <span>{{ authUser.profile_type}}</span>
+                  </div>
+              </div>
+              <div class="col-md-6">
+                <div class="profile-details">
+                  <label class="w-50">Company Name</label> <span>{{ authUser.company_name }}</span>
+                </div>
+                <div class="profile-details">
+                  <label class="w-50">Role</label> <span>{{ authUser.role | replaceUndescore }}</span>
+                </div>
+                <div class="profile-details border-bottom-0">
+                  <label class="w-50">Total Employees</label> <span>{{ authUser.total_employees }}</span>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <a href="#"  @click="getProfile" class="btn-primary btn mt-4">
+                  Edit Profile
+                </a>
+              </div>
             </div>
           </div>
         </div>
@@ -70,7 +96,7 @@
       </form>
 
     </b-modal>
-  </div>
+  </section>
 </template>
 
 <script>

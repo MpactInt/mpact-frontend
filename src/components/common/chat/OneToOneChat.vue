@@ -3,36 +3,38 @@
     <h1>Chat with {{ empChat.first_name }} {{ empChat.last_name }}</h1>
     <p class="text-center" v-if="groupData.limit < total"><button class="btn btn-primary load-more"
         @click="loadMoreMessages">Load More Messages</button></p>
-    <div v-chat-scroll class="chat-gui" id="chat-gui" ref="scroll_content" style="height: 500px; overflow-y: scroll">
+    <div v-chat-scroll class="chat-gui" id="chat-gui" ref="scroll_content" >
       <div class="chat-list" v-if="messagesList.length" v-for="m in messagesList" v-bind:key="m.id"
         v-bind:class="(authUser.emp_id == m.sender_id) ? 'text-right' : ''">
         <p>
           <img :src="imagePath + '/profile-images/' + m.profile_image" height="50px" width="50px"
-            class="mr-3 border-radius-50" />
-          <b>{{ m.first_name }} {{ m.last_name }}</b>
-          <small class="ml-3">{{ m.created_at | fromNow }}</small>
+            class="mr-2 border-radius-50" />
+          <b>{{ m.first_name }} {{ m.last_name }}</b><span class="ml-3">{{ m.created_at | fromNow }}</span>
+          
         </p>
-        <span class="ml-6" v-if="m.message_type == 'TEXT'" v-html="convertToHtml(m.content)"></span>
-        <span class="ml-6" v-if="m.message_type == 'FILE'">
+        <div class="message-bubble" v-if="m.message_type == 'TEXT'" v-html="convertToHtml(m.content)"> <span class="ml-3">{{ m.created_at | fromNow }}</span></div>
+        <div class="message-bubble" v-if="m.message_type == 'FILE'">
           <!-- <a :href="imagePath + '/chat-attachments/' + m.content" target="_blank">
             <img height="50" width="50" src="../../assets/images/file.png" /><br>
           </a> -->
           <a href="javascript:void(0)" @click="downloadAttachment(m.id, m.content, 'one')">
             <img height="50" width="50" src="../../../assets/images/file.png" /><br>
           </a>
-        </span>
+          <span class="ml-3">{{ m.created_at | fromNow }}</span>
+        </div>
       </div>
       <div class="chat-list" v-if="!messagesList.length">
         <h4 class="no-msg">Start Messaging</h4>
       </div>
     </div>
     <div>
-      <div class="input-group mb-3">
+      <div class="input-group ">
         <input type="text" class="form-control" placeholder="Type here" v-model="dataMsg.message"
           v-on:keyup.enter="sendOneToOneMessage" />
         <div class="input-group-append">
-          <button class="btn btn-primary" type="button" @click="$refs.file.click()"><i
-              class="fa fa-paperclip"></i></button>
+          <button class="paper-attachment" type="button" @click="$refs.file.click()">
+             <img src="../../../assets/images/paper.svg" alt="icon" />
+          </button>
           <input type="file" ref="file" class="d-none" @change="sendOneToOneAttachment">
         </div>
       </div>
