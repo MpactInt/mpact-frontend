@@ -1,8 +1,11 @@
 <template>
   <div class="chat-div">
-    <p class="text-center" v-if="groupData.limit < total"><button class="btn btn-primary load-more"
-        @click="loadMoreMessages">Load More Messages</button></p>
+    
     <div v-chat-scroll class="chat-gui" id="chat-gui" ref="scroll_content" >
+      <p class="text-center" v-if="groupData.limit < total"><button class="btn btn-primary load-more"
+        @click="loadMoreMessages">Load More Messages</button></p>
+
+        <div>Today</div>
       <div v-if="messagesList.length" class="chat-list"
         v-bind:class="(authUser.emp_id == m.sender_user_id) ? 'text-right' : ''" v-for="m in messagesList"
         v-bind:key="m.id">
@@ -11,8 +14,8 @@
             width="50px" />
           <b>{{ m.first_name }} {{ m.last_name }}</b>
         </p>
-        <div class="message-bubble"> 
-            <p v-if="m.message_type == 'TEXT'" v-html="convertToHtml(m.content)"> 
+        <div class="message-bubble" v-if="m.message_type == 'TEXT'"> 
+            <p  v-html="convertToHtml(m.content)"> 
             </p>
           <span class="message-time">{{ m.created_at | fromNow }}</span>
          </div>
@@ -22,9 +25,9 @@
           </a> -->
 
           <a href="javascript:void(0)" @click="downloadAttachment(m.id, m.content, 'group')">
-            <img height="50" width="50" src="../../../assets/images/file.png" /><br>
+            <img height="50" width="50" src="../../../assets/images/file.png" /><br><span class="message-time">{{ m.created_at | fromNow }}</span>
           </a>
-          <span class="message-time">{{ m.created_at | fromNow }}</span>
+          
         </div>
       </div>
 

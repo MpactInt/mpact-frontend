@@ -8,8 +8,8 @@
         </select>
       </div>
       <div class="col-md-3">
-        <input type="text" v-model="getResourceData.keyword" class="form-control" placeholder="Search"
-          v-on:keyup="getResourcesList" />
+        <input type="search" v-model="getResourceData.keyword" class="form-control" placeholder="Search"
+          v-on:keyup="getResourcesList" /><span class="search-icon"></span>
       </div>
       <div class="col-md-3">
         <button  v-if="user.role == 'ADMIN' || company.role == 'COMPANY_ADMIN'" class="btn btn-primary float-right" v-b-modal.add-resource-modal>Add New Resource</button>

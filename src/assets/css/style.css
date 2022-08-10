@@ -104,7 +104,7 @@ select.form-control:after {
     height: 10px;
     display: block;
 }
-input.form-control+span.search-icon:after {
+input.form-control + span.search-icon:after {
     content: '';
     position: absolute;
     left: 28px;
@@ -359,13 +359,24 @@ color: #FFFFFF;
 opacity: 0.8;
 }
 
+.siderbar-link ul .manage-gap {
+    padding: 15px 40px;
+    position: relative;
+}
+.siderbar-link ul .manage-gap a{
+    padding: 10px 0px;}
 .siderbar-link ul li a:hover,
 .siderbar-link ul li a.active, .siderbar-link ul li.active a {
     background: #ADB9CA;
     font-weight: 900;
     opacity: 1 ;
 }
-
+.siderbar-link ul li input.form-control + span.search-icon:after {
+    left: 56px;
+    top: 28px;
+    width: 18px;
+    height: 18px;
+}
 .logout-btn-box {
     padding: 0 40px;
 }
@@ -756,7 +767,7 @@ footer {
     background: #C2095A;
     /*background: #fff;*/
     border-top: 0px solid #090446;
-
+z-index: 999;
     position: fixed;
     bottom: 0;
     left: 0;

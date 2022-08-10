@@ -9,8 +9,8 @@
                 </select>
             </div>
             <div class="col-md-6">
-                <input type="text" v-model="searchData.keyword" class="form-control" placeholder="Search By Keyword"
-                    v-on:keyup="getAnnouncementsList" /><span class="search"></span>
+                <input type="search" v-model="searchData.keyword" class="form-control" placeholder="Search By Keyword"
+                    v-on:keyup="getAnnouncementsList" /><span class="search-icon"></span>
             </div>
             <div class="col-md-3">
 
