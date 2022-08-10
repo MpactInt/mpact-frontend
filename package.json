@@ -29,6 +29,7 @@
     "vue-clipboard2": "^0.3.3",
     "vue-multiselect": "^2.1.6",
     "vue-router": "^3.0.1",
+    "vue-slick-carousel": "^1.0.6",
     "vue-sweetalert2": "^5.0.5",
     "vue2-datepicker": "^3.10.4",
     "vue2-tinymce-editor": "^0.0.1"

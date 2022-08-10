@@ -10,18 +10,16 @@
 /* eslint-disable */
 import AppMixin from '../../mixins/AppMixin'
 import OneToOneChat from '../common/chat/OneToOneChat.vue'
+
 export default {
   name: 'MessageMyTeam',
   mixins: [AppMixin],
-  components: { OneToOneChat },
-  data() {
-    return {
-    }
+  components: {OneToOneChat},
+  data () {
+    return {}
   },
-  methods: {
-
-  },
-  created() {
+  methods: {},
+  created () {
 
   }
 }
