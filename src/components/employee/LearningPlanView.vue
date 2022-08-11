@@ -3,41 +3,26 @@
     <div class="row align-items-center">
       <div class="col-md-4 my-3">
         <div class="color-border">
-            <img :src="planSingle.image" class="w-100" alt="">
+          <img :src="planSingle.image" class="w-100" alt="">
         </div>
       </div>
       <div class="col-md-8 my-3">
-        <h2 class="page-title text-left my-0  d-inline-block">{{planSingle.title}}</h2>
-        <p class="page-sub-title mb-0">{{planSingle.description}}</p>
+        <h2 class="page-title text-left my-0  d-inline-block">{{ planSingle.title }}</h2>
+        <p class="page-sub-title mb-0">{{ planSingle.description }}</p>
       </div>
     </div>
     <div class="row">
-      <div class="col-md-4 my-3"  v-if="planFiles.length" v-for="w in planFiles" v-bind:key="w.id">
+
+      <div class="col-md-4 my-3" v-if="planFiles.length" v-for="w in planFiles" v-bind:key="w.id">
         <div class="card">
         <div class="card-body">
             <h5 class="card-title">{{ w.title }}</h5>
             <p class="card-text">{{ w.description }}</p>
             <a class="btn btn-read-more" @click="downloadLearningPlanFile(w.id, w.image)">Download File</a>
-            </div>
           </div>
+        </div>
       </div>
     </div>
-          <!-- <div class="card-post" v-if="planFiles.length" v-for="w in planFiles" v-bind:key="w.id"> -->
-            <!-- <div class="card-image">
-              <div class="course-banner"><img :src="filePath + '/' + w.image"  alt=""></div>
-            </div> -->
-           <!--  <div class="card-content">
-              <div class="course-details">
-                <h4 class="title">{{ w.title }}</h4>
-                <div class="course-description">
-                  <p>{{ w.description }}</p>
-                </div>
-                <div class="read-more">
-                  <a class="btn btn-read-more" @click="downloadLearningPlanFile(w.id, w.image)">Download File</a>
-                </div>
-              </div>
-            </div>
-          </div> -->
   </section>
 </template>
 
@@ -45,23 +30,20 @@
 /* eslint-disable */
 import AppMixin from '../../mixins/AppMixin'
 import Api from '../../router/api'
+
 export default {
   name: 'WelcomeNote',
   mixins: [AppMixin],
-  data() {
+  data () {
     return {
       note: {},
     }
   },
-  methods: {
-
-  },
-  created() {
+  methods: {},
+  created () {
     this.getLearningPlanFiles()
   }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-
-</style>

@@ -25,6 +25,9 @@
           <router-link to="/employee/resources">Resources</router-link>
         </li>
         <li>
+          <router-link to="/employee/todo">TO DO</router-link>
+        </li>
+        <li>
           <router-link to="/employee/welcome-note">Welcome Note</router-link>
         </li>
         <li>
@@ -51,19 +54,24 @@
         </li>
         <li>
           <a href="javascript:void(0)" @click="showUserList = !showUserList">One to One Chat <i class="fa fa-angle-down"
-              aria-hidden="true"></i>
+                                                                                                aria-hidden="true"></i>
           </a>
         </li>
         <li v-if="showUserList" class="manage-gap">
           <input type="search" class="form-control" v-model="searchData.name" placeholder="Search Employees"
-            @keyup="getEmployeesListChat" /><span class="search-icon"></span>
-          <router-link v-for="e in empList.data" v-bind:key="e.id" :to="'/employee/one-to-one-chat/' + e.id"><img src="../../../assets/images/back-btn.png" alt="btn" /> {{
+                 @keyup="getEmployeesListChat"/><span class="search-icon"></span>
+          <router-link v-for="e in empList.data" v-bind:key="e.id" :to="'/employee/one-to-one-chat/' + e.id"><img
+            src="../../../assets/images/back-btn.png" alt="btn"/> {{
               e.first_name
-          }} {{ e.last_name }}
+            }} {{ e.last_name }}
           </router-link>
         </li>
       </ul>
-      <div class="logout-btn-box"><button class="logout-btn btn" @click="logout"><img src="../../../assets/images/logout.svg" alt="logout" /> Logout</button></div>
+      <div class="logout-btn-box">
+        <button class="logout-btn btn" @click="logout"><img src="../../../assets/images/logout.svg" alt="logout"/>
+          Logout
+        </button>
+      </div>
     </div>
   </div>
   <!-- siderbar end -->
@@ -72,9 +80,10 @@
 /* eslint-disable */
 import AppMixin from '../../../mixins/AppMixin'
 import Api from '../../../router/api'
+
 export default {
   name: 'Sidebar',
-  data() {
+  data () {
     return {
       path: ''
     }
@@ -83,22 +92,22 @@ export default {
   methods: {
     logout: function () {
       Api.logout().then(response => {
-        window.localStorage.removeItem('token')
-        window.localStorage.removeItem('userData')
-        window.localStorage.removeItem('companyData')
-        this.$router.go('/login')
-      }
+          window.localStorage.removeItem('token')
+          window.localStorage.removeItem('userData')
+          window.localStorage.removeItem('companyData')
+          this.$router.go('/login')
+        }
       ).catch((error) => {
         this.$swal({
-          icon: "error",
-          title: "error",
+          icon: 'error',
+          title: 'error',
           text: error.response.data.message,
           showConfirmButton: true
-        });
-      });
+        })
+      })
     }
   },
-  created() {
+  created () {
     if (this.isLoggedIn) {
       this.getEmployeesListChat()
     }

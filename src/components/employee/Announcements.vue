@@ -2,9 +2,9 @@
   <section class="employee-announcements-section half-cut-bg">
     <div class="container">
       <h1 class="page-title mt-0 text-left">Announcements</h1>
-        <List></List>
+      <List></List>
     </div>
-  </section> 
+  </section>
 </template>
 
 <script>
@@ -15,16 +15,12 @@ import List from '../common/announcements/List.vue'
 export default {
   name: 'AnnouncementList',
   mixins: [AppMixin],
-  components: { List },
-  data() {
-    return {
-
-    }
+  components: {List},
+  data () {
+    return {}
   },
-  methods: {
-
-  },
-  mounted() {
+  methods: {},
+  mounted () {
   }
 }
 </script>
