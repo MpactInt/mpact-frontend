@@ -3,7 +3,7 @@
     <section class="employee-dashboard-hero-section">
       <h2  class="page-title mb-0 text-left  d-inline-block">About the <span class="yello-color">Program</span></h2>
       <h4  class="page-sub-title">This section will be the opening to the learning journey</h4>
-      <img src="../../assets/images/about-frame.svg" class="hero-img" alt="">
+      <div class="color-border"><img src="../../assets/images/about-frame.svg" class="hero-img" alt=""></div> 
     </section>
     <section class="employee-dashboard-section">
       <h2  class="page-title mb-0 text-left  d-inline-block">This <span >section</span>text</h2>

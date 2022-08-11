@@ -19,6 +19,7 @@
                 <button class="btn btn-primary float-right" v-b-modal.add-announcement-modal>Add Announcement</button>
             </div>
         </div>
+        <div class="table-responsive">
         <table class="table">
             <tr>
                 <th>Title</th>
@@ -46,6 +47,7 @@
                 <td colspan="3">No Data Found</td>
             </tr>
         </table>
+        </div>
         <pagination :data="announcementList" @pagination-change-page="getAnnouncementsList" />
         <!--Add announcement modal popup-->
         <Add :getAnnouncementsList="getAnnouncementsList"></Add>

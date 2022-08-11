@@ -1,12 +1,12 @@
 <template>
   <div id="app">
     <div v-if="isLoggedIn">
-      <section class="employee-dashboard-section" v-if="user.role == 'COMPANY' && company.role=='COMPANY_ADMIN'">
+      <section class="employer-section" v-if="user.role == 'COMPANY' && company.role=='COMPANY_ADMIN'">
         <HeaderEmployer></HeaderEmployer>
-        <div class="container-fluid pt-3">
-          <div class="dashboard-container">
-            <SidebarEmployer v-if="isLoggedIn"></SidebarEmployer>
-            <router-view :key="$route.fullPath" />
+        <div class="container-fluid  p-0">
+          <div class="d-flex">
+            <div class=" sidebar" id="navbarSupportedContent"><SidebarEmployer v-if="isLoggedIn"></SidebarEmployer></div>
+            <main class="main-col"><router-view :key="$route.fullPath" /></main>
           </div>
         </div>
         <FooterEmployer></FooterEmployer>
@@ -15,7 +15,8 @@
         <HeaderEmployee></HeaderEmployee>
          <div class="container-fluid p-0">
           <div class="d-flex">
-              <div class=" sidebar"><SidebarEmployee v-if="isLoggedIn"></SidebarEmployee></div><main class="main-col"><router-view :key="$route.fullPath" /></main>
+              <div class=" sidebar" id="navbarSupportedContent"><SidebarEmployee v-if="isLoggedIn"></SidebarEmployee></div>
+              <main class="main-col"><router-view :key="$route.fullPath" /></main>
           </div>
         </div>
         <FooterEmployee></FooterEmployee>

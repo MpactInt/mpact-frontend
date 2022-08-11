@@ -1,5 +1,21 @@
 <template>
-  <div class="col-md-9">
+  <section class="employee-welcome-note-section mb-5">
+      <h2  class="page-title text-left  d-inline-block">Welcome <span >Note</span></h2>
+      <h3 class="page-sub-title pink-color mb-0">Welcome To Mpact</h3>
+      <h4  class="section-sub-title">{{ note.title }} </h4>
+      <p v-html="note.description"></p>
+      <div class="color-border mb-5">
+        <div class="color-border-box">
+          <!-- <iframe  height="480" src="https://www.youtube.com/embed/D0UnqGm_miA" title="Dummy Video For Website" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+          <img :src="note.image" class="w-100" alt="image" />
+          <div v-if="!note">
+            Welcome Note not added
+          </div>
+        </div>
+      </div>
+  </section>
+
+<!--     <div class="col-md-9">
     <h1>Welcome Note</h1>
     <div v-if="note">
       <p>
@@ -13,7 +29,8 @@
     <div v-if="!note">
       Welcome Note not added
     </div>
-  </div>
+  </div> -->
+
 </template>
 
 <script>

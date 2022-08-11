@@ -1,7 +1,7 @@
 <template>
-  <div class="col-md-9">
+  <div class="employer-profile-section">
     <CommonProfile></CommonProfile>
-  </div>
+    </div>
 </template>
 
 <script>

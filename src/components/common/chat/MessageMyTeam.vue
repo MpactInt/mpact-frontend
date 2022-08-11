@@ -5,10 +5,11 @@
       <p class="text-center" v-if="groupData.limit < total"><button class="btn btn-primary load-more"
         @click="loadMoreMessages">Load More Messages</button></p>
 
-        <div>Today</div>
+        <div class="message-grp-date"> <span>Today</span></div>
       <div v-if="messagesList.length" class="chat-list"
         v-bind:class="(authUser.emp_id == m.sender_user_id) ? 'text-right' : ''" v-for="m in messagesList"
         v-bind:key="m.id">
+
         <p class="d-flex align-items-center">
           <img class="mr-2 border-radius-50" :src="imagePath + '/profile-images/' + m.profile_image" height="50px"
             width="50px" />

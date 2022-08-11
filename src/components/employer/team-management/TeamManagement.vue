@@ -1,5 +1,27 @@
 <template>
-  <div class="col-md-9">
+
+  <div>
+    <section class="team-management-section half-cut-bg">
+      <h1 class="page-title text-left">
+        Team and Organization <span>Management</span>
+      </h1>
+      <div class="card-box">
+        <div class="row">
+          <div class="col-md-4">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <a href="#" class="links">Read More <img src="../../../assets/images/arrow-right.svg" /> </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+
     <h1>Team and Organization Management</h1>
     <div class="row col-md-12">
       <div class="col-md-3">

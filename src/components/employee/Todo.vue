@@ -1,6 +1,5 @@
 <template>
     <section class="employee-todo-section half-cut-bg">
-        
             <h3 class="page-title text-left mt-0"><span>To Do</span></h3>
             <List></List>
     </section>

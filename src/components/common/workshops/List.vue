@@ -17,6 +17,7 @@
           Workshop</button>
       </div>
     </div>
+    <div class="table-responsive">
     <table class="table">
       <tr>
         <td v-if="user.role == 'ADMIN'">Company</td>
@@ -57,6 +58,7 @@
         <td colspan="5">No Data Found</td>
       </tr>
     </table>
+    </div>
     <pagination :data="workshopsList" @pagination-change-page="getWorkshopsList" />
     <!--Add workshop modal popup-->
     <Add :getWorkshopsLists="getWorkshopsList"></Add>

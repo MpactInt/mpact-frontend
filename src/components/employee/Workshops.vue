@@ -51,7 +51,7 @@
 
                 <h4 class="section-title mb-0">{{ w.title }}</h4>
                   <h5 class="page-sub-title mb-4">{{ w.description }}</h5>
-            <div class="d-flex flex-wrap align-items-center">
+            <div class="left-image-card d-flex flex-wrap align-items-center">
               <div class="card-image">
                 <img :src="filePath + '/' + w.image" class="w-100" alt="images" />
               </div>

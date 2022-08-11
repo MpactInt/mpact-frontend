@@ -15,6 +15,7 @@
         <button  v-if="user.role == 'ADMIN' || company.role == 'COMPANY_ADMIN'" class="btn btn-primary float-right" v-b-modal.add-resource-modal>Add New Resource</button>
       </div>
     </div>
+    <div class="table-responsive">
     <table class="table">
       <tr>
         <th v-if="user.role == 'ADMIN'">Company Name</th>
@@ -42,6 +43,7 @@
         <td colspan="5">No Data Found</td>
       </tr>
     </table>
+    </div>
     <pagination :data="resourcesList" @pagination-change-page="getResourcesList" />
 
     <!--Add resource modal popup-->

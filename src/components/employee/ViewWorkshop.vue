@@ -1,11 +1,35 @@
 <template>
-  <div class="employee-hero-section">
-    <div class="container">
-      <section class="team-section">
-        <div class="container">
-          <div class="team-card-post">
+  <section class="employee-view-workshop-section pink-pattern-bg">
+         <h4 class="page-title text-left"><span>{{ workshopUpdate.title }}</span> </h4>
+         <!-- <img :src="workshopPath + '/' + workshopUpdate.img" alt=""> -->
+        <div class="card-post">
+         <div class="left-image-card d-flex flex-wrap align-items-center">
+          <div class="card-image">
+            <img  :src="workshopPath + '/' + workshopUpdate.img" alt="images" class="w-100">
+          </div>
+          <div class="course-details">
+            <div class="time w-100">
+              <p>
+                <span>
+                  <img src="../../assets/images/avtar.svg" alt="icon"></span>Time<span>{{workshopUpdate.total_hours}} Hour(s)</span>
+                </p>
+            </div>
+            <div class="place w-100">
+              <p>
+                <span>
+                  <img src="../../assets/images/clock.svg" alt="icon">
+                </span>Leader: <span>{{workshopUpdate.instructor}}</span>
+              </p>
+            </div>
+            <div  class="read-more"  >
+              <a   v-if="!registered"  class="btn" @click="registerForWorkshop" >Read More</a>
+              <a v-else class="btn btn-read-more" disabled>Registered</a>
+            </div></div>
+          </div>
+        </div>
+         <!--  <div class="team-card-post">
             <div class="team-card-image">
-              <div class="course-banner"><img :src="workshopPath + '/' + workshopUpdate.img" alt=""></div>
+              <div class="course-banner"><img  :src="workshopPath + '/' + workshopUpdate.img" alt="images" class="w-100"></div>
             </div>
             <div class="team-card-content">
               <div class="course-details">
@@ -29,36 +53,24 @@
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      </section>
+          </div> -->
       <!-- End team section -->
-      <section class="team-post-description">
-        <div class="container">
-          <div class="article-information">
-            <h3 class="post-title">Description</h3>
-            <p class="post-description">{{ workshopUpdate.description }}</p>
-
-          </div>
-          <div class="content-refrence">
-            <h3 class="post-title">Additional Information</h3>
-            <p class="post-description" v-html="workshopUpdate.additional_info"></p>
-          </div>
-        </div>
-      </section>
-      <section class="team-post-description">
-        <div class="container">
-          <div class="row" v-if="registered">
-            <h2>Meetings</h2>
+            <h3 class="page-title-2 text-left mb-0">Description</h3>
+            <div class="pera-title text-left ">{{ workshopUpdate.description }}</div>
+            <h3 class="page-title-2 text-left mb-0">Additional Information</h3>
+            <div class="pera-title text-left" v-html="workshopUpdate.additional_info"></div>
+            <div class="light-pink-bg py-5 px-3">
+            <h2 class="page-title-2 text-left mb-3 pink-color">Meetings</h2>
+            <div class="table-responsive">
             <table class="table">
               <tr>
-                <td>Topic</td>
-                <td>Agenda</td>
-                <td>Type</td>
-                <td>Date</td>
-                <td>Duration</td>
-                <td>Passcode</td>
-                <td>Action</td>
+                <th>Topic</th>
+                <th>Agenda</th>
+                <th>Type</th>
+                <th>Date</th>
+                <th>Duration</th>
+                <th>Passcode</th>
+                <th>Visibility</th>
               </tr>
               <tr v-if="workshopMeetings.length" v-for="r in workshopMeetings" v-bind:key="r.id">
                 <td>{{ r.topic }}</td>
@@ -80,11 +92,9 @@
                 <td colspan="5">No Data Found</td>
               </tr>
             </table>
-          </div>
-        </div>
-      </section>
-    </div>
-  </div>
+            </div>
+            </div>
+  </section>
 </template>
 
 <script>

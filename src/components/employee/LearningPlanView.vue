@@ -13,10 +13,10 @@
     </div>
     <div class="row">
       <div class="col-md-4 my-3"  v-if="planFiles.length" v-for="w in planFiles" v-bind:key="w.id">
-        <div class="card"> 
-          <div class="card-body">
+        <div class="card">
+        <div class="card-body">
             <h5 class="card-title">{{ w.title }}</h5>
-            <p class="card-text">{{ w.description }}</p> 
+            <p class="card-text">{{ w.description }}</p>
             <a class="btn btn-read-more" @click="downloadLearningPlanFile(w.id, w.image)">Download File</a>
             </div>
           </div>

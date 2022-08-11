@@ -42,6 +42,7 @@ main.main-col {
     margin-bottom: -1px;
     background: #fff;
 }
+section.employer-section,
 section.employee-section {
     padding: 0;
 }   
@@ -596,6 +597,23 @@ opacity: 0.8;
   color: #fff !important;
 }
 
+.page-title-2 {
+    font-style: normal;
+    font-weight: 800;
+    font-size: 52px;
+    line-height: 71px;
+    text-transform: uppercase;
+    color: #090446;
+}
+
+.pera-title {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 33px;
+    color: #4C4C4D;
+    margin-bottom: 60px;
+}
 .page-sub-title {
     font-style: normal;
     font-weight: 400;
@@ -885,6 +903,10 @@ p.copyright {
     margin-top: 60px;
 }
 
+.color-border img {
+    height: 500px;
+    object-fit: cover;
+}
 .color-border {
     background: #090446;
     background-image: url(../images/border-color-bg.svg);
@@ -1093,6 +1115,20 @@ table tr td {
 table tr:last-child td {
     border: 0;
 }
+
+table tr td .btn {
+    background: #c2095a;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 18px;
+    text-align: center;
+    color: #FFFFFF;
+    white-space: nowrap;
+}
+
+.light-pink-bg {
+    background: #FFF1F6;
+}
 .message-bubble {
     display: inline-block;
     background: rgba(173, 185, 202, 0.2);
@@ -1178,7 +1214,21 @@ input[type="checkbox"] {
     top: 4px;
 }
 
+.message-grp-date {
+    background: #f1f1f1;
+    text-align: center;
+    padding: 4px;
+    margin: 2px 0;
+}
 
+.message-grp-date span {
+    background: #090446;
+    border-radius: 50px;
+    padding: 3px 10px;
+    display: inline-block;
+    color: #fff;
+    margin: 2px 0;
+}
 
 
 
@@ -1193,7 +1243,7 @@ input[type="checkbox"] {
 
 
 /*media query*/
-@media screen and (max-width: 992px) {
+@media screen and (max-width: 991px) {
   .h1, h1 {
     font-size: 36px;
   }
@@ -1219,6 +1269,46 @@ input[type="checkbox"] {
   }
   /*media query dashboard css*/
   
+
+section {
+    padding:30px;
+}
+.page-title{
+    font-size:34px;
+    line-height:50px;
+}
+.page-title-2{
+    font-size: 26px;
+    line-height: 35px;
+}
+input.form-control[type="search"]{
+    margin-bottom: 15px;
+    margin-top: 15px;
+}
+input.form-control + span.search-icon:after{
+        top: 31px;
+}
+.table {
+    max-width: 700px;
+    width: 700px;
+}
+.sidebar {
+    position: fixed;
+    height: 100vh;
+    z-index: 9999;
+    top: 0;
+    transform: translate(-100%, 0px);
+        transition: all .5s ease-in-out;
+}
+
+.sidebar.show {
+    transform: translate(0%, 10px);
+}
+div#app{
+    padding-bottom: 62px;
+    background: #fff;
+}
+
 }
 @media screen and (max-width: 767px) {
   .dashboard-container {

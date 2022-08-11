@@ -18,6 +18,7 @@
             </div>
         </div>
         <div class="row mt-3">
+        <div class="table-responsive">
             <table class="table">
                 <tr>
                     <td v-if="user.role == 'ADMIN'">Company Name</td>
@@ -56,6 +57,7 @@
                     <td colspan="5">No Data Found</td>
                 </tr>
             </table>
+            </div>
             <pagination :data="workshops" @pagination-change-page="getWorkshopList" />
         </div>
         <!--Add resource modal popup-->

@@ -1,4 +1,23 @@
 <template>
+<div>
+<section class="employer-dashboard pink-pattern-bg">
+  <h1 class="page-title text-left mb-0">Guided <span class="yellow-bg">Transformation</span></h1>
+  <h2 class="page-sub-title">This section will be the opening to the learning journey</h2>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="card">
+        <img src="https://freedesignfile.com/upload/2017/08/teamwork-Stock-Photo-01.jpg" class="card-img-top"
+             alt="...">
+        <div class="card-body">
+          <h5 class="card-sub-title">Step: 0</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+            content.</p>
+          <a href="#" class="links">Read More <img src="../../../assets/images/arrow-right.svg"/> </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
   <div class="col-md-9">
     <div class="row">
       <div class="col-lg-8">
@@ -111,6 +130,7 @@
       </div>
     </div>
   </div>
+</div>
 </template>
 
 <script>

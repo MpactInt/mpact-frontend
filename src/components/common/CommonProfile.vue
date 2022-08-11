@@ -34,7 +34,7 @@
                 
                 </div>
               </div>
-              <div class="col-md-6">
+              <div class="col-lg-6">
                   <div class="profile-details">
                     <label class="w-50">Full Name</label> <span>{{ authUser.first_name }} {{ authUser.last_name }} </span>
                   </div>
@@ -45,7 +45,7 @@
                     <label class="w-50">Profile Type</label> <span>{{ authUser.profile_type}}</span>
                   </div>
               </div>
-              <div class="col-md-6">
+              <div class="col-lg-6">
                 <div class="profile-details">
                   <label class="w-50">Company Name</label> <span>{{ authUser.company_name }}</span>
                 </div>
