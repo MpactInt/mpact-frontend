@@ -1,7 +1,7 @@
 <template>
-  <div class="col-md-9">
-    <h3>Admin Dashboard</h3>
-  </div>
+  <section class="admin-dashboard-hero-section" >
+    <h3 class="page-title mb-0 text-left  d-inline-block">Steps</h3>
+  </section>
 </template>
 
 <script>

@@ -1,20 +1,20 @@
 <template>
     <div class="mt-3">
-        <div class="row">
-            <div class="col-md-3 my-2">
+        <div class="row align-items-center">
+            <div class="col-lg-3  col-md-6 my-2">
                 <select v-model="getTodoData.sortBy" class="form-control" v-on:change="getTodoList">
                     <option value="">Sort By</option>
                     <option value="title">Title</option>
                 </select>
             </div>
-            <div class="col-md-6 my-2">
-                <input type="search" v-model="getTodoData.keyword" class="form-control" placeholder="Search"
+            <div class="col-lg-6  col-md-6 my-2">
+                <input type="search" v-model="getTodoData.keyword" class="form-control m-0" placeholder="Search"
                     v-on:keyup="getTodoList" /><span class="search-icon"></span>
             </div>
-            <div class="col-md-3 my-2">
-            </div>
-            <div class="col-lg-3 col-md-12 my-2" v-if="user.role == 'ADMIN'">
-                <button class="btn btn-primary float-right" v-b-modal.add-todo-modal>Add New Todo</button>
+           <!--  <div class="col-md-3 my-2">
+            </div> -->
+            <div class="col-lg-3 col-md-12 my-2 d-flex" v-if="user.role == 'ADMIN'">
+                <button class="btn btn-primary float-right ml-auto" v-b-modal.add-todo-modal>Add New Todo</button>
             </div>
         </div>
         <div class="row mt-3">
@@ -34,16 +34,35 @@
                     <td>{{ r.description }}</td>
                     <td><small class="pink-color">{{ r.status }}</small> </td>
                     <td>
-                        <button v-if="user.role == 'ADMIN'" class="btn btn-primary" @click="getTodo(r.id)"><i
+<div class="d-flex align-items-center p-0" style="min-width: 100px;">
+                <a type="button" class="mx-3 d-block"  width="24" v-if="user.role == 'ADMIN'"  @click="getTodo(r.id)">
+                  <img src="../../../assets/images/table-edit.svg" alt="table-edit" width="24" height="24" />
+                </a>
+                <a type="button" class="mx-3 d-block"  width="24"  v-if="user.role == 'ADMIN'"  @click="deleteTodo(r.id)">
+                  <img src="../../../assets/images/table-delete.svg" alt="table-delete" width="24" height="24" />
+              </a>
+                <a type="button" class="mx-3 d-block"  width="24"  v-if="user.role != 'ADMIN' && r.status == 'NEW' && company.role == 'COMPANY_ADMIN'" @click="completeTodo(r.id)">
+                  <img src="../../../assets/images/check-box.svg" alt="table-check-box" width="24" height="24" />
+              </a>                
+                <router-link v-if="user.role != 'ADMIN' && company.role == 'COMPANY_ADMIN'" class=""
+                    :to="'/employer/todo/' + r.id">
+                    <img src="../../../assets/images/table-eye.svg" alt="table-eye" width="24" height="24" />
+                </router-link>
+                <router-link v-if="user.role != 'ADMIN' && company.role == 'COMPANY_EMP'" class=""
+                    :to="'/employee/todo/' + r.id">
+                     <img src="../../../assets/images/table-eye.svg" alt="table-eye" width="24" height="24" />
+                </router-link>
+              </div>
+
+                        <!-- <button v-if="user.role == 'ADMIN'"  @click="getTodo(r.id)"><i
                                 class="fa fa-pencil"></i></button>
-                        <button v-if="user.role == 'ADMIN'" class="btn btn-danger" @click="deleteTodo(r.id)"><i
+                        <button v-if="user.role == 'ADMIN'"  @click="deleteTodo(r.id)"><i
                                 class="fa fa-trash"></i></button>
-                        <button v-if="user.role != 'ADMIN' && r.status == 'NEW' && company.role == 'COMPANY_ADMIN'"
-                            class="" @click="completeTodo(r.id)"><i class="fa fa-check mt-2 pink-color"></i></button>
+                        <button v-if="user.role != 'ADMIN' && r.status == 'NEW' && company.role == 'COMPANY_ADMIN'" @click="completeTodo(r.id)"><i class="fa fa-check mt-2 pink-color"></i></button>
                         <router-link v-if="user.role != 'ADMIN' && company.role == 'COMPANY_ADMIN'" class=""
                             :to="'/employer/todo/' + r.id"><i class="fa fa-eye mt-2 pink-color"></i></router-link>
                         <router-link v-if="user.role != 'ADMIN' && company.role == 'COMPANY_EMP'" class=""
-                            :to="'/employee/todo/' + r.id"><i class="fa fa-eye mt-2 pink-color"></i></router-link>
+                            :to="'/employee/todo/' + r.id"><i class="fa fa-eye mt-2 pink-color"></i></router-link> -->
                     </td>
                 </tr>
                 <tr v-if="!todosLength">

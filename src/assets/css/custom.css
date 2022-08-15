@@ -135,13 +135,29 @@ button.send-msg {
     margin-left: -2px !important;
     z-index: 9;
 }
-.desc-box {
-  border: 1px solid;
-  padding: 20px;
-  box-shadow: 1px 2px 2px 4px;
-  background-color: #F5F5F5;
-}
 
+.desc-box {
+    border: 1px solid  #F5F5F5;
+    padding: 20px;
+    /* -webkit-box-shadow: 1px 2px 2px 4px; */
+    /* box-shadow: 1px 2px 2px 4px; */
+    background-color: #F5F5F5;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 20px rgb(0 0 0 / 10%);
+}
+.desc-box p span,
+.desc-box p {
+    font-size: 16px;
+    line-height: 23px;
+    color: #090446;
+        font-family: 'Avenir' !important;
+}
+.desc-box p strong {
+    color: #C2095A;
+    font-size: 18px;
+line-height: 23px;
+    font-family: 'Avenir' !important;
+}
 .cart-item {
   padding: 2rem;
   border: 1px solid lightgrey

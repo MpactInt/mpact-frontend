@@ -1,31 +1,31 @@
 <template>
-  <div class="col-md-9">
-    <h1>Workshops</h1>
+  <section class="admin-workshops-section half-cut-bg">
+      <h1 class="page-title text-left mt-0">Workshops</h1>
     <div class="mt-5">
-      <div class="row mb-3">
-        <div class="col-md-3">
-          <img :src="workshopPath + '/' + workshopUpdate.img" />
-        </div>
-        <div class="col-md-9">
-          <div class="row">
-            <div class="col-md-4 mt-4">
-              <h1><b>{{ workshopUpdate.title }}</b></h1>
-              <span>Time: {{ workshopUpdate.total_hours }} Hour(s) Leader:{{ workshopUpdate.instructor }}</span>
-            </div>
+      <div class="row mb-3 align-items-center">
+        <div class="col-md-4">
+          <div class="color-border">
+            <img :src="workshopPath + '/' + workshopUpdate.img" style="height: 250px;" />
           </div>
+        </div>
+        <div class="col-md-4">
+              <h2 class="section-title text-left my-0  d-inline-block">{{ workshopUpdate.title }}</h2>
+              <p class="page-sub-title mb-0">Time: {{ workshopUpdate.total_hours }} Hour(s) Leader:{{ workshopUpdate.instructor }}</p>
         </div>
       </div>
       <div class="row mt-3">
-        <h3>Description</h3>
-        {{ workshopUpdate.description }}
+        <h3 class="page-title text-left mb-3">Description</h3>
+        <p class="page-sub-title mb-3">{{ workshopUpdate.description }}</p>
       </div>
       <div class="row mt-3" v-html="workshopUpdate.additional_info">
       </div>
-      <h3>Registered Employees</h3>
+      <h3 class="page-title text-left mt-5">Registered Employees</h3>
+
+      <div class="table-responsive">
       <table class="table">
         <tr>
-          <td>Employee Name</td>
-          <td>Company Name</td>
+          <th>Employee Name</th>
+          <th>Company Name</th>
         </tr>
         <tr v-if="workshopUpdateUserList.length" v-for="r in workshopUpdateUserList" v-bind:key="r.id">
           <td>{{ r.first_name }} {{ r.last_name }}</td>
@@ -36,7 +36,8 @@
         </tr>
       </table>
     </div>
-  </div>
+    </div>
+  </section>
 </template>
 
 <script>

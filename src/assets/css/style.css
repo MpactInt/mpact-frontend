@@ -1,6 +1,4 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-
 *::-webkit-scrollbar-track
 {
     border-radius: 10px;
@@ -43,6 +41,7 @@ main.main-col {
     margin-bottom: -1px;
     background: #fff;
 }
+section.admin-section,
 section.employer-section,
 section.employee-section {
     padding: 0;
@@ -89,7 +88,7 @@ border: 1px solid #feb95f;
 input.form-control, select.form-control, .custom-file-input {
     height: 50px;
     background: #FFFFFF;
-    border-radius: 6px;
+    border-radius: 10px;
     border: 1px solid #d9d9dd;
 }   
 
@@ -97,11 +96,16 @@ input.form-control, select.form-control, .custom-file-input {
 .form-control[type=file] {
     overflow: hidden;
     padding: 12px;
+    background-image: url(../images/choose-file.svg);
+    background-size: contain;
+    background-position: center right;
+    background-repeat: no-repeat;
 }
 select.form-control {
     position: relative;
     appearance: auto;
     border-right: 6px solid #fff;
+    box-shadow: 1px 0px 0px #d9d9dd;
 }
 select.form-control:after {
     /*content: '';*/
@@ -337,6 +341,11 @@ div#app {
 .sidebar::-webkit-scrollbar-thumb {
     background: #5c51e3;
 }
+.sidebar .user-detail {
+overflow: hidden;
+    max-width: calc(100% - 66px);
+
+}
 .sidebar .user-detail h5 {
     font-style: normal;
     font-weight: 900;
@@ -344,6 +353,9 @@ div#app {
     line-height: 36px;
     color: #090446;
     margin-bottom: 0;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .sidebar .user-detail p {
@@ -383,7 +395,7 @@ opacity: 0.8;
 .siderbar-link ul li a:hover,
 .siderbar-link ul li a.active, .siderbar-link ul li.active a {
     background: #ADB9CA;
-    font-weight: 900;
+    font-weight: 500;
     opacity: 1 ;
 }
 .siderbar-link ul li input.form-control + span.search-icon:after {
@@ -407,6 +419,7 @@ opacity: 0.8;
     background-repeat: no-repeat;
     background-size: 100% 600px;
 }
+.admin-dashboard-hero-section ,
 .employee-dashboard-hero-section {
     background-image: url('../images/about-bg.jpg');
     background-repeat: no-repeat;
@@ -660,7 +673,7 @@ text-align: center;
 color: #000000;
 position: relative;
 }
-.pricing-section .nav.nav-pills button:first-child:after {
+.pricing-section .nav.nav-pills button:after {
     content: '';
     background: #d9d9d9;
     right: -50px;
@@ -668,6 +681,19 @@ position: relative;
     position: absolute;
     width: 100px;
     z-index: -1;
+}
+
+.pricing-section .nav.nav-pills button:last-child:after {
+    display: none;
+}
+.tabs-ui .pricing-section .nav.nav-pills button {
+    padding: 15px 30px;
+    margin: 0 6px;
+    font-weight: 400;
+}
+.tabs-ui .pricing-section .nav.nav-pills button[aria-selected="true"]{
+
+    font-weight: 500;
 }
 .pettern-bg {
         background-color: #fff;
@@ -765,6 +791,18 @@ position: relative;
     color: #090446;
 }
 
+.view-step-title {
+    font-style: normal;
+    font-weight: 900;
+    font-size: 16px;
+    line-height: 20px;
+    text-transform: uppercase;
+    color: #090446;
+    background: #FFD196;
+    border-radius: 8px;
+    padding: 8px;
+    display: inline-block;
+}
 
 .pricing-box {
     background: #FFFFFF;
@@ -827,7 +865,7 @@ p.copyright {
 
 .btn{
   font-style: normal;
-  font-weight: 600;
+  font-weight: 500;
   font-size: 20px;
   line-height: 25px;
   color: #FFFFFF;
@@ -970,9 +1008,10 @@ p.copyright {
 }
 .half-cut-bg {
     background-image: url(../images/my-learning-plan-bg.svg);
-    background-size: cover;
-    background-position: bottom right;
+    background-size: 100%;
+    background-position: top right;
     width: 100%;
+        background-repeat: no-repeat;
 }
 .my-learning-plan {
     background-image: url(../images/my-learning-plan-bg.svg);
@@ -1025,6 +1064,7 @@ p.copyright {
     line-height: 24px;
     text-transform: uppercase;
     color: #C2095A;
+    cursor: pointer;
 }
 .links:hover, .link:hover {
     color: #4C4C4D;
@@ -1124,12 +1164,19 @@ left: 10px;
     word-break: break-all;
 }
 
+.table-responsive {
+    padding: 0;
+    border-radius: 12px;
+        background: #fff;
+    border: 1px solid #d9d9dd;
+}
 table tr, table tr td, table tr th {
     border-width: 0px;
 }
 
 table tr td, table tr th {
     padding: 15px 18px !important;
+    vertical-align: middle !important;
 }
 
 table tr th {
@@ -1148,17 +1195,26 @@ table tr th:first-child {
 table>:not(:first-child) {
     border-top: 0px solid currentColor !important;
 }
+table tr td span,table tr td p,
 table tr td {
+    color: #090446;
+    font-weight: 500;
+    margin-bottom: 0;
+}
+table tr td {
+        background: #fff;
     border-top: 0px !important;
     border-bottom: 1px solid #d9d9d9;
-    color: #090446;
-    font-weight: 600;
-        background: #fff;
-}
+    }
 table tr:last-child td {
     border: 0;
 }
 
+.table td .d-flex .mx-3.d-block {
+    width: 20px;
+    margin-left: 0 !important;
+    padding-right: 4px;
+}
 table tr td .btn {
     background: #c2095a;
     font-weight: 500;
@@ -1383,6 +1439,61 @@ a.dashboard-card-link {
 .tox .tox-toolbar--scrolling {
     margin-bottom: 20px;
 }
+
+img.table-img {
+    min-width: 100px;
+    width: 100px;
+    height: 100px;
+    min-height: 100px;
+    padding: 0;
+    border-radius: 5px;
+}
+
+.table>:not(caption)>*>* {
+    padding: 0;
+}
+
+.Uploaded-file-box {
+    background: #FFFFFF;
+    box-shadow: 0px 4px 20px rgb(0 0 0 / 10%);
+    padding: 30px;
+    height: 100%;
+    display: inline-block;
+    position: relative;
+}
+
+.Uploaded-file-box a {
+    display: inline-block;
+    width: 100%;
+    font-style: normal;
+    font-weight:500;
+    font-size: 16px;
+    line-height: 23px;
+    color: #090446;
+}
+
+.Uploaded-file-box a i {
+    font-size: 88px;
+    margin-bottom: 15px;
+    color: #FEB95F;
+}   
+.Uploaded-file-box .fa.fa-trash {
+    background: #d3dff1;
+    /* opacity: 0.5; */
+    border-radius: 4px;
+    padding: 4px;
+    color: #fff;
+    color: #090446;
+    font-size: 20px;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+
+
+
+
 
 
 

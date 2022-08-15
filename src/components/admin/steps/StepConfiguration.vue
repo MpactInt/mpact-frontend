@@ -1,21 +1,21 @@
 <template>
-  <div class="col-md-9">
-    <h1>Steps</h1>
+
+    <section class="admin-steps-configuration-section half-cut-bg">
+      <h1 class="page-title text-left mt-0">Steps</h1>
     <div class="mt-5">
-      <div class="row mb-3">
-        <div class="col-md-3">
+      <div class="row mb-3 align-items-center">
+        <div class="col-md-3 my-2">
           <select v-model="getStepData.sortBy" class="form-control" v-on:change="getStepsList">
             <option value="">Sort By</option>
             <option value="title">Title</option>
           </select>
         </div>
-        <div class="col-md-3">
-          <input type="text" v-model="getStepData.keyword" class="form-control" placeholder="Search"
-            v-on:keyup="getStepsList" />
+        <div class="col-md-4 my-2">
+          <input type="search" v-model="getStepData.keyword" class="form-control m-0" placeholder="Search"
+            v-on:keyup="getStepsList" /><span class="search-icon"></span>
         </div>
-        <div class="col-md-3"></div>
-        <div class="col-md-3">
-          <button class="btn btn-primary float-right" v-b-modal.add-step-modal>Add New Step</button>
+        <div class="col-md-5 d-flex my-2">
+          <button class="btn btn-primary float-right ml-auto" v-b-modal.add-step-modal>Add New Step</button>
         </div>
       </div>
       <table class="table">
@@ -28,12 +28,24 @@
         <tr v-if="stepsLength" v-for="r in stepsList" v-bind:key="r.id">
           <td>{{ r.title }}</td>
           <td>{{ r.overview }}</td>
-          <td><img :src="filePath + '/' + r.image" height="70" width="70" /></td>
+          <td><img :src="filePath + '/' + r.image" class="table-img" height="70" width="70" /></td>
           <td>
-            <button class="btn btn-primary" @click="getStep(r.id)"><i class="fa fa-pencil"></i></button>
+
+              <div class="d-flex align-items-center p-0" style="min-width: 150px;">
+                <a type="button" class="mx-3 d-block"  width="24" @click="getStep(r.id)">
+                  <img src="../../../assets/images/table-edit.svg" alt="table-edit" width="24" height="24" />
+                </a>
+                <a type="button" class="mx-3 d-block"  width="24"  @click="deleteStep(r.id)">
+                  <img src="../../../assets/images/table-delete.svg" alt="table-delete" width="24" height="24" /></a>
+                  <router-link class="mx-3 d-block"  :to="'/admin/view-step/' + r.id">
+                  <img src="../../../assets/images/table-eye.svg" alt="table-eye" width="24" height="24" />
+                  </router-link>
+              </div>
+
+            <!--<button class="btn btn-primary" @click="getStep(r.id)"><i class="fa fa-pencil"></i></button>
             <button class="btn btn-danger" @click="deleteStep(r.id)"><i class="fa fa-trash"></i></button>
             <router-link class="btn btn-primary" :to="'/admin/view-step/' + r.id"><i class="fa fa-eye"></i>
-            </router-link>
+            </router-link>-->
           </td>
         </tr>
         <tr v-if="!stepsLength">
@@ -90,7 +102,7 @@
         </div>
       </form>
     </b-modal>
-  </div>
+  </section>
 </template>
 
 <script>

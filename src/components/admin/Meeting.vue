@@ -1,6 +1,6 @@
 <template>
-  <div class="col-md-9">
-    <h1>Meetings</h1>
+    <section class="admin-learning-plan-section half-cut-bg">
+      <h1 class="page-title text-left mt-0">Meetings</h1>
     <div class="mt-5">
       <div class="row mb-3">
         <div class="col-md-3">
@@ -13,21 +13,22 @@
           <!-- <input type="text" v-model="getWorkshopData.keyword" class="form-control" placeholder="Search"
             v-on:keyup="getWorkshopsList" /> -->
         </div>
-        <div class="col-md-3"></div>
-        <div class="col-md-3">
-          <button class="btn btn-primary float-right" v-b-modal.add-modal>Add New Meeting</button>
+        <div class="col-md-6 d-flex my-2">
+          <button class="btn btn-primary float-right ml-auto" v-b-modal.add-modal>Add New Meeting</button>
         </div>
       </div>
+
+      <div class="table-responsive">
       <table class="table">
         <tr>
-          <td>Workshop Title</td>
-          <td>Topic</td>
-          <td>Agenda</td>
-          <td>Type</td>
-          <td>Date</td>
-          <td>Duration</td>
-          <td>Passcode</td>
-          <td>Action</td>
+          <th>Workshop Title</th>
+          <th>Topic</th>
+          <th>Agenda</th>
+          <th>Type</th>
+          <th>Date</th>
+          <th>Duration</th>
+          <th>Passcode</th>
+          <th>Action</th>
         </tr>
         <tr v-if="meetingsLength" v-for="r in meetingsList.data" v-bind:key="r.id">
           <td>{{ r.title }}</td>
@@ -38,16 +39,18 @@
           <td>{{ r.start_time | timeAgo }}</td>
           <td>{{ r.duration }}</td>
           <td>{{ r.passcode }}</td>
-          <td>
+          <td class="pl-0">
+          <div class="d-flex justify-content-end">
             <!-- <button class="btn btn-primary" @click="getWorkshop(r.id)"><i class="fa fa-pencil"></i></button>
-            <button class="btn btn-danger" @click="deleteWorkshop(r.id)"><i class="fa fa-trash"></i></button> -->
-            <a v-if="r.status != 'end'" class="btn btn-primary" target="_blank" :href="r.start_url">Start Meeting</a>
-            <router-link v-if="r.status == 'end'" class="btn btn-primary" :to="'/admin/meeting-recordings/' + r.meeting_id">View Recordings
+            <button class="btn btn-primary m-2" @click="deleteWorkshop(r.id)"><i class="fa fa-trash"></i></button> -->
+            <a v-if="r.status != 'end'" class="btn btn-primary m-2" target="_blank" :href="r.start_url">Start Meeting</a>
+            <router-link v-if="r.status == 'end'" class="btn btn-primary m-2" :to="'/admin/meeting-recordings/' + r.meeting_id">View Recordings
             </router-link>
-            <button v-if="r.status != 'end'" class="btn btn-primary" @click="endMeeting(r.meeting_id)">End
+            <button v-if="r.status != 'end'" class="btn btn-outline-primary  m-2" @click="endMeeting(r.meeting_id)">End
               Meeting</button>
-            <button v-if="r.status == 'end'" class="btn btn-primary" @click="sendPostWorkshopSurveyEmail(r.workshop_id)"
+            <button v-if="r.status == 'end'" class="btn btn-outline-primary  m-2" @click="sendPostWorkshopSurveyEmail(r.workshop_id)"
               :disabled="disabled">Send Survey</button>
+              </div>
           </td>
         </tr>
         <tr v-if="!meetingsLength">
@@ -55,6 +58,7 @@
         </tr>
       </table>
 
+      </div>
     </div>
     <!--Add meeting modal popup-->
     <b-modal id="add-modal" title="Add New Meeting" :hide-footer=hideFooter size="lg" no-fade no-enforce-focus>
@@ -110,7 +114,7 @@
     <!--Update meeting modal popup-->
     <b-modal id="update-modal" title="Update Workshop" :hide-footer=hideFooter size="lg" no-fade no-enforce-focus>
     </b-modal>
-  </div>
+  </section>
 </template>
 
 <script>

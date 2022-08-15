@@ -8,32 +8,31 @@
         </select>
       </div>
       <div class="col-md-3 my-2">
-        <input type="text" v-model="getWorkshopData.keyword" class="form-control" placeholder="Search"
-          v-on:keyup="getWorkshopsList" />
+        <input type="search" v-model="getWorkshopData.keyword" class="form-control" placeholder="Search"
+          v-on:keyup="getWorkshopsList" /><span class="search-icon"></span>
       </div>
-      <div class="col-md-3 my-2"></div>
-      <div class="col-lg-3 col-md-12 my-2">
-        <button v-if="user.role == 'ADMIN'" class="btn btn-primary float-right" v-b-modal.add-workshop-modal>Add New
+      <div class="col-lg-6 col-md-12 my-2 d-flex">
+        <button v-if="user.role == 'ADMIN'" class="btn btn-primary ml-auto float-right" v-b-modal.add-workshop-modal>Add New
           Workshop</button>
       </div>
     </div>
     <div class="table-responsive">
     <table class="table">
       <tr>
-        <td v-if="user.role == 'ADMIN'">Company</td>
-        <td>Image</td>
-        <td>Title</td>
-        <td>Description</td>
-        <td>Total Hours</td>
-        <td>Date</td>
-        <td>Instructor</td>
-        <td>Meeting Type</td>
-        <td>Additional Info</td>
-        <td>Action</td>
+        <th v-if="user.role == 'ADMIN'">Company</th>
+        <th>Image</th>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Total Hours</th>
+        <th>Date</th>
+        <th>Instructor</th>
+        <th>Meeting Type</th>
+        <th>Additional Info</th>
+        <th>Action</th>
       </tr>
       <tr v-if="workshopsLength" v-for="r in workshopsList.data" v-bind:key="r.id">
         <td v-if="user.role == 'ADMIN'"><span v-for="c in r.company" v-bind:key="c.id">{{ c.company_name }},</span></td>
-        <td><img :src="filePath + '/' + r.image" height="70" width="70" /></td>
+        <td><img :src="filePath + '/' + r.image" class="table-img" height="70" width="70" /></td>
         <td>{{ r.title }}</td>
         <td>{{ r.description }}</td>
         <td>{{ r.total_hours }}</td>
@@ -41,17 +40,35 @@
         <td>{{ r.instructor }}</td>
         <td>{{ r.meeting_type }}</td>
         <td><span v-html="r.additional_info"></span></td>
-        <td>
-          <button v-if="user.role == 'ADMIN'" class="btn btn-primary"
+        <td class="pl-0">
+
+              <div class="d-flex align-items-center p-0" style="min-width: 150px;">
+                <a type="button" class="mx-3 d-block"  width="24" v-if="user.role == 'ADMIN'"  @click="getCompaniesListMultiselect(); getWorkshop(r.id)">
+                  <img src="../../../assets/images/table-edit.svg" alt="table-edit" width="24" height="24" />
+                </a>
+                <a type="button" class="mx-3 d-block"  width="24"  v-if="user.role == 'ADMIN'" @click="deleteWorkshop(r.id)">
+                  <img src="../../../assets/images/table-delete.svg" alt="table-delete" width="24" height="24" /></a>
+
+                <router-link v-if="user.role == 'ADMIN'" class="mx-3 d-block" :to="'/admin/view-workshop/' + r.id">
+                <img src="../../../assets/images/table-eye.svg" alt="table-eye" width="24" height="24" />
+                </router-link>
+                <router-link v-if="user.role != 'ADMIN'" class="mx-3 d-block" :to="'/employer/view-workshop/' + r.id">
+                <img src="../../../assets/images/table-eye.svg" alt="table-eye" width="24" height="24" />
+                </router-link>
+              </div>
+
+         <!-- <button v-if="user.role == 'ADMIN'" class="btn btn-primary"
             @click="getCompaniesListMultiselect(); getWorkshop(r.id)"><i class="fa fa-pencil"></i></button>
+
           <button v-if="user.role == 'ADMIN'" class="btn btn-danger" @click="deleteWorkshop(r.id)"><i
               class="fa fa-trash"></i></button>
+
           <router-link v-if="user.role == 'ADMIN'" class="btn btn-primary" :to="'/admin/view-workshop/' + r.id"><i
               class="fa fa-eye"></i>
           </router-link>
           <router-link v-if="user.role != 'ADMIN'" class="btn btn-primary" :to="'/employer/view-workshop/' + r.id"><i
               class="fa fa-eye"></i>
-          </router-link>
+          </router-link>-->
         </td>
       </tr>
       <tr v-if="!workshopsLength">

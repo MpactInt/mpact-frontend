@@ -1,10 +1,10 @@
 <template>
-  <div class="col-md-2 sidebar">
+  <div class="sidebar-box"">
     <div class="user-info">
       <div class="user-img"><img class="logo-img" src="../../../assets/images/user-img.png"></div>
       <div class="user-detail">
-        <h5>{{ user.email }}</h5>
-        <p class="mb-0">Super Admin</p>
+        <h5 class="c-name">{{ user.email }}</h5>
+        <p class="mb-0 f-name">Super Admin</p>
       </div>
     </div>
     <div class="siderbar-link">
@@ -61,7 +61,14 @@
           <router-link to="/admin/meetings">Zoom Meetings</router-link>
         </li>
       </ul>
-      <div class="logout-btn-box"><button class="logout-btn btn" @click="logout">Logout</button></div>
+      
+      <hr/>
+      <div class="logout-btn-box">
+        <button class="logout-btn btn" @click="logout"><img src="../../../assets/images/logout.svg" alt="logout"/>
+          Logout
+        </button>
+      </div>
+      <!-- <div class="logout-btn-box"><button class="logout-btn btn" @click="logout">Logout</button></div>-->
     </div>
   </div>
   <!-- siderbar end -->

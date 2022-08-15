@@ -3,7 +3,7 @@
     <div class="row align-items-center">
       <div class="col-md-4 my-3">
         <div class="color-border">
-          <img :src="planSingle.image" class="w-100" alt="">
+          <img :src="planSingle.image" class="w-100"  style="height: 250px;" alt="">
         </div>
       </div>
       <div class="col-md-8 my-3">

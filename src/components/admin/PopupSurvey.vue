@@ -1,26 +1,24 @@
 <template>
-    <div class="col-md-9">
-        <h3>Popup Survey Questions</h3>
+      <section class="admin-learning-plan-section half-cut-bg">
+      <h1 class="page-title text-left mt-0">Popup Survey Questions</h1>
         <div class="row">
             <div class="col-md-3">
             </div>
             <div class="col-md-3">
             </div>
-            <div class="col-md-3">
-            </div>
-            <div class="col-md-3" v-if="user.role == 'ADMIN'">
-                <button class="btn btn-primary float-right" v-b-modal.add-modal>Add Popup Survey</button>
+            <div class="col-md-6 my-2 d-flex" v-if="user.role == 'ADMIN'">
+                <button class="btn btn-primary float-right ml-auto" v-b-modal.add-modal>Add Popup Survey</button>
             </div>
         </div>
-        <div class="row mt-3">
+      <div class="table-responsive">
             <table class="table">
                 <tr>
-                    <td>Question</td>
-                    <td>Option 1</td>
-                    <td>Option 2</td>
-                    <td>Option 3</td>
-                    <td>Option 4</td>
-                    <td>Action</td>
+                    <th>Question</th>
+                    <th>Option 1</th>
+                    <th>Option 2</th>
+                    <th>Option 3</th>
+                    <th>Option 4</th>
+                    <th>Action</th>
                 </tr>
                 <tr v-if="popupSurveyLength" v-for="p in popupSurvey.data" v-bind:key="p.id">
                     <td>{{ p.question }}</td>
@@ -29,11 +27,17 @@
                     <td>{{ p.option_3 }}</td>
                     <td>{{ p.option_4 }}</td>
                     <td>
-                        <button class="btn btn-primary" @click="getPopupSurvey(p)"><i class="fa fa-pencil"></i></button>
-                        <button class="btn btn-danger" @click="deletePopupSurvey(p.id)"><i
-                                class="fa fa-trash"></i></button>
-                        <router-link class="btn btn-primary" :to="'/admin/popup-survey/' + p.id"><i class="fa fa-eye"></i>
-                        </router-link>
+                        <div class="d-flex align-items-center p-0" style="min-width: 100px;">
+                            <a type="button" class="mx-3 d-block"  width="24" @click="getPopupSurvey(p)">
+                                <img src="../../assets/images/table-edit.svg" alt="table-edit" width="24" height="24" />
+                            </a>
+                            <a type="button" class="mx-3 d-block"  width="24" @click="deletePopupSurvey(p.id)">
+                                <img src="../../assets/images/table-delete.svg" alt="table-delete" width="24" height="24" />
+                            </a>
+                            <router-link type="button" class="mx-3 d-block"  width="24" :to="'/admin/popup-survey/' + p.id">
+                                <img src="../../assets/images/table-eye.svg" alt="table-eye" width="24" height="24" />
+                            </router-link>
+                        </div>
                     </td>
                 </tr>
                 <tr v-if="!popupSurveyLength">
@@ -99,7 +103,7 @@
                 </div>
             </form>
         </b-modal>
-    </div>
+    </section>
 </template>
 <script>
 /* eslint-disable */

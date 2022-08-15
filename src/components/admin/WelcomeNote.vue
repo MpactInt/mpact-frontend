@@ -1,6 +1,6 @@
 <template>
-  <div class="col-md-9">
-    <h1>Welcome Note</h1>
+    <section class="admin-welcome-note-section pink-pattern-bg">
+      <h1 class="page-title text-left mt-0">Welcome <span>Note </span></h1>
     <div class="row">
       <div class="col-md-3">
 
@@ -8,31 +8,37 @@
       <div class="col-md-3">
 
       </div>
-      <div class="col-md-3">
-
-      </div>
-      <div class="col-md-3">
-        <button class="btn btn-primary float-right" @click="getWelcomeNoteCompanies()" v-b-modal.add-modal>Add New Welcome Note</button>
+      <div class="col-md-6 d-flex my-2">
+        <button class="btn btn-primary float-right ml-auto" @click="getWelcomeNoteCompanies()" v-b-modal.add-modal>Add New Welcome Note</button>
       </div>
     </div>
-    <div class="row mt-3">
+      <div class="table-responsive">
       <table class="table">
         <tr>
-          <td>Image</td>
-          <td>Title</td>
-          <td>Description</td>
-          <td>Company</td>
-          <td>Action</td>
+          <th>Image</th>
+          <th>Title</th>
+          <th>Description</th>
+          <th>Company</th>
+          <th>Action</th>
         </tr>
         <tr v-if="welcome_notes_length" v-for="n in welcome_notes.data" v-bind:key="n.id">
-          <td><img :src="path + '/' + n.image" height="75" width="75" /></td>
+          <td><img :src="path + '/' + n.image" class="table-img" height="75" width="75" /></td>
           <td>{{ n.title }}</td>
           <td v-html="n.description"></td>
           <td><span v-for="c in n.company" v-bind:key="c.id">{{ c.company_name }},</span></td>
           <td>
-            <button class="btn btn-primary" @click="getCompaniesList(); getSingleWelcomeNote(n.id)"><i
+            <!-- <button class="btn btn-primary" @click="getCompaniesList(); getSingleWelcomeNote(n.id)"><i
                 class="fa fa-pencil"></i></button>
-            <button class="btn btn-danger" @click="deleteWelcomeNote(n.id)"><i class="fa fa-trash"></i></button>
+            <button class="btn btn-danger" @click="deleteWelcomeNote(n.id)"><i class="fa fa-trash"></i></button> -->
+
+              <div class="d-flex align-items-center p-0" style="min-width: 100px;">
+                <a type="button" class="mx-3 d-block"  width="24" @click="getCompaniesList(); getSingleWelcomeNote(n.id)">
+                  <img src="../../assets/images/table-edit.svg" alt="table-edit" width="24" height="24" />
+                </a>
+                <a type="button" class="mx-3 d-block"  width="24"  @click="deleteWelcomeNote(n.id)">
+                  <img src="../../assets/images/table-delete.svg" alt="table-delete" width="24" height="24" /></a>
+              </div>
+
           </td>
         </tr>
         <tr v-if="!welcome_notes_length">
@@ -100,7 +106,7 @@
       </form>
     </b-modal>
 
-  </div>
+  </section>
 </template>
 <style src="vue-multiselect/dist/vue-multiselect.min.css">
 </style>

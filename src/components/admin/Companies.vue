@@ -1,30 +1,31 @@
 <template>
-  <div class="col-md-9">
+  <section class="admin-workshops-section half-cut-bg">
+      <h1 class="page-title text-left mt-0">{{ msg }}</h1>
     <div class="row">
-      <h1>{{ msg }}</h1>
 
       <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-3 my-2">
 
         </div>
-        <div class="col-md-3">
+        <div class="col-md-3 my-2">
 
         </div>
-        <div class="col-md-3">
+        <div class="col-md-3 my-2">
         </div>
-        <div class="col-md-3">
+        <div class="col-md-3 my-2">
           <button class="btn btn-primary" v-b-modal.add-modal>Add Company</button>
         </div>
       </div>
-      <div class="row mt-3">
+      
+      <div class="table-responsive">
         <table class="table">
           <tr>
-            <td>Logo</td>
-            <td>Company Name</td>
-            <td>Selected Plan</td>
-            <td>Consulting Hours Total</td>
-            <td>Consulting Hours Remaining</td>
-            <td>Action</td>
+            <th>Logo</th>
+            <th>Company Name</th>
+            <th>Selected Plan</th>
+            <th>Consulting Hours Total</th>
+            <th>Consulting Hours Remaining</th>
+            <th>Action</th>
           </tr>
           <tr v-if="comapanyListLength" v-for="r in comapanyList.data" v-bind:key="r.id">
             <td><img :src="path + r.company_logo" height="75" width="75" /></td>
@@ -100,7 +101,7 @@
         </div>
       </form>
     </b-modal>
-  </div>
+  </section>
 </template>
 
 <script>

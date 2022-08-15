@@ -1,5 +1,6 @@
 <template>
-    <div class="col-md-9">
+      <section class="admin-learning-plan-section half-cut-bg">
+      <h1 class="page-title text-left mt-0">Learning Plan</h1>
         <div class="row mb-3">
             <div class="col-md-4">
 
@@ -7,36 +8,49 @@
             <div class="col-md-4">
 
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 d-flex my-2">
                 <button class="btn btn-primary float-right" v-b-modal.add-modal>Add New Learning Plan</button>
             </div>
         </div>
-        <h3>Learning Plan</h3>
+       
+      <div class="table-responsive">
         <table class="table">
             <tr>
-                <td>Image</td>
-                <td>Title</td>
-                <td>Description</td>
-                <td>Profile Type</td>
-                <td>Action</td>
+                <th>Image</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Profile Type</th>
+                <th>Action</th>
             </tr>
             <tr v-if="learningPlanLength" v-for="lp in learningPlan.data" v-bind:key="lp.id">
-                <td><img :src="learningPlanPath + '/' + lp.image" height="75" width="75" /></td>
+                <td><img :src="learningPlanPath + '/' + lp.image" class="table-img" height="75" width="75" /></td>
                 <td>{{ lp.title }}</td>
                 <td>{{ lp.description }}</td>
                 <td>{{ lp.profile_type }}</td>
                 <td>
-                    <button class="btn btn-primary" @click="getLearningPlan(lp)"><i class="fa fa-pencil"></i></button>
+
+              <div class="d-flex align-items-center p-0" style="min-width: 100px;">
+                <a type="button" class="mx-3 d-block"  width="24" @click="getLearningPlan(lp)">
+                  <img src="../../assets/images/table-edit.svg" alt="table-edit" width="24" height="24" />
+                </a>
+                <a type="button" class="mx-3 d-block"  width="24"  @click="deleteLearningPlan(lp.id)">
+                  <img src="../../assets/images/table-delete.svg" alt="table-delete" width="24" height="24" /></a>
+                  <router-link class="mx-3 d-block" :to="'/admin/learning-plan/' + lp.id">
+                  <img src="../../assets/images/table-eye.svg" alt="table-delete" width="24" height="24" />
+                  </router-link>
+              </div>
+                   <!-- <button class="btn btn-primary" @click="getLearningPlan(lp)"><i class="fa fa-pencil"></i></button>
                     <button class="btn btn-danger" @click="deleteLearningPlan(lp.id)"><i
                             class="fa fa-trash"></i></button>
                     <router-link class="btn btn-primary"
-                        :to="'/admin/learning-plan/' + lp.id"><i class="fa fa-eye"></i></router-link>
+                        :to="'/admin/learning-plan/' + lp.id"><i class="fa fa-eye"></i></router-link>-->
                 </td>
             </tr>
             <tr v-if="!learningPlanLength">
                 <td colspan="5">No Data Found</td>
             </tr>
         </table>
+        </div>
         <b-modal id="add-modal" title="Add New Learning Plan" :hide-footer=hideFooter>
             <form enctype="multipart/form-data">
                 <div id="details">
@@ -99,7 +113,7 @@
                 </div>
             </form>
         </b-modal>
-    </div>
+    </section>
 </template>
 <script>
 /* eslint-disable */

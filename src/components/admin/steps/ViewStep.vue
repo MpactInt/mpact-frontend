@@ -1,14 +1,15 @@
 <template>
-<div>
-    <router-link to="/admin/steps-configuration">
-      <button class="btn-primary">
-        <i class="fa fa-arrow-left white"></i>
-      </button>
+
+  <section class="view-step-link half-cut-bg">
+    <router-link to="/admin/steps-configuration"  class="btn back">
+       <!-- <button class="btn-primary"> -->
+        <img src="../../../assets/images/arrow-left.svg" alt="arrow-left" /> Back
+      <!-- </button> -->
     </router-link>
 
-    <div class="row mt-5">
-      <div class="col-md-2">
-        <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+    <div class="row mt-5 tabs-ui">
+      <div class="col-md-12 pricing-section">
+        <div class="nav nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
           <button class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home"
             type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">Overview</button>
           <button class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile"
@@ -17,17 +18,19 @@
             type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false">Toolkit</button>
         </div>
       </div>
-      <div class="col-md-10">
-        <h3>Welcome to {{ stepUpdate.title }}</h3>
+      <div class="col-md-12">
+        <h3 class="view-step-title">Welcome to </h3>
+        <h3 class="section-title">{{ stepUpdate.title }}</h3>
         <div class="tab-content" id="v-pills-tabContent">
           <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
             <div class="mb-3">
-              <p><b>Overview</b></p>
-              {{ stepUpdate.overview }}
+              <p><b class="pink-color">Overview</b></p>
+              <p>{{ stepUpdate.overview }}</p>
             </div>
             <div class="desc-box" v-html="stepUpdate.description"></div>
           </div>
           <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+            <p><b class="pink-color">Guide Book</b></p>
             <div class="row mt-3">
               <div class="row">
                 <form @submit="uploadGuideBook" enctype="multipart/form-data">
@@ -49,8 +52,7 @@
             </div>
           </div>
           <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
-            <div class="row mt-3">
-              <div class="row">
+             <p><b class="pink-color">Toolkit</b></p>
                 <div class="col-md-6">
                   <form @submit="uploadToolkit" enctype="multipart/form-data">
                     <div class="form-group">
@@ -62,36 +64,35 @@
                     </div>
                   </form>
                 </div>
-              </div>
-              <div class="row mt-3">
-                <h5>Uploaded Files</h5>
-              </div>
-              <div class="row mt-3">
-                <div class="col-md-2 mb-5" v-if="stepUpdate.toolkit.length" v-for="tk in stepUpdate.toolkit"
-                  v-bind:key="tk.id">
-                  <a href="javascript:void(0)" @click="downloadToolkit(tk.id, tk.file)">
-                    <i v-if="tk.type == 'png' || tk.type == 'jpg' || tk.type == 'jpeg' || tk.type == 'svg'"
-                      class="fa-solid fa-file-image fa-10x"></i>
-                    <i v-if="tk.type == 'pdf'" class="fa-solid fa-file-pdf fa-10x"></i>
-                    <i v-if="tk.type == 'ppt' || tk.type == 'pptx'" class="fa-solid fa-file-powerpoint fa-10x"></i>
-                    <i v-if="tk.type == 'doc' || tk.type == 'docx'" class="fa-solid fa-file-word fa-10x"></i>
-                    <i v-if="tk.type == 'csv'" class="fa-solid fa-file-csv fa-10x"></i>
-                    <i v-if="tk.type == 'xls' || tk.type == 'xlsx'" class="fa-solid fa-file-excel fa-10x"></i>
-                    <br>
-                    {{ tk.file | removeTimestampFromFileName }}
-                  </a>
-                  <i class="fa fa-trash cursor-pointer" @click="deleteToolkit(tk.id)"></i>
+                <div class="col-md-12">
+                  <h5 class="page-sub-title mt-5 mb-4">Uploaded Files</h5>
+                </div>
+                <div class="row">
+                  <div class="col-lg-3 my-3 col-md-6" v-if="stepUpdate.toolkit.length" v-for="tk in stepUpdate.toolkit" v-bind:key="tk.id">
+                    <div class="Uploaded-file-box">
+                      <a href="javascript:void(0)" @click="downloadToolkit(tk.id, tk.file)">
+                        <i v-if="tk.type == 'png' || tk.type == 'jpg' || tk.type == 'jpeg' || tk.type == 'svg'"
+                          class="fa-solid fa-file-image fa-10x"></i>
+                        <i v-if="tk.type == 'pdf'" class="fa-solid fa-file-pdf fa-10x"></i>
+                        <i v-if="tk.type == 'ppt' || tk.type == 'pptx'" class="fa-solid fa-file-powerpoint fa-10x"></i>
+                        <i v-if="tk.type == 'doc' || tk.type == 'docx'" class="fa-solid fa-file-word fa-10x"></i>
+                        <i v-if="tk.type == 'csv'" class="fa-solid fa-file-csv fa-10x"></i>
+                        <i v-if="tk.type == 'xls' || tk.type == 'xlsx'" class="fa-solid fa-file-excel fa-10x"></i>
+                        <br>
+                        {{ tk.file | removeTimestampFromFileName }}
+                      </a>
+                      <i class="fa fa-trash cursor-pointer" @click="deleteToolkit(tk.id)"></i>
+                    </div>
+                  </div>
                 </div>
                 <div v-if="!stepUpdate.toolkit.length">
                   No Data Found
                 </div>
-              </div>
-            </div>
           </div>
         </div>
       </div>
     </div>
-    </div>
+    </section>
 </template>
 
 <script>

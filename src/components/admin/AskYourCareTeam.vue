@@ -1,8 +1,8 @@
 <template>
-  <div class="col-md-9">
-    <div class="row">
-      <h1>{{ msg }}</h1>
-
+<section class="admin-workshops-section half-cut-bg">
+      <h1 class="page-title text-left mt-0">{{ msg }}</h1>
+    <!-- <div class="row"> -->
+<!-- 
       <div class="row">
         <div class="col-md-3">
 
@@ -14,13 +14,13 @@
 
         </div>
 
-      </div>
-      <div class="row mt-3">
+      </div> -->
+      <div class="table-responsive">
         <table class="table">
           <tr>
-            <td>Name</td>
-            <td>Company Name</td>
-            <td>Description</td>
+            <th>Name</th>
+            <th>Company Name</th>
+            <th>Description</th>
           </tr>
           <tr v-if="questionListLength" v-for="r in questionList.data" v-bind:key="r.id">
             <td>{{r.first_name}} {{r.last_name}}</td>
@@ -36,8 +36,8 @@
         </table>
         <pagination :data="questionList" @pagination-change-page="getQuestionList" />
       </div>
-    </div>
-  </div>
+    <!-- </div> -->
+  </section>
 </template>
 
 <script>
