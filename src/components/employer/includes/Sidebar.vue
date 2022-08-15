@@ -51,16 +51,20 @@
               aria-hidden="true"></i>
           </a>
         </li>
-        <li v-if="showUserList">
-          <input type="text" class="form-control" v-model="searchData.name" placeholder="Search Employees"
-            @keyup="getEmployeesListChat" />
-          <router-link v-for="e in empList.data" v-bind:key="e.id" :to="'/employer/one-to-one-chat/' + e.id">{{
+        <li v-if="showUserList"  class="manage-gap">
+          <input type="search" class="form-control" v-model="searchData.name" placeholder="Search Employees"
+            @keyup="getEmployeesListChat" /><span class="search-icon"></span>
+          <router-link v-for="e in empList.data" v-bind:key="e.id" :to="'/employer/one-to-one-chat/' + e.id"><img
+            src="../../../assets/images/back-btn.png" alt="btn"/>{{
               e.first_name
           }} {{ e.last_name }}
           </router-link>
         </li>
       </ul>
-      <div class="logout-btn-box"><button class="logout-btn btn" @click="logout">Logout</button></div>
+      <hr/>
+      <div class="logout-btn-box"><button class="logout-btn btn" @click="logout"><img src="../../../assets/images/logout.svg" alt="logout"/>
+          Logout
+        </button></div>
     </div>
   </div>
   <!-- siderbar end -->

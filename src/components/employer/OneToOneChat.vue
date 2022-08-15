@@ -1,7 +1,7 @@
 <template>
-  <div class="col-md-9">
-   <OneToOneChat></OneToOneChat>
-  </div>
+  <section class="employee-one-to-one-chat-section half-cut-bg pb-0">
+     <OneToOneChat></OneToOneChat>
+ </section>
 </template>
 
 <script>

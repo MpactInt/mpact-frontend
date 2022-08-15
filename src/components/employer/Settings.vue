@@ -1,8 +1,8 @@
 <template>
-  <div class="col-md-9">
-    <h1>Settings</h1>
+<section class="employer-dashboard  pettern-bg">
+    <h1 class="page-title">Settings</h1>
     <div class="row">
-      <div class="col-md-6">
+      <div class="col-lg-6">
         <form @submit="addWelcomeNote" ref="addWelcomeNoteForm" enctype="multipart/form-data">
           <div class="form-group">
             <label><b>Welcome</b></label><br>
@@ -14,28 +14,43 @@
             <label>Description <span class="err">*</span></label>
             <vue2-tinymce-editor v-model="note.description" placeholder="Description"></vue2-tinymce-editor>
           </div>
-          <div class="form-group">
-            <label>Upload Image <span class="err">*</span></label> <input type="file" ref="welcome_image" id="welcome_image"
-              @change="imageOnChange" accept=".jpg, .jpeg, .png" />
-          </div>
-          <div class="form-group" v-if="note.image">
-            <label>Uploaded Image</label>
-            <img :src="note.oldImage" height="70" width="70" />
-          </div>
-          <div class="form-group">
-            <button type="submit" class="btn btn-primary" :disabled="note.disabled">Update</button>
+
+          <div class="row align-items-center">
+            <div class="col-md-6 my-2">
+              <div class="form-group">
+                <label>Upload Image <span class="err">*</span></label> <input type="file" class="form-control" ref="welcome_image" id="welcome_image"
+                  @change="imageOnChange" accept=".jpg, .jpeg, .png" />
+              </div>
+            </div>
+            <div class="col-md-3 my-2">
+              <div class="form-group" v-if="note.image">
+                <label>Uploaded Image</label>
+                <img :src="note.oldImage" height="70" width="70" />
+              </div>
+            </div>
+            <div class="col-md-3 my-2">
+              <div class="form-group mt-3 mb-0">
+                <button type="submit" class="btn btn-outline-primary" :disabled="note.disabled">Update</button>
+              </div>
+            </div>
           </div>
         </form>
       </div>
-      <div class="col-md-6">
+      <div class="col-lg-6">
         <form @submit="uploadLogo" ref="createCompanyForm" enctype="multipart/form-data">
-          <div class="form-group">
-            <label><b>Change Logo <span class="err">*</span></b></label>
-            <input type="file" class="form-control" ref="logo" id="logo" @change="fileOnChange"
-              accept=".jpg, .jpeg, .png" />
-          </div>
-          <div class="form-group">
-            <button type="submit" class="btn btn-primary" :disabled="upload.disabled">Upload</button>
+          <div class="row align-items-center">
+            <div class="col-md-9 my-2">
+              <div class="form-group">
+                <label><b>Change Logo <span class="err">*</span></b></label>
+                <input type="file" class="form-control" ref="logo" id="logo" @change="fileOnChange"
+                  accept=".jpg, .jpeg, .png" />
+              </div>
+            </div>
+            <div class="col-md-3 my-2">
+              <div class="form-group mt-3 mb-0">
+                <button type="submit" class="btn btn-outline-primary" :disabled="upload.disabled">Upload</button>
+              </div>
+            </div>
           </div>
         </form>
 
@@ -61,7 +76,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>

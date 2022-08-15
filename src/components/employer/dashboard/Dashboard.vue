@@ -4,16 +4,128 @@
   <h1 class="page-title text-left mb-0">Guided <span class="yellow-bg">Transformation</span></h1>
   <h2 class="page-sub-title">This section will be the opening to the learning journey</h2>
   <div class="row">
-    <div class="col-md-4">
+    <div class="col-lg-3 col-md-6 my-2">
+      <a href="#" class="dashboard-card-link">
+        Requested Workshops
+        <img src="../../../assets/images/chevron-right.svg" alt="arrow-right" />
+      </a>
+    </div>
+    <div class="col-lg-3 col-md-6 my-2">
+      <a href="#" class="dashboard-card-link">
+        Upcoming Workshops
+        <img src="../../../assets/images/chevron-right.svg" alt="arrow-right" />
+      </a>
+    </div>
+    <div class="col-lg-3 col-md-6 my-2">
+      <a href="#" class="dashboard-card-link">
+        Announcements
+        <img src="../../../assets/images/chevron-right.svg" alt="arrow-right" />
+      </a>
+    </div>
+    <div class="col-lg-3 col-md-6 my-2">
+      <a href="#" class="dashboard-card-link">
+        Resources
+        <img src="../../../assets/images/chevron-right.svg" alt="arrow-right" />
+      </a>
+    </div>
+  </div>
+  <div class="row mt-5">
+    <div class="col-md-6">
       <div class="card">
         <img src="https://freedesignfile.com/upload/2017/08/teamwork-Stock-Photo-01.jpg" class="card-img-top"
              alt="...">
         <div class="card-body">
-          <h5 class="card-sub-title">Step: 0</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-            content.</p>
-          <a href="#" class="links">Read More <img src="../../../assets/images/arrow-right.svg"/> </a>
+          <h6 class="card-sub-title">Step: 0</h6>
+          <h5 class="card-title-2">Some quick example text to build on the card title and make up the bulk of the card's
+            content.</h5>
         </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card">
+        <img src="https://freedesignfile.com/upload/2017/08/teamwork-Stock-Photo-01.jpg" class="card-img-top"
+             alt="...">
+        <div class="card-body">
+          <h6 class="card-sub-title">Step: 1</h6>
+          <h5 class="card-title-2">Some quick example text to build on the card title and make up the bulk of the card's
+            content.</h5>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card">
+        <img src="https://freedesignfile.com/upload/2017/08/teamwork-Stock-Photo-01.jpg" class="card-img-top"
+             alt="...">
+        <div class="card-body">
+          <h6 class="card-sub-title">Step: 2</h6>
+          <h5 class="card-title-2">Some quick example text to build on the card title and make up the bulk of the card's
+            content.</h5>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card">
+        <img src="https://freedesignfile.com/upload/2017/08/teamwork-Stock-Photo-01.jpg" class="card-img-top"
+             alt="...">
+        <div class="card-body">
+          <h6 class="card-sub-title">Step: 3</h6>
+          <h5 class="card-title-2">Some quick example text to build on the card title and make up the bulk of the card's
+            content.</h5>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card">
+        <img src="https://freedesignfile.com/upload/2017/08/teamwork-Stock-Photo-01.jpg" class="card-img-top"
+             alt="...">
+        <div class="card-body">
+          <h6 class="card-sub-title">Step: 4</h6>
+          <h5 class="card-title-2">Some quick example text to build on the card title and make up the bulk of the card's
+            content.</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="employer-dashboard-statistics pink-pattern-bg-2">
+  <div class="row">
+    <div class="col-md-6 my-3">
+      <div class="card-box statistics-box">
+        <h5>Resources</h5>
+        <p>No Data Found</p>
+        <a href="#">View All</a>
+      </div>
+    </div>
+    <div class="col-md-6 my-3">
+      <div class="card-box statistics-box">
+        <h5>"ToDo"</h5>
+        <div class="todo-map-list">
+          <div>
+            <img src="../../../assets/images/todo-map-icon.svg" />
+            <h4>Item #3</h4>
+            <p>Test</p>
+          </div>
+          <div>
+            <img src="../../../assets/images/todo-map-icon.svg" />
+            <h4>Item #3</h4>
+            <p>Test</p>
+          </div>
+        </div>
+        <a href="#">View All</a>
+      </div>
+    </div>
+    <div class="col-md-6 my-3">
+      <div class="card-box statistics-box">
+        <h5>Workshops</h5>
+        <a class="pera">Overcoming Imposter Syndrome <img src="../../../assets/images/chevron-right-blue.svg" /></a>
+        <a href="#">View All</a>
+      </div>
+    </div>
+    <div class="col-md-6 my-3">
+      <div class="card-box statistics-box">
+        <h5>Opportunities</h5>
+        <p>No Data Found</p>
+        <a href="#">View All</a>
       </div>
     </div>
   </div>

@@ -7,22 +7,40 @@
       </h1>
       <div class="card-box">
         <div class="row">
-          <div class="col-md-4">
+          <div class="col-md-6">
             <div class="card">
               <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="links">Read More <img src="../../../assets/images/arrow-right.svg" /> </a>
+                <img src="../../../assets/images/registration.svg" class="mb-4" alt="Registration" />
+                <h5 class="card-title">Registration</h5>
+                <p class="card-text">Use this link to send an invite to your team in order to expedite platform registration.</p>
+                <router-link to="/employer/team-management/registration-link" class="links">Visit Link</router-link>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card">
+              <div class="card-body">
+                <img src="../../../assets/images/registration.svg" class="mb-4" alt="Registration" />
+                <h5 class="card-title">Employees</h5>
+                <p class="card-text">Manage your employee list (add or delete team members). You can also monitor login activity.</p>
+                <router-link to="/employer/team-management/employees" class="links">Visit Link</router-link>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card">
+              <div class="card-body">
+                <img src="../../../assets/images/registration.svg" class="mb-4" alt="Registration" />
+                <h5 class="card-title">Invitations</h5>
+                <p class="card-text">If you have already sent a link to team members or added a new employee, use this link to monitor outstanding invites to the platform.</p>
+                <router-link to="/employer/team-management/invitations" class="links">Visit Link</router-link>
               </div>
             </div>
           </div>
         </div>
       </div>
     </section>
-
-
-
-    <h1>Team and Organization Management</h1>
+<!--     <h1>Team and Organization Management</h1>
     <div class="row col-md-12">
       <div class="col-md-3">
         <router-link to="/employer/team-management/registration-link">
@@ -54,16 +72,15 @@
         <p>If you have already sent a link to team members or added a new employee, use this link to monitor
 outstanding invites to the platform.</p>
       </div>
-      <!-- <div class="col-md-3">
+       <div class="col-md-3">
         <div class="icons">
           <i class="fa fa-users"></i>
           <span>Employees</span>
         </div>
+      </div>
       </div> -->
-    </div>
   </div>
 </template>
-
 <script>
 /* eslint-disable */
 

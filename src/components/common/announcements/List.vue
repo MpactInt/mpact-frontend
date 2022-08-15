@@ -1,55 +1,69 @@
 <template>
   <div class="mt-5">
-    <div class="row mb-3">
-      <div class="col-md-3">
+    <div class="row mb-3 align-items-center">
+      <div class="col-md-3 my-2 ">
         <select v-model="searchData.sortBy" class="form-control" v-on:change="getAnnouncementsList">
           <option value="">Sort By</option>
           <option value="title">Title</option>
           <option value="date">Date</option>
         </select>
       </div>
-      <div class="col-md-6">
+      <div class="col-md-6 my-2">
         <input type="search" v-model="searchData.keyword" class="form-control" placeholder="Search By Keyword"
                v-on:keyup="getAnnouncementsList"/><span class="search-icon"></span>
       </div>
-      <div class="col-md-3" v-if="company.role == 'COMPANY_ADMIN'">
+      <div class="col-lg-3 col-md-12 my-2" v-if="company.role == 'COMPANY_ADMIN'">
         <button class="btn btn-primary float-right" v-b-modal.add-announcement-modal>Add Announcement</button>
       </div>
     </div>
-    <table class="table">
-      <tr>
-        <th>Title</th>
-        <th>Description</th>
-        <th>Date</th>
-        <th v-if="company.role == 'COMPANY_ADMIN'">Action</th>
-      </tr>
-      <tr v-if="announcementsLength" v-for="a in announcementList.data" v-bind:key="a.id">
-        <td>{{ a.title }}</td>
-        <td>{{ a.description }}</td>
-        <td>{{ a.date | timeStampToDate }}</td>
-        <td v-if="company.role == 'COMPANY_ADMIN'">
-          <p v-if="!a.deleted_at">
-            <button class="btn btn-primary" @click="getAnnouncement(a.id)"><i
-              class="fa fa-pencil"></i></button>
-            <button class="btn btn-danger" @click="deleteAnnouncement(a.id)"><i
-              class="fa fa-trash"></i></button>
-          </p>
-          <span v-if="a.deleted_at">
-                        Archived
-                    </span>
-        </td>
-      </tr>
-      <tr v-if="!announcementsLength">
-        <td colspan="3">No Data Found</td>
-      </tr>
-    </table>
+
+    <div class="table-responsive">
+      <table class="table">
+        <tr>
+          <th>Title</th>
+          <th>Description</th>
+          <th>Date</th>
+          <th v-if="company.role == 'COMPANY_ADMIN'">Action</th>
+        </tr>
+        <tr v-if="announcementsLength" v-for="a in announcementList.data" v-bind:key="a.id">
+          <td>{{ a.title }}</td>
+          <td>{{ a.description }}</td>
+          <td>{{ a.date | timeStampToDate }}</td>
+           <td class="px-0" v-if="company.role == 'COMPANY_ADMIN'">
+                <div class="d-flex align-items-center p-0" style="min-width: 100px;">
+                  <a type="button" class="px-3"  @click="getAnnouncement(a.id)"  width="24" height="24">
+                    <img src="../../../assets/images/table-edit.svg"  width="24" height="24" alt="table-edit" />
+                  </a>
+                  <a type="button" class="px-3" @click="deleteAnnouncement(a.id)"  width="24" height="24">
+                    <img src="../../../assets/images/table-delete.svg"  width="24" height="24" alt="table-delete" /></a>
+                    <span v-if="a.deleted_at">
+                          Archived
+                      </span>
+                </div>
+              </td>
+          <!-- <td v-if="company.role == 'COMPANY_ADMIN'">
+            <p v-if="!a.deleted_at">
+              <button class="btn btn-primary" @click="getAnnouncement(a.id)"><i
+                class="fa fa-pencil"></i></button>
+              <button class="btn btn-danger" @click="deleteAnnouncement(a.id)"><i
+                class="fa fa-trash"></i></button>
+            </p>
+            <span v-if="a.deleted_at">
+                          Archived
+                      </span>
+          </td> -->
+        </tr>
+        <tr v-if="!announcementsLength">
+          <td colspan="3">No Data Found</td>
+        </tr>
+      </table>
+    </div>
     <pagination :data="announcementList" @pagination-change-page="getAnnouncementsList"/>
     <!--Add announcement modal popup-->
     <Add :getAnnouncementsList="getAnnouncementsList"></Add>
     <!--Update announcement modal popup-->
     <Edit :getAnnouncementsList="getAnnouncementsList" :announcementUpdate="announcementUpdate"></Edit>
   </div>
->>>>>>> 42a011c3fd8ee6bd7e86c8ee6e65ccc18a3a48df
 </template>
 
 <script>

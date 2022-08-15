@@ -1,34 +1,35 @@
 <template>
-  <div class="col-md-9">
-    <router-link to="/employer/team-management">
-      <button class="btn-primary">
-        <i class="fa fa-arrow-left white"></i>
-      </button>
+  <section class="registration-link half-cut-bg">
+    <router-link to="/employer/team-management" class="btn back">
+      <!-- <button class="btn-primary"> -->
+        <img src="../../../assets/images/arrow-left.svg" alt="arrow-left" /> Back
+      <!-- </button> -->
     </router-link>
-    <div class="mt-5 mb-5">
-      <h3>Employee Registration Link</h3>
-      {{ employerDetails.employee_registration_link }}
-      <button class="btn btn-primary" v-b-modal.email-link-modal>Send Link to Email</button>
-      <button class="btn btn-primary" type="button" v-clipboard:copy="employerDetails.employee_registration_link"
+      <h3 class="page-title mb-0 text-left">Employee <br><span>Registration Link</span> </h3>
+      <h5 class="page-sub-title word-break-all">{{ employerDetails.employee_registration_link }}</h5>
+
+      <button class="btn btn-primary mr-3" v-b-modal.email-link-modal>Send Link to Email</button>
+      <button class="btn btn-outline-primary" type="button" v-clipboard:copy="employerDetails.employee_registration_link"
         v-clipboard:success="onCopy">
         Copy Link
       </button>
       <p v-if="linkCopied" class="success">
         Link Copied
       </p>
-    </div>
 
     <!--Send registration link to email popup-->
-    <b-modal id="email-link-modal" title="Send link to email" :hide-footer=hideFooter>
-      <div class="form-group">
+    <b-modal id="email-link-modal" title="Send link to email" :hide-footer=hideFooter class=" half-cut-bg">
+      <div class="d-flex align-items-center flex-wrap" style="min-height: 40vh;">
+      <div class="form-group w-100">
         <label>Enter Email <span class="err">*</span></label>
         <input type="email" class="form-control" id="forgot-email" aria-describedby="emailHelp" placeholder="Email"
           v-model="sendEmail.email">
       </div>
       <button type="button" class="btn btn-primary" @click="sendLinkToEmail" :disabled="sendEmail.disabled">Send
         Email</button>
+        </div>
     </b-modal>
-  </div>
+  </section>
 </template>
 
 <script>

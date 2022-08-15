@@ -1,19 +1,19 @@
 <template>
     <div class="mt-3">
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-3 my-2">
                 <select v-model="getWorkshopData.sortBy" class="form-control" v-on:change="getWorkshopList">
                     <option value="">Sort By</option>
                     <option value="name">Name</option>
                 </select>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-3 my-2">
                 <input type="text" v-model="getWorkshopData.keyword" class="form-control" placeholder="Search"
                     v-on:keyup="getWorkshopList" />
             </div>
-            <div class="col-md-3">
+            <div class="col-md-3 my-2">
             </div>
-            <div class="col-md-3" v-if="user.role != 'ADMIN'">
+            <div class="col-lg-3 col-md-12 my-2" v-if="user.role != 'ADMIN'">
                 <button class="btn btn-primary float-right" v-b-modal.request-workshop-modal>Request Workshop</button>
             </div>
         </div>
@@ -21,17 +21,17 @@
         <div class="table-responsive">
             <table class="table">
                 <tr>
-                    <td v-if="user.role == 'ADMIN'">Company Name</td>
-                    <td>Name</td>
-                    <td>Workshop Focus</td>
-                    <td>Desired Date</td>
-                    <td>Workshop Length</td>
-                    <td>Workshop Type</td>
-                    <td>Audience</td>
-                    <td>Requirements</td>
-                    <td>Expectations</td>
-                    <td>Status</td>
-                    <td>Action</td>
+                    <th v-if="user.role == 'ADMIN'">Company Name</th>
+                    <th>Name</th>
+                    <th>Workshop Focus</th>
+                    <th>Desired Date</th>
+                    <th>Workshop Length</th>
+                    <th>Workshop Type</th>
+                    <th>Audience</th>
+                    <th>Requirements</th>
+                    <th>Expectations</th>
+                    <th>Status</th>
+                    <th>Action</th>
                 </tr>
                 <tr v-if="workshopsLength" v-for="r in workshops.data" v-bind:key="r.id">
                     <td v-if="user.role == 'ADMIN'">{{ r.company_name }}</td>
@@ -44,14 +44,27 @@
                     <td>{{ r.requirements }}</td>
                     <td>{{ r.expectations }}</td>
                     <td>{{r.status}}</td>
-                    <td>
+                     <td class="px-0">
+                      <div class="d-flex align-items-center p-0" style="min-width: 100px;">
+                        <a type="button" class="px-3" v-if="user.role != 'ADMIN'"  @click="deleteRequestWorkshop(r.id)"  width="24" height="24">
+                          <img src="../../../assets/images/table-delete.svg"  width="24" height="24" alt="table-edit" />
+                        </a>
+                        <a type="button" class="px-3"  v-if="user.role == 'ADMIN' && r.status == 'NEW'"  @click="acceptRequestWorkshop(r.id)" width="24" height="24">
+                            <i class="fa fa-check"></i><!-- <img src="../../../assets/images/table-delete.svg"  width="24" height="24" alt="table-delete" />-->
+                        </a>
+                        <a type="button" class="px-3"  v-if="user.role == 'ADMIN' && r.status == 'NEW'"  @click="rejectRequestWorkshop(r.id)" width="24" height="24">
+                            <i class="fa fa-times"></i><!-- <img src="../../../assets/images/table-delete.svg"  width="24" height="24" alt="table-delete" />-->
+                        </a>
+                        </div>
+                    </td>
+                    <!-- <td>
                         <button v-if="user.role != 'ADMIN'" class="btn btn-danger"
                             @click="deleteRequestWorkshop(r.id)"><i class="fa fa-trash"></i></button>
                         <button v-if="user.role == 'ADMIN' && r.status == 'NEW'" class="btn btn-primary"
                             @click="acceptRequestWorkshop(r.id)"><i class="fa fa-check"></i></button>
                         <button v-if="user.role == 'ADMIN' && r.status == 'NEW'" class="btn btn-danger"
                             @click="rejectRequestWorkshop(r.id)"><i class="fa fa-times"></i></button>
-                    </td>
+                    </td> -->
                 </tr>
                 <tr v-if="!workshopsLength">
                     <td colspan="5">No Data Found</td>

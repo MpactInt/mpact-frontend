@@ -2,25 +2,24 @@
 /* eslint-disable */
 </script>
 <template>
-    <div class="col-md-9">
-        <h3>Feedback by Employees</h3>
-        <div class="row">
+    <section class="employer-announcements-section half-cut-bg">
+        <h3 class="page-title text-left mt-0">Feedback by Employees</h3>
 
-        </div>
-        <div class="row mt-3">
+        <div class="table-responsive">
             <table class="table">
                 <tr>
-                    <td>Employee Name</td>
-                    <td>Description</td>
+                    <th>Employee Name</th>
+                    <th>Description</th>
                 </tr>
                 <tr v-for="f in feedbacks.data">
                     <td><span v-if="!f.anonymous">{{ f.first_name }} {{ f.last_name }}</span><span v-if="f.anonymous">Anonymous</span></td>
                     <td>{{ f.description }}</td>
                 </tr>
             </table>
-            <pagination :data="feedbacks" @pagination-change-page="getFeedbackList" />
+
         </div>
-    </div>
+            <pagination :data="feedbacks" @pagination-change-page="getFeedbackList" />
+    </section>
 </template>
 <script>
 /* eslint-disable */

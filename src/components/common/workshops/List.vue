@@ -1,18 +1,18 @@
 <template>
   <div class="mt-5">
     <div class="row mb-3">
-      <div class="col-md-3">
+      <div class="col-md-3 my-2">
         <select v-model="getWorkshopData.sortBy" class="form-control" v-on:change="getWorkshopsList">
           <option value="">Sort By</option>
           <option value="title">Title</option>
         </select>
       </div>
-      <div class="col-md-3">
+      <div class="col-md-3 my-2">
         <input type="text" v-model="getWorkshopData.keyword" class="form-control" placeholder="Search"
           v-on:keyup="getWorkshopsList" />
       </div>
-      <div class="col-md-3"></div>
-      <div class="col-md-3">
+      <div class="col-md-3 my-2"></div>
+      <div class="col-lg-3 col-md-12 my-2">
         <button v-if="user.role == 'ADMIN'" class="btn btn-primary float-right" v-b-modal.add-workshop-modal>Add New
           Workshop</button>
       </div>

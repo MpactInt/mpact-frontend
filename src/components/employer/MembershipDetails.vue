@@ -1,21 +1,20 @@
 <template>
-  <div class="col-md-9">
-    <h1>Membership Details</h1>
-    <div class="row" v-for="pd in planDetails" v-bind:key="pd.item_price_id">
-      <div class="col-md-4">
-        <p> Name : {{ pd.item_price_id }}<br>
-          Type : {{ pd.item_type }}<br>
-          Price : {{ pd.amount / 100 }}<br>
-          <span v-if="pd.item_type == 'plan'">Consulting Hours Total: {{company.total_hours}}<br>
-         Consulting Hours Remaining: {{company.remaining_hours}}
-          </span>
-        </p>
+  <section class="member-ship-details-section half-cut-bg">
+    <h1 class="page-title text-left ">Membership <span>Details</span></h1>
+      <div class="row" v-for="pd in planDetails" v-bind:key="pd.item_price_id">
+        <div class="col-md-4">
+          <div class="card-box my-3">
+          <p> Name : <span class="pink-color"> {{ pd.item_price_id }} </span></p>
+          <p> Type : <span class="pink-color"> {{ pd.item_type }} </span></p>
+          <p> Price : <span class="pink-color"> {{ pd.amount / 100 }} </span></p>
+          <p> Consulting Hours Total : <span class="pink-color" v-if="pd.item_type == 'plan'"> Consulting Hours Total: {{company.total_hours}}  </span></p>
+          <p> Consulting Hours Remaining: <span class="pink-color" v-if="pd.item_type == 'plan'"> {{company.remaining_hours}} </span></p>
+        </div>
       </div>
-    </div>
+      </div>
     <div class="row" v-if="company.plan_type!='One-Time-Users-Plan'">
       <div class="col-md-6">
         <div class="form-group">
-          <label>Select Addon <span class="err">*</span></label>
           <select type="text" class="form-control" id="addon" placeholder="Addon" v-model="chargebeeUser.addon">
             <option v-for="plan in addons" v-bind:value="plan.id" v-bind:key="plan.id">{{ plan.name }}
             </option>
@@ -26,7 +25,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>

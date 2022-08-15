@@ -1,11 +1,11 @@
 <template>
   <div id="app">
-    <div v-if="isLoggedIn">
+    <div class="app-block" v-if="isLoggedIn">
       <section class="employer-section" v-if="user.role == 'COMPANY' && company.role=='COMPANY_ADMIN'">
         <HeaderEmployer></HeaderEmployer>
         <div class="container-fluid  p-0">
           <div class="d-flex">
-            <div class=" sidebar" id="navbarSupportedContent"><SidebarEmployer v-if="isLoggedIn"></SidebarEmployer></div>
+            <div class=" sidebar" id="employerSidebar"><SidebarEmployer v-if="isLoggedIn"></SidebarEmployer></div>
             <main class="main-col"><router-view :key="$route.fullPath" /></main>
           </div>
         </div>

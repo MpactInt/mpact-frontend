@@ -1,19 +1,19 @@
 <template>
     <div class="mt-3">
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-3 my-2">
                 <select v-model="getTodoData.sortBy" class="form-control" v-on:change="getTodoList">
                     <option value="">Sort By</option>
                     <option value="title">Title</option>
                 </select>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6 my-2">
                 <input type="search" v-model="getTodoData.keyword" class="form-control" placeholder="Search"
                     v-on:keyup="getTodoList" /><span class="search-icon"></span>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-3 my-2">
             </div>
-            <div class="col-md-3" v-if="user.role == 'ADMIN'">
+            <div class="col-lg-3 col-md-12 my-2" v-if="user.role == 'ADMIN'">
                 <button class="btn btn-primary float-right" v-b-modal.add-todo-modal>Add New Todo</button>
             </div>
         </div>

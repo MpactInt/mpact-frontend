@@ -1,9 +1,7 @@
 <template>
-  <div class="employee-hero-section">
-    <div class="container">
+    <section class="employee-one-to-one-chat-section half-cut-bg pb-0">
       <OneToOneChat></OneToOneChat>
-    </div>
-  </div>
+  </section>
 </template>
 
 <script>

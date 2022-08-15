@@ -1,8 +1,8 @@
 <template>
-  <div class="col-md-9">
-    <h1>Announcements</h1>
+  <section class="employer-announcements-section half-cut-bg">
+    <h1 class="page-title text-left mt-0"><span>Announcements</span></h1>
     <List></List>
-  </div>
+  </section>
 </template>
 
 <script>

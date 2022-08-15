@@ -25,7 +25,7 @@
           <router-link to="/employee/resources">Resources</router-link>
         </li>
         <li>
-          <router-link to="/employee/todo">TO DO</router-link>
+          <router-link to="/employee/todo">To Do</router-link>
         </li>
         <li>
           <router-link to="/employee/welcome-note">Welcome Note</router-link>
@@ -41,10 +41,10 @@
           <router-link to="/employee/my-learning-plan">My Learning Plan
           </router-link>
         </li>
-        <li>
+       <!--  <li>
           <router-link to="/employee/todo">TODOS
           </router-link>
-        </li>
+        </li> -->
         <li>
           <router-link to="/employee/ask-question">Ask a Question
           </router-link>
@@ -67,6 +67,7 @@
           </router-link>
         </li>
       </ul>
+      <hr/>
       <div class="logout-btn-box">
         <button class="logout-btn btn" @click="logout"><img src="../../../assets/images/logout.svg" alt="logout"/>
           Logout
@@ -80,7 +81,6 @@
 /* eslint-disable */
 import AppMixin from '../../../mixins/AppMixin'
 import Api from '../../../router/api'
-
 export default {
   name: 'Sidebar',
   data () {

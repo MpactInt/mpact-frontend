@@ -8,6 +8,7 @@
                 @click="loadMoreMessages">Load More Messages
         </button>
       </p>
+      <div class="message-grp-date"> <span>Today</span></div>
       <div class="chat-list" v-if="messagesList.length" v-for="m in messagesList" v-bind:key="m.id"
            v-bind:class="(authUser.emp_id == m.sender_id) ? 'text-right' : ''">
         <p class="d-flex align-items-center">

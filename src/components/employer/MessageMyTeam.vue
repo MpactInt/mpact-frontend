@@ -1,8 +1,8 @@
 <template>
-  <div class="col-md-9">
-    <h1>Message My Team</h1>
+    <section class="employee-message-section half-cut-bg pb-0">
+    <h1 class="page-title text-left mt-0"><span>Message My Team</span></h1>
     <MessageMyTeamVue></MessageMyTeamVue>
-  </div>
+  </section>
 </template>
 
 <script>

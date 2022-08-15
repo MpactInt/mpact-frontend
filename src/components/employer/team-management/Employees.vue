@@ -1,61 +1,69 @@
 <template>
-  <div class="col-md-9">
-    <router-link to="/employer/team-management">
-      <button class="btn-primary">
-        <i class="fa fa-arrow-left white"></i>
-      </button>
+  <section class="registration-link half-cut-bg">
+    <router-link to="/employer/team-management" class="btn back">
+      <!-- <button class="btn-primary"> -->
+        <img src="../../../assets/images/arrow-left.svg" alt="arrow-left" /> Back
+      <!-- </button> -->
     </router-link>
-    <h1>Employees</h1>
-
-    <div class="mt-5">
-      <div class="row mb-3">
-        <div class="col-md-3">
+     <h3 class="page-title text-left"><span>Employees</span></h3>
+      <div class="row mb-5">
+        <div class="col-md-2">
           <select v-model="getEmpData.sortBy" class="form-control" v-on:change="getEmployeesList">
             <option value="">Sort By</option>
             <option value="first_name">Name</option>
             <option value="email">Email</option>
           </select>
         </div>
-        <div class="col-md-3">
-          <input type="text" v-model="getEmpData.name" class="form-control" placeholder="Search By Name"
-            v-on:keyup="getEmployeesList" />
+        <div class="col-md-5">
+          <div class="row">
+              <div class="col-md-6">
+                <input type="text" v-model="getEmpData.name" class="form-control" placeholder="Search By Name"
+                  v-on:keyup="getEmployeesList" />
+              </div>
+              <div class="col-md-6">
+                <input type="text" v-model="getEmpData.email" class="form-control" placeholder="Search By Email"
+                  v-on:keyup="getEmployeesList" />
+              </div>
+          </div>
         </div>
-        <div class="col-md-3">
-          <input type="text" v-model="getEmpData.email" class="form-control" placeholder="Search By Email"
-            v-on:keyup="getEmployeesList" />
-        </div>
-        <div class="col-md-3">
+        <div class="col-md-5 d-flex align-items-center">
+          <a class="links mr-3" v-b-modal.add-employee-modal>+ Add New Employee</a>
           <button class="btn btn-primary float-right" @click="exportEmployees">Export</button>
-          <button class="btn btn-primary float-left" v-b-modal.add-employee-modal>Add New Employee</button>
         </div>
       </div>
-      <table class="table">
-        <tr>
-          <td>Name</td>
-          <td>Email</td>
-          <td>Role</td>
-          <td>Profile Type</td>
-          <td>Last Login</td>
-          <td>Action</td>
-        </tr>
-        <tr v-if="employeesLength" v-for="e in employeesList.data" v-bind:key="e.id">
-          <td>{{ e.first_name }} {{ e.last_name }}</td>
-          <td>{{ e.email }}</td>
-          <td>{{ e.role }}</td>
-          <td>{{e.profile_type}}</td>
-          <td><span v-if="e.last_login">{{ e.last_login | timeAgo }}</span><span v-else>Not Logged in yet</span></td>
-          <td>
-            <button class="btn btn-primary" @click="getEmployee(e.id)"><i class="fa fa-pencil"></i></button>
-            <button class="btn btn-danger" @click="deleteEmployee(e.id)"><i class="fa fa-trash"></i></button>
-          </td>
-        </tr>
-        <tr v-if="!employeesLength">
-          <td colspan="5">No Data Found</td>
-        </tr>
-      </table>
+      <div class="table-responsive">
+        <table class="table">
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>Profile Type</th>
+            <th>Last Login</th>
+            <th>Action</th>
+          </tr>
+          <tr v-if="employeesLength" v-for="e in employeesList.data" v-bind:key="e.id">
+            <td>{{ e.first_name }} {{ e.last_name }}</td>
+            <td>{{ e.email }}</td>
+            <td>{{ e.role }}</td>
+            <td>{{e.profile_type}}</td>
+            <td><span v-if="e.last_login">{{ e.last_login | timeAgo }}</span><span v-else>Not Logged in yet</span></td>
+            <td class="px-0">
+              <div class="d-flex align-items-center p-0" style="min-width: 100px;">
+                <a type="button" class="px-3" @click="getEmployee(e.id)"  width="24" height="24">
+                  <img src="../../../assets/images/table-edit.svg"  width="24" height="24" alt="table-edit" />
+                </a>
+                <a type="button" class="px-3" @click="deleteEmployee(e.id)"  width="24" height="24">
+                  <img src="../../../assets/images/table-delete.svg"  width="24" height="24" alt="table-delete" /></a>
+              </div>
+            </td>
+          </tr>
+          <tr v-if="!employeesLength">
+            <td colspan="5">No Data Found</td>
+          </tr>
+        </table>
+      </div>
       <pagination :data="employeesList" @pagination-change-page="getEmployeesList" />
 
-    </div>
     <!--Add employee modal popup-->
     <b-modal id="add-employee-modal" title="Add New Employee" :hide-footer=hideFooter>
       <form>
@@ -93,7 +101,6 @@
             :disabled="employee.disabled">Submit</button>
         </div>
       </form>
-
     </b-modal>
     <!--Update employee modal popup-->
     <b-modal id="update-employee-modal" title="Update Employee" :hide-footer=hideFooter>
@@ -128,9 +135,8 @@
             :disabled="employeeUpdate.disabled">Submit</button>
         </div>
       </form>
-
     </b-modal>
-  </div>
+  </section>
 </template>
 
 <script>

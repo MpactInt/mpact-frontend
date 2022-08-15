@@ -1,21 +1,21 @@
 <template>
   <div class="mt-3">
     <div class="row">
-      <div class="col-md-3">
+      <div class="col-md-3 my-2">
         <!-- <select v-model="getResourceData.sortBy" class="form-control" v-on:change="getResourcesList">
                     <option value="">Sort By</option>
                     <option value="title">Title</option>
                 </select> -->
       </div>
-      <div class="col-md-3">
+      <div class="col-md-3 my-2">
         <!-- <input type="text" v-model="getResourceData.keyword" class="form-control" placeholder="Search"
                     v-on:keyup="getResourcesList" /> -->
       </div>
-      <div class="col-md-3">
+      <div class="col-md-3 my-2">
         <!-- <input type="text" v-model="getResourceData.keyword" class="form-control" placeholder="Search"
                     v-on:keyup="getResourcesList" /> -->
       </div>
-      <div class="col-md-3">
+      <div class="col-lg-3 col-md-12 my-2">
         <button v-if="user.role == 'ADMIN'" class="btn btn-primary float-right" v-b-modal.add-opportunity-modal>Add New Opportunity</button>
       </div>
     </div>
