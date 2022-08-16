@@ -11,10 +11,11 @@
                     <th>Employee Name</th>
                     <th>Description</th>
                 </tr>
-                <tr v-for="f in feedbacks.data">
+                <tr v-if="feedbackLength" v-for="f in feedbacks.data">
                     <td><span v-if="!f.anonymous">{{ f.first_name }} {{ f.last_name }}</span><span v-if="f.anonymous">Anonymous</span></td>
                     <td>{{ f.description }}</td>
                 </tr>
+                <tr v-if="!feedbackLength"><td> No data found</td></tr>
             </table>
 
         </div>

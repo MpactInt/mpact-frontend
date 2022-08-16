@@ -6,8 +6,8 @@
                 @click="loadMoreMessages">Load More Messages
         </button>
       </p>
-<div class="message-grp-date"> <span>Today</span></div>
-<!--      <div>Today</div>-->
+<!-- <div class="message-grp-date"> <span>Today</span></div> -->
+
 <div class="chat-list" v-if="messagesList.length" v-bind:class="(authUser.emp_id == m.sender_user_id) ? 'text-right' : ''" v-for="m in messagesList" v-bind:key="m.id">
         <p class="d-flex align-items-center">
           <img class="mr-2 border-radius-50" :src="imagePath + '/profile-images/' + m.profile_image" height="50px"

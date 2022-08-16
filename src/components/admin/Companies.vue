@@ -1,6 +1,6 @@
 <template>
   <section class="admin-workshops-section half-cut-bg">
-      <h1 class="page-title text-left mt-0">{{ msg }}</h1>
+    <h1 class="page-title text-left mt-0">{{ msg }}</h1>
     <div class="row">
 
       <div class="row">
@@ -16,7 +16,7 @@
           <button class="btn btn-primary" v-b-modal.add-modal>Add Company</button>
         </div>
       </div>
-      
+
       <div class="table-responsive">
         <table class="table">
           <tr>

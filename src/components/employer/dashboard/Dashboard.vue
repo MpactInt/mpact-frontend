@@ -1,248 +1,95 @@
 <template>
-<div>
-<section class="employer-dashboard pink-pattern-bg">
-  <h1 class="page-title text-left mb-0">Guided <span class="yellow-bg">Transformation</span></h1>
-  <h2 class="page-sub-title">This section will be the opening to the learning journey</h2>
-  <div class="row">
-    <div class="col-lg-3 col-md-6 my-2">
-      <a href="#" class="dashboard-card-link">
-        Requested Workshops
-        <img src="../../../assets/images/chevron-right.svg" alt="arrow-right" />
-      </a>
-    </div>
-    <div class="col-lg-3 col-md-6 my-2">
-      <a href="#" class="dashboard-card-link">
-        Upcoming Workshops
-        <img src="../../../assets/images/chevron-right.svg" alt="arrow-right" />
-      </a>
-    </div>
-    <div class="col-lg-3 col-md-6 my-2">
-      <a href="#" class="dashboard-card-link">
-        Announcements
-        <img src="../../../assets/images/chevron-right.svg" alt="arrow-right" />
-      </a>
-    </div>
-    <div class="col-lg-3 col-md-6 my-2">
-      <a href="#" class="dashboard-card-link">
-        Resources
-        <img src="../../../assets/images/chevron-right.svg" alt="arrow-right" />
-      </a>
-    </div>
-  </div>
-  <div class="row mt-5">
-    <div class="col-md-6">
-      <div class="card">
-        <img src="https://freedesignfile.com/upload/2017/08/teamwork-Stock-Photo-01.jpg" class="card-img-top"
-             alt="...">
-        <div class="card-body">
-          <h6 class="card-sub-title">Step: 0</h6>
-          <h5 class="card-title-2">Some quick example text to build on the card title and make up the bulk of the card's
-            content.</h5>
+  <div>
+    <section class="employer-dashboard pink-pattern-bg">
+      <h1 class="page-title text-left mb-0">Guided <span class="yellow-bg">Transformation</span></h1>
+      <h2 class="page-sub-title">This section will be the opening to the learning journey</h2>
+      <div class="row">
+        <div class="col-lg-3 col-md-6 my-2">
+          <router-link to="/employer/request-workshop" class="dashboard-card-link">
+            Requested Workshops
+            <img src="../../../assets/images/chevron-right.svg" alt="arrow-right" />
+          </router-link>
+        </div>
+        <div class="col-lg-3 col-md-6 my-2">
+          <router-link to="/employer/workshops" class="dashboard-card-link">
+            Upcoming Workshops
+            <img src="../../../assets/images/chevron-right.svg" alt="arrow-right" />
+          </router-link>
+        </div>
+        <div class="col-lg-3 col-md-6 my-2">
+          <router-link to="/employer/announcements" class="dashboard-card-link">
+            Announcements
+            <img src="../../../assets/images/chevron-right.svg" alt="arrow-right" />
+          </router-link>
+        </div>
+        <div class="col-lg-3 col-md-6 my-2">
+          <router-link to="/employer/resources" class="dashboard-card-link">
+            Resources
+            <img src="../../../assets/images/chevron-right.svg" alt="arrow-right" />
+          </router-link>
         </div>
       </div>
-    </div>
-    <div class="col-md-6">
-      <div class="card">
-        <img src="https://freedesignfile.com/upload/2017/08/teamwork-Stock-Photo-01.jpg" class="card-img-top"
-             alt="...">
-        <div class="card-body">
-          <h6 class="card-sub-title">Step: 1</h6>
-          <h5 class="card-title-2">Some quick example text to build on the card title and make up the bulk of the card's
-            content.</h5>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-6">
-      <div class="card">
-        <img src="https://freedesignfile.com/upload/2017/08/teamwork-Stock-Photo-01.jpg" class="card-img-top"
-             alt="...">
-        <div class="card-body">
-          <h6 class="card-sub-title">Step: 2</h6>
-          <h5 class="card-title-2">Some quick example text to build on the card title and make up the bulk of the card's
-            content.</h5>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-6">
-      <div class="card">
-        <img src="https://freedesignfile.com/upload/2017/08/teamwork-Stock-Photo-01.jpg" class="card-img-top"
-             alt="...">
-        <div class="card-body">
-          <h6 class="card-sub-title">Step: 3</h6>
-          <h5 class="card-title-2">Some quick example text to build on the card title and make up the bulk of the card's
-            content.</h5>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-6">
-      <div class="card">
-        <img src="https://freedesignfile.com/upload/2017/08/teamwork-Stock-Photo-01.jpg" class="card-img-top"
-             alt="...">
-        <div class="card-body">
-          <h6 class="card-sub-title">Step: 4</h6>
-          <h5 class="card-title-2">Some quick example text to build on the card title and make up the bulk of the card's
-            content.</h5>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<section class="employer-dashboard-statistics pink-pattern-bg-2">
-  <div class="row">
-    <div class="col-md-6 my-3">
-      <div class="card-box statistics-box">
-        <h5>Resources</h5>
-        <p>No Data Found</p>
-        <a href="#">View All</a>
-      </div>
-    </div>
-    <div class="col-md-6 my-3">
-      <div class="card-box statistics-box">
-        <h5>"ToDo"</h5>
-        <div class="todo-map-list">
-          <div>
-            <img src="../../../assets/images/todo-map-icon.svg" />
-            <h4>Item #3</h4>
-            <p>Test</p>
-          </div>
-          <div>
-            <img src="../../../assets/images/todo-map-icon.svg" />
-            <h4>Item #3</h4>
-            <p>Test</p>
-          </div>
-        </div>
-        <a href="#">View All</a>
-      </div>
-    </div>
-    <div class="col-md-6 my-3">
-      <div class="card-box statistics-box">
-        <h5>Workshops</h5>
-        <a class="pera">Overcoming Imposter Syndrome <img src="../../../assets/images/chevron-right-blue.svg" /></a>
-        <a href="#">View All</a>
-      </div>
-    </div>
-    <div class="col-md-6 my-3">
-      <div class="card-box statistics-box">
-        <h5>Opportunities</h5>
-        <p>No Data Found</p>
-        <a href="#">View All</a>
-      </div>
-    </div>
-  </div>
-</section>
-  <div class="col-md-9">
-    <div class="row">
-      <div class="col-lg-8">
-        <p><b>Guided Transformation</b></p>
-        <div class="row step-card-section">
-          <div class="col-lg-4 col-md-6 mb-3 cpd" v-if="stepsList.length" v-for="step in stepsList" v-bind:key="step.id">
-            <div class="card custom-card">
-              <router-link :to="'/employer/view-step/' + step.id">
-                <img class="card-img-top" :src="filePath + '/' + step.image" alt="Card image cap">
-                <div class="card-body">
-                  <h5 class="card-title text-blue f-14">{{ step.title }}</h5>
-                  <!-- <div class="progress-bar-green">
-                    <div class="progress">
-                      <div class="progress-bar" role="progressbar" style="width: 40%" aria-valuenow="25"
-                        aria-valuemin="0" aria-valuemax="100">40%</div>
-                    </div>
-                  </div> -->
-                </div>
-              </router-link>
+      <div class="row mt-5">
+        <div class="col-md-6" v-if="stepsList.length" v-for="step in stepsList" v-bind:key="step.id">
+          <router-link :to="'/employer/view-step/' + step.id">
+            <div class="card">
+              <img :src="filePath + '/' + step.image" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h6 class="card-sub-title">{{ step.title }}</h6>
+                <!-- <h5 class="card-title-2">{{ step.description }}</h5> -->
+              </div>
             </div>
+          </router-link>
+        </div>
+        <div v-if="!stepsList.length">No data found</div>
+      </div>
+    </section>
+    <section class="employer-dashboard-statistics pink-pattern-bg-2">
+      <div class="row">
+        <div class="col-md-6 my-3">
+          <div class="card-box statistics-box">
+            <h5>Resources</h5>
+            <a class="pera" v-for="rl in resourcesList" v-bind:key="rl.id">{{ rl.title }} <img
+                src="../../../assets/images/chevron-right-blue.svg" /></a>
+            <p v-if="!resourcesList.length">No Data Found</p>
+            <router-link to="/employer/resources">View All</router-link>
           </div>
-          <div v-if="!stepsList.length">No data found</div>
+        </div>
+        <div class="col-md-6 my-3">
+          <div class="card-box statistics-box">
+            <h5>"ToDo"</h5>
+            <div class="todo-map-list" v-if="todoList.length">
+              <div v-for="todo in todoList" v-bind:key="todo.id">
+                <img src="../../../assets/images/todo-map-icon.svg" />
+                <h4>Item #{{ todo.id }}</h4>
+                <p>{{ todo.title }}</p>
+              </div>
+            </div>
+            <p v-if="!todoList.length">No Data Found</p>
+            <router-link to="/employer/todo">View All</router-link>
+          </div>
+        </div>
+        <div class="col-md-6 my-3">
+          <div class="card-box statistics-box">
+            <h5>Workshops</h5>
+            <p v-if="!workshopsListDashboard.length">No Data Found</p>
+            <router-link v-if="workshopsListDashboard.length" class="pera" v-for="rl in workshopsListDashboard"
+              v-bind:key="rl.id" :to="'/employer/view-workshop/' + rl.id">{{ rl.title }} <img
+                src="../../../assets/images/chevron-right-blue.svg" /></router-link>
+            <router-link to="/employer/workshops">View All</router-link>
+          </div>
+        </div>
+        <div class="col-md-6 my-3">
+          <div class="card-box statistics-box">
+            <h5>Opportunities</h5>
+            <p v-if="opprotunity.content" v-html="opprotunity.content"></p>
+            <p v-if="!opprotunity.content">No Data Found</p>
+            <router-link to="/employer/opportunities">View All</router-link>
+          </div>
         </div>
       </div>
-      <div class="col-lg-4">
-        <div class="work-progress">
-          <ul class="work-progress-list">
-            <p>
-              <b class="mb-5">Requested Workshops </b>
-              <router-link to="/employer/request-workshop">View All</router-link>
-            </p>
-            <li v-if="workshopList.length" v-for="wl in workshopList" v-bind:key="wl.id">
-              <h5 class="text-blue">{{ wl.name }}</h5>
-            </li>
-            <p v-if="!workshopList.length">No Data Found</p>
-          </ul>
-        </div>
-        <div class="work-progress">
-          <ul class="work-progress-list">
-            <p>
-              <b class="mb-5">Recent Announcments </b>
-              <router-link to="/employer/announcements">View All</router-link>
-            </p>
-            <li v-if="announcementsList.length" v-for="ad in announcementsList" v-bind:key="ad.id">
-              <h5 class="text-blue">{{ ad.title }}</h5>
-              <p class="text-blue op-7">{{ ad.description | truncate(50) }}</p>
-            </li>
-            <p v-if="!announcementsList.length">No Data Found</p>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div class="row pt-4 pb-5">
-      <div class="col-lg-3 col-md-6 mb-3 ">
-        <div class="resource-box">
-          <h2 class="text-blue bold mb-2">Resources </h2>
-          <router-link to="/employer/resources">View All</router-link>
-          <ul v-if="resourcesList.length" class="resource-list mt-3">
-            <!-- <li class="">Assignment <span class="list-icon count">7</span></li> -->
-            <li v-for="rl in resourcesList" class="" v-bind:key="rl.id">{{ rl.title }}
-              <span class="list-icon">
-                <a href="javascript:void(0)">
-                  <img src="../../../assets/images/chevron-left-icon.png">
-                </a></span>
-            </li>
-          </ul>
-          <p v-if="!resourcesList.length">No Data Found</p>
-        </div>
-      </div>
-      <div class="col-lg-3 col-md-6 mb-3 ">
-        <div class="resource-box">
-          <!-- <p class="info-icon cursor-pointer"><img src="../../../assets/images/info-icon.png"></p> -->
-          <h2 class="text-blue bold mb-3">Opportunities</h2>
-          <router-link to="/employer/opportunities">View All</router-link>
-          <div v-if="opprotunity.content" v-html="opprotunity.content"></div>
-          <div v-if="!opprotunity.content">No Data Found</div>
-        </div>
-      </div>
-      <div class="col-lg-3 col-md-6 mb-3 ">
-        <div class="resource-box">
-          <h2 class="text-blue bold mb-3"><span class="primary-text rotated">"</span>To Do<span
-              class="primary-text rotated">"</span></h2>
-          <router-link to="/employer/todo">View All</router-link>
-          <ul class="to-do-list" v-if="todoList.length">
-            <li v-for="todo in todoList" v-bind:key="todo.id">
-              <router-link :to="'/employer/todo/' + todo.id">Item #{{ todo.id }}</router-link>
-              <p class="text-blue op-7">{{ todo.title }}</p>
-            </li>
-          </ul>
-          <p v-if="!todoList.length">
-            No Data Found
-          </p>
-        </div>
-      </div>
-      <div class="col-lg-3 col-md-6 mb-3 ">
-        <div class="resource-box">
-          <h2 class="text-blue bold mb-2">Workshops </h2>
-          <router-link to="/employer/workshops">View All</router-link>
-          <ul v-if="workshopsListDashboard.length" class="resource-list mt-3">
-            <!-- <li class="">Assignment <span class="list-icon count">7</span></li> -->
-            <li v-for="rl in workshopsListDashboard" class="" v-bind:key="rl.id">{{ rl.title }}
-              <span class="list-icon">
-                <a href="javascript:void(0)">
-                  <img src="../../../assets/images/chevron-left-icon.png">
-                </a></span>
-            </li>
-          </ul>
-          <p v-if="!workshopsListDashboard.length">No Data Found</p>
-        </div>
-      </div>
-    </div>
+    </section>
   </div>
-</div>
 </template>
 
 <script>

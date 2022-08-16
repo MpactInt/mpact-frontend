@@ -85,8 +85,11 @@ import AdminLearningPlan from '@/components/admin/LearningPlan'
 import AdminLearningPlanView from '@/components/admin/LearningPlanView'
 Vue.use(Router)
 
+
+
 function guardMyroute(to, from, next) {
   var isAuthenticated = false
+  // var backAuth = getAuthUser()
   if (localStorage.getItem('token')) {
     isAuthenticated = true
   } else {
@@ -99,6 +102,13 @@ function guardMyroute(to, from, next) {
   }
 }
 
+function getAuthUser() {
+  Api.getAuthUser().then(response => {
+    let that = this
+    return response.data.res
+  }
+  )
+}
 
 export const router = new Router({
   routes: [
