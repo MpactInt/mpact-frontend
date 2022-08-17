@@ -31,7 +31,7 @@
         <td>{{ r.title }}</td>
         <td>{{ r.description }}</td>
         <td><span v-if="r.link">{{ r.link }}</span><span v-if="!r.link">NA</span></td>
-        <td><span v-if="r.file"><a href="javascript:void(0)"
+        <td><span v-if="r.file"><a class="link" href="javascript:void(0)"
               @click="downloadFile(r.id, r.file)">Download</a></span><span v-if="!r.file">NA</span></td>
         <td>{{ r.visibility }}</td>
         <td v-if="user.role == 'ADMIN' || company.role == 'COMPANY_ADMIN'" class="px-0">

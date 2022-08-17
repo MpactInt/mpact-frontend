@@ -4,16 +4,8 @@
     <div class="row">
 
       <div class="row">
-        <div class="col-md-3 my-2">
-
-        </div>
-        <div class="col-md-3 my-2">
-
-        </div>
-        <div class="col-md-3 my-2">
-        </div>
-        <div class="col-md-3 my-2">
-          <button class="btn btn-primary" v-b-modal.add-modal>Add Company</button>
+        <div class="col-md-12 d-flex my-2">
+          <button class="btn btn-primary ml-auto" v-b-modal.add-modal>Add Company</button>
         </div>
       </div>
 
@@ -28,7 +20,7 @@
             <th>Action</th>
           </tr>
           <tr v-if="comapanyListLength" v-for="r in comapanyList.data" v-bind:key="r.id">
-            <td><img :src="path + r.company_logo" height="75" width="75" /></td>
+            <td><img :src="path + r.company_logo" class="table-img" height="75" width="75" /></td>
             <td>{{ r.company_name }}</td>
             <td>{{ r.selected_plan_id }}</td>
             <td>{{ r.total_hours }}</td>
@@ -44,8 +36,8 @@
             <td colspan="5">No Data Found</td>
           </tr>
         </table>
-        <pagination :data="comapanyList" @pagination-change-page="getCompaniesList" />
       </div>
+        <pagination :data="comapanyList" @pagination-change-page="getCompaniesList" />
     </div>
     <b-modal id="update-hours-modal" size="lg" title="Update Hours" :hide-footer=hideFooter no-fade no-enforce-focus>
       <form>

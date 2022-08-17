@@ -1,43 +1,63 @@
 <template>
-    <div class="col-md-9">
-        <div class="row mb-3">
-            <div class="col-md-4">
-
+    <section class="popup-survey-view-section half-cut-bg">
+        <h1 class="page-title">Learning Plan</h1>
+        <div class="row">
+            <div class="col-md-5">
+                <div class="popup-survey-lable">
+                    <p class="w-100 mb-0 page-sub-title">Plan Title :</p> <p class="w-100 pink-color"><strong>{{ planSingle.title }}</strong></p>
+                </div>
+                <div class="popup-survey-lable">
+                    <p class="w-100 mb-0 page-sub-title">Plan Description :</p> <p class="w-100 pink-color"><strong>{{ planSingle.description }} </strong></p> </div>
             </div>
-            <div class="col-md-4">
 
+            <div class="col-md-6 ml-auto">
+                <div class="popup-survey-lable">
+                    <p class="w-100 mb-0 page-sub-title">Plan Profile Type :</p> <p class="w-100 pink-color"><strong>{{ planSingle.profile_type }}</strong></p></div>
+                <div class="popup-survey-lable ">
+                    <p class="w-100 mb-0 page-sub-title">Plan Image :</p> <p class="w-100"><strong>
+                        <img :src="planSingle.image" class="table-img" height="75" width="75" /></strong></p>
+                </div>
             </div>
-            <div class="col-md-4">
-                <button class="btn btn-primary float-right" v-b-modal.add-modal>Add New Learning Plan</button>
+            <div class="col-md-12 d-flex mt-4 mb-3">
+                 <button class="btn btn-primary ml-auto" v-b-modal.add-modal>Add New <br> Learning Plan</button>
             </div>
         </div>
-        <h3>Learning Plan</h3>
-        <label>Plan Title :</label> {{ planSingle.title }} <br>
-        <label>Plan Description :</label> {{ planSingle.description }}<br>
-        <label>Plan Profile Type :</label> {{ planSingle.profile_type }}<br>
-        <label>Plan Image :</label> <img :src="planSingle.image" height="75" width="75" />
+        
+      <div class="table-responsive">  
         <table class="table">
             <tr>
-                <td>Title</td>
-                <td>Description</td>
-                <td>File</td>
-                <td>Action</td>
+                <th>Title</th>
+                <th>Description</th>
+                <th>File</th>
+                <th>Action</th>
             </tr>
             <tr v-if="planFiles.length" v-for="lp in planFiles" v-bind:key="lp.id">
                 <td>{{ lp.title }}</td>
                 <td>{{ lp.description }}</td>
-                <td><a class="cursor-pointer" @click="downloadLearningPlanFile(lp.id, lp.image)">Download</a></td>
+                <td><a class="cursor-pointer links" @click="downloadLearningPlanFile(lp.id, lp.image)">Download</a></td>
                 <td>
-                    <button class="btn btn-primary" @click="getLearningPlanFile(lp)"><i
+                    <div class="d-flex align-items-center p-0" style="min-width: 100px;">
+
+                        <a type="button" class="mx-3 d-block" width="24" @click="getLearningPlanFile(lp)">
+                            <img src="../../assets/images/table-edit.svg" alt="table-edit" width="24"
+                                height="24" />
+                        </a>
+                        <a type="button" class="mx-3 d-block" width="24" @click="deleteLearningPlanFile(lp.id)">
+                            <img src="../../assets/images/table-delete.svg" alt="table-delete" width="24"
+                                height="24" />
+                        </a>
+                    </div>
+                    <!-- <button class="btn btn-primary" @click="getLearningPlanFile(lp)"><i
                             class="fa fa-pencil"></i></button>
                     <button class="btn btn-danger" @click="deleteLearningPlanFile(lp.id)"><i
-                            class="fa fa-trash"></i></button>
+                            class="fa fa-trash"></i></button> -->
                 </td>
             </tr>
             <tr v-if="!planFiles.length">
                 <td colspan="5">No Data Found</td>
             </tr>
         </table>
+    </div>
         <b-modal id="add-modal" title="Add New Learning Plan" :hide-footer=hideFooter>
             <form enctype="multipart/form-data">
                 <div id="details">
@@ -82,7 +102,7 @@
                 </div>
             </form>
         </b-modal>
-    </div>
+    </section>
 </template>
 <script>
 /* eslint-disable */

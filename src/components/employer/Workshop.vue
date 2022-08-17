@@ -1,8 +1,8 @@
 <template>
-  <div class="col-md-9">
-    <h1>Workshops</h1>
+   <section class="employer-workshops-section half-cut-bg">
+    <h1 class="page-title text-left mt-0">Workshops</h1>
     <List></List>
-  </div>
+  </section>
 </template>
 <script>
 /* eslint-disable */

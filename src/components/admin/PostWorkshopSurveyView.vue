@@ -1,19 +1,19 @@
 <template>
-    <div class="col-md-9">
-        <router-link to="/admin/post-workshop-surveys">
-            <button class="btn-primary">
-                <i class="fa fa-arrow-left white"></i>
-            </button>
+    <section class="post-workshop-survey-section half-cut-bg">
+        <router-link to="/admin/post-workshop-surveys" class="btn back">
+            <!-- <button class="btn-primary"> -->
+            <img src="../../assets/images/arrow-left.svg" alt="arrow-left" /> Back
+            <!-- </button> -->
         </router-link>
-        <h3>Post Workshop Survey Answers</h3>
-        <label>{{ survey.question }}</label>
-        <div class="row mt-3">
+        <h1 class="page-title text-left mt-0">Post Workshop <span>Survey Answers</span></h1>
+        <h2 class="page-sub-title">{{ survey.question }}</h2>
+      <div class="table-responsive">
             <table class="table">
                 <tr>
-                    <td>Company Name</td>
-                    <td>Employee Name</td>
-                    <td>Workshop Title</td>
-                    <td>Answer</td>
+                    <th>Company Name</th>
+                    <th>Employee Name</th>
+                    <th>Workshop Title</th>
+                    <th>Answer</th>
                 </tr>
                 <tr v-if="checkInSurveyLength" v-for="p in checkInSurvey.data" v-bind:key="p.id">
                     <td>{{ p.company_name }}</td>
@@ -26,7 +26,7 @@
                 </tr>
             </table>
         </div>
-    </div>
+    </section>
 </template>
 <script>
 /* eslint-disable */

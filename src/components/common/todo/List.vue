@@ -51,12 +51,12 @@
                                     <img src="../../../assets/images/check-box.svg" alt="table-check-box" width="24"
                                         height="24" />
                                 </a>
-                                <router-link v-if="user.role != 'ADMIN' && company.role == 'COMPANY_ADMIN'" class=""
+                                <router-link v-if="user.role != 'ADMIN' && company.role == 'COMPANY_ADMIN'" class="mx-3 d-block"
                                     :to="'/employer/todo/' + r.id">
                                     <img src="../../../assets/images/table-eye.svg" alt="table-eye" width="24"
                                         height="24" />
                                 </router-link>
-                                <router-link v-if="user.role != 'ADMIN' && company.role == 'COMPANY_EMP'" class=""
+                                <router-link v-if="user.role != 'ADMIN' && company.role == 'COMPANY_EMP'" class="mx-3 d-block"
                                     :to="'/employee/todo/' + r.id">
                                     <img src="../../../assets/images/table-eye.svg" alt="table-eye" width="24"
                                         height="24" />

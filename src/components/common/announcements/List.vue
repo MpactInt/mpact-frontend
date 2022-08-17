@@ -2,14 +2,14 @@
   <div class="mt-5">
     <div class="row mb-3 align-items-center">
       <div class="col-md-3 my-2 ">
-        <select v-model="searchData.sortBy" class="form-control" v-on:change="getAnnouncementsList">
+        <select v-model="searchData.sortBy" class="form-control m-0" v-on:change="getAnnouncementsList">
           <option value="">Sort By</option>
           <option value="title">Title</option>
           <option value="date">Date</option>
         </select>
       </div>
       <div class="col-md-6 my-2">
-        <input type="search" v-model="searchData.keyword" class="form-control" placeholder="Search By Keyword"
+        <input type="search" v-model="searchData.keyword" class="form-control m-0" placeholder="Search By Keyword"
                v-on:keyup="getAnnouncementsList"/><span class="search-icon"></span>
       </div>
       <div class="col-lg-3 col-md-12 my-2" v-if="company.role == 'COMPANY_ADMIN'">

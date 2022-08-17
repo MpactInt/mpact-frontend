@@ -1,6 +1,5 @@
 <template>
     <div class="header">
-        <div class="container">
 
             <nav class="navbar navbar-expand-lg navbar-light ">
                 <router-link v-if="!company.company_logo" class="navbar-brand" to="/employee/dashboard"><img
@@ -24,7 +23,6 @@
                     </ul>
                 </div>
             </nav>
-        </div>
     </div>
 </template>
 <script>

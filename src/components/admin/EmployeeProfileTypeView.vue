@@ -1,18 +1,18 @@
 <template>
-    <div class="col-md-9">
-        <router-link to="/admin/employee-profile-type">
-            <button class="btn-primary">
-                <i class="fa fa-arrow-left white"></i>
-            </button>
+    <section class="popup-survey-view-section half-cut-bg">
+        <router-link to="/admin/employee-profile-type" class="btn back">
+            <!-- <button class="btn-primary"> -->
+            <img src="../../assets/images/arrow-left.svg" alt="arrow-left" /> Back
+            <!-- </button> -->
         </router-link>
-        <h3 class="mb-3">Employee Profile Type Details</h3>
-        <b>Profile Type:</b> {{ profileType.profile_type }}<br>
-        <b>File:</b> <a class="cursor-pointer" @click="downloadProfileTypeFile(profileType.id, profileType.file)">{{
+        <h3 class="page-title text-left mt-0">Employee <span>Profile Type Details</span></h3>
+        <p><b>Profile Type:</b> <span class="links">{{ profileType.profile_type }} </span></p>
+        <p><b>File:</b> <a class="cursor-pointer links" @click="downloadProfileTypeFile(profileType.id, profileType.file)">{{
                 profileType.file
-        }}</a>
+        }}</a></p>
         <div class="row mt-5">
             <div class="col-md-4">
-                <h5>Section 1</h5>
+                <h2 class="blue-color"><strong>Section 1</strong></h2>
                 <form enctype="multipart/form-data" @submit="addUpdateSection1">
                     <div class="form-group">
                         <label>Title</label>
@@ -27,17 +27,17 @@
                         <label>Image</label>
                         <input class="form-control" type="file" ref="image" @change="imageOnChange" />
                     </div>
-                    <div class="form-group" v-if="section1.image">
+                    <div class="form-group mt-5" v-if="section1.image">
                         <label>Uploaded Image</label><br>
-                        <img :src="section1.image" height="75" width="75" />
+                        <img :src="section1.image" class="table-img" height="75" width="75" />
                     </div>
-                    <div class="form-group">
+                    <div class="form-group mt-3">
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </div>
                 </form>
             </div>
             <div class="col-md-4">
-                <h5>Section 2</h5>
+                <h2 class="blue-color"><strong>Section 2</strong></h2>
                 <form @submit="addUpdateSection2">
                     <div class="form-group">
                         <label>Title</label>
@@ -48,13 +48,13 @@
                         <textarea class="form-control" placeholder="Description"
                             v-model="section2.description"></textarea>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group form-group pt-4 mt-4">
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </div>
                 </form>
             </div>
             <div class="col-md-4">
-                <h5>Section 3</h5>
+                <h2 class="blue-color"><strong>Section 3</strong></h2>
                 <form enctype="multipart/form-data" @submit="addUpdateSection3">
                     <div class="form-group">
                         <label>Title</label>
@@ -65,13 +65,13 @@
                         <textarea class="form-control" placeholder="Description"
                             v-model="section3.description"></textarea>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group form-group pt-4 mt-4">
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </div>
                 </form>
             </div>
         </div>
-    </div>
+    </section>
 </template>
 <script>
 /* eslint-disable */

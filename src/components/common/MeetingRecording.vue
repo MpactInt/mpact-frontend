@@ -1,13 +1,16 @@
 <template>
   <div>
-    <h1>Meeting Recordings</h1>
-    <div class="mt-5">
+
+      <h1 class="page-title text-left mt-0">Meeting <span>Recordings</span></h1>
+
+    
+      <div class="table-responsive">
       <table class="table table-striped">
         <tr>
-          <td>Meeting Id</td>
-          <td>File Type</td>
-          <td>Download</td>
-          <td>Play</td>
+          <th>Meeting Id</th>
+          <th>File Type</th>
+          <th>Download</th>
+          <th>Play</th>
         </tr>
         <tr v-if="meetingRecordingLength" v-for="r in meetingRecordingsList" v-bind:key="r.id">
           <td>{{ r.meeting_id }}</td>

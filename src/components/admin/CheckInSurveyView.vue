@@ -1,18 +1,18 @@
 <template>
-    <div class="col-md-9">
-        <router-link to="/admin/check-in-surveys">
-            <button class="btn-primary">
-                <i class="fa fa-arrow-left white"></i>
-            </button>
+    <section class="check-in-survey-view-section half-cut-bg">
+        <router-link to="/admin/check-in-surveys" class="btn back">
+            <!-- <button class="btn-primary"> -->
+            <img src="../../assets/images/arrow-left.svg" alt="arrow-left" /> Back
+            <!-- </button> -->
         </router-link>
-        <h3>Check In Survey Answers</h3>
-        <label>{{ survey.question }}</label>
+        <h1 class="page-title text-left mt-0">Check In <span>Survey Answers</span></h1>
+        <h2 class="page-sub-title">{{ survey.question }}</h2>
         <div class="row mt-3">
             <table class="table">
                 <tr>
-                    <td>Company Name</td>
-                    <td>Employee Name</td>
-                    <td>Answer</td>
+                    <th>Company Name</th>
+                    <th>Employee Name</th>
+                    <th>Answer</th>
                 </tr>
                 <tr v-if="checkInSurveyLength" v-for="p in checkInSurvey.data" v-bind:key="p.id">
                     <td>{{ p.company_name }}</td>
@@ -24,7 +24,7 @@
                 </tr>
             </table>
         </div>
-    </div>
+    </section>
 </template>
 <script>
 /* eslint-disable */

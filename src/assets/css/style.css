@@ -26,10 +26,6 @@ body {
   box-sizing: border-box;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
-   font-family: 'Avenir' !important;
-   font-weight: 500;
-   color: #4C4C4D;
-  /* background-color: #f4fdfc;*/
 }
 
 section {
@@ -100,6 +96,11 @@ input.form-control, select.form-control, .custom-file-input {
     background-size: contain;
     background-position: center right;
     background-repeat: no-repeat;
+        padding-right: 150px;
+}
+
+.form-control[type=file]::-webkit-file-upload-button {
+    display: none;
 }
 select.form-control {
     position: relative;
@@ -780,6 +781,9 @@ position: relative;
 .pink-color{
     color: #C2095A !important;
 }
+.blue-color{
+    color: #090446 !important;
+}
 
 
 .section-title {
@@ -874,9 +878,13 @@ p.copyright {
   border-radius: 10px;
   border: 0;
 }
+.btn:not(:disabled):not(.disabled):active,
+.btn:focus,
+.btn:active,
 .btn:hover{
-  opacity: .5;
-  background: #feb95f;
+  background: #feb95f !important;
+  background-color: #feb95f !important;
+    border-color: #feb95f !important;
 }
 
 .btn.gradient-color-btn {
@@ -888,6 +896,7 @@ p.copyright {
     display: inline-flex;
     align-items: center;
     color: #090446;
+        margin-bottom: 15px;
 }
 
 .btn.btn-outline-primary {
@@ -974,9 +983,12 @@ p.copyright {
     margin-top: 60px;
 }
 
+
 .color-border img {
-    height: 500px;
+    height: 400px;
+    -o-object-fit: cover;
     object-fit: cover;
+    width: 100%;
 }
 .color-border {
     background: #090446;
@@ -1060,14 +1072,14 @@ p.copyright {
 }
 .links, .link {
     font-weight: 500;
-    font-size: 18px;
+    font-size: 16px;
     line-height: 24px;
     text-transform: uppercase;
     color: #C2095A;
-    cursor: pointer;
 }
-.links:hover, .link:hover {
+a.links:hover, a.link:hover {
     color: #4C4C4D;
+    cursor: pointer;
 
 }
 .links img, .link img {
@@ -1081,6 +1093,9 @@ p.copyright {
 left: 10px;
 }
 
+.table td .links {
+    text-transform: none;
+}
 .upcoming-workshops {
     background-image: url(../images/upcoming-workshops.svg);
     background-size: 100%;
@@ -1179,6 +1194,9 @@ table tr td, table tr th {
     vertical-align: middle !important;
 }
 
+.mx-table-date td, .mx-table-date th {
+    padding: 4px !important;
+}
 table tr th {
     background: #FEB95F;
     border: 0px !important;
@@ -1212,9 +1230,10 @@ table tr:last-child td {
 
 .table td .d-flex .mx-3.d-block {
     width: 20px;
-    margin-left: 0 !important;
+    margin-right: 0 !important;
     padding-right: 4px;
 }
+
 table tr td .btn {
     background: #c2095a;
     font-weight: 500;
@@ -1223,8 +1242,24 @@ table tr td .btn {
     text-align: center;
     color: #FFFFFF;
     white-space: nowrap;
+    padding: 10px 20px;
+    margin: 4px 0px;
 }
 
+ul.pagination {
+    padding: 10px;
+}
+.page-item.active .page-link {
+    z-index: 3;
+    color: #fff;
+    background-color: #c2095a;
+    border-color: #c2095a;
+}
+
+.page-item .page-link {
+    color: #c2095a;
+    border: 1px solid #c2095a;
+}
 .light-pink-bg {
     background: #FFF1F6;
 }

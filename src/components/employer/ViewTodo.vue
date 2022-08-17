@@ -1,15 +1,16 @@
 <template>
-  <div class="col-md-9">
-    <router-link to="/employer/todo">
-      <button class="btn-primary">
-        <i class="fa fa-arrow-left white"></i>
+   <section class="employer-view-todo-section half-cut-bg">
+    <router-link to="/employer/todo" class="btn back">
+            <!-- <button class="btn-primary"> -->
+            <img src="../../assets/images/arrow-left.svg" alt="arrow-left" /> Back
+            <!-- </button> -->
       </button>
     </router-link>
     <div class="row mt-5">
-     <h4>{{todoUpdate.title}}</h4>
-     <p>{{todoUpdate.description}}</p>
+     <h4 class="page-title text-left mt-0">{{todoUpdate.title}}</h4>
+     <p class="page-sub-title text-left mt-0">{{todoUpdate.description}}</p>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>

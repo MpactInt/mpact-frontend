@@ -1,7 +1,7 @@
 <template>
-  <div class="col-md-9">
+  <section class="meeting-recordings-view-section half-cut-bg">
     <MeetingRecording></MeetingRecording>
- </div>
+ </section>
 </template>
 
 <script>

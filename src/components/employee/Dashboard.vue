@@ -7,7 +7,7 @@
       </h2>
       <h4 class="page-sub-title">{{ section1.description }}</h4>
       <!--      <img src="../../assets/images/about-frame.svg" class="hero-img" alt="">-->
-      <img :src="section1.image" class="hero-img" alt="">
+      <div class="color-border"><img :src="section1.image" class="hero-img" alt=""></div>
 
     </section>
     <section class="employee-dashboard-section" v-if="section2.id">
