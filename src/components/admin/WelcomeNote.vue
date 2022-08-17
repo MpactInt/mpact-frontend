@@ -25,7 +25,7 @@
           <td><img :src="path + '/' + n.image" class="table-img" height="75" width="75" /></td>
           <td>{{ n.title }}</td>
           <td v-html="n.description"></td>
-          <td><span v-for="c in n.company" v-bind:key="c.id">{{ c.company_name }},</span></td>
+          <td><span v-for="(c,index) in n.company" v-bind:key="index+c.id">{{ c.company_name }},</span></td>
           <td>
             <!-- <button class="btn btn-primary" @click="getCompaniesList(); getSingleWelcomeNote(n.id)"><i
                 class="fa fa-pencil"></i></button>

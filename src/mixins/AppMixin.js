@@ -39,6 +39,7 @@ export default {
       },
       empList: [],
       companiesList: [],
+      meetingRecordingsList:[],
       companiesListMultiselect: [
         {
           selectAll: 'Select All',
@@ -345,12 +346,12 @@ export default {
         that.meetingRecordingLength = that.meetingRecordingsList.length
       }
       ).catch((error) => {
-        this.$swal({
-          icon: "error",
-          title: "error",
-          text: "in error",
-          showConfirmButton: true
-        });
+        // this.$swal({
+        //   icon: "error",
+        //   title: "error",
+        //   text: "in error",
+        //   showConfirmButton: true
+        // });
       });
 
     },
