@@ -28,10 +28,13 @@
                     <label>File</label>
                     <input type="file" class="form-control" id="file" ref="fileUpdate" @change="updateFileOnChange">
                 </div>
-                <div class="form-group">
-                    <label>Visibility<span class="err">*</span></label>
-                    <input type="radio" id="visibility" v-model="resourceUpdate.visibility" value="PRIVATE"> PRIVATE
-                    <input type="radio" id="visibility" v-model="resourceUpdate.visibility" value="PUBLIC"> PUBLIC
+                   <div class="form-group">
+                    <label for="visibility" class="mx-2">Visibility<span class="err">*</span></label>
+                    <br>
+                    <input type="radio" id="PRIVATE" v-model="resourceUpdate.visibility" value="PRIVATE">
+                    <label for="PRIVATE" class="mx-2">PRIVATE</label>
+                    <input type="radio" id="visibility2" v-model="resourceUpdate.visibility" value="PUBLIC">
+                    <label for="visibility2" class="mx-2">PUBLIC</label>
                 </div>
                 <button type="button" @click="updateResource" class="btn btn-primary"
                     :disabled="resourceUpdate.disabled">Submit</button>
