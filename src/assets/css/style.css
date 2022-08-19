@@ -130,11 +130,20 @@ input.form-control + span.search-icon:after {
     background-repeat: no-repeat;
 }
 
+input.form-control.search ,
 input.form-control[type="search"] {
     padding-left: 40px;
     margin-bottom: 15px;
 }
+/* clears the 'X' from Internet Explorer */
+input[type=search]::-ms-clear {  display: none; width : 0; height: 0; }
+input[type=search]::-ms-reveal {  display: none; width : 0; height: 0; }
 
+/* clears the 'X' from Chrome */
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration { display: none; }
 .siderbar-link ul .manage-gap a img {
     margin: 0 5px;
 }
@@ -589,6 +598,10 @@ opacity: 0.8;
   display: none;
  } 
 
+.card-image img, .card-post .card-image img {
+    height: 200px;
+    object-fit: cover;
+}
 .header {
     width: 100%;
     background: #fff;
@@ -878,6 +891,7 @@ p.copyright {
   border-radius: 10px;
   border: 0;
 }
+.btn-primary.disabled, .btn-primary:disabled,
 .btn:not(:disabled):not(.disabled):active,
 .btn:focus,
 .btn:active,
@@ -1010,7 +1024,6 @@ p.copyright {
 }
 
 .modal-body {
-    min-height: 40vh;
     background-image: url(../images/my-learning-plan-bg.svg);
     background-size: 150%;
     background-position: top;

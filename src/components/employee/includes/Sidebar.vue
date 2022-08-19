@@ -54,7 +54,7 @@
           </a>
         </li>
         <li v-if="showUserList" class="manage-gap">
-          <input type="search" class="form-control" v-model="searchData.name" placeholder="Search Employees"
+          <input type="text" class="form-control search" v-model="searchData.name" placeholder="Search Employees"
             @keyup="getEmployeesListChat" /><span class="search-icon"></span>
           <router-link v-for="e in empList.data" v-bind:key="e.id" :to="'/employee/one-to-one-chat/' + e.id"><img
               src="../../../assets/images/back-btn.png" alt="btn" /> {{

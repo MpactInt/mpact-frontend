@@ -19,7 +19,7 @@
         <button v-if="user.role == 'ADMIN'" class="ml-auto btn btn-primary float-right" v-b-modal.add-opportunity-modal>Add New Opportunity</button>
       </div>
     </div>
-    <div class="row mt-3">
+    <div class=" mt-3">
     <div class="table-responsive">
       <table class="table">
         <tr>

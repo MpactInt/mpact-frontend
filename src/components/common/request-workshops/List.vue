@@ -7,9 +7,9 @@
                     <option value="name">Name</option>
                 </select>
             </div>
-            <div class="col-md-3 my-2">
-                <input type="text" v-model="getWorkshopData.keyword" class="form-control" placeholder="Search"
-                    v-on:keyup="getWorkshopList" />
+            <div class="col-md-3 my-2  d-flex align-items-center">
+                <input type="text" v-model="getWorkshopData.keyword" class="form-control search" placeholder="Search"
+                    v-on:keyup="getWorkshopList" /><span class="search-icon"></span><a href="" class="link px-2 mb-3">clear</a>
             </div>
             <div class="col-md-3 my-2">
             </div>

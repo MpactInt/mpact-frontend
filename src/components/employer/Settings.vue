@@ -1,6 +1,6 @@
 <template>
 <section class="employer-dashboard  pettern-bg">
-    <h1 class="page-title">Settings</h1>
+    <h1 class="page-title text-left">Settings</h1>
     <div class="row">
       <div class="col-lg-6">
         <form @submit="addWelcomeNote" ref="addWelcomeNoteForm" enctype="multipart/form-data">
@@ -41,7 +41,9 @@
           <div class="row align-items-center">
             <div class="col-md-9 my-2">
               <div class="form-group">
-                <label><b>Change Logo <span class="err">*</span></b></label>
+                <label><b>Change Logo </b></label>
+                <br>
+                <label>Upload your logo <span class="err">*</span></label>
                 <input type="file" class="form-control" ref="logo" id="logo" @change="fileOnChange"
                   accept=".jpg, .jpeg, .png" />
               </div>

@@ -7,9 +7,9 @@
                     <option value="title">Title</option>
                 </select>
             </div>
-            <div class="col-lg-6  col-md-6 my-2">
-                <input type="search" v-model="getTodoData.keyword" class="form-control m-0" placeholder="Search"
-                    v-on:keyup="getTodoList" /><span class="search-icon"></span>
+            <div class="col-lg-6  col-md-6 my-2 d-flex align-items-center">
+                <input type="text" v-model="getTodoData.keyword" class="form-control search m-0" placeholder="Search"
+                    v-on:keyup="getTodoList" /><span class="search-icon"></span><a href="" class="link px-2 mb-3">clear</a>
             </div>
             <!--  <div class="col-md-3 my-2">
             </div> -->

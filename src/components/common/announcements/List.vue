@@ -9,7 +9,7 @@
         </select>
       </div>
       <div class="col-md-6 my-2">
-        <input type="search" v-model="searchData.keyword" class="form-control m-0" placeholder="Search By Keyword"
+        <input type="text" v-model="searchData.keyword" class="form-control search m-0" placeholder="Search By Keyword"
                v-on:keyup="getAnnouncementsList"/><span class="search-icon"></span>
       </div>
       <div class="col-lg-3 col-md-12 my-2" v-if="company.role == 'COMPANY_ADMIN'">

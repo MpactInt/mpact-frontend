@@ -1,15 +1,15 @@
 <template>
   <div class="mt-5">
-    <div class="row mb-3">
+    <div class="row mb-3 align-items-center">
       <div class="col-md-3 my-2">
         <select v-model="getWorkshopData.sortBy" class="form-control" v-on:change="getWorkshopsList">
           <option value="">Sort By</option>
           <option value="title">Title</option>
         </select>
       </div>
-      <div class="col-md-3 my-2">
-        <input type="search" v-model="getWorkshopData.keyword" class="form-control" placeholder="Search"
-          v-on:keyup="getWorkshopsList" /><span class="search-icon"></span>
+      <div class="col-md-3 my-2 d-flex align-items-center">
+        <input type="text" v-model="getWorkshopData.keyword" class="form-control mb-0 search" placeholder="Search"
+          v-on:keyup="getWorkshopsList" /><span class="search-icon"></span><a href="" class="link px-2 ">clear</a>
       </div>
       <div class="col-lg-6 col-md-12 my-2 d-flex">
         <button v-if="user.role == 'ADMIN'" class="btn btn-primary ml-auto float-right" v-b-modal.add-workshop-modal>Add New

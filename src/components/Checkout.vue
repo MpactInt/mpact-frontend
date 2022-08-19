@@ -94,11 +94,11 @@
                                       </ul>
                                     </div>
                                 <!-- <h5 class="page-sub-title">Your Cart <span class="total-items">{{ cartItems.length }}</span></h5> -->
-                                <div class="cart-item card"  v-for="ci in cartItems" v-bind:key="ci.id">
+                                <div class="cart-item card m-0"  v-for="ci in cartItems" v-bind:key="ci.id">
                                     <div class="card-title">
                                         {{ ci.description }} :
                                         <span class="card-subtitle">
-                                        {{ ci.amount / 100 | totalAmount }} {{ currencyCode }}
+                                        {{ ci.amount / 100 | totalAmount }} <small> {{ currencyCode }}</small>
                                         </span>
                                     </div>
                                 </div>
@@ -106,7 +106,7 @@
                                         <div class="card-body">
                                            <h5 class="card-title white-color"> Total :
                                                 {{ estimateData / 100 | totalAmount }} 
-                                                <h6 class="card-subtitle mb-2 text-muted">{{ currencyCode }}</h6>
+                                                <small>{{ currencyCode }}</small>
                                             </h5>
                                         </div>
                                     </div>

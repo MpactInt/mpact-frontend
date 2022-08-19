@@ -10,9 +10,9 @@
             <option value="title">Title</option>
           </select>
         </div>
-        <div class="col-md-4 my-2">
-          <input type="search" v-model="getStepData.keyword" class="form-control m-0" placeholder="Search"
-            v-on:keyup="getStepsList" /><span class="search-icon"></span>
+        <div class="col-md-4 my-2 d-flex align-items-center ">
+          <input type="text" v-model="getStepData.keyword" class="form-control m-0 search" placeholder="Search"
+            v-on:keyup="getStepsList" /><span class="search-icon"></span><a href="" class="link px-2 mb-3">clear</a>
         </div>
         <div class="col-md-5 d-flex my-2">
           <button class="btn btn-primary float-right ml-auto" v-b-modal.add-step-modal>Add New Step</button>

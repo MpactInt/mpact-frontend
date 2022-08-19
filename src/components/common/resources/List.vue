@@ -7,9 +7,9 @@
           <option value="title">Title</option>
         </select>
       </div>
-      <div class="col-md-3 my-2">
-        <input type="search" v-model="getResourceData.keyword" class="form-control" placeholder="Search"
-          v-on:keyup="getResourcesList" /><span class="search-icon"></span>
+      <div class="col-md-3 my-2 d-flex align-items-center">
+        <input type="text" v-model="getResourceData.keyword" class="form-control search" placeholder="Search"
+          v-on:keyup="getResourcesList" /><span class="search-icon"></span><a href="" class="link px-2 mb-3">clear</a>
       </div>
       <div class="col-lg-6 col-md-12 my-2 d-flex">
         <button  v-if="user.role == 'ADMIN' || company.role == 'COMPANY_ADMIN'" class=" ml-auto btn btn-primary float-right" v-b-modal.add-resource-modal>Add New Resource</button>
