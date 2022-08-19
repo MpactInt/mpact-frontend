@@ -84,7 +84,7 @@
                   <!-- <button class="btn btn-primary" @click="getWorkshop(r.id)"><i class="fa fa-pencil"></i></button>
             <button class="btn btn-danger" @click="deleteWorkshop(r.id)"><i class="fa fa-trash"></i></button> -->
                   <a v-if="r.status != 'end'" class="btn btn-primary" target="_blank" :href="r.join_url">Join Meeting</a>
-                  <router-link v-if="r.status == 'end'" class="btn btn-primary" :to="'/admin/meeting-recordings/' + r.meeting_id">View Recordings
+                  <router-link v-if="r.status == 'end'" class="btn btn-primary" :to="'/employee/meeting-recordings/' + r.meeting_id">View Recordings
                   </router-link>
                 </td>
               </tr>

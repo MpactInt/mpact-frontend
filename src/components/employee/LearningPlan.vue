@@ -10,7 +10,7 @@
                  alt="...">
             <div class="card-body">
               <h5 class="card-title">{{ img.title }}</h5>
-              <p class="card-text">{{ img.description }}</p>
+              <p class="card-text">{{ img.description | truncate(50) }}</p>
               <router-link class="links" :to="'/employee/my-learning-plan/'+img.id">
                 Read More <img src="../../assets/images/arrow-right.svg"/>
               </router-link>
