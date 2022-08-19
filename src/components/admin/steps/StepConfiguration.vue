@@ -18,6 +18,7 @@
           <button class="btn btn-primary float-right ml-auto" v-b-modal.add-step-modal>Add New Step</button>
         </div>
       </div>
+    <div class="table-responsive">
       <table class="table">
         <tr>
           <th>Title</th>
@@ -53,6 +54,7 @@
         </tr>
       </table>
 
+    </div>
     </div>
     <!--Add step modal popup-->
     <b-modal id="add-step-modal" title="Add New Step" :hide-footer=hideFooter size="lg" no-fade no-enforce-focus>

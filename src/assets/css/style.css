@@ -320,8 +320,8 @@ div#app {
     overflow: auto;
     position: sticky;
     top: 0;
-    max-width: 320px;
-    min-width: 320px;
+    max-width: calc(100% - 80px);
+    min-width: calc(100% - 80px);
     width: 100%;
 }
 .user-info {
@@ -1598,7 +1598,7 @@ img.table-img {
   
 
 section {
-    padding:30px;
+    padding:30px 20px;
 }
 
 input.form-control[type="search"]{
@@ -1633,10 +1633,49 @@ div#app{
 }
 }
 @media screen and (max-width: 767px) {
+    .btn{
+    padding: 12px 20px; 
+    font-size: 16px;
+    }
+
+table tr td, table tr th {
+    padding: 10px 8px !important;
+    font-size: 14px;
+    line-height: 1;
+}
+.table td .d-flex .mx-3.d-block {
+    width: 18px;
+    }
+    p.copyright{
+            font-size: 14px;
+    }
+    footer {
+    padding: 15px 15px;
+}
 div#app {
     padding-bottom: 100px;
 }
-   
+   .logo-img {
+        height: 40px;
+    width: 40px;
+    min-width: 40px;
+   }
+   .sidebar .user-detail h5{
+        font-size: 16px;
+    line-height: 26px;
+   }
+
+.sidebar .user-detail p {
+    font-size: 14px;
+    line-height: 22px;
+}
+.user-info{
+        padding: 15px 14px;
+}
+.logout-btn-box,
+.siderbar-link ul li a{
+        padding: 15px 15px;
+}
 .chat-div {
     /* max-height: 500px; */
     margin-left: -30px;
@@ -1647,7 +1686,7 @@ div#app {
     max-width: 90%;
 }
  .page-title{
-        font-size:38px;
+        font-size:36px;
         line-height:40px;
     }
     .page-title-2{

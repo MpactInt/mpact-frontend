@@ -33,4 +33,21 @@
 
 <script src="https://js.chargebee.com/v2/chargebee.js" data-cb-site="manifestinfotech-test"></script>
 
+<script type="text/javascript">
+  $('.navbar-toggler').click(function() {
+      
+    var dataBsTarget =  $(this).attr('data-bs-target');
+    $(dataBsTarget).toggleClass('show');
+
+  });
+  $('.siderbar-link ul li a').click(function() {
+      
+    $('.sidebar').removeClass('show');
+    // alert();
+
+  });
+</script>
+
+
+
 </html>

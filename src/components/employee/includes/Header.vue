@@ -8,9 +8,7 @@
                 <router-link v-if="company.company_logo" class="navbar-brand" to="/employee/dashboard"><img
                         :src="company.company_logo">
                 </router-link>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" data-bs-target="#navbarSupportedContent">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
