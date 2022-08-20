@@ -320,9 +320,7 @@ div#app {
     overflow: auto;
     position: sticky;
     top: 0;
-    max-width: calc(100% - 80px);
-    min-width: calc(100% - 80px);
-    width: 100%;
+    width: 320px;
 }
 .user-info {
     display: -webkit-box;
@@ -1574,6 +1572,9 @@ img.table-img {
   .h1, h1 {
     font-size: 36px;
   }
+  .sidebar {
+    max-width: calc(100% - 80px);
+}
   .login-right{
     padding-right: 0px;
   }
