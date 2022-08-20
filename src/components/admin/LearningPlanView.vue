@@ -19,7 +19,7 @@
                 </div>
             </div>
             <div class="col-md-12 d-flex mt-4 mb-3">
-                 <button class="btn btn-primary ml-auto" v-b-modal.add-modal>Add Learning Plan</button>
+                 <button class="btn btn-primary ml-auto" v-b-modal.add-modal>Add Learning Plan File</button>
             </div>
         </div>
         

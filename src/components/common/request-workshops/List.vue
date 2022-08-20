@@ -9,7 +9,8 @@
             </div>
             <div class="col-md-3 my-2  d-flex align-items-center">
                 <input type="text" v-model="getWorkshopData.keyword" class="form-control search" placeholder="Search"
-                    v-on:keyup="getWorkshopList" /><span class="search-icon"></span><a href="" class="link px-2 mb-3">clear</a>
+                    v-on:keyup="getWorkshopList" /><span class="search-icon"></span><a href="javascript:void(0)"
+                    v-on:click="getWorkshopData.keyword = ''; getWorkshopList()" class="link px-2 mb-3">clear</a>
             </div>
             <div class="col-md-3 my-2">
             </div>
@@ -18,46 +19,52 @@
             </div>
         </div>
         <div class="row mt-3">
-        <div class="table-responsive">
-            <table class="table">
-                <tr>
-                    <th v-if="user.role == 'ADMIN'">Company Name</th>
-                    <th>Name</th>
-                    <th>Workshop Focus</th>
-                    <th>Desired Date</th>
-                    <th>Workshop Length</th>
-                    <th>Workshop Type</th>
-                    <th>Audience</th>
-                    <th>Requirements</th>
-                    <th>Expectations</th>
-                    <th>Status</th>
-                    <th>Action</th>
-                </tr>
-                <tr v-if="workshopsLength" v-for="r in workshops.data" v-bind:key="r.id">
-                    <td v-if="user.role == 'ADMIN'">{{ r.company_name }}</td>
-                    <td>{{ r.name }}</td>
-                    <td>{{ r.workshop_focus }}</td>
-                    <td>{{ r.desired_date | timeAgo }}</td>
-                    <td>{{ r.workshop_length }}</td>
-                    <td>{{ r.workshop_type }}</td>
-                    <td>{{ r.audience }}</td>
-                    <td>{{ r.requirements }}</td>
-                    <td>{{ r.expectations }}</td>
-                    <td>{{r.status}}</td>
-                     <td class="px-0">
-                      <div class="d-flex align-items-center p-0" style="min-width: 100px;">
-                        <a type="button" class="px-3" v-if="user.role != 'ADMIN'"  @click="deleteRequestWorkshop(r.id)"  width="24" height="24">
-                          <img src="../../../assets/images/table-delete.svg"  width="24" height="24" alt="table-edit" />
-                        </a>
-                        <a type="button" class="px-3"  v-if="user.role == 'ADMIN' && r.status == 'NEW'"  @click="acceptRequestWorkshop(r.id)" width="24" height="24">
-                            <i class="fa fa-check"></i><!-- <img src="../../../assets/images/table-delete.svg"  width="24" height="24" alt="table-delete" />-->
-                        </a>
-                        <a type="button" class="px-3"  v-if="user.role == 'ADMIN' && r.status == 'NEW'"  @click="rejectRequestWorkshop(r.id)" width="24" height="24">
-                            <i class="fa fa-times"></i><!-- <img src="../../../assets/images/table-delete.svg"  width="24" height="24" alt="table-delete" />-->
-                        </a>
-                        </div>
-                    </td>
-                    <!-- <td>
+            <div class="table-responsive">
+                <table class="table">
+                    <tr>
+                        <th v-if="user.role == 'ADMIN'">Company Name</th>
+                        <th>Name</th>
+                        <th>Workshop Focus</th>
+                        <th>Desired Date</th>
+                        <th>Workshop Length</th>
+                        <th>Workshop Type</th>
+                        <th>Audience</th>
+                        <th>Requirements</th>
+                        <th>Expectations</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                    <tr v-if="workshopsLength" v-for="r in workshops.data" v-bind:key="r.id">
+                        <td v-if="user.role == 'ADMIN'">{{ r.company_name }}</td>
+                        <td>{{ r.name }}</td>
+                        <td>{{ r.workshop_focus }}</td>
+                        <td>{{ r.desired_date | timeAgo }}</td>
+                        <td>{{ r.workshop_length }}</td>
+                        <td>{{ r.workshop_type }}</td>
+                        <td>{{ r.audience }}</td>
+                        <td>{{ r.requirements }}</td>
+                        <td>{{ r.expectations }}</td>
+                        <td>{{ r.status }}</td>
+                        <td class="px-0">
+                            <div class="d-flex align-items-center p-0" style="min-width: 100px;">
+                                <a type="button" class="px-3" v-if="user.role != 'ADMIN'"
+                                    @click="deleteRequestWorkshop(r.id)" width="24" height="24">
+                                    <img src="../../../assets/images/table-delete.svg" width="24" height="24"
+                                        alt="table-edit" />
+                                </a>
+                                <a type="button" class="px-3" v-if="user.role == 'ADMIN' && r.status == 'NEW'"
+                                    @click="acceptRequestWorkshop(r.id)" width="24" height="24">
+                                    <i class="fa fa-check"></i>
+                                    <!-- <img src="../../../assets/images/table-delete.svg"  width="24" height="24" alt="table-delete" />-->
+                                </a>
+                                <a type="button" class="px-3" v-if="user.role == 'ADMIN' && r.status == 'NEW'"
+                                    @click="rejectRequestWorkshop(r.id)" width="24" height="24">
+                                    <i class="fa fa-times"></i>
+                                    <!-- <img src="../../../assets/images/table-delete.svg"  width="24" height="24" alt="table-delete" />-->
+                                </a>
+                            </div>
+                        </td>
+                        <!-- <td>
                         <button v-if="user.role != 'ADMIN'" class="btn btn-danger"
                             @click="deleteRequestWorkshop(r.id)"><i class="fa fa-trash"></i></button>
                         <button v-if="user.role == 'ADMIN' && r.status == 'NEW'" class="btn btn-primary"
@@ -65,11 +72,11 @@
                         <button v-if="user.role == 'ADMIN' && r.status == 'NEW'" class="btn btn-danger"
                             @click="rejectRequestWorkshop(r.id)"><i class="fa fa-times"></i></button>
                     </td> -->
-                </tr>
-                <tr v-if="!workshopsLength">
-                    <td colspan="5">No Data Found</td>
-                </tr>
-            </table>
+                    </tr>
+                    <tr v-if="!workshopsLength">
+                        <td colspan="5">No Data Found</td>
+                    </tr>
+                </table>
             </div>
             <pagination :data="workshops" @pagination-change-page="getWorkshopList" />
         </div>
