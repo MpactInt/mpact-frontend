@@ -1,6 +1,6 @@
 <template>
     <section class="admin-learning-plan-section half-cut-bg">
-        <h1 class="page-title text-left mt-0">Learning Plan</h1>
+        <h1 class="page-title text-left mt-0">Learning <span>Plan</span></h1>
         
             <div class="w-100 d-flex my-2">
                 <button class="btn btn-primary float-right ml-auto" v-b-modal.add-modal>Add New Learning Plan</button>

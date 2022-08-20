@@ -1,6 +1,6 @@
 <template>
   <section class="admin-workshops-section half-cut-bg">
-    <h1 class="page-title text-left mt-0">{{ msg }}</h1>
+    <h1 class="page-title text-left mt-0">ASK YOUR <span>CARE TEAM</span></h1>
     <div class="table-responsive">
       <table class="table">
         <tr>

@@ -1,6 +1,6 @@
 <template>
    <section class="employer-workshops-section half-cut-bg">
-    <h1 class="page-title text-left mt-0">Workshops</h1>
+    <h1 class="page-title text-left mt-0"><span>Workshops</span></h1>
     <List></List>
   </section>
 </template>

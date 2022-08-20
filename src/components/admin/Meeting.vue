@@ -1,6 +1,6 @@
 <template>
     <section class="admin-learning-plan-section half-cut-bg">
-      <h1 class="page-title text-left mt-0">Meetings</h1>
+      <h1 class="page-title text-left mt-0"><span>Meetings</span></h1>
     <div class="mt-5">
       <div class="row mb-3">
         <div class="col-md-3">

@@ -1,6 +1,6 @@
 <template>
   <div class="chat-div">
-    <h1 class="page-title">Chat with {{ empChat.first_name }} {{ empChat.last_name }}</h1>
+    <h1 class="page-title text-left">Chat with <span>{{ empChat.first_name }} {{ empChat.last_name }}</span></h1>
 
     <div v-chat-scroll class="chat-gui" id="chat-gui" ref="scroll_content">
       <p class="text-center" v-if="groupData.limit < total">

@@ -1,6 +1,6 @@
 <template>
    <section class="employer-todo-section half-cut-bg">
-        <h3 class="page-title text-left mt-0">To Do</h3>
+        <h3 class="page-title text-left mt-0"><span>To Do</span></h3>
         <List></List>
     </section>
 </template>

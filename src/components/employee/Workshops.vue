@@ -5,7 +5,7 @@
         <div class="container">
           <div class="row">
             <div class="col-md-12">
-              <h2 class="page-title mb-0 text-left">Workshops</h2>
+              <h2 class="page-title mb-0 text-left"><span>Workshops</span></h2>
               <h3 class="page-sub-title">Browse our 100% live online classes led by top instructors and coaches. Choose
                 from our
                 upcoming schedule or browse all the classes we offer.</h3>

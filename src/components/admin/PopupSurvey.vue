@@ -1,6 +1,6 @@
 <template>
       <section class="admin-learning-plan-section half-cut-bg">
-      <h1 class="page-title text-left mt-0">Popup Survey Questions</h1>
+      <h1 class="page-title text-left mt-0">Popup Survey <span>Questions</span></h1>
         <div class="row">
             <div class="col-md-3">
             </div>

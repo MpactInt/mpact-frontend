@@ -1,6 +1,6 @@
 <template>
     <section class="admin-learning-plan-section half-cut-bg">
-      <h1 class="page-title text-left mt-0">Post Workshop Survey Questions</h1>
+      <h1 class="page-title text-left mt-0">Post Workshop <span>Survey Questions</span></h1>
         <div class="row">
             <div class="col-md-12 d-flex my-2" v-if="user.role == 'ADMIN'">
                 <button class="btn btn-primary float-right ml-auto" v-b-modal.add-modal>Add Post Workshop Survey</button>

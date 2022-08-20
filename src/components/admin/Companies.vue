@@ -1,6 +1,6 @@
 <template>
   <section class="admin-workshops-section half-cut-bg">
-    <h1 class="page-title text-left mt-0">{{ msg }}</h1>
+    <h1 class="page-title text-left mt-0"><span>{{ msg }}</span></h1>
 
         <div class="w-100 d-flex my-2">
           <button class="btn btn-primary ml-auto" v-b-modal.add-modal>Add Company</button>

@@ -1,7 +1,7 @@
 <template>
   <section class="employee-announcements-section half-cut-bg">
     <div class="container">
-      <h1 class="page-title mt-0 text-left">Announcements</h1>
+      <h1 class="page-title mt-0 text-left"><span>Announcements</span></h1>
       <List></List>
     </div>
   </section>

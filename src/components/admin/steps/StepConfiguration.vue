@@ -1,7 +1,7 @@
 <template>
 
   <section class="admin-steps-configuration-section half-cut-bg">
-    <h1 class="page-title text-left mt-0">Steps</h1>
+    <h1 class="page-title text-left mt-0"><span> Steps</span></h1>
     <div class="mt-5">
       <div class="row mb-3 align-items-center">
         <div class="col-md-3 my-2">
