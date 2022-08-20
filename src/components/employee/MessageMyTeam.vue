@@ -1,6 +1,6 @@
 <template>
   <section class="employee-message-section half-cut-bg pb-0">
-      <h1 class="page-title text-left mt-0"><span>Message My Team</span></h1>
+      <h1 class="page-title text-left mt-0">Message My <span>Team</span></h1>
       <MessageMyTeamVue></MessageMyTeamVue>
   </section>
 </template>

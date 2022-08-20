@@ -3,7 +3,7 @@
 </script>
 <template>
     <section class="employer-announcements-section half-cut-bg">
-        <h3 class="page-title text-left mt-0">Feedback by Employees</h3>
+        <h3 class="page-title text-left mt-0">Feedback by <span>Employees</span></h3>
 
         <div class="table-responsive">
             <table class="table">

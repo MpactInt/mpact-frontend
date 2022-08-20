@@ -95,7 +95,7 @@
                                     </div>
                                 <!-- <h5 class="page-sub-title">Your Cart <span class="total-items">{{ cartItems.length }}</span></h5> -->
                                 <div class="cart-item card m-0"  v-for="ci in cartItems" v-bind:key="ci.id">
-                                    <div class="card-title">
+                                    <div class="card-sub-title">
                                         {{ ci.description }} :
                                         <span class="card-subtitle">
                                         {{ ci.amount / 100 | totalAmount }} <small> {{ currencyCode }}</small>

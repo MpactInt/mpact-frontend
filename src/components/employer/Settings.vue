@@ -1,6 +1,6 @@
 <template>
 <section class="employer-dashboard  pettern-bg">
-    <h1 class="page-title text-left">Settings</h1>
+    <h1 class="page-title text-left"><span>Settings</span></h1>
     <div class="row">
       <div class="col-lg-6">
         <form @submit="addWelcomeNote" ref="addWelcomeNoteForm" enctype="multipart/form-data">
