@@ -27,9 +27,9 @@
                         <label>Image</label>
                         <input class="form-control" type="file" ref="image" @change="imageOnChange" />
                     </div>
-                    <div class="form-group mt-5" v-if="section1.image">
+                    <div class="form-group mt-5" v-if="section1.imageShow">
                         <label>Uploaded Image</label><br>
-                        <img :src="section1.image" class="table-img" height="75" width="75" />
+                        <img :src="section1.imageShow" class="table-img" height="75" width="75" />
                     </div>
                     <div class="form-group mt-3">
                         <button type="submit" class="btn btn-primary">Submit</button>
@@ -227,7 +227,7 @@ export default {
                 });
             }
         },
-       
+
         getProfileType: function () {
             let that = this
             Api.getProfileType(this.$route.params.id).then(response => {

@@ -11,6 +11,7 @@ export default {
         title: '',
         description: '',
         image: '',
+        imageShow:'',
         disabled: false
       },
       section2: {
@@ -540,6 +541,7 @@ export default {
           that.section1.title = response.data.res.title
           that.section1.description = response.data.res.description
           that.section1.image = response.data.res.image
+          that.section1.imageShow = response.data.res.image
         }
       })
     },
@@ -651,7 +653,7 @@ export default {
       console.log(e.target.value)
       let char = String.fromCharCode(e.keyCode); // Get the character
       if(/^[A-Za-z]+$/.test(char)) {
-        return true; 
+        return true;
       }else{
         e.preventDefault();
       }
@@ -660,12 +662,12 @@ export default {
       console.log(e.target.value)
       let char = String.fromCharCode(e.keyCode); // Get the character
       if(/^[0-9]+$/.test(char)) {
-        return true; 
+        return true;
       }else{
         e.preventDefault();
       }
     }
-    
+
   },
   created() {
     this.user = JSON.parse(localStorage.getItem("userData"));
