@@ -95,17 +95,18 @@
           <div class="form-group">
             <label>Host Video <span class="err">*</span></label>
             <br>
-            <input type="radio" v-model="meeting.host_video" value="1">
+            <input type="radio" id="on" v-model="meeting.host_video" value="1">
             <label for="on" class="mx-2">ON</label>
-            <input type="radio" v-model="meeting.host_video" value="0">
+
+            <input type="radio" id="off" v-model="meeting.host_video" value="0">
             <label for="off" class="mx-2">OFF</label>
           </div>
           <div class="form-group">
             <label>Participant Video <span class="err">*</span></label>
             <br>
-            <input type="radio" v-model="meeting.participant_video" value="1">
+            <input type="radio" id="on1" v-model="meeting.participant_video" value="1">
             <label for="on1" class="mx-2">ON</label>
-            <input type="radio" v-model="meeting.participant_video" value="0">
+            <input type="radio" id="off1" v-model="meeting.participant_video" value="0">
             <label for="off1" class="mx-2">OFF</label>
           </div>
           <div class="form-group">
