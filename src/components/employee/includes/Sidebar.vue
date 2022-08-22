@@ -31,9 +31,6 @@
           <router-link to="/employee/welcome-note">Welcome Note</router-link>
         </li>
         <li>
-          <router-link to="/employee/profile">Profile</router-link>
-        </li>
-        <li>
           <router-link to="/employee/feedback-to-company">Feedback to Company
           </router-link>
         </li>
