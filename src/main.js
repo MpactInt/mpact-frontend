@@ -17,9 +17,6 @@ import Pusher from 'pusher-js'
 // If you don't need the styles, do not connect
 import 'sweetalert2/dist/sweetalert2.min.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
-import './assets/css/employee-style.css'
-import './assets/css/style.css'
-import './assets/css/custom.css'
 import './assets/fonts/avenir-font.css'
 import VueChatScroll from 'vue-chat-scroll'
 import Multiselect from 'vue-multiselect'
@@ -109,3 +106,7 @@ new Vue({
   components: { App },
   template: '<App/>'
 })
+
+import './assets/css/employee-style.css'
+import './assets/css/style.css'
+import './assets/css/custom.css'
