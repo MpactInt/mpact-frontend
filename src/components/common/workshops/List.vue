@@ -33,7 +33,10 @@
           <th>Action</th>
         </tr>
         <tr v-if="workshopsLength" v-for="r in workshopsList.data" v-bind:key="r.id">
-          <td v-if="user.role == 'ADMIN'"><span v-for="c in r.company" v-bind:key="c.id">{{ c.company_name }},</span>
+          <td v-if="user.role == 'ADMIN'">
+<!--            <span v-for="c in r.company" v-bind:key="c.id">{{ c.company_name }},</span>-->
+            <span>{{r.company.map(({company_name})=>company_name).join(',') }}
+            </span>
           </td>
           <td><img :src="filePath + '/' + r.image" class="table-img" height="70" width="70" /></td>
           <td>{{ r.title }}</td>
