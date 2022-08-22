@@ -1,6 +1,6 @@
 <template>
   <section class="admin-dashboard-hero-section" >
-    <h3 class="page-title mb-0 text-left  d-inline-block">Steps</h3>
+    <h3 class="page-title mb-0 text-left  d-inline-block">Dashboard</h3>
   </section>
 </template>
 
@@ -17,7 +17,7 @@ export default {
     }
   },
   methods: {
-  
+
   },
   mounted() {
   }

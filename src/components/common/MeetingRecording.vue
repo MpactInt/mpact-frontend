@@ -1,10 +1,7 @@
 <template>
   <div>
-
-      <h1 class="page-title text-left mt-0">Meeting <span>Recordings</span></h1>
-
-    
-      <div class="table-responsive">
+    <h1 class="page-title text-left mt-0">Meeting <span>Recordings</span></h1>
+    <div class="table-responsive">
       <table class="table table-striped">
         <tr>
           <th>Meeting Id</th>
@@ -30,9 +27,9 @@
 /* eslint-disable */
 import AppMixin from '../../mixins/AppMixin'
 import Api from '../../router/api'
-import DatePicker from 'vue2-datepicker';
-import 'vue2-datepicker/index.css';
-import { Vue2TinymceEditor } from "vue2-tinymce-editor";
+import DatePicker from 'vue2-datepicker'
+import 'vue2-datepicker/index.css'
+import {Vue2TinymceEditor} from 'vue2-tinymce-editor'
 
 export default {
   name: 'AdminMeetingRecording',
@@ -40,19 +37,14 @@ export default {
   components: {
     Vue2TinymceEditor, DatePicker
   },
-  data() {
-    return {
-    }
+  data () {
+    return {}
   },
-  methods: {
-
-  },
-  mounted() {
+  methods: {},
+  mounted () {
     this.getMeetingRecordingsList(this.$route.params.id)
   }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-
-</style>
