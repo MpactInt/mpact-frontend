@@ -18,7 +18,7 @@
             </div>
             <div class="col-md-12">
                 <div class="form-group">
-                    <input type="text" class="form-control" id="companyname" placeholder="Company/Organization Name"
+                    <input type="text" class="form-control" id="companyname" placeholder="Company/Organization Name *"
                         v-model="chargebeeUser.companyname">
                 </div>
             </div>
@@ -30,19 +30,25 @@
             </div>
             <div class="col-md-12">
                 <div class="form-group">
-                    <input type="password" class="form-control" id="password" placeholder="Password"
+                    <input type="password" class="form-control" id="password" placeholder="Password *"
                         v-model="chargebeeUser.password">
+                </div>
+            </div>
+             <div class="col-md-12">
+                <div class="form-group">
+                    <input type="password" class="form-control" id="cpassword" placeholder="Confirm Password *"
+                        v-model="chargebeeUser.cpassword">
                 </div>
             </div>
             <div class="col-md-12">
                 <div class="form-group">
-                    <input type="text" class="form-control" id="companydomain" placeholder="Company Domain"
+                    <input type="text" class="form-control" id="companydomain" placeholder="Company Url *"
                         v-model="chargebeeUser.domain">
                 </div>
             </div>
             <div class="col-md-12">
                 <div class="form-group">
-                    <input type="number" class="form-control" id="employees" placeholder="Number of employees"
+                    <input type="number" class="form-control" id="employees" placeholder="Number of employees *"
                         v-model="chargebeeUser.employees">
                 </div>
             </div>
@@ -50,9 +56,10 @@
                 <div class="form-group">
                     <div class="custom-file">
                         <input type="file" class="custom-file-input" id="logo" ref="logo" @change="fileOnChange">
-                        <label class="custom-file-label" for="customFile">Upload Company Logo</label>
+                        <label class="custom-file-label" for="customFile">Upload Company Logo *</label>
                     </div>
                 </div>
+                <img v-if="url" :src="url" height="50" width="50"/>
             </div>
         </div>
         <button type="submit" class="d-block btn btn-primary" :disabled="chargebeeUser.disabled">Submit</button>
@@ -79,6 +86,7 @@ export default {
                 'companyname': '',
                 'email': '',
                 'password': '',
+                'cpassword':'',
                 // 'firstname':'',
                 // 'lastname':'',
                 'domain': '',
@@ -94,13 +102,15 @@ export default {
             },
             subscriptionPlans: [],
             hideFooter: true,
-            plans: []
+            plans: [],
+            url:''
         }
     },
     methods: {
         fileOnChange: function (e) {
             let that = this;
             this.chargebeeUser.logo = this.$refs.logo.files[0];
+            this.url = URL.createObjectURL(e.target.files[0]);
         },
         validateForm: function (e) {
             e.preventDefault();
@@ -124,14 +134,22 @@ export default {
                     showConfirmButton: true
                 });
             }
-            else if (!that.chargebeeUser.companyname || !that.chargebeeUser.email || !that.chargebeeUser.password || !that.chargebeeUser.domain || !that.chargebeeUser.employees) {
+            else if (!that.chargebeeUser.companyname || !that.chargebeeUser.email || !that.chargebeeUser.password ||  !that.chargebeeUser.cpassword || !that.chargebeeUser.domain || !that.chargebeeUser.employees) {
                 this.$swal({
                     icon: "error",
                     title: "error",
                     text: "Please fill all required fields",
                     showConfirmButton: true
                 });
-            } else {
+            }else if(that.chargebeeUser.password != that.chargebeeUser.cpassword){
+                 this.$swal({
+                    icon: "error",
+                    title: "error",
+                    text: "Confirm Password not matched",
+                    showConfirmButton: true
+                });
+            }
+             else {
                 that.chargebeeUser.disabled = true;
                 const formData = new FormData();
                 formData.append('companyname', that.chargebeeUser.companyname);
