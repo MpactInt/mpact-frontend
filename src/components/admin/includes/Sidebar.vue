@@ -49,7 +49,7 @@
         <router-link to="/admin/popup-surveys">Popup Surveys</router-link>
       </li>
       <li>
-        <router-link to="/admin/check-in-surveys">Check In Surveys</router-link>
+        <router-link to="/admin/check-in-surveys">Check-In Surveys</router-link>
       </li>
       <li>
         <router-link to="/admin/post-workshop-surveys">Post Workshop Surveys</router-link>

@@ -269,9 +269,6 @@ class Api {
     getCompaniesList2(page, data) {
         return axiosCommon.post('/get-companies-list?page=' + page, data)
     }
-    updateHours(data) {
-        return axiosCommon.post('/update-hours', data)
-    }
     getProfileTypeList() {
         return axiosCommon.get('/get-profile-type-list')
     }

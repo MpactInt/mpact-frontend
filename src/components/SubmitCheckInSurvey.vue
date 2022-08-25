@@ -5,7 +5,7 @@
         <div class="login-bg-text">
           <div class="left-content">
             <h1>Mpact International</h1>
-            <h5>Check In Survey</h5>
+            <h5>Check-In Survey</h5>
             <CustomSurvey v-if="pg.length" :surveyProp="pg" :submitPopupSurvey="submitCheckInSurvey"></CustomSurvey>
           </div>
         </div>
@@ -23,7 +23,7 @@ export default {
   name: 'SubmitCheckInSurvey',
   data() {
     return {
-      msg: 'Check In Survey',
+     
     }
   },
   components: { CustomSurvey },

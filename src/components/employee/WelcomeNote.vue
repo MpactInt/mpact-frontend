@@ -1,14 +1,19 @@
 <template>
   <section class="employee-welcome-note-section mb-5">
-      <h2  class="page-title text-left  d-inline-block">Welcome <span >Note</span></h2>
-      <h3 class="section-title pink-color mb-0">Hello Employees</h3>
-      <h4  class="page-sub-title">{{ note.title }}</h4>
+    <h2 class="page-title text-left  d-inline-block">Welcome <span>Note</span></h2>
+    <div v-if="note">
+      <!-- <h3 class="section-title pink-color mb-0">Hello Employees</h3> -->
+      <h4 class="page-sub-title">{{ note.title }}</h4>
       <div class="color-border mb-5">
         <div class="color-border-box">
           <!-- <iframe  height="480" src="https://www.youtube.com/embed/D0UnqGm_miA" title="Dummy Video For Website" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
           <img :src="note.image" class="w-100" alt="image" />
         </div>
       </div>
+    </div>
+    <div v-if="!note">
+      Welcome Note not added
+    </div>
   </section>
 </template>
 <script>

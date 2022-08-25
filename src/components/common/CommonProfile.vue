@@ -89,11 +89,11 @@
             <input type="text" class="form-control" id="companyname" placeholder="Company Name"
                    v-model="profileUpdate.company_name">
           </div>
-          <!-- <div class="form-group">
+          <div class="form-group">
             <label>Company Domain <span class="err">*</span></label>
             <input type="text" class="form-control" id="companydomain" placeholder="Company Domain"
               v-model="profileUpdate.company_domain">
-          </div> -->
+          </div>
           <button type="button" @click="updateProfile" class="btn btn-primary"
                   :disabled="profileUpdate.disabled">Update
           </button>

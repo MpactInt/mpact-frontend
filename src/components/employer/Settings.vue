@@ -23,7 +23,7 @@
               </div>
             </div>
             <div class="col-md-3 my-2">
-              <div class="form-group" v-if="note.image">
+              <div class="form-group" v-if="note.oldImage">
                 <label>Uploaded Image</label>
                 <img :src="note.oldImage" height="70" width="70" />
               </div>

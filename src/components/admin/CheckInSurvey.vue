@@ -1,13 +1,13 @@
 <template>
     <section class="admin-learning-plan-section half-cut-bg">
-      <h1 class="page-title text-left mt-0">CheckIn Survey <span>Questions</span></h1>
+      <h1 class="page-title text-left mt-0">Check-In Survey <span>Questions</span></h1>
         <div class="row">
             <div class="col-md-3">
             </div>
             <div class="col-md-3">
             </div>
             <div class="col-md-6 my-2 d-flex" v-if="user.role == 'ADMIN'">
-                <button class="btn btn-primary float-right ml-auto" v-b-modal.add-modal>Add CheckIn Survey</button>
+                <button class="btn btn-primary float-right ml-auto" v-b-modal.add-modal>Add Check-In Survey</button>
             </div>
         </div>
       <div class="table-responsive">
@@ -41,7 +41,7 @@
                 </tr>
             </table>
         </div>
-        <b-modal id="add-modal" size="lg" title="Add New CheckIn Survey" :hide-footer=hideFooter no-fade
+        <b-modal id="add-modal" size="lg" title="Add New Check-In Survey" :hide-footer=hideFooter no-fade
             no-enforce-focus>
             <form>
                 <div class="form-group">
@@ -64,7 +64,7 @@
                 </div>
             </form>
         </b-modal>
-        <b-modal id="update-modal" size="lg" title="Update CheckIn Survey" :hide-footer=hideFooter no-fade
+        <b-modal id="update-modal" size="lg" title="Update Check-In Survey" :hide-footer=hideFooter no-fade
             no-enforce-focus>
             <form>
                 <div class="form-group">

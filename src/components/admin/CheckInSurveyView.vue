@@ -5,7 +5,7 @@
             <img src="../../assets/images/arrow-left.svg" alt="arrow-left" /> Back
             <!-- </button> -->
         </router-link>
-        <h1 class="page-title text-left mt-0">Check In <span>Survey Answers</span></h1>
+        <h1 class="page-title text-left mt-0">Check-In <span>Survey Answers</span></h1>
         <h2 class="page-sub-title">{{ survey.question }}</h2>
         <div class="row mt-3">
             <table class="table">

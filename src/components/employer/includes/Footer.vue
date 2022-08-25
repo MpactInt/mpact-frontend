@@ -1,7 +1,7 @@
 <template>
-    <footer>
-      <div class="container">
-        <p class="copyright">All right reserved @mpactinternational</p>
-      </div>
-    </footer>
+  <footer class="mt-0">
+    <div class="container">
+      <p class="copyright">© Mpact International, Inc 2022</p>
+    </div>
+  </footer>
 </template>
