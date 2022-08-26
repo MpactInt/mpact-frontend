@@ -28,6 +28,12 @@
             <a type="button" class="mx-3 d-block" width="24" @click="getCompany(r)" v-b-modal.update-modal>
               <img src="../../assets/images/table-edit.svg" alt="table-edit" width="24" height="24" />
             </a>
+            <button v-if="r.deleted_at" type="button" class="btn btn-primary mx-3 d-block" width="24" @click="activeInactiveCompany(r.id,1)">
+            Active
+            </button>
+            <button v-if="!r.deleted_at"  type="button" class="btn btn-primary  mx-3 d-block" width="24" @click="activeInactiveCompany(r.id,0)">
+            Inactive
+            </button>
           </td>
         </tr>
         <tr v-if="!comapanyListLength">
@@ -134,6 +140,46 @@ export default {
       that.chargebeeUser.lastname = r.last_name
       that.chargebeeUser.remainingHours = r.remaining_hours
       // that.chargebeeUser.logo = r.logo
+    },
+    activeInactiveCompany: function(id,status){
+      let st = '';
+      if(status){
+        st = "Active"
+      }else{
+        st = "Inactive"
+      }
+    let that = this
+            this.$swal({
+                title: 'Are you sure?',
+                text: 'You want to make '+st+' this company',
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes '+st+' it!',
+                cancelButtonText: 'No',
+                showCloseButton: true,
+                showLoaderOnConfirm: true
+            }).then((result) => {
+                if (result.value) {
+                    Api.activeInactiveCompany(id,status).then(response => {
+                        this.$swal({
+                            icon: "success",
+                            title: "Success",
+                            text: "Profile Type deleted successfully",
+                            showConfirmButton: true
+                        }).then(function () {
+                            that.getCompaniesList()
+                        });
+                    }).catch((error) => {
+                        this.$swal({
+                            icon: "error",
+                            title: "error",
+                            text: error.response.data.message,
+                            showConfirmButton: true
+                        }).then(function () {
+                        });
+                    });
+                }
+            });
     },
     getCompaniesList: function (page = 1) {
       let that = this

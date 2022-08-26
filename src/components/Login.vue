@@ -7,7 +7,7 @@
             <div class="left-content">
               <h1>Mpact International</h1>
               <h5>Innovating Change,</h5>
-              <h5>One Prespective at a Time </h5>
+              <h5>One Perspective at a Time </h5>
             </div>
           </div>
         </div>

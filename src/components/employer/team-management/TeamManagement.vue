@@ -7,13 +7,13 @@
       </h1>
       <div class="card-box">
         <div class="row">
-          <div class="col-md-6">
+           <div class="col-md-6">
             <div class="card">
               <div class="card-body">
                 <img src="../../../assets/images/registration.svg" class="mb-4" alt="Registration" />
-                <h5 class="card-title">Registration</h5>
-                <p class="card-text">Use this link to send an invite to your team in order to expedite platform registration.</p>
-                <router-link to="/employer/team-management/registration-link" class="links">Visit Link</router-link>
+                <h5 class="card-title">Employees</h5>
+                <p class="card-text">Manage your employee list (add or delete team members). You can also monitor login activity.</p>
+                <router-link to="/employer/team-management/employees" class="links">Visit Link</router-link>
               </div>
             </div>
           </div>
@@ -21,9 +21,9 @@
             <div class="card">
               <div class="card-body">
                 <img src="../../../assets/images/registration.svg" class="mb-4" alt="Registration" />
-                <h5 class="card-title">Employees</h5>
-                <p class="card-text">Manage your employee list (add or delete team members). You can also monitor login activity.</p>
-                <router-link to="/employer/team-management/employees" class="links">Visit Link</router-link>
+                <h5 class="card-title">Registration</h5>
+                <p class="card-text">Use this link to send an invite to your team in order to expedite platform registration.</p>
+                <router-link to="/employer/team-management/registration-link" class="links">Visit Link</router-link>
               </div>
             </div>
           </div>

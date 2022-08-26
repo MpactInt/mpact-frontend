@@ -445,6 +445,9 @@ class Api {
     updateProfileCompany(data, headers) {
         return axiosCommon.post('/update-profile-company', data, headers)
     }
+    activeInactiveCompany(id,status){
+        return axiosCommon.get('/active-inactive-company/' + id+'/'+status) 
+    }
     getWelcomeNoteCompanies() {
         return axiosCommon.get('/get-welcome-note-company-list')
     }
