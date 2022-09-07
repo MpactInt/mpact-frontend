@@ -17,7 +17,7 @@
               </div>
             </div>
           </div>
-          <div class="col-md-6">
+          <div class="col-md-6 mb-3">
             <div class="card">
               <div class="card-body">
                 <img src="../../../assets/images/registration.svg" class="mb-4" alt="Registration" />
@@ -27,7 +27,7 @@
               </div>
             </div>
           </div>
-          <div class="col-md-6">
+          <div class="col-md-6 mb-3">
             <div class="card">
               <div class="card-body">
                 <img src="../../../assets/images/registration.svg" class="mb-4" alt="Registration" />

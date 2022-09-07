@@ -30,7 +30,7 @@
         </div>
       </div>
       <div class="row mt-5">
-        <div class="col-md-6" v-if="stepsList.length" v-for="step in stepsList" v-bind:key="step.id">
+        <div class="col-md-6 mb-3" v-if="stepsList.length" v-for="step in stepsList" v-bind:key="step.id">
           <router-link :to="'/employer/view-step/' + step.id">
             <div class="card">
               <img :src="filePath + '/' + step.image" class="card-img-top" alt="...">

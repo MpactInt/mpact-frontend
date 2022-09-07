@@ -4,7 +4,7 @@
       <h2 class="page-title text-left mb-0  d-inline-block">My Learning <span>Plan</span></h2>
       <h4 class="page-sub-title">This section will be the opening to the learning journey</h4>
       <div class="row" v-if="learningPlanLength">
-        <div class="col-md-6 col-lg-4" v-for="img in learningPlan.data" v-bind:key="img.id">
+        <div class="col-md-6 col-lg-4 mb-3" v-for="img in learningPlan.data" v-bind:key="img.id">
           <div class="card">
             <img :src="learningPlanPath + '/' + img.image"  class="card-img-top"
                  alt="...">

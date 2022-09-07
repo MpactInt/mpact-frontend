@@ -20,24 +20,25 @@
     <section class="employee-dashboard-popup-survey">
       <h2 class="page-title mb-0 text-left  d-inline-block">Popup <span>Survey</span></h2>
       <h4 class="page-sub-title">This section will be the opening to the learning journey</h4>
-      <div class="popup-survey-box">
+      <div class="popup-survey-box col-md-12 col-lg-10">
         <CustomSurvey v-if="pg.length" :surveyProp="pg" :submitPopupSurvey="submitPopupSurvey"></CustomSurvey>
         <BarChart v-else :chartData="res" :question="chartData.question"></BarChart>
-        <!--        <h4>1. How are you feeling today?</h4>-->
-        <!--        <input class="inp-cbx" id="morning" type="checkbox"/>-->
-        <!--        <label class="cbx" for="morning"><span> <svg width="12px" height="10px"> <use xlink:href="#check"></use> </svg></span><span>Good</span>-->
-        <!--          <img src="../../assets/images/good.png" alt="reaction"/> </label>-->
-        <!--        <input class="inp-cbx" id="noon" type="checkbox"/>-->
-        <!--        <label class="cbx" for="noon"><span> <svg width="12px" height="10px"> <use-->
-        <!--          xlink:href="#check"></use> </svg></span><span>Better</span> <img src="../../assets/images/better.png"-->
-        <!--                                                                           alt="reaction"/></label>-->
-        <!--        <input class="inp-cbx" id="afternoon" type="checkbox"/>-->
-        <!--        <label class="cbx" for="afternoon"><span> <svg width="12px" height="10px"> <use-->
-        <!--          xlink:href="#check"></use> </svg></span><span>Best</span><img src="../../assets/images/best.png"-->
-        <!--                                                                        alt="reaction"/></label>-->
-        <!--        <input class="inp-cbx" id="evening" type="checkbox"/>-->
-        <!--        <label class="cbx" for="evening"><span> <svg width="12px" height="10px"> <use xlink:href="#check"></use> </svg></span><span>Not Well</span><img-->
-        <!--          src="../../assets/images/not-well.png" alt="reaction"/></label>-->
+        <h4>1. How are you feeling today?</h4>
+
+                <input class="inp-cbx d-none" name="popupsurveybox" id="morning" type="radio" checked />
+                <label class="cbx" for="morning"><span> <svg width="12px" height="10px"> <use xlink:href="#check"></use> </svg></span><span>Good</span>
+                  <img src="../../assets/images/good.png" alt="reaction"/> </label>
+
+                <input class="inp-cbx d-none" name="popupsurveybox" id="noon" type="radio"/>
+                <label class="cbx" for="noon"><span> <svg width="12px" height="10px"> <use
+                 xlink:href="#check"></use> </svg></span><span>Better</span> <img src="../../assets/images/better.png" alt="reaction"/></label>
+                 <br>
+
+                <input class="inp-cbx d-none" name="popupsurveybox" id="afternoon" type="radio"/>
+                <label class="cbx" for="afternoon"><span> <svg width="12px" height="10px"> <use xlink:href="#check"></use> </svg></span><span>Best</span><img src="../../assets/images/best.png" alt="reaction"/></label>
+
+                <input class="inp-cbx d-none" name="popupsurveybox" id="evening" type="radio"/>
+                <label class="cbx" for="evening"><span> <svg width="12px" height="10px"> <use xlink:href="#check"></use> </svg></span><span>Not Well</span><img src="../../assets/images/not-well.png" alt="reaction"/></label>
       </div>
     </section>
     <section class="my-learning-plan home-learning-bg" v-if="section3.id">
@@ -46,7 +47,7 @@
       </h2>
       <h4 class="page-sub-title">{{ section3.description }}</h4>
       <div class="row">
-        <div class="col-md-6 col-lg-4" v-for="img in learningPlan" v-bind:key="img.id">
+        <div class="col-md-6 col-lg-4 mb-3" v-for="img in learningPlan" v-bind:key="img.id">
           <div class="card">
             <img :src="learningPlanPath + '/' + img.image" class="card-img-top" alt="...">
             <div class="card-body">
@@ -62,7 +63,7 @@
         </div>
         <div class="col-md-12">
           <router-link to="/employee/my-learning-plan" class="btn my-4">See More</router-link>
-        </div>
+        </div> 
       </div>
     </section>
     <section class="upcoming-workshops">

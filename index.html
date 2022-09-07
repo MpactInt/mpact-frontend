@@ -11,6 +11,8 @@
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<!-- <link rel="icon" href="src/assets/images/favicon.ico" type="image/x-icon" /> -->
   <script>
     let APP_URL = 'https://mpat-api.mpact-int.com/api'
     // let APP_URL = "http://localhost/mpact-backend/api"
@@ -46,6 +48,38 @@
     // alert();
 
   });
+
+
+
+const tableslider = document.querySelector('.table-responsive');
+let isDown = false;
+let startX;
+let scrollLeft;
+
+tableslider.addEventListener('mousedown', (e) => {
+  isDown = true;
+  tableslider.classList.add('active');
+  startX = e.pageX - tableslider.offsetLeft;
+  scrollLeft = tableslider.scrollLeft;
+});
+tableslider.addEventListener('mouseleave', () => {
+  isDown = false;
+  tableslider.classList.remove('active');
+});
+tableslider.addEventListener('mouseup', () => {
+  isDown = false;
+  tableslider.classList.remove('active');
+});
+tableslider.addEventListener('mousemove', (e) => {
+  if(!isDown) return;
+  e.preventDefault();
+  const x = e.pageX - tableslider.offsetLeft;
+  const walk = (x - startX) * 3; //scroll-fast
+  tableslider.scrollLeft = scrollLeft - walk;
+  console.log(walk);
+});
+
+
 </script>
 
 
