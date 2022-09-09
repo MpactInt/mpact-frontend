@@ -868,13 +868,13 @@ z-index: 999;
 }
 
 p.copyright {
-    text-align: center;
+        text-align: center;
     color: #fff;
     margin: 0;
     font-style: normal;
     font-weight: 500;
-    font-size: 20px;
-    line-height: 33px;
+    font-size: 18px;
+    line-height: 28px;
 }
 .action-btn {
     display: flex;
@@ -1094,7 +1094,7 @@ p.copyright {
 
 .card-img, .card-img-top {
     height: 165px;
-    object-fit: cover;
+    object-fit: fill;
 }
 .links, .link {
     font-weight: 500;

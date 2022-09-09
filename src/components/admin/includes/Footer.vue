@@ -1,7 +1,7 @@
 <template>
   <footer class="mt-0">
     <div class="container">
-      <p class="copyright">© Mpact International, Inc 2022</p>
+      <p class="copyright">© 2022 Mpact International, Inc. All Rights Reserved.</p>
     </div>
   </footer>
 </template>
