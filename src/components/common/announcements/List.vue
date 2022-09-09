@@ -8,9 +8,11 @@
           <option value="date">Date</option>
         </select>
       </div>
-      <div class="col-md-6 my-2">
+      <div class="col-md-6 my-2 d-flex align-items-center">
         <input type="text" v-model="searchData.keyword" class="form-control search m-0" placeholder="Search By Keyword"
-               v-on:keyup="getAnnouncementsList"/><span class="search-icon"></span>
+          v-on:keyup="getAnnouncementsList" /><span class="search-icon"></span>
+        <a href="javascript:void(0)" v-on:click="searchData.keyword = ''; getAnnouncementsList()"
+          class="link px-2 mb-3">clear</a>
       </div>
       <div class="col-lg-3 col-md-12 my-2" v-if="company.role == 'COMPANY_ADMIN'">
         <button class="btn btn-primary float-right" v-b-modal.add-announcement-modal>Add Announcement</button>
@@ -29,18 +31,18 @@
           <td>{{ a.title }}</td>
           <td>{{ a.description }}</td>
           <td>{{ a.date | timeStampToDate }}</td>
-           <td class="px-0" v-if="company.role == 'COMPANY_ADMIN'">
-                <div class="d-flex align-items-center p-0" style="min-width: 100px;">
-                  <a type="button" class="px-3"  @click="getAnnouncement(a.id)"  width="24" height="24">
-                    <img src="../../../assets/images/table-edit.svg"  width="24" height="24" alt="table-edit" />
-                  </a>
-                  <a type="button" class="px-3" @click="deleteAnnouncement(a.id)"  width="24" height="24">
-                    <img src="../../../assets/images/table-delete.svg"  width="24" height="24" alt="table-delete" /></a>
-                    <span v-if="a.deleted_at">
-                          Archived
-                      </span>
-                </div>
-              </td>
+          <td class="px-0" v-if="company.role == 'COMPANY_ADMIN'">
+            <div class="d-flex align-items-center p-0" style="min-width: 100px;">
+              <a type="button" class="px-3" @click="getAnnouncement(a.id)" width="24" height="24">
+                <img src="../../../assets/images/table-edit.svg" width="24" height="24" alt="table-edit" />
+              </a>
+              <a type="button" class="px-3" @click="deleteAnnouncement(a.id)" width="24" height="24">
+                <img src="../../../assets/images/table-delete.svg" width="24" height="24" alt="table-delete" /></a>
+              <span v-if="a.deleted_at">
+                Archived
+              </span>
+            </div>
+          </td>
           <!-- <td v-if="company.role == 'COMPANY_ADMIN'">
             <p v-if="!a.deleted_at">
               <button class="btn btn-primary" @click="getAnnouncement(a.id)"><i
@@ -58,7 +60,7 @@
         </tr>
       </table>
     </div>
-    <pagination :data="announcementList" @pagination-change-page="getAnnouncementsList"/>
+    <pagination :data="announcementList" @pagination-change-page="getAnnouncementsList" />
     <!--Add announcement modal popup-->
     <Add :getAnnouncementsList="getAnnouncementsList"></Add>
     <!--Update announcement modal popup-->
@@ -79,8 +81,8 @@ import Edit from '../../common/announcements/Edit.vue'
 export default {
   name: 'List',
   mixins: [AppMixin],
-  components: {DatePicker, Add, Edit},
-  data () {
+  components: { DatePicker, Add, Edit },
+  data() {
     return {
       hideFooter: true,
       announcementList: {},
@@ -106,11 +108,11 @@ export default {
     getAnnouncementsList: function (page = 1) {
       let that = this
       Api.getAllAnnouncementsList(that.company.id, that.searchData, page).then(response => {
-          let that = this
-          that.announcementList = response.data.res
-          that.announcementsLength = that.announcementList.data.length
-          console.log(that.announcementList.data.length)
-        }
+        let that = this
+        that.announcementList = response.data.res
+        that.announcementsLength = that.announcementList.data.length
+        console.log(that.announcementList.data.length)
+      }
       ).catch((error) => {
         this.$swal({
           icon: 'error',
@@ -134,15 +136,15 @@ export default {
       }).then((result) => {
         if (result.value) {
           Api.deleteAnnouncement(id).then(response => {
-              this.$swal({
-                icon: 'success',
-                title: 'success',
-                text: 'Deleted Successfully',
-                showConfirmButton: true
-              }).then(() => {
-                that.getAnnouncementsList()
-              })
-            }
+            this.$swal({
+              icon: 'success',
+              title: 'success',
+              text: 'Deleted Successfully',
+              showConfirmButton: true
+            }).then(() => {
+              that.getAnnouncementsList()
+            })
+          }
           ).catch((error) => {
             this.$swal({
               icon: 'error',
@@ -166,7 +168,7 @@ export default {
       })
     },
   },
-  mounted () {
+  mounted() {
     this.getAnnouncementsList()
   }
 }

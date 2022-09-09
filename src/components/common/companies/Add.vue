@@ -52,7 +52,7 @@
                         v-model="chargebeeUser.employees">
                 </div>
             </div>
-            <div class="col-md-12">
+            <!-- <div class="col-md-12">
                 <div class="form-group">
                     <div class="custom-file">
                         <input type="file" class="custom-file-input" id="logo" ref="logo" @change="fileOnChange">
@@ -60,7 +60,7 @@
                     </div>
                 </div>
                 <img v-if="url" :src="url" height="50" width="50"/>
-            </div>
+            </div> -->
         </div>
         <button type="submit" class="d-block btn btn-primary" :disabled="chargebeeUser.disabled">Submit</button>
     </form>

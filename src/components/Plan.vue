@@ -1,6 +1,17 @@
 <template>
   <section class="employee-section pettern-bg">
-    <HeaderEmployee></HeaderEmployee>
+    <div class="header">
+
+      <nav class="navbar navbar-expand-lg navbar-light ">
+        <router-link class="navbar-brand" to="/employee/dashboard"><img src="../assets/images/logo.png">
+        </router-link>
+
+        <button class="navbar-toggler" data-bs-target="#navbarSupportedContent">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+      </nav>
+    </div>
     <div class="container">
       <div class="row">
         <section class="pricing-section">
@@ -161,7 +172,7 @@
                   <div class="col-md-6 d-flex flex-wrap">
                     <div class="custom-radio-btn ml-auto mb-3">
                       <input type="radio" id="Monthly1" name="radio-group1" v-on:click="showMonthly = true" checked>
-                      <label for="Monthly1">Monthly</label>
+                      <label for="Monthly1">Quarterly</label>
                     </div>
                     <div class="custom-radio-btn ml-4  mb-3">
                       <input type="radio" id="Yearly1" name="radio-group1" v-on:click="showMonthly = false">

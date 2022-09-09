@@ -89,12 +89,12 @@ export default {
         Api.login(that.user).then(response => {
           that.user.disabled = false;
           if (response.data.company) {
-            if (response.data.company.role == 'COMPANY_ADMIN' && response.data.company.chargebee_subscription_id) {
+            if (response.data.company.role == 'COMPANY_ADMIN' && response.data.company.payment_status) {
               window.localStorage.setItem('token', response.data.access_token)
               window.localStorage.setItem('userData', JSON.stringify(response.data.user))
               window.localStorage.setItem('companyData', JSON.stringify(response.data.company))
               window.location = '/employer/dashboard'
-            } else if (response.data.company.role == 'COMPANY_ADMIN' && !response.data.company.chargebee_subscription_id) {
+            } else if (response.data.company.role == 'COMPANY_ADMIN' && !response.data.company.payment_status) {
               window.location = '/checkout/' + response.data.company.employee_registration_link
             } else {
               window.localStorage.setItem('token', response.data.access_token)
