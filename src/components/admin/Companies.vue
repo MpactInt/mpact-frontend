@@ -24,16 +24,17 @@
             <!-- <button class="btn btn-primary" @click="getCompanyDetails(r)" v-b-modal.update-hours-modal>Update
               Hours
             </button> -->
-
+            <div class="d-flex align-items-center p-0" style="min-width: 100px;">
             <a type="button" class="mx-3 d-block" width="24" @click="getCompany(r)" v-b-modal.update-modal>
               <img src="../../assets/images/table-edit.svg" alt="table-edit" width="24" height="24" />
             </a>
-            <button v-if="r.deleted_at" type="button" class="btn btn-primary mx-3 d-block" width="24" @click="activeInactiveCompany(r.id,1)">
-            Active
-            </button>
-            <button v-if="!r.deleted_at"  type="button" class="btn btn-primary  mx-3 d-block" width="24" @click="activeInactiveCompany(r.id,0)">
-            Inactive
-            </button>
+            <a type="button" class="mx-3 d-block" v-if="r.deleted_at" @click="activeInactiveCompany(r.id,1)" style="width:40px">
+              <img src="../../assets/images/on.svg" alt="table-edit" width="40" height="24" />
+            </a>
+            <a type="button" class="mx-3 d-block"  v-if="!r.deleted_at"  style="width:40px" @click="activeInactiveCompany(r.id,0)">
+              <img src="../../assets/images/off.svg" alt="table-edit" width="40" height="40" />
+            </a>
+            </div>
           </td>
         </tr>
         <tr v-if="!comapanyListLength">

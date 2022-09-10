@@ -66,6 +66,11 @@
                     w.instructor
                   }}</span></p>
               </div>
+              <div class="place w-100">
+                <p>
+              <span><img src="../../assets/images/clock.svg" alt="workshops image" />Date: {{ w.date | timeStampToDate }}</span>
+              </p>
+              </div>
               <div class="read-more">
                 <router-link :to="'/employee/workshop/' + w.id" class="btn">Read More</router-link>
               </div>

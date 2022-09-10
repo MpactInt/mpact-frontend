@@ -147,6 +147,7 @@ export default {
           }).then(function () {
             $('.profile-img').attr('src', response.data.res.profile_image)
             $('.profile-image').attr('src', response.data.res.profile_image)
+            $('.logo-img').attr('src', response.data.res.profile_image)
           })
         }
       ).catch((error) => {

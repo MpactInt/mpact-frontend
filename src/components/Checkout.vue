@@ -88,14 +88,14 @@
               </div>
               <div class="col-md-4">
                 <h5 class="page-sub-title">Cart Item </h5>
-                <div class="card mb-0 " style=" z-index: 9;">
+                <div class="card mb-0 h-auto" style=" z-index: 9;">
                   <ul class="list-group list-group-flush">
                     <li class="list-group-item"><p class="card-text  d-flex align-items-center w-100"><b> Cart Item</b>
                       <span class="my-0 mr-0 ml-auto total-items">{{ cartItems.length }}</span></p></li>
                   </ul>
                 </div>
                 <!-- <h5 class="page-sub-title">Your Cart <span class="total-items">{{ cartItems.length }}</span></h5> -->
-                <div class="cart-item card m-0" v-for="ci in cartItems" v-bind:key="ci.id">
+                <div class="cart-item card m-0 h-auto" v-for="ci in cartItems" v-bind:key="ci.id">
                   <div class="card-sub-title">
                     {{ ci.description }} :
                     <span class="card-subtitle">
@@ -103,7 +103,7 @@
                                         </span>
                   </div>
                 </div>
-                <div class="card  text-white bg-dark mt-0">
+                <div class="card  text-white bg-dark mt-0 h-auto">
                   <div class="card-body">
                     <h5 class="card-title white-color"> Total :
                       {{ estimateData / 100 | totalAmount }}

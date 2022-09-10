@@ -23,7 +23,7 @@
       <div class="popup-survey-box col-md-12 col-lg-10">
         <CustomSurvey v-if="pg.length" :surveyProp="pg" :submitPopupSurvey="submitPopupSurvey"></CustomSurvey>
         <BarChart v-else :chartData="res" :question="chartData.question"></BarChart>
-        <h4>1. How are you feeling today?</h4>
+        <!-- <h4>1. How are you feeling today?</h4>
 
                 <input class="inp-cbx d-none" name="popupsurveybox" id="morning" type="radio" checked />
                 <label class="cbx" for="morning"><span> <svg width="12px" height="10px"> <use xlink:href="#check"></use> </svg></span><span>Good</span>
@@ -38,7 +38,7 @@
                 <label class="cbx" for="afternoon"><span> <svg width="12px" height="10px"> <use xlink:href="#check"></use> </svg></span><span>Best</span><img src="../../assets/images/best.png" alt="reaction"/></label>
 
                 <input class="inp-cbx d-none" name="popupsurveybox" id="evening" type="radio"/>
-                <label class="cbx" for="evening"><span> <svg width="12px" height="10px"> <use xlink:href="#check"></use> </svg></span><span>Not Well</span><img src="../../assets/images/not-well.png" alt="reaction"/></label>
+                <label class="cbx" for="evening"><span> <svg width="12px" height="10px"> <use xlink:href="#check"></use> </svg></span><span>Not Well</span><img src="../../assets/images/not-well.png" alt="reaction"/></label> -->
       </div>
     </section>
     <section class="my-learning-plan home-learning-bg" v-if="section3.id">
@@ -73,16 +73,17 @@
         <div>
           <VueSlickCarousel v-if="workshopsListDashboard.length" :arrows="true" :dots="true">
             <div v-for="wl in workshopsListDashboard" v-bind:key="wl.id">
-              <img src="../../assets/images/workshop.jpg" class="w-100 workshops-img" alt="workshops image" />
+              <img :src="wl.image" class="w-100 workshops-img" alt="workshops image" />
               <h3 class="section-title mt-4 mb-2">{{ wl.title }}</h3>
 
               <div class="d-flex flex-wrap">
                 <span> <img src="../../assets/images/clock.svg" class="icon" alt="workshops image" /> Time: {{
                     wl.total_hours
-                }}</span>
+                }} hr(s)</span>
                 <span> <img src="../../assets/images/avtar.svg" class="icon" alt="workshops image" /> Leader: {{
                     wl.instructor
                 }}</span>
+                <span><img src="../../assets/images/clock.svg" class="icon" alt="workshops image" /> Date: {{ wl.date | timeStampToDate }}</span>
               </div>
               <button v-if="!wl.registered" class="btn gradient-color-btn mt-4 mb-5"
                 @click="registerForWorkshop(wl.id)">
