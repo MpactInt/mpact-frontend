@@ -86,21 +86,7 @@ export default {
   },
   mixins: [AppMixin],
   methods: {
-    logout: function () {
-      Api.logout().then(response => {
-        window.localStorage.removeItem('token')
-        window.localStorage.removeItem('userData')
-        this.$router.go('/login')
-      }
-      ).catch((error) => {
-        this.$swal({
-          icon: "error",
-          title: "error",
-          text: error.response.data.message,
-          showConfirmButton: true
-        });
-      });
-    }
+  
   },
   created() {
 

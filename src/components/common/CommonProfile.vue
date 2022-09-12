@@ -89,7 +89,7 @@
             <input type="text" class="form-control" id="companyname" placeholder="Company Name"
                    v-model="profileUpdate.company_name">
           </div>
-          <div class="form-group">
+          <div class="form-group" v-if="authUser.role != 'COMPANY_EMP'">
             <label>Company Domain <span class="err">*</span></label>
             <input type="text" class="form-control" id="companydomain" placeholder="Company Domain"
               v-model="profileUpdate.company_domain">

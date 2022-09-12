@@ -1,10 +1,10 @@
 <template>
   <div class="sidebar-box">
     <div class="user-info">
-      <div class="user-img"><img class="logo-img" :src="company.profile_image"></div>
+      <div class="user-img"><img class="logo-img" :src="authUser.profile_image"></div>
       <div class="user-detail">
-        <h5 class="c-name">{{ company.company_name }}</h5>
-        <p class="mb-0 f-name">{{ company.first_name }} {{ company.last_name }} </p>
+        <h5 class="c-name">{{ authUser.company_name }}</h5>
+        <p class="mb-0 f-name">{{ authUser.first_name }} {{ authUser.last_name }} </p>
       </div>
     </div>
     <div class="siderbar-link">
@@ -83,26 +83,12 @@ export default {
   },
   mixins: [AppMixin],
   methods: {
-    logout: function () {
-      Api.logout().then(response => {
-        window.localStorage.removeItem('token')
-        window.localStorage.removeItem('userData')
-        window.localStorage.removeItem('companyData')
-        this.$router.go('/login')
-      }
-      ).catch((error) => {
-        this.$swal({
-          icon: 'error',
-          title: 'error',
-          text: error.response.data.message,
-          showConfirmButton: true
-        })
-      })
-    }
+  
   },
   created() {
     if (this.isLoggedIn) {
       this.getEmployeesListChat()
+      this.getAuthUser()
     }
   },
 }

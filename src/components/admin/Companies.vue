@@ -1,10 +1,24 @@
 <template>
   <section class="admin-workshops-section half-cut-bg">
     <h1 class="page-title text-left mt-0"><span>{{ msg }}</span></h1>
-    <div class="w-100 d-flex my-2">
+    <div class="mt-3">
+    <div class="row align-items-center">
+   
+      <div class="col-lg-6 col-md-6 my-2 d-flex align-items-center">
+        <input type="text" v-model="searchData.keyword" class="form-control search m-0" placeholder="Search"
+               v-on:keyup="getCompaniesList"/><span class="search-icon"></span><a href="javascript:void(0)"
+                                                                             v-on:click="searchData.keyword = ''; getCompaniesList()"
+                                                                             class="link px-2 mb-3">clear</a>
+      </div>
+      <div class="col-lg-3  col-md-6 my-2">
+        
+      </div>
+    <div class="col-lg-3 col-md-12 my-2 d-flex">
       <button class="btn btn-primary ml-auto" v-b-modal.add-modal>Add Company</button>
     </div>
-    <div class="table-responsive">
+    </div>
+    </div>
+    <div class="table-responsive mt-3">
       <table class="table">
         <tr>
           <th>Logo</th>
@@ -29,7 +43,7 @@
               <img src="../../assets/images/table-edit.svg" alt="table-edit" width="24" height="24" />
             </a>
             <a type="button" class="mx-3 d-block" v-if="r.deleted_at" @click="activeInactiveCompany(r.id,1)" style="width:40px">
-              <img src="../../assets/images/on.svg" alt="table-edit" width="40" height="24" />
+              <img src="../../assets/images/on.svg" alt="table-edit" width="40" height="40" />
             </a>
             <a type="button" class="mx-3 d-block"  v-if="!r.deleted_at"  style="width:40px" @click="activeInactiveCompany(r.id,0)">
               <img src="../../assets/images/off.svg" alt="table-edit" width="40" height="40" />
@@ -51,36 +65,49 @@
       <form @submit="updateProfile">
         <div class="col-md-12">
           <div class="form-group">
+            <label>Company/Organization Name <span class="err">*</span></label>
             <input type="text" class="form-control" id="companyname" placeholder="Company/Organization Name"
               v-model="chargebeeUser.companyname">
           </div>
         </div>
         <div class="col-md-12">
           <div class="form-group">
+            <label>First Name<span class="err">*</span></label>
             <input type="text" class="form-control" id="firstname" placeholder="First Name"
               v-model="chargebeeUser.firstname" @keypress="alphabetsOnly">
           </div>
         </div>
         <div class="col-md-12">
           <div class="form-group">
+            <label>Last Name<span class="err">*</span></label>
             <input type="text" class="form-control" id="lastname" placeholder="Last Name"
               v-model="chargebeeUser.lastname" @keypress="alphabetsOnly">
           </div>
         </div>
         <div class="col-md-12">
           <div class="form-group">
+            <label>Password<span class="err">*</span></label>
             <input type="password" class="form-control" id="password" placeholder="Password"
               v-model="chargebeeUser.password">
           </div>
         </div>
         <div class="col-md-12">
           <div class="form-group">
+            <label>Remaining Hours<span class="err">*</span></label>
             <input class="form-control" type="text" v-model="chargebeeUser.remainingHours" @keypress="numbersOnly"
               placeholder="Remaining Hours" />
           </div>
         </div>
         <div class="col-md-12">
           <div class="form-group">
+            <label>Total Hours<span class="err">*</span></label>
+            <input class="form-control" type="text" v-model="chargebeeUser.totalHours" @keypress="numbersOnly"
+              placeholder="Total Hours" />
+          </div>
+        </div>
+        <div class="col-md-12">
+          <div class="form-group">
+            <label>Logo<span class="err">*</span></label>
             <input type="file" ref="file" class="form-control" accept=".jpeg, .jpg, .png" @change="onFileChange">
           </div>
         </div>
@@ -111,7 +138,9 @@ export default {
       comapanyList: {},
       comapanyListLength: 0,
       path: '',
-      searchData: {},
+      searchData: {
+        keyword:''
+      },
       updateData: {
         companyId: '',
         remainingHours: '',
@@ -126,6 +155,7 @@ export default {
         'logo': '',
         'domain': '',
         'remainingHours': '',
+        'totalHours':'',
         'disabled': false,
       },
     }
@@ -140,19 +170,23 @@ export default {
       that.chargebeeUser.firstname = r.first_name
       that.chargebeeUser.lastname = r.last_name
       that.chargebeeUser.remainingHours = r.remaining_hours
+      that.chargebeeUser.totalHours = r.total_hours
       // that.chargebeeUser.logo = r.logo
     },
     activeInactiveCompany: function(id,status){
       let st = '';
+      let st1 = '';
       if(status){
-        st = "Active"
+        st = "Reactive"
+        st1 = "Reactivated"
       }else{
-        st = "Inactive"
+        st = "Deactivate"
+        st1 = "Deactivated"
       }
     let that = this
             this.$swal({
                 title: 'Are you sure?',
-                text: 'You want to make '+st+' this company',
+                text: 'You want to '+st+' this company',
                 type: 'warning',
                 showCancelButton: true,
                 confirmButtonText: 'Yes '+st+' it!',
@@ -165,7 +199,7 @@ export default {
                         this.$swal({
                             icon: "success",
                             title: "Success",
-                            text: "Profile Type deleted successfully",
+                            text: "Company "+st1+' successfully',
                             showConfirmButton: true
                         }).then(function () {
                             that.getCompaniesList()
@@ -213,6 +247,7 @@ export default {
       formData.append('last_name', that.chargebeeUser.lastname)
       formData.append('password', that.chargebeeUser.password)
       formData.append('remaining_hours', that.chargebeeUser.remainingHours)
+      formData.append('total_hours', that.chargebeeUser.totalHours)
       let headers = {
         'Content-Type': 'multipart/form-data',
         'Access-Control-Allow-Origin': '*'

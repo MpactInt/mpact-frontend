@@ -63,7 +63,7 @@
         </div>
         <div class="col-md-12">
           <router-link to="/employee/my-learning-plan" class="btn my-4">See More</router-link>
-        </div> 
+        </div>
       </div>
     </section>
     <section class="upcoming-workshops">

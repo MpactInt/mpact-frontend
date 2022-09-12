@@ -138,6 +138,23 @@ export default {
     }
   },
   methods: {
+    logout: function () {
+      Api.logout().then(response => {
+        window.localStorage.removeItem('token')
+        window.localStorage.removeItem('userData')
+        window.localStorage.removeItem('companyData')
+        this.$router.go('/login')
+      }
+      ).catch((error) => {
+        this.$swal({
+          icon: "error",
+          title: "error",
+          text: error.response.data.message,
+          showConfirmButton: true
+        });
+      });
+    },
+
     checkUserAuth: function () {
       let that = this
       if (localStorage.getItem("token")) {

@@ -600,24 +600,28 @@ export const router = new Router({
     },
     {
       path: '/admin/checkout/:link',
+      beforeEnter: guardMyroute,
       name: 'Checkout',
       component: Checkout,
       meta: { requiresAuth: true, employerAuth: false, employeeAuth: false, adminAuth: true }
     },
     {
       path: '/admin/welcome-note',
+      beforeEnter: guardMyroute,
       name: 'WelcomeNote',
       component: AdminWelcomeNote,
       meta: { requiresAuth: true, employerAuth: false, employeeAuth: false, adminAuth: true }
     },
     {
       path: '/admin/learning-plan',
+      beforeEnter: guardMyroute,
       name: 'AdminLearningPlan',
       component: AdminLearningPlan,
       meta: { requiresAuth: true, employerAuth: false, employeeAuth: false, adminAuth: true }
     },
     {
       path: '/admin/learning-plan/:id',
+      beforeEnter: guardMyroute,
       name: 'AdminLearningPlanView',
       component: AdminLearningPlanView,
       meta: { requiresAuth: true, employerAuth: false, employeeAuth: false, adminAuth: true }
@@ -670,6 +674,8 @@ router.beforeEach((to, from, next) => {
         next()
       }
     } else {
+      console.log("in else");
+      console.log(next())
       next()
     }
   } else {
