@@ -2,21 +2,18 @@
   <section class="admin-workshops-section half-cut-bg">
     <h1 class="page-title text-left mt-0"><span>{{ msg }}</span></h1>
     <div class="mt-3">
-    <div class="row align-items-center">
-   
-      <div class="col-lg-6 col-md-6 my-2 d-flex align-items-center">
-        <input type="text" v-model="searchData.keyword" class="form-control search m-0" placeholder="Search"
-               v-on:keyup="getCompaniesList"/><span class="search-icon"></span><a href="javascript:void(0)"
-                                                                             v-on:click="searchData.keyword = ''; getCompaniesList()"
-                                                                             class="link px-2 mb-3">clear</a>
+      <div class="row align-items-center">
+        <div class="col-lg-6 col-md-6 my-2 d-flex align-items-center">
+          <input type="text" v-model="searchData.keyword" class="form-control search m-0" placeholder="Search"
+            v-on:keyup="getCompaniesList" /><span class="search-icon"></span><a href="javascript:void(0)"
+            v-on:click="searchData.keyword = ''; getCompaniesList()" class="link px-2 mb-3">clear</a>
+        </div>
+        <div class="col-lg-3  col-md-6 my-2">
+        </div>
+        <div class="col-lg-3 col-md-12 my-2 d-flex">
+          <button class="btn btn-primary ml-auto" v-b-modal.add-modal>Add Company</button>
+        </div>
       </div>
-      <div class="col-lg-3  col-md-6 my-2">
-        
-      </div>
-    <div class="col-lg-3 col-md-12 my-2 d-flex">
-      <button class="btn btn-primary ml-auto" v-b-modal.add-modal>Add Company</button>
-    </div>
-    </div>
     </div>
     <div class="table-responsive mt-3">
       <table class="table">
@@ -39,15 +36,17 @@
               Hours
             </button> -->
             <div class="d-flex align-items-center p-0" style="min-width: 100px;">
-            <a type="button" class="mx-3 d-block" width="24" @click="getCompany(r)" v-b-modal.update-modal>
-              <img src="../../assets/images/table-edit.svg" alt="table-edit" width="24" height="24" />
-            </a>
-            <a type="button" class="mx-3 d-block" v-if="r.deleted_at" @click="activeInactiveCompany(r.id,1)" style="width:40px">
-              <img src="../../assets/images/on.svg" alt="table-edit" width="40" height="40" />
-            </a>
-            <a type="button" class="mx-3 d-block"  v-if="!r.deleted_at"  style="width:40px" @click="activeInactiveCompany(r.id,0)">
-              <img src="../../assets/images/off.svg" alt="table-edit" width="40" height="40" />
-            </a>
+              <a type="button" class="mx-3 d-block" width="24" @click="getCompany(r)" v-b-modal.update-modal>
+                <img src="../../assets/images/table-edit.svg" alt="table-edit" width="24" height="24" />
+              </a>
+              <a type="button" class="mx-3 d-block" v-if="r.deleted_at" @click="activeInactiveCompany(r.id,1)"
+                style="width:40px">
+                <img src="../../assets/images/on.svg" alt="table-edit" width="40" height="40" />
+              </a>
+              <a type="button" class="mx-3 d-block" v-if="!r.deleted_at" style="width:40px"
+                @click="activeInactiveCompany(r.id,0)">
+                <img src="../../assets/images/off.svg" alt="table-edit" width="40" height="40" />
+              </a>
             </div>
           </td>
         </tr>
@@ -57,7 +56,7 @@
       </table>
     </div>
     <pagination :data="comapanyList" @pagination-change-page="getCompaniesList" />
-     <b-modal id="add-modal" size="lg" title="Add New Company" :hide-footer=hideFooter no-fade no-enforce-focus>
+    <b-modal id="add-modal" size="lg" title="Add New Company" :hide-footer=hideFooter no-fade no-enforce-focus>
       <Add :modalAdd=1></Add>
     </b-modal>
 
@@ -113,6 +112,12 @@
         </div>
         <div class="col-md-12">
           <div class="form-group">
+            <label>Uploaded Logo</label><br>
+            <img :src="path+chargebeeUser.uploadedLogo" height="50" width="50"/>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <div class="form-group">
             <button class="btn btn-primary" type="submit" :disabled="chargebeeUser.disabled">Update</button>
           </div>
         </div>
@@ -139,7 +144,7 @@ export default {
       comapanyListLength: 0,
       path: '',
       searchData: {
-        keyword:''
+        keyword: ''
       },
       updateData: {
         companyId: '',
@@ -153,9 +158,10 @@ export default {
         'firstname': '',
         'lastname': '',
         'logo': '',
+        'uploadedLogo':'',
         'domain': '',
         'remainingHours': '',
-        'totalHours':'',
+        'totalHours': '',
         'disabled': false,
       },
     }
@@ -171,50 +177,50 @@ export default {
       that.chargebeeUser.lastname = r.last_name
       that.chargebeeUser.remainingHours = r.remaining_hours
       that.chargebeeUser.totalHours = r.total_hours
-      // that.chargebeeUser.logo = r.logo
+      that.chargebeeUser.uploadedLogo = r.company_logo
     },
-    activeInactiveCompany: function(id,status){
+    activeInactiveCompany: function (id, status) {
       let st = '';
       let st1 = '';
-      if(status){
+      if (status) {
         st = "Reactive"
         st1 = "Reactivated"
-      }else{
+      } else {
         st = "Deactivate"
         st1 = "Deactivated"
       }
-    let that = this
+      let that = this
+      this.$swal({
+        title: 'Are you sure?',
+        text: 'You want to ' + st + ' this company',
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes ' + st + ' it!',
+        cancelButtonText: 'No',
+        showCloseButton: true,
+        showLoaderOnConfirm: true
+      }).then((result) => {
+        if (result.value) {
+          Api.activeInactiveCompany(id, status).then(response => {
             this.$swal({
-                title: 'Are you sure?',
-                text: 'You want to '+st+' this company',
-                type: 'warning',
-                showCancelButton: true,
-                confirmButtonText: 'Yes '+st+' it!',
-                cancelButtonText: 'No',
-                showCloseButton: true,
-                showLoaderOnConfirm: true
-            }).then((result) => {
-                if (result.value) {
-                    Api.activeInactiveCompany(id,status).then(response => {
-                        this.$swal({
-                            icon: "success",
-                            title: "Success",
-                            text: "Company "+st1+' successfully',
-                            showConfirmButton: true
-                        }).then(function () {
-                            that.getCompaniesList()
-                        });
-                    }).catch((error) => {
-                        this.$swal({
-                            icon: "error",
-                            title: "error",
-                            text: error.response.data.message,
-                            showConfirmButton: true
-                        }).then(function () {
-                        });
-                    });
-                }
+              icon: "success",
+              title: "Success",
+              text: "Company " + st1 + ' successfully',
+              showConfirmButton: true
+            }).then(function () {
+              that.getCompaniesList()
             });
+          }).catch((error) => {
+            this.$swal({
+              icon: "error",
+              title: "error",
+              text: error.response.data.message,
+              showConfirmButton: true
+            }).then(function () {
+            });
+          });
+        }
+      });
     },
     getCompaniesList: function (page = 1) {
       let that = this

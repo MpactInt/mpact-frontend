@@ -22,7 +22,7 @@
               </p>
             </div>
             <div  class="read-more"  >
-              <a   v-if="!registered"  class="btn" @click="registerForWorkshop" >Read More</a>
+              <a   v-if="!registered"  class="btn" @click="registerForWorkshop" >Register</a>
               <a v-else class="btn btn-read-more" disabled>Registered</a>
             </div></div>
           </div>

@@ -58,21 +58,23 @@
             </div>
             <div class="course-details">
               <div class="time w-100">
-                <p><span><img src="../../assets/images/avtar.svg" alt="icon"/> </span>Time<span>{{ w.total_hours }} Hour(s)</span>
+                <p><span><img src="../../assets/images/clock.svg" alt="icon"/> </span>Time<span>{{ w.total_hours }} Hour(s)</span>
                 </p>
               </div>
               <div class="place w-100">
-                <p><span><img src="../../assets/images/clock.svg" alt="icon"/></span>Leader: <span>{{
+                <p><span><img src="../../assets/images/avtar.svg" alt="icon"/></span>Leader: <span>{{
                     w.instructor
                   }}</span></p>
               </div>
               <div class="place w-100">
                 <p>
-              <span><img src="../../assets/images/clock.svg" alt="workshops image" />Date: {{ w.date | timeStampToDate }}</span>
+              <span><img src="../../assets/images/Calendar-icon.svg" alt="workshops image" />Date: {{ w.date | timeStampToDate }}</span>
               </p>
               </div>
               <div class="read-more">
                 <router-link :to="'/employee/workshop/' + w.id" class="btn">Read More</router-link>
+                <button class="btn" v-if="w.registered">Registered</button>
+                <a   v-if="!w.registered"  class="btn" @click="registerForWorkshop(w.id)" >Register</a>
               </div>
             </div>
           </div>
@@ -95,7 +97,21 @@ export default {
   data () {
     return {}
   },
-  methods: {},
+  methods: {
+    registerForWorkshop: function (id) {
+      let that = this
+      Api.registerForWorkshop(id).then(response => {
+        this.$swal({
+          icon: "success",
+          title: "Success",
+          text: "You have successfully registered for workshop",
+          showConfirmButton: true
+        });
+        this.getWorkshopsList()
+      })
+    }
+
+  },
   created () {
     this.getWorkshopsList()
   },

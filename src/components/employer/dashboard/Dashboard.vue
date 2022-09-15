@@ -12,7 +12,7 @@
         </div>
         <div class="col-lg-3 col-md-6 my-2">
           <router-link to="/employer/workshops" class="dashboard-card-link">
-            Upcoming Workshops
+            Workshops
             <img src="../../../assets/images/chevron-right.svg" alt="arrow-right" />
           </router-link>
         </div>
@@ -30,13 +30,13 @@
         </div>
       </div>
       <div class="row mt-5">
-        <div class="col-md-6 mb-3" v-if="stepsList.length" v-for="step in stepsList" v-bind:key="step.id">
+        <div class="col-md-6 mb-3" v-if="stepsList.length" v-for="(step,index) in stepsList" v-bind:key="step.id">
           <router-link :to="'/employer/view-step/' + step.id">
             <div class="card">
               <img :src="filePath + '/' + step.image" class="card-img-top" alt="...">
               <div class="card-body">
-                <h6 class="card-sub-title">{{ step.title }}</h6>
-                <!-- <h5 class="card-title-2">{{ step.description }}</h5> -->
+                <h6 class="card-sub-title">Step {{ index }}</h6>
+                <h5 class="card-title-2">{{ step.title }}</h5>
               </div>
             </div>
           </router-link>
