@@ -1130,6 +1130,9 @@ left: 10px;
     background-repeat: no-repeat;
 }
 
+.workshops-slider img.workshops-img {
+    height: 400px;
+}
 .workshops-slider span {
     display: flex;
     align-items: center;
