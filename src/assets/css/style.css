@@ -33,7 +33,7 @@ section {
 }
     
 main.main-col {
-    width:calc(100% - 320px);
+    width:calc(100% - 350px);
     margin-bottom: -1px;
     background: #fff;
 }
@@ -325,7 +325,7 @@ div#app {
     overflow: auto;
     position: sticky;
     top: 0;
-    width: 320px;
+    width: 350px;
 }
 .user-info {
     display: -webkit-box;
