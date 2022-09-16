@@ -38,7 +38,7 @@
       <div class="col-lg-6 col-md-6">
         <ul class="work-progress-list">
           <p>
-            <b class="mb-5">Upcoming Workshops </b>
+            <b class="mb-5">Upcoming Workshops</b>
             <router-link to="/employee/request-workshop">View All</router-link>
           </p>
           <li v-if="workshopList.length" v-for="wl in workshopList" v-bind:key="wl.id">
