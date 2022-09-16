@@ -1124,12 +1124,16 @@ left: 10px;
 }
 .upcoming-workshops {
     background-image: url(../images/upcoming-workshops.svg);
-    background-size: 100%;
-    background-position: bottom right;
+    background-size: cover;
+    background-position: center;
     width: 100%;
     background-repeat: no-repeat;
 }
 
+.workshops-slider .slick-slide div {
+    max-width: 1150px;
+    margin: auto;
+}
 .workshops-slider img.workshops-img {
     height: 400px;
 }
