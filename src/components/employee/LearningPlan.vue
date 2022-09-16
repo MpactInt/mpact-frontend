@@ -9,8 +9,8 @@
             <img :src="learningPlanPath + '/' + img.image"  class="card-img-top"
                  alt="...">
             <div class="card-body">
-              <h5 class="card-title">{{ img.title }}</h5>
-              <p class="card-text">{{ img.description | truncate(50) }}</p>
+              <h5 class="card-title">{{ img.title | truncate(30) }}</h5>
+              <p class="card-text">{{ img.description | truncate(100) }}</p>
               <router-link class="links" :to="'/employee/my-learning-plan/'+img.id">
                 Read More <img src="../../assets/images/arrow-right.svg"/>
               </router-link>

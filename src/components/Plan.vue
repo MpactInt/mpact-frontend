@@ -9,7 +9,15 @@
         <button class="navbar-toggler" data-bs-target="#navbarSupportedContent">
           <span class="navbar-toggler-icon"></span>
         </button>
-
+        <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ml-auto cutom-menu-list">
+                        <li class="nav-item">
+                            <router-link class="nav-link btn custom-btn" to="/login">
+                                <div class="gradient-btn">Login</div>
+                            </router-link>
+                        </li>
+                    </ul>
+                </div>
       </nav>
     </div>
     <div class="container">

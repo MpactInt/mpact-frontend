@@ -101,10 +101,10 @@
       </div>
     </section>
     <section class="steps-to-help">
-      <h2 class="page-title text-left   d-inline-block">"Steps to Help"</h2>
+      <h2 class="page-title text-left   d-inline-block">"To Do"</h2>
       <div  v-if="todoList.length" class="steps-box"  v-for="(todo,index) in todoList" v-bind:key="todo.id">
         <div class="steps-count">
-          {{ todo.title }} <span>{{index+1}}</span>
+          {{ todo.title | truncate(4) }} <span>{{index+1}}</span>
         </div>
         <div class="pera">
           <p>{{ todo.description }}</p>
