@@ -1560,8 +1560,53 @@ img.table-img {
     right: 0;
 }
 
+.sd-element__title .sd-element__num, span.sv-string-viewer {
+    font-style: normal;
+    font-weight: 900;
+    font-size: 28px;
+    line-height: 38px;
+    color: #C2095A;
+}
+
+fieldset.sd-selectbase {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 30px 0;
+} 
+
+fieldset.sd-selectbase .sd-item.sd-radio {
+    background: #efefef;
+    border-radius: 10px;
+    margin-right: 20px;
+    min-width: 45%;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+fieldset.sd-selectbase .sd-item.sd-radio span.sv-string-viewer {
+    color: #4C4C4D;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 25px;
+}
+
+fieldset.sd-selectbase .sd-item.sd-radio label.sd-selectbase__label {
+    margin-bottom: 0;
+}
+
+fieldset.sd-selectbase .sd-radio__decorator {
+    border-radius: 50%;
+    border: 1px solid #ADB9CA;
+}
 
 
+.sd-item__control:focus + .sd-item__decorator, .sd-item--allowhover:hover .sd-item__decorator {
+    -webkit-box-shadow: 0 0 0 2px #c2095a;
+    box-shadow: 0 0 0 2px #c2095a;
+    outline: none;
+}
 
 
 
