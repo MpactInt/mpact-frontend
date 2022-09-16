@@ -6,6 +6,10 @@
   color: white;
 }
 
+.sd-body__progress{
+  display: none !important;
+}
+
 .success {
   color: green
 }
@@ -183,10 +187,12 @@ line-height: 23px;
     background-repeat: no-repeat;
     background-size: 100%;
 }
-
+.sd-root-modern, .svc-logic-question-value{
+  --sd-base-padding:0 !important;
+}
 .popup-survey-box {
     border: 15px solid #ADB9CA;
-    padding: 70px;
+    /* padding: 70px; */
     margin-bottom: 50px;
         background: #fff
 }
