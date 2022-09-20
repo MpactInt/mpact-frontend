@@ -56,7 +56,7 @@
                 <div class="profile-details">
                   <label class="w-50">Role</label> <span>{{ authUser.role | replaceUndescore }}</span>
                 </div>
-                <div class="profile-details border-bottom-0">
+                <div class="profile-details border-bottom-0"  v-if="authUser.role == 'COMPANY_ADMIN'">
                   <label class="w-50">Total Employees</label> <span>{{ authUser.total_employees }}</span>
                 </div>
               </div>

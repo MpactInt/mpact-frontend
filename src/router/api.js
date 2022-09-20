@@ -127,6 +127,9 @@ class Api {
     getGroupMessage(data) {
         return axiosCommon.post('/get-group-message', data)
     }
+    getAdminNotifications(){
+        return axiosCommon.get('/get-admin-notifications')
+    }
     getOneToOneMessage(rid, data) {
         return axiosCommon.post('/get-one-to-one-message/' + rid, data)
     }
