@@ -73,6 +73,7 @@
         <div>
           <VueSlickCarousel v-if="workshopsListDashboard.length" :arrows="true" :dots="true">
             <div v-for="wl in workshopsListDashboard" v-bind:key="wl.id">
+            <div class="col-lg-12">
               <img :src="wl.image" class="w-100 workshops-img" alt="workshops image" />
               <h3 class="section-title mt-4 mb-2">{{ wl.title }}</h3>
 
@@ -92,6 +93,7 @@
               <button v-if="wl.registered" class="btn gradient-color-btn mt-4 mb-5">
                 Registered
               </button>
+            </div>
             </div>
           </VueSlickCarousel>
           <div v-if="!workshopsListDashboard.length">

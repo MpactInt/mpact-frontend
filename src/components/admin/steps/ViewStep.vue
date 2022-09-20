@@ -53,6 +53,7 @@
           </div>
           <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
              <p><b class="pink-color">Toolkit</b></p>
+                <div class="row">
                 <div class="col-md-6">
                   <form @submit="uploadToolkit" enctype="multipart/form-data">
                     <div class="form-group">
@@ -65,10 +66,11 @@
                   </form>
                 </div>
                 <div class="col-md-12">
-                  <h5 class="page-sub-title mt-5 mb-4">Uploaded Files</h5>
+                  <h5 class="page-sub-title mt-5 mb-0">Uploaded Files</h5>
                 </div>
-                <div class="row">
-                  <div class="col-lg-3 my-3 col-md-6" v-if="stepUpdate.toolkit.length" v-for="tk in stepUpdate.toolkit" v-bind:key="tk.id">
+                </div>
+                <div class="row mt-0 toolkit-uploaded-files">
+                  <div class="col-xl-3 col-lg-4 my-3 col-md-6" v-if="stepUpdate.toolkit.length" v-for="tk in stepUpdate.toolkit" v-bind:key="tk.id">
                     <div class="Uploaded-file-box">
                       <a href="javascript:void(0)" @click="downloadToolkit(tk.id, tk.file)">
                         <i v-if="tk.type == 'png' || tk.type == 'jpg' || tk.type == 'jpeg' || tk.type == 'svg'"

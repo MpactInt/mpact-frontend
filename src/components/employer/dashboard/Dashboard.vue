@@ -29,7 +29,7 @@
           </router-link>
         </div>
       </div>
-      <div class="row mt-5">
+      <div class="row mt-5 card-row">
         <div class="col-md-6 mb-3" v-if="stepsList.length" v-for="(step,index) in stepsList" v-bind:key="step.id">
           <router-link :to="'/employer/view-step/' + step.id">
             <div class="card">

@@ -1,13 +1,21 @@
 <template>
-  <div class="col-md-9">
-    <router-link to="/employer/dashboard">
+  <section class="view-step-link half-cut-bg">
+ <!--    <router-link to="/employer/dashboard">
       <button class="btn-primary">
         <i class="fa fa-arrow-left white"></i>
       </button>
+    </router-link> -->
+
+    <router-link to="/employer/dashboard"  class="btn back">
+       <!-- <button class="btn-primary"> -->
+        <img src="../../../assets/images/arrow-left.svg" alt="arrow-left" /> Back
+      <!-- </button> -->
     </router-link>
-    <div class="row mt-5">
-      <div class="col-md-2">
-        <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+
+    
+    <div class="row mt-5 tabs-ui">
+      <div class="col-md-12 pricing-section">
+        <div class="nav nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
           <button class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home"
             type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">Overview</button>
           <button class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile"
@@ -16,9 +24,13 @@
             type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false">Toolkit</button>
         </div>
       </div>
-      <div class="col-md-10">
+      <div class="col-md-12">
+
+        <h3 class="view-step-title">Welcome to </h3>
+        <h3 class="section-title">{{ stepUpdate.title }}</h3>
+
         <div class="tab-content" id="v-pills-tabContent">
-          <div class="row"><h3>Welcome to {{ stepUpdate.title }}</h3></div>
+          <!-- <div class="row"><h3>Welcome to {{ stepUpdate.title }}</h3></div> -->
           <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
             <div class="mb-3">
               <p><b>Overview</b></p>
@@ -29,7 +41,7 @@
           <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
             <div class="row mt-3">
               <div class="row">
-                <p><b>Uploaded Guide Book</b></p>
+                <h5>Uploaded Guide Book</h5>
                 <embed v-if="stepUpdate.guideBook" :src="toolkitPath + '/' + stepUpdate.guideBook" width="100%"
                   height="800px" />
                 <p v-if="!stepUpdate.guideBook">Guide Book Not uploaded </p>
@@ -38,12 +50,11 @@
           </div>
           <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
             <div class="row mt-3">
-              <div class="row">
-                <p><b>Uploaded Files</b></p>
-              </div>
-              <div class="row mt-3">
-                <div class="col-md-2 mb-5" v-if="stepUpdate.toolkit.length" v-for="tk in stepUpdate.toolkit"
+                <h5 class="page-sub-title mt-5 mb-0">Uploaded Files</h5>
+              <div class="row mt-3  toolkit-uploaded-files">
+                <div class="col-xl-3 col-lg-4 mb-3 col-md-6" v-if="stepUpdate.toolkit.length" v-for="tk in stepUpdate.toolkit"
                   v-bind:key="tk.id">
+                  <div class="Uploaded-file-box">
                   <a href="javascript:void(0)" @click="downloadToolkit(tk.id, tk.file)">
                     <i v-if="tk.type == 'png' || tk.type == 'jpg' || tk.type == 'jpeg' || tk.type == 'svg'"
                       class="fa-solid fa-file-image fa-10x"></i>
@@ -55,6 +66,8 @@
                     <br>
                     {{ tk.file | removeTimestampFromFileName }}
                   </a>
+
+                </div>
                 </div>
                 <div v-if="!stepUpdate.toolkit.length">
                   No Data Found
@@ -65,7 +78,7 @@
         </div>
       </div>
     </div>
-  </div>
+    </section>
 </template>
 
 <script>
