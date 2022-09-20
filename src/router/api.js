@@ -130,6 +130,9 @@ class Api {
     getAdminNotifications(){
         return axiosCommon.get('/get-admin-notifications')
     }
+    readAdminNotifications(){
+        return axiosCommon.get('/read-admin-notifications')
+    }
     getOneToOneMessage(rid, data) {
         return axiosCommon.post('/get-one-to-one-message/' + rid, data)
     }

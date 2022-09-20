@@ -14,11 +14,12 @@
                         <a class="nav-link pd-link" href="#">Ask a question </a>
                     </li> -->
                     <li class="nav-item">
-                        <b-nav-item-dropdown right no-caret>
+                        <b-nav-item-dropdown right no-caret >
                             <template slot="button-content">
-                                <i class="py-0 fa fa-bell"></i>
+                                <span class="notification" v-if="unseen">{{unseen}}</span>
+                                <i class="py-0 fa fa-bell" @click="readAdminNotifications"></i>
                             </template>
-                            <b-dropdown-item href="#">EN</b-dropdown-item>
+                            <b-dropdown-item href="javascript::void(0)" v-for="nl in notificationList" v-bind:key="nl.id">{{nl.notification}}</b-dropdown-item>
                         </b-nav-item-dropdown>
                     </li>
                 </ul>
@@ -29,7 +30,7 @@
 <script>
 /* eslint-disable */
 import AppMixin from '../../../mixins/AppMixin'
-
+import Api from '../../../router/api'
 
 export default {
     name: "Header",
@@ -37,7 +38,8 @@ export default {
     data() {
         return {
             authUser: {},
-            notificationList:[]
+            notificationList: [],
+            unseen: 0
         }
     },
     mixins: [AppMixin],
@@ -46,6 +48,21 @@ export default {
             let that = this
             Api.getAdminNotifications().then(response => {
                 that.notificationList = response.data.res
+                that.unseen = response.data.unseen
+            }
+            ).catch((error) => {
+                this.$swal({
+                    icon: 'error',
+                    title: 'error',
+                    text: error.response.data.message,
+                    showConfirmButton: true
+                })
+            })
+        },
+        readAdminNotifications: function () {
+            let that = this
+            Api.readAdminNotifications().then(response => {
+                that.unseen = 0
             }
             ).catch((error) => {
                 this.$swal({
@@ -58,10 +75,11 @@ export default {
         },
     },
     created() {
+        this.getAdminNotifications();
         this.authUser = this.userProp
-        window.Echo.channel('notification' + this.authUser.id)
+        window.Echo.channel('notification' + this.user.id)
             .listen('AdminNotificationEvent', (e) => {
-                console.log('Event calling' + 'MessageSent' + this.authUser.id)
+                console.log('Event calling' + 'MessageSent' + this.user.id)
                 this.getAdminNotifications();
             })
     },

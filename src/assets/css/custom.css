@@ -5,7 +5,14 @@
 .white {
   color: white;
 }
-
+.notification{
+  background: red;
+  padding: 2px;
+  border-radius: 50%;
+  color: white;
+  position: absolute;
+  top: -15px;
+}
 .sd-body__progress{
   display: none !important;
 }
