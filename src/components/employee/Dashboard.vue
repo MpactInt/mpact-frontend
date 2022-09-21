@@ -73,26 +73,30 @@
         <div>
           <VueSlickCarousel v-if="workshopsListDashboard.length" :arrows="true" :dots="true">
             <div v-for="wl in workshopsListDashboard" v-bind:key="wl.id">
-            <div class="col-lg-12">
+            <div class="row align-items-center">
+            <div class="col-md-6">
               <img :src="wl.image" class="w-100 workshops-img" alt="workshops image" />
+            </div>
+            <div class="col-md-6 px-4">
               <h3 class="section-title mt-4 mb-2">{{ wl.title }}</h3>
 
               <div class="d-flex flex-wrap">
-                <span> <img src="../../assets/images/clock.svg" class="icon" alt="workshops image" /> Time: {{
+                <span class="mb-2"> <img src="../../assets/images/clock.svg" class="icon" alt="workshops image" /> Time: {{
                     wl.total_hours
                 }} hr(s)</span>
-                <span> <img src="../../assets/images/avtar.svg" class="icon" alt="workshops image" /> Leader: {{
+                <span class="mb-2"> <img src="../../assets/images/avtar.svg" class="icon" alt="workshops image" /> Leader: {{
                     wl.instructor
                 }}</span>
-                <span><img src="../../assets/images/clock.svg" class="icon" alt="workshops image" /> Date: {{ wl.date | timeStampToDate }}</span>
+                <span class="mb-2"><img src="../../assets/images/clock.svg" class="icon" alt="workshops image" /> Date: {{ wl.date | timeStampToDate }}</span>
               </div>
               <button v-if="!wl.registered" class="btn gradient-color-btn mt-4 mb-5"
                 @click="registerForWorkshop(wl.id)">
                 Register Now
               </button>
-              <button v-if="wl.registered" class="btn gradient-color-btn mt-4 mb-5">
+              <button v-if="wl.registered" class="btn gradient-color-btn mt-4 mb-0">
                 Registered
               </button>
+            </div>
             </div>
             </div>
           </VueSlickCarousel>

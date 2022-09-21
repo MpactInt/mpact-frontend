@@ -1134,12 +1134,18 @@ left: 10px;
     background-repeat: no-repeat;
 }
 
+.upcoming-workshops .section-title {
+    margin-top: 0 !important;
+    line-height: 1.2;
+}
+
 .workshops-slider .slick-slide div {
     /*max-width: 1150px;*/
     /*margin: auto;*/
 }
 .workshops-slider img.workshops-img {
-    height: 400px;
+aspect-ratio:400 / 300;
+object-fit: cover;
 }
 .workshops-slider span {
     display: flex;
