@@ -275,8 +275,11 @@ class Api {
     getCompaniesList2(page, data) {
         return axiosCommon.post('/get-companies-list?page=' + page, data)
     }
-    getProfileTypeList() {
-        return axiosCommon.get('/get-profile-type-list')
+    getCompaniesList() {
+        return axiosCommon.get('/get-company-list')
+    }
+    getProfileTypeListMultiselect() {
+        return axiosCommon.get('/get-profile-type-list-multiselect')
     }
     getProfileType(id) {
         return axiosCommon.get('/get-profile-type/' + id)

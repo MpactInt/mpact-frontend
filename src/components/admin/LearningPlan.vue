@@ -49,12 +49,18 @@
         <div id="details">
           <div class="form-group" v-if="user.role == 'ADMIN'">
             <label>Select Profile Type <span class="err">*</span></label>
-            <select class="form-control" v-model="plan.profile_type">
+            <!-- <select class="form-control" v-model="plan.profile_type">
               <option value="">Select</option>
               <option v-for="pt in profileType" v-bind:key="pt.id" :value="pt.id">
                 {{ pt.profile_type }}
               </option>
-            </select>
+            </select> -->
+
+            <multiselect v-model="plan.profile_type" :options="profileTypeListMultiselect" group-values="values"
+                        group-label="selectAll" :multiple="true" :group-select="true" placeholder="Type to search"
+                        track-by="name" label="name">
+                        <span slot="noResult">Oops! No elements found. Consider changing the search query.</span>
+                    </multiselect>
           </div>
           <div class="form-group">
             <label>Title <span class="err">*</span></label>
@@ -110,6 +116,8 @@
     </b-modal>
   </section>
 </template>
+<style src="vue-multiselect/dist/vue-multiselect.min.css">
+</style>
 <script>
 /* eslint-disable */
 import AppMixin from '../../mixins/AppMixin'
@@ -295,7 +303,7 @@ export default {
     },
   },
   mounted () {
-    this.getProfileTypeList()
+    this.getProfileTypeListMultiselect()
     this.getLearningPlanList()
   }
 }

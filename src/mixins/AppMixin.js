@@ -47,6 +47,12 @@ export default {
           values: []
         }
       ],
+      profileTypeListMultiselect:[
+        {
+          selectAll: 'Select All',
+          values: []
+        }
+      ],
       showUserList: false,
       empChat: {},
       downloadData: {
@@ -598,6 +604,22 @@ export default {
         $("#chat-gui").animate({ scrollTop: h }, 'fast')
       }, 100)
     },
+    getProfileTypeListMultiselect: function () {
+      let that = this
+      Api.getProfileTypeListMultiselect().then(response => {
+        let that = this
+        that.profileTypeListMultiselect[0].values = response.data.res
+      }
+      ).catch((error) => {
+        this.$swal({
+          icon: "error",
+          title: "error",
+          text: error.response.data.message,
+          showConfirmButton: true
+        });
+      });
+    },
+    
     getCompaniesListMultiselect: function () {
       let that = this
       Api.getCompaniesList().then(response => {
