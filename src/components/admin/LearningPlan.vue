@@ -14,22 +14,21 @@
           <th>Action</th>
         </tr>
         <tr v-if="learningPlanLength" v-for="lp in learningPlan.data" v-bind:key="lp.id">
-          <td><img :src="learningPlanPath + '/' + lp.image" class="table-img" height="75" width="75"/></td>
+          <td><img :src="learningPlanPath + '/' + lp.image" class="table-img" height="75" width="75" /></td>
           <td>{{ lp.title }}</td>
           <td>{{ lp.description }}</td>
-          <td>{{ lp.profile_type }}</td>
+          <td> <span>{{lp.profile_type.map(({profile_type})=>profile_type).join(',') }}
+            </span></td>
           <td>
 
             <div class="d-flex align-items-center p-0" style="min-width: 100px;">
-              <a type="button" class="mx-3 d-block" width="24" @click="getLearningPlan(lp)">
-                <img src="../../assets/images/table-edit.svg" alt="table-edit" width="24" height="24"/>
+              <a type="button" class="mx-3 d-block" width="24" @click="getLearningPlan(lp.id)">
+                <img src="../../assets/images/table-edit.svg" alt="table-edit" width="24" height="24" />
               </a>
               <a type="button" class="mx-3 d-block" width="24" @click="deleteLearningPlan(lp.id)">
-                <img src="../../assets/images/table-delete.svg" alt="table-delete" width="24"
-                     height="24"/></a>
+                <img src="../../assets/images/table-delete.svg" alt="table-delete" width="24" height="24" /></a>
               <router-link class="mx-3 d-block" :to="'/admin/learning-plan/' + lp.id">
-                <img src="../../assets/images/table-eye.svg" alt="table-delete" width="24"
-                     height="24"/>
+                <img src="../../assets/images/table-eye.svg" alt="table-delete" width="24" height="24" />
               </router-link>
             </div>
             <!-- <button class="btn btn-primary" @click="getLearningPlan(lp)"><i class="fa fa-pencil"></i></button>
@@ -57,10 +56,10 @@
             </select> -->
 
             <multiselect v-model="plan.profile_type" :options="profileTypeListMultiselect" group-values="values"
-                        group-label="selectAll" :multiple="true" :group-select="true" placeholder="Type to search"
-                        track-by="name" label="name">
-                        <span slot="noResult">Oops! No elements found. Consider changing the search query.</span>
-                    </multiselect>
+              group-label="selectAll" :multiple="true" :group-select="true" placeholder="Type to search" track-by="name"
+              label="name">
+              <span slot="noResult">Oops! No elements found. Consider changing the search query.</span>
+            </multiselect>
           </div>
           <div class="form-group">
             <label>Title <span class="err">*</span></label>
@@ -69,47 +68,50 @@
           <div class="form-group">
             <label>Description<span class="err">*</span></label>
             <textarea class="form-control" id="description" placeholder="Description"
-                      v-model="plan.description"></textarea>
+              v-model="plan.description"></textarea>
           </div>
           <div class="form-group">
             <label>Image<span class="err">*</span></label>
             <input type="file" class="form-control" id="image" ref="image" @change="imageOnChange">
           </div>
-          <button type="button" class="btn btn-primary" @click="addLearningPlan"
-                  :disabled="plan.disabled">Submit
+          <button type="button" class="btn btn-primary" @click="addLearningPlan" :disabled="plan.disabled">Submit
           </button>
         </div>
       </form>
     </b-modal>
-    <b-modal id="update-modal" title="Add New Learning Plan" :hide-footer=hideFooter>
+    <b-modal id="update-modal" title="Update Learning Plan" :hide-footer=hideFooter>
       <form enctype="multipart/form-data">
         <div id="details">
           <div class="form-group" v-if="user.role == 'ADMIN'">
             <label>Select Profile Type <span class="err">*</span></label>
-            <select class="form-control" v-model="planUpdate.profile_type">
+            <!-- <select class="form-control" v-model="planUpdate.profile_type">
               <option value="">Select</option>
               <option v-for="pt in profileType" v-bind:key="pt.id" :value="pt.id">
                 {{ pt.profile_type }}
               </option>
-            </select>
+            </select> -->
+
+            <multiselect v-model="planUpdate.profile_type" :options="profileTypeListMultiselectUpdate" group-values="values"
+              group-label="selectAll" :multiple="true" :group-select="true" placeholder="Type to search" track-by="name"
+              label="name">
+              <span slot="noResult">Oops! No elements found. Consider changing the search query.</span>
+            </multiselect>
           </div>
           <div class="form-group">
             <label>Title <span class="err">*</span></label>
-            <input type="text" class="form-control" id="title" placeholder="Title"
-                   v-model="planUpdate.title">
+            <input type="text" class="form-control" id="title" placeholder="Title" v-model="planUpdate.title">
           </div>
           <div class="form-group">
             <label>Description<span class="err">*</span></label>
             <textarea class="form-control" id="description" placeholder="Description"
-                      v-model="planUpdate.description"></textarea>
+              v-model="planUpdate.description"></textarea>
           </div>
           <div class="form-group">
             <label>Image<span class="err">*</span></label>
-            <input type="file" class="form-control" id="image" ref="imageUpdate"
-                   @change="imageOnChangeUpdate">
+            <input type="file" class="form-control" id="image" ref="imageUpdate" @change="imageOnChangeUpdate">
           </div>
           <button type="button" class="btn btn-primary" @click="updateLearningPlan"
-                  :disabled="planUpdate.disabled">Submit
+            :disabled="planUpdate.disabled">Submit
           </button>
         </div>
       </form>
@@ -117,6 +119,7 @@
   </section>
 </template>
 <style src="vue-multiselect/dist/vue-multiselect.min.css">
+
 </style>
 <script>
 /* eslint-disable */
@@ -126,7 +129,7 @@ import Api from '../../router/api'
 export default {
   name: 'LearningPlan',
   mixins: [AppMixin],
-  data () {
+  data() {
     return {
       hideFooter: true,
       plan: {
@@ -143,17 +146,27 @@ export default {
         'description': '',
         'image': '',
         'disabled': false
-      }
+      },
+      profileTypeListMultiselectUpdate:[
+        {
+          selectAll: 'Select All',
+          values: []
+        }
+      ],
     }
   },
   components: {},
   methods: {
-    getLearningPlan: function (data) {
-      this.planUpdate.id = data.id
-      this.planUpdate.title = data.title
-      this.planUpdate.description = data.description
-      this.planUpdate.profile_type = data.profile_type_id
-      this.$bvModal.show('update-modal')
+    getLearningPlan: function (id) {
+      Api.getLearningPlan(id).then(response => {
+        this.planUpdate.id = response.data.res.id
+        this.planUpdate.title = response.data.res.title
+        this.planUpdate.description = response.data.res.description
+        this.planUpdate.profile_type = response.data.res.profile_type
+        this.getProfileTypeListMultiselectUpdate()
+        this.$bvModal.show('update-modal')
+      })
+
     },
     deleteLearningPlan: function (id) {
       let that = this
@@ -172,10 +185,13 @@ export default {
             this.$swal({
               icon: 'success',
               title: 'Success',
-              text: 'Todo deleted successfully',
+              text: 'Learning Plan deleted successfully',
               showConfirmButton: true
             }).then(function () {
               that.getLearningPlanList()
+              this.getProfileTypeListMultiselect()
+              this.getProfileTypeListMultiselectUpdate()
+
             })
           }).catch((error) => {
             this.$swal({
@@ -211,31 +227,33 @@ export default {
       } else {
         that.plan.disabled = true
         const formData = new FormData()
-        formData.append('profile_type', that.plan.profile_type)
+        formData.append('profile_type', JSON.stringify(that.plan.profile_type))
         formData.append('image', that.plan.image)
         formData.append('description', that.plan.description)
         formData.append('title', that.plan.title)
         Api.addLearningPlan(formData).then(response => {
-            that.plan.disabled = false
+          that.plan.disabled = false
 
-            let headers = {
-              'Content-Type': 'multipart/form-data',
-              'Access-Control-Allow-Origin': '*'
-            }
-            this.$swal({
-              icon: 'success',
-              title: 'Success',
-              text: 'Learning Plan created successfully',
-              showConfirmButton: true
-            }).then(function () {
-              that.$bvModal.hide('add-modal')
-              that.plan.profile_type = ''
-              that.plan.title = ''
-              that.plan.description = ''
-              that.$refs.image.value = null
-              that.getLearningPlanList()
-            })
+          let headers = {
+            'Content-Type': 'multipart/form-data',
+            'Access-Control-Allow-Origin': '*'
           }
+          this.$swal({
+            icon: 'success',
+            title: 'Success',
+            text: 'Learning Plan created successfully',
+            showConfirmButton: true
+          }).then(function () {
+            that.$bvModal.hide('add-modal')
+            that.plan.profile_type = ''
+            that.plan.title = ''
+            that.plan.description = ''
+            that.$refs.image.value = null
+            that.getLearningPlanList()
+            this.profileTypeListMultiselectUpdate()
+            this.profileTypeListMultiselect()
+          })
+        }
         ).catch((error) => {
           that.plan.disabled = false
           this.$swal({
@@ -262,32 +280,34 @@ export default {
       } else {
         that.plan.disabled = true
         const formData = new FormData()
-        formData.append('profile_type', that.planUpdate.profile_type)
+        formData.append('profile_type', JSON.stringify(that.planUpdate.profile_type))
         formData.append('image', that.planUpdate.image)
         formData.append('description', that.planUpdate.description)
         formData.append('title', that.planUpdate.title)
         formData.append('id', that.planUpdate.id)
         Api.updateLearningPlan(formData).then(response => {
-            that.planUpdate.disabled = false
+          that.planUpdate.disabled = false
 
-            let headers = {
-              'Content-Type': 'multipart/form-data',
-              'Access-Control-Allow-Origin': '*'
-            }
-            this.$swal({
-              icon: 'success',
-              title: 'Success',
-              text: 'Learning Plan updated successfully',
-              showConfirmButton: true
-            }).then(function () {
-              that.$bvModal.hide('update-modal')
-              that.planUpdate.profile_type = ''
-              that.planUpdate.title = ''
-              that.planUpdate.description = ''
-              that.$refs.imageUpdate.value = null
-              that.getLearningPlanList()
-            })
+          let headers = {
+            'Content-Type': 'multipart/form-data',
+            'Access-Control-Allow-Origin': '*'
           }
+          this.$swal({
+            icon: 'success',
+            title: 'Success',
+            text: 'Learning Plan updated successfully',
+            showConfirmButton: true
+          }).then(function () {
+            that.$bvModal.hide('update-modal')
+            that.planUpdate.profile_type = ''
+            that.planUpdate.title = ''
+            that.planUpdate.description = ''
+            that.$refs.imageUpdate.value = null
+            that.getLearningPlanList()
+            this.profileTypeListMultiselectUpdate()
+            this.profileTypeListMultiselect()
+          })
+        }
         ).catch((error) => {
           that.plan.disabled = false
           this.$swal({
@@ -301,9 +321,25 @@ export default {
         })
       }
     },
+    getProfileTypeListMultiselectUpdate: function () {
+      let that = this
+      Api.getProfileTypeListMultiselectUpdate().then(response => {
+        let that = this
+        that.profileTypeListMultiselectUpdate[0].values = response.data.res
+      }
+      ).catch((error) => {
+        this.$swal({
+          icon: "error",
+          title: "error",
+          text: error.response.data.message,
+          showConfirmButton: true
+        });
+      });
+    },
   },
-  mounted () {
+  mounted() {
     this.getProfileTypeListMultiselect()
+    this.getProfileTypeListMultiselectUpdate()
     this.getLearningPlanList()
   }
 }

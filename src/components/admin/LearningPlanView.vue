@@ -14,7 +14,8 @@
       <div class="col-md-6 ml-auto">
         <div class="popup-survey-lable">
           <p class="w-100 mb-0 page-sub-title">Plan Profile Type :</p>
-          <p class="w-100 pink-color"><strong>{{ planSingle.profile_type }}</strong></p></div>
+          <p class="w-100 pink-color"><strong><span>{{planSingle.profile_type.map(({name})=>name).join(',') }}
+            </span></strong></p></div>
         <div class="popup-survey-lable ">
           <p class="w-100 mb-0 page-sub-title">Plan Image :</p>
           <p class="w-100"><strong>

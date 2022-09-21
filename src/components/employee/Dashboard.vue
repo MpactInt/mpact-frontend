@@ -17,7 +17,7 @@
       </h2>
       <h4 class="page-sub-title">{{ section2.description }}</h4>
     </section>
-    <section class="employee-dashboard-popup-survey">
+    <section class="employee-dashboard-popup-survey" v-if="pg.length">
       <h2 class="page-title mb-0 text-left  d-inline-block">Popup <span>Survey</span></h2>
       <h4 class="page-sub-title">This section will be the opening to the learning journey</h4>
       <div class="popup-survey-box col-md-12 col-lg-10">
