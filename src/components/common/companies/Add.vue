@@ -25,7 +25,7 @@
             <div class="col-md-12">
                 <div class="form-group">
                     <input type="email" class="form-control" id="email"
-                        placeholder="Company/Organization Representative Email" v-model="chargebeeUser.email">
+                        placeholder="Company/Organization Representative Email *" v-model="chargebeeUser.email">
                 </div>
             </div>
             <div class="col-md-12">

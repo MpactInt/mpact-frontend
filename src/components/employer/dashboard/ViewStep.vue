@@ -1,18 +1,16 @@
 <template>
   <section class="view-step-link half-cut-bg">
- <!--    <router-link to="/employer/dashboard">
+    <!--    <router-link to="/employer/dashboard">
       <button class="btn-primary">
         <i class="fa fa-arrow-left white"></i>
       </button>
     </router-link> -->
 
-    <router-link to="/employer/dashboard"  class="btn back">
-       <!-- <button class="btn-primary"> -->
-        <img src="../../../assets/images/arrow-left.svg" alt="arrow-left" /> Back
+    <router-link to="/employer/dashboard" class="btn back">
+      <!-- <button class="btn-primary"> -->
+      <img src="../../../assets/images/arrow-left.svg" alt="arrow-left" /> Back
       <!-- </button> -->
     </router-link>
-
-    
     <div class="row mt-5 tabs-ui">
       <div class="col-md-12 pricing-section">
         <div class="nav nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
@@ -50,24 +48,24 @@
           </div>
           <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
             <div class="row mt-3">
-                <h5 class="page-sub-title mt-5 mb-0">Uploaded Files</h5>
+              <h5 class="page-sub-title mt-5 mb-0">Uploaded Files</h5>
               <div class="row mt-3  toolkit-uploaded-files">
-                <div class="col-xl-3 col-lg-4 mb-3 col-md-6" v-if="stepUpdate.toolkit.length" v-for="tk in stepUpdate.toolkit"
-                  v-bind:key="tk.id">
+                <div class="col-xl-3 col-lg-4 mb-3 col-md-6" v-if="stepUpdate.toolkit.length"
+                  v-for="tk in stepUpdate.toolkit" v-bind:key="tk.id">
                   <div class="Uploaded-file-box">
-                  <a href="javascript:void(0)" @click="downloadToolkit(tk.id, tk.file)">
-                    <i v-if="tk.type == 'png' || tk.type == 'jpg' || tk.type == 'jpeg' || tk.type == 'svg'"
-                      class="fa-solid fa-file-image fa-10x"></i>
-                    <i v-if="tk.type == 'pdf'" class="fa-solid fa-file-pdf fa-10x"></i>
-                    <i v-if="tk.type == 'ppt' || tk.type == 'pptx'" class="fa-solid fa-file-powerpoint fa-10x"></i>
-                    <i v-if="tk.type == 'doc' || tk.type == 'docx'" class="fa-solid fa-file-word fa-10x"></i>
-                    <i v-if="tk.type == 'csv'" class="fa-solid fa-file-csv fa-10x"></i>
-                    <i v-if="tk.type == 'xls' || tk.type == 'xlsx'" class="fa-solid fa-file-excel fa-10x"></i>
-                    <br>
-                    {{ tk.file | removeTimestampFromFileName }}
-                  </a>
+                    <a href="javascript:void(0)" @click="downloadToolkit(tk.id, tk.file)">
+                      <i v-if="tk.type == 'png' || tk.type == 'jpg' || tk.type == 'jpeg' || tk.type == 'svg'"
+                        class="fa-solid fa-file-image fa-10x"></i>
+                      <i v-if="tk.type == 'pdf'" class="fa-solid fa-file-pdf fa-10x"></i>
+                      <i v-if="tk.type == 'ppt' || tk.type == 'pptx'" class="fa-solid fa-file-powerpoint fa-10x"></i>
+                      <i v-if="tk.type == 'doc' || tk.type == 'docx'" class="fa-solid fa-file-word fa-10x"></i>
+                      <i v-if="tk.type == 'csv'" class="fa-solid fa-file-csv fa-10x"></i>
+                      <i v-if="tk.type == 'xls' || tk.type == 'xlsx'" class="fa-solid fa-file-excel fa-10x"></i>
+                      <br>
+                      {{ tk.file | removeTimestampFromFileName }}
+                    </a>
 
-                </div>
+                  </div>
                 </div>
                 <div v-if="!stepUpdate.toolkit.length">
                   No Data Found
@@ -78,7 +76,7 @@
         </div>
       </div>
     </div>
-    </section>
+  </section>
 </template>
 
 <script>
