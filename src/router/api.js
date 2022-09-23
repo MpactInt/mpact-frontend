@@ -56,6 +56,12 @@ class Api {
     getEmployeesList(id, page, data) {
         return axiosCommon.post('/get-employees-list/' + id + '?page=' + page, data)
     }
+    getEmployeesListChat(id, page, data) {
+        return axiosCommon.post('/get-employees-list-chat/' + id + '?page=' + page, data)
+    }
+    readOneToOneMessage(senderId){
+        return axiosCommon.get('/read-one-to-message/'+senderId)
+    }
     exportEmployees(id, data) {
         return axiosCommon.post('/export-employees/' + id, data, { responseType: 'blob' })
     }
@@ -97,22 +103,22 @@ class Api {
     addWelcomeNoteCompany(data) {
         return axiosCommon.post('/add-welcome-note-company', data)
     }
-    updateWelcomeNoteCompany(data){
+    updateWelcomeNoteCompany(data) {
         return axiosCommon.post('/update-welcome-note-company', data)
     }
     deleteWelcomeNote(id) {
-        return axiosCommon.get('/delete-welcome-note/'+id)
+        return axiosCommon.get('/delete-welcome-note/' + id)
     }
     getWelcomeNote() {
         return axiosCommon.get('/get-welcome-note')
     }
-    getWelcomeNoteList(page){
-        return axiosCommon.get('/get-welcome-note-list?page='+page)
+    getWelcomeNoteList(page) {
+        return axiosCommon.get('/get-welcome-note-list?page=' + page)
     }
-    getSingleWelcomeNote(id){
-        return axiosCommon.get('/get-single-welcome-note/'+id)
+    getSingleWelcomeNote(id) {
+        return axiosCommon.get('/get-single-welcome-note/' + id)
     }
-    getSingleWelcomeNoteCompany(){
+    getSingleWelcomeNoteCompany() {
         return axiosCommon.get('/get-single-welcome-note-company')
     }
     uploadLogo(data, headers) {
@@ -121,16 +127,25 @@ class Api {
     changePassword(data) {
         return axiosCommon.post('/change-password', data)
     }
+    createChatGroup(data) {
+        return axiosCommon.post('/create-chat-group', data)
+    }
+    getChatGroups(data) {
+        return axiosCommon.post('/get-chat-groups', data)
+    }
+    getChatGroup(id) {
+        return axiosCommon.get('/get-chat-group/' + id)
+    }
     sendGroupMessage(data) {
         return axiosCommon.post('/send-group-message', data)
     }
     getGroupMessage(data) {
         return axiosCommon.post('/get-group-message', data)
     }
-    getAdminNotifications(){
+    getAdminNotifications() {
         return axiosCommon.get('/get-admin-notifications')
     }
-    readAdminNotifications(){
+    readAdminNotifications() {
         return axiosCommon.get('/read-admin-notifications')
     }
     getOneToOneMessage(rid, data) {
@@ -138,6 +153,12 @@ class Api {
     }
     sendOneToOneMessage(data) {
         return axiosCommon.post('/send-one-to-one-message', data)
+    }
+    getGroupChatMessage(rid, data) {
+        return axiosCommon.post('/get-group-chat-message/' + rid, data)
+    }
+    sendGroupChatMessage(data) {
+        return axiosCommon.post('/send-group-chat-message', data)
     }
     sendAttachment(data, headers) {
         return axiosCommon.post('/send-attachments', data, headers)
@@ -245,7 +266,7 @@ class Api {
     getWorkshopList(data, page) {
         return axiosCommon.post('/get-workshop-list' + '?page=' + page, data)
     }
-    getWorkshopsListDashboard(){
+    getWorkshopsListDashboard() {
         return axiosCommon.get('/get-workshop-list-dashboard')
     }
     deleteRequestWorkshop(id) {
@@ -302,7 +323,7 @@ class Api {
     downloadProfileTypeFile(id) {
         return axiosCommon.get('/download-profile-type-file/' + id, { responseType: 'blob' })
     }
-    downloadLearningTools(id){
+    downloadLearningTools(id) {
         return axiosCommon.get('/download-learning-tools/' + id, { responseType: 'blob' })
     }
     getPopupSurveyList() {
@@ -382,7 +403,7 @@ class Api {
         return axiosCommon.post('/submit-check-in-survey/' + id, data)
     }
 
-    
+
     getPostWorkshopSurveyList() {
         return axiosCommon.post('/get-post-workshop-survey-list')
     }
@@ -402,16 +423,16 @@ class Api {
         return axiosCommon.get('/delete-post-workshop-survey/' + id)
     }
     getPostWorkshopSurveyQuestions(id) {
-        return axiosCommon.get('/get-post-workshop-survey-questions/' + id )
+        return axiosCommon.get('/get-post-workshop-survey-questions/' + id)
     }
-    submitPostWorkshopSurvey(data, id,w_id) {
-        return axiosCommon.post('/submit-post-workshop-survey/' + id+ '/'+w_id, data)
+    submitPostWorkshopSurvey(data, id, w_id) {
+        return axiosCommon.post('/submit-post-workshop-survey/' + id + '/' + w_id, data)
     }
     sendPostWorkshopSurveyEmail(id) {
-        return axiosCommon.get('/send-post-workshop-survey-email/'+id)
+        return axiosCommon.get('/send-post-workshop-survey-email/' + id)
     }
 
- 
+
     submitCompanyFeedback(data) {
         return axiosCommon.post('/submit-company-feedback', data)
     }
@@ -442,8 +463,8 @@ class Api {
     addMeeting(data) {
         return axiosCommon.post('/add-meeting', data)
     }
-    updateMeeting(id,data) {
-        return axiosCommon.post('/update-meeting/'+id, data)
+    updateMeeting(id, data) {
+        return axiosCommon.post('/update-meeting/' + id, data)
     }
     getMeeting(id) {
         return axiosCommon.get('/get-meeting/' + id)
@@ -460,8 +481,8 @@ class Api {
     updateProfileCompany(data, headers) {
         return axiosCommon.post('/update-profile-company', data, headers)
     }
-    activeInactiveCompany(id,status){
-        return axiosCommon.get('/active-inactive-company/' + id+'/'+status) 
+    activeInactiveCompany(id, status) {
+        return axiosCommon.get('/active-inactive-company/' + id + '/' + status)
     }
     getWelcomeNoteCompanies() {
         return axiosCommon.get('/get-welcome-note-company-list')
@@ -485,9 +506,9 @@ class Api {
     getLearningPlanListDashboard(page, data) {
         return axiosCommon.post('/get-learning-plan-list-dashboard')
     }
-    
-    getLearningPlanFiles(id){
-        return axiosCommon.get('/get-learning-plan-files/'+id)
+
+    getLearningPlanFiles(id) {
+        return axiosCommon.get('/get-learning-plan-files/' + id)
     }
     addLearningPlanFile(data) {
         return axiosCommon.post('/add-learning-plan-file', data)
@@ -501,7 +522,7 @@ class Api {
     downloadLearningPlanFile(id) {
         return axiosCommon.get('/download-learning-plan-file/' + id, { responseType: 'blob' })
     }
-    getChartData(){
+    getChartData() {
         return axiosCommon.get('/get-chart-data')
     }
 

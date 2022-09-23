@@ -54,10 +54,15 @@ export default {
         }
       ],
       showUserList: false,
+      showGroupList: false,
       empChat: {},
+      groupChat:{},
       downloadData: {
         id: '',
         type: ''
+      },
+      groupSearchData: {
+        'keyword': ''
       },
       note: {
         'title': '',
@@ -204,7 +209,7 @@ export default {
     },
     getEmployeesListChat: function () {
       let that = this
-      Api.getEmployeesList(that.company.id, 1, that.searchData).then(response => {
+      Api.getEmployeesListChat(that.company.id, 1, that.searchData).then(response => {
         let that = this
         that.empList = response.data.res
       }
@@ -222,6 +227,18 @@ export default {
       Api.getEmployee(id).then(response => {
         that.empChat = response.data.res
       });
+    },
+    getChatGroup: function (id) {
+      let that = this
+      Api.getChatGroup(id).then(response => {
+        that.groupChat = response.data.res
+      });
+    },
+    getChatGroups: function () {
+      let that = this;
+      Api.getChatGroups(that.groupSearchData).then(response => {
+        that.chatGroups = response.data.res
+      })
     },
     convertToHtml: function (value) {
       var urlRegex = /(https?:\/\/[^\s]+)/g;

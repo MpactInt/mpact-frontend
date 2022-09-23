@@ -42,8 +42,21 @@
           <router-link to="/employee/ask-question">Ask a Question
           </router-link>
         </li>
-        <li>
+        <!-- <li>
           <router-link to="/employee/message-my-team">Message My Team</router-link>
+        </li> -->
+        <li>
+          <a href="javascript:void(0)" @click="showGroupList = !showGroupList">Message My Team <i
+              class="fa fa-angle-down" aria-hidden="true"></i></a>
+        </li>
+        <li v-if="showGroupList" class="manage-gap">
+          <input type="text" class="form-control search" v-model="groupSearchData.keyword" placeholder="Search Groups"
+            @keyup="getChatGroups" /><span class="search-icon"></span>
+          <router-link v-for="e in chatGroups.data" v-bind:key="e.id" :to="'/employee/group-chat/' + e.id"><img
+              src="../../../assets/images/back-btn.png" alt="btn" />{{
+              e.name
+              }}
+          </router-link>
         </li>
         <li>
           <a href="javascript:void(0)" @click="showUserList = !showUserList">One to One Chat <i class="fa fa-angle-down"
@@ -55,8 +68,8 @@
             @keyup="getEmployeesListChat" /><span class="search-icon"></span>
           <router-link v-for="e in empList.data" v-bind:key="e.id" :to="'/employee/one-to-one-chat/' + e.id"><img
               src="../../../assets/images/back-btn.png" alt="btn" /> {{
-                  e.first_name
-              }} {{ e.last_name }}
+              e.first_name
+              }} {{ e.last_name }}<span class="new-message" v-if="e.new_message.length">{{e.new_message.length}}</span>
           </router-link>
         </li>
       </ul>
@@ -83,12 +96,14 @@ export default {
   },
   mixins: [AppMixin],
   methods: {
-  
+
   },
   created() {
     if (this.isLoggedIn) {
       this.getEmployeesListChat()
       this.getAuthUser()
+      this.getChatGroups();
+
     }
   },
 }

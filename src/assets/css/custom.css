@@ -5,6 +5,12 @@
 .white {
   color: white;
 }
+.new-message{
+  padding: 0px 5px;
+  background: red;
+  border-radius: 50%;
+  margin-left: 5px;
+}
 .notification{
   background: red;
   padding: 2px;
@@ -15,6 +21,13 @@
 }
 .sd-body__progress{
   display: none !important;
+}
+
+#create-group-modal input.form-control + span.search-icon:after {
+  left: 30px;
+  top: 62px;
+  width: 18px;
+  height: 18px;
 }
 
 .success {

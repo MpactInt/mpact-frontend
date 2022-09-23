@@ -1,13 +1,12 @@
 <template>
   <div class="chat-div">
-    <h1 class="page-title text-left">Chat with <span>{{ empChat.first_name }} {{ empChat.last_name }}</span></h1>
+    <h1 class="page-title text-left">Chat with <span>{{ groupChat.name }} </span></h1>
 
     <div v-chat-scroll class="chat-gui" id="chat-gui" ref="scroll_content">
       <p class="text-center" v-if="groupData.limit < total">
         <button class="btn btn-primary load-more" @click="loadMoreMessages">Load More Messages
         </button>
       </p>
-      <!-- <div class="message-grp-date"> <span>Today</span></div> -->
       <div class="chat-list" v-if="messagesList.length" v-for="m in messagesList" v-bind:key="m.id"
         v-bind:class="(authUser.emp_id == m.sender_id) ? 'text-right' : ''">
         <p class="d-flex align-items-center">
@@ -20,10 +19,7 @@
           <span class="message-time">{{ m.created_at | fromNow }}</span>
         </div>
         <div class="message-bubble" v-if="m.message_type == 'FILE'">
-          <!-- <a :href="imagePath + '/chat-attachments/' + m.content" target="_blank">
-            <img height="50" width="50" src="../../assets/images/file.png" /><br>
-          </a> -->
-          <a href="javascript:void(0)" @click="downloadAttachment(m.id, m.content, 'one')">
+          <a href="javascript:void(0)" @click="downloadAttachment(m.id, m.content, 'groupChat')">
             <img height="50" width="50" src="../../../assets/images/file.png" /><br><span class="message-time">{{
             m.created_at | fromNow }}</span>
           </a>
@@ -36,14 +32,14 @@
     <div>
       <div class="input-group ">
         <input type="text" class="form-control" placeholder="Type here" v-model="dataMsg.message"
-          v-on:keyup.enter="sendOneToOneMessage" />
+          v-on:keyup.enter="sendGroupChatMessage" />
         <button class="send-msg"><img src="../../../assets/images/send-msg.svg" alt="send-msg"
-            @click="sendOneToOneMessage" /></button>
+            @click="sendGroupChatMessage" /></button>
         <div class="input-group-append">
           <button class="paper-attachment" type="button" @click="$refs.file.click()">
             <img src="../../../assets/images/paper.svg" alt="icon" />
           </button>
-          <input type="file" ref="file" class="d-none" @change="sendOneToOneAttachment">
+          <input type="file" ref="file" class="d-none" @change="sendGroupAttachment">
         </div>
       </div>
     </div>
@@ -56,7 +52,7 @@ import AppMixin from '../../../mixins/AppMixin'
 import Api from '../../../router/api'
 
 export default {
-  name: 'MessageMyTeam',
+  name: 'GroupChat',
   mixins: [AppMixin],
   data() {
     return {
@@ -68,7 +64,7 @@ export default {
       imagePath: '',
       imageMsg: {
         file: '',
-        type: 'one',
+        type: 'groupChat',
         rId: ''
       },
       groupData: {
@@ -82,12 +78,12 @@ export default {
     loadMoreMessages: function () {
       let that = this
       that.groupData.limit = that.groupData.limit + that.groupData.limit
-      that.getOneToOneMessage()
+      that.getGroupChatMessage()
     },
-    getOneToOneMessage: function () {
+    getGroupChatMessage: function () {
       let that = this
       let id = this.$route.params.id
-      Api.getOneToOneMessage(id, that.groupData).then(response => {
+      Api.getGroupChatMessage(id, that.groupData).then(response => {
         that.messagesList = response.data.res
         that.imagePath = response.data.path
         that.total = response.data.total
@@ -102,7 +98,7 @@ export default {
         })
       })
     },
-    sendOneToOneMessage: function () {
+    sendGroupChatMessage: function () {
       let that = this
       if (!that.dataMsg.message) {
         this.$swal({
@@ -113,9 +109,9 @@ export default {
         })
       } else {
         that.dataMsg.rId = this.$route.params.id
-        Api.sendOneToOneMessage(that.dataMsg).then(response => {
+        Api.sendGroupChatMessage(that.dataMsg).then(response => {
           that.dataMsg.message = ''
-          that.getOneToOneMessage()
+          that.getGroupChatMessage()
         }
         ).catch((error) => {
           this.$swal({
@@ -129,7 +125,7 @@ export default {
         })
       }
     },
-    sendOneToOneAttachment: function (e) {
+    sendGroupAttachment: function (e) {
       let that = this
       that.imageMsg.rId = this.$route.params.id
       that.imageMsg.file = that.$refs.file.files[0]
@@ -142,8 +138,8 @@ export default {
         'Content-Type': 'multipart/form-data',
         'Access-Control-Allow-Origin': '*'
       }
-      Api.sendAttachment(formData, headers, 'one').then(response => {
-        that.getOneToOneMessage()
+      Api.sendAttachment(formData, headers, 'groupChat').then(response => {
+        that.getGroupChatMessage()
       }
       ).catch((error) => {
         this.$swal({
@@ -160,18 +156,15 @@ export default {
           scrollTop: $('.chat-gui .chat-list:last-child').position().top
         }, 'slow')
       })
-    },
-   
+    }
   },
   created() {
     this.getAuthUser()
-    this.getEmployeeChat(this.$route.params.id)
-    this.getOneToOneMessage()
-    console.log('chat' + this.user.id)
-    window.Echo.channel('chat' + this.user.id)
-      .listen('MessageSent', (e) => {
-        console.log('Event calling' + 'MessageSent' + this.user.id)
-        this.getOneToOneMessage()
+    this.getChatGroup(this.$route.params.id)
+    this.getGroupChatMessage()
+    window.Echo.channel('group' + this.$route.params.id)
+      .listen('GroupMessageSent', (e) => {
+        this.getGroupChatMessage()
       })
   }
 }

@@ -1,18 +1,18 @@
 <template>
     <section class="employee-one-to-one-chat-section half-cut-bg pb-0">
-      <OneToOneChat></OneToOneChat>
+      <GroupChat></GroupChat>
   </section>
 </template>
 
 <script>
 /* eslint-disable */
 import AppMixin from '../../mixins/AppMixin'
-import OneToOneChat from '../common/chat/OneToOneChat.vue'
+import GroupChat from '../common/chat/GroupChat.vue'
 
 export default {
-  name: 'GroupChat',
+  name: 'MessageMyTeam',
   mixins: [AppMixin],
-  components: {OneToOneChat},
+  components: {GroupChat},
   data () {
     return {}
   },

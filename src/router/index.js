@@ -29,6 +29,7 @@ import Announcements from '@/components/employer/Announcements'
 import Settings from '@/components/employer/Settings'
 import MessageMyTeam from '@/components/employer/MessageMyTeam'
 import OneToOneChat from '@/components/employer/OneToOneChat'
+import GroupChat from '@/components/employer/GroupChat'
 import ViewStep from '@/components/employer/dashboard/ViewStep'
 import Opportunity from '@/components/employer/Opportunity'
 import Todo from '@/components/employer/Todo'
@@ -51,6 +52,7 @@ import EmpWorkshop from '@/components/employee/Workshops'
 import EmpViewWorkshop from '@/components/employee/ViewWorkshop'
 import EmpMessageMyTeam from '@/components/employee/MessageMyTeam'
 import EmpOneToOneChat from '@/components/employee/OneToOneChat'
+import EmpGroupChat from '@/components/employee/GroupChat'
 import EmpWelcomeNote from '@/components/employee/WelcomeNote'
 import EmpLearningPlan from '@/components/employee/LearningPlan'
 import EmpLearningPlanView from '@/components/employee/LearningPlanView'
@@ -268,6 +270,13 @@ export const router = new Router({
       meta: { requiresAuth: true, employerAuth: true, employeeAuth: false, adminAuth: false }
     },
     {
+      path: '/employer/group-chat/:id',
+      beforeEnter: guardMyroute,
+      name: 'GroupChat',
+      component: GroupChat,
+      meta: { requiresAuth: true, employerAuth: true, employeeAuth: false, adminAuth: false }
+    },
+    {
       path: '/employer/view-step/:id',
       beforeEnter: guardMyroute,
       name: 'ViewStep',
@@ -343,6 +352,13 @@ export const router = new Router({
       beforeEnter: guardMyroute,
       name: 'OneToOneChat',
       component: EmpOneToOneChat,
+      meta: { requiresAuth: true, employerAuth: false, employeeAuth: true, adminAuth: false }
+    },
+    {
+      path: '/employee/group-chat/:id',
+      beforeEnter: guardMyroute,
+      name: 'GroupChat',
+      component: EmpGroupChat,
       meta: { requiresAuth: true, employerAuth: false, employeeAuth: true, adminAuth: false }
     },
     {
