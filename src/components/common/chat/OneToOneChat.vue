@@ -146,7 +146,18 @@ export default {
     if (this.$route.name == 'OneToOneChat') {
       window.Echo.channel('chat' + this.user.id)
         .listen('MessageSent', (e) => {
-          this.getOneToOneMessage()
+          console.log(e)
+          // this.getOneToOneMessage()
+          this.messagesList.push(
+            {
+              'id':e.messageSent.id,
+              'content':e.messageSent.content,
+              'message_type':e.messageSent.message_type,
+              'first_name':e.first_name,
+              'last_name':e.last_name,
+              'profile_image':e.profile_image,
+              'created_at':e.messageSent.created_at
+            })
       });
   }
 }

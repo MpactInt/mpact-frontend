@@ -151,8 +151,17 @@ export default {
     if (this.$route.name == 'GroupChat') {
       window.Echo.channel('group' + this.user.id)
         .listen('GroupMessageSent', (e) => {
-          console.log(e);
-          this.getGroupChatMessage()
+          this.messagesList.push(
+            {
+              'id':e.groupMessageSent.id,
+              'content':e.groupMessageSent.content,
+              'message_type':e.groupMessageSent.message_type,
+              'first_name':e.first_name,
+              'last_name':e.last_name,
+              'profile_image':e.profile_image,
+              'created_at':e.groupMessageSent.created_at
+            })
+          // this.getGroupChatMessage()
         });
     }
   }
