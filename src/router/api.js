@@ -62,6 +62,9 @@ class Api {
     readOneToOneMessage(senderId){
         return axiosCommon.get('/read-one-to-message/'+senderId)
     }
+    readGroupMessage(groupId){
+        return axiosCommon.get('/read-group-message/'+groupId)
+    }
     exportEmployees(id, data) {
         return axiosCommon.post('/export-employees/' + id, data, { responseType: 'blob' })
     }

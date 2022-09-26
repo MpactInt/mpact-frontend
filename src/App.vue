@@ -61,7 +61,7 @@ export default {
   },
   mixins: [AppMixin],
   created() {
-  
+   
   },
   components: { FooterEmployer, HeaderEmployer, SidebarEmployer, HeaderEmployee, FooterEmployee, SidebarEmployee, HeaderAdmin, FooterAdmin, SidebarAdmin }
 }

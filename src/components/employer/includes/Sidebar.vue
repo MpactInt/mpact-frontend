@@ -52,10 +52,10 @@
         <li v-if="showGroupList" class="manage-gap">
           <input type="text" class="form-control search" v-model="groupSearchData.keyword" placeholder="Search Groups"
             @keyup="getChatGroups" /><span class="search-icon"></span>
-          <router-link v-for="e in chatGroups.data" v-bind:key="e.id" :to="'/employer/group-chat/' + e.id"><img
+          <router-link v-for="e in chatGroups.data" v-bind:key="e.id" :to="'/employer/group-chat/' + e.id"  @click.native="readGroupMessage(e.id)"><img
               src="../../../assets/images/back-btn.png" alt="btn" />{{
               e.name
-              }}
+              }}  <span class="new-message" v-if="e.new_message.length">{{e.new_message.length}}</span>
           </router-link>
         </li>
         <li>
@@ -165,25 +165,21 @@ export default {
         });
       }
     },
-    readOneToOneMessage(id){
-      Api.readOneToOneMessage(id).then(response => {
-        this.getEmployeesListChat()      
-      }
-      ).catch((error) => {
-        this.$swal({
-          icon: 'error',
-          title: 'error',
-          text: error.response.data.message,
-          showConfirmButton: true
-        })
-      })
-    }
+    
   },
   created() {
     if (this.isLoggedIn) {
       this.getEmployeesListChat()
       this.getAuthUser();
       this.getChatGroups();
+      window.Echo.channel('chat' + this.user.id)
+        .listen('MessageSent', (e) => {
+          this.getEmployeesListChat()
+        });
+      window.Echo.channel('group' + this.user.id)
+        .listen('GroupMessageSent', (e) => {
+          this.getChatGroups()
+        });
     }
   },
 }

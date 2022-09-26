@@ -1,6 +1,15 @@
 <template>
   <div class="chat-div">
     <h1 class="page-title text-left">Chat with <span>{{ groupChat.name }} </span></h1>
+    <p class="view-group-members"><a href="javascript:void(0)" v-b-modal.group-members-modal>View Group Members</a></p>
+    <b-modal id="group-members-modal" :title="'Members in '+ groupChat.name" :hide-footer=hideFooter>
+      <div class="form-group">
+        <p>{{groupChat.first_name}} {{groupChat.last_name}} (Group Admin)</p>
+        <p v-if="groupChat.members" v-for="m in groupChat.members" v-bind:key="m.id">
+          {{m.first_name}} {{m.last_name}}
+        </p>
+      </div>
+    </b-modal>
 
     <div v-chat-scroll class="chat-gui" id="chat-gui" ref="scroll_content">
       <p class="text-center" v-if="groupData.limit < total">
@@ -56,22 +65,16 @@ export default {
   mixins: [AppMixin],
   data() {
     return {
-      messagesList: [],
+      hideFooter: false,
       dataMsg: {
         message: '',
         rId: ''
       },
-      imagePath: '',
       imageMsg: {
         file: '',
         type: 'groupChat',
         rId: ''
       },
-      groupData: {
-        'limit': 10,
-        'offset': 0
-      },
-      total: 0
     }
   },
   methods: {
@@ -80,24 +83,7 @@ export default {
       that.groupData.limit = that.groupData.limit + that.groupData.limit
       that.getGroupChatMessage()
     },
-    getGroupChatMessage: function () {
-      let that = this
-      let id = this.$route.params.id
-      Api.getGroupChatMessage(id, that.groupData).then(response => {
-        that.messagesList = response.data.res
-        that.imagePath = response.data.path
-        that.total = response.data.total
-        this.scrollToBottom()
-      }
-      ).catch((error) => {
-        this.$swal({
-          icon: 'error',
-          title: 'error',
-          text: error.response.data.message,
-          showConfirmButton: true
-        })
-      })
-    },
+
     sendGroupChatMessage: function () {
       let that = this
       if (!that.dataMsg.message) {
@@ -162,10 +148,13 @@ export default {
     this.getAuthUser()
     this.getChatGroup(this.$route.params.id)
     this.getGroupChatMessage()
-    window.Echo.channel('group' + this.$route.params.id)
-      .listen('GroupMessageSent', (e) => {
-        this.getGroupChatMessage()
-      })
+    if (this.$route.name == 'GroupChat') {
+      window.Echo.channel('group' + this.user.id)
+        .listen('GroupMessageSent', (e) => {
+          console.log(e);
+          this.getGroupChatMessage()
+        });
+    }
   }
 }
 </script>

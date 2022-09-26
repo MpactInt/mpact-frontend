@@ -60,22 +60,16 @@ export default {
   mixins: [AppMixin],
   data() {
     return {
-      messagesList: [],
       dataMsg: {
         message: '',
         rId: ''
       },
-      imagePath: '',
       imageMsg: {
         file: '',
         type: 'one',
         rId: ''
       },
-      groupData: {
-        'limit': 10,
-        'offset': 0
-      },
-      total: 0
+
     }
   },
   methods: {
@@ -83,24 +77,6 @@ export default {
       let that = this
       that.groupData.limit = that.groupData.limit + that.groupData.limit
       that.getOneToOneMessage()
-    },
-    getOneToOneMessage: function () {
-      let that = this
-      let id = this.$route.params.id
-      Api.getOneToOneMessage(id, that.groupData).then(response => {
-        that.messagesList = response.data.res
-        that.imagePath = response.data.path
-        that.total = response.data.total
-        this.scrollToBottom()
-      }
-      ).catch((error) => {
-        this.$swal({
-          icon: 'error',
-          title: 'error',
-          text: error.response.data.message,
-          showConfirmButton: true
-        })
-      })
     },
     sendOneToOneMessage: function () {
       let that = this
@@ -161,19 +137,19 @@ export default {
         }, 'slow')
       })
     },
-   
+
   },
   created() {
     this.getAuthUser()
     this.getEmployeeChat(this.$route.params.id)
     this.getOneToOneMessage()
-    console.log('chat' + this.user.id)
-    window.Echo.channel('chat' + this.user.id)
-      .listen('MessageSent', (e) => {
-        console.log('Event calling' + 'MessageSent' + this.user.id)
-        this.getOneToOneMessage()
-      })
+    if (this.$route.name == 'OneToOneChat') {
+      window.Echo.channel('chat' + this.user.id)
+        .listen('MessageSent', (e) => {
+          this.getOneToOneMessage()
+      });
   }
+}
 }
 </script>
 

@@ -11,7 +11,7 @@ export default {
         title: '',
         description: '',
         image: '',
-        imageShow:'',
+        imageShow: '',
         disabled: false
       },
       section2: {
@@ -40,23 +40,23 @@ export default {
       },
       empList: [],
       companiesList: [],
-      meetingRecordingsList:[],
+      meetingRecordingsList: [],
       companiesListMultiselect: [
         {
           selectAll: 'Select All',
           values: []
         }
       ],
-      profileTypeListMultiselect:[
+      profileTypeListMultiselect: [
         {
           selectAll: 'Select All',
           values: []
         }
       ],
-      showUserList: false,
-      showGroupList: false,
+      showUserList: true,
+      showGroupList: true,
       empChat: {},
-      groupChat:{},
+      groupChat: {},
       downloadData: {
         id: '',
         type: ''
@@ -146,7 +146,15 @@ export default {
         'disabled': false
       },
       planFiles: [],
+      messagesList: [],
+      total: 0,
+      imagePath: '',
+      groupData: {
+        'limit': 10,
+        'offset': 0
+      },
     }
+
   },
   methods: {
     logout: function () {
@@ -222,24 +230,14 @@ export default {
         });
       });
     },
-    getEmployeeChat: function (id) {
-      let that = this
-      Api.getEmployee(id).then(response => {
-        that.empChat = response.data.res
-      });
-    },
+ 
     getChatGroup: function (id) {
       let that = this
       Api.getChatGroup(id).then(response => {
         that.groupChat = response.data.res
       });
     },
-    getChatGroups: function () {
-      let that = this;
-      Api.getChatGroups(that.groupSearchData).then(response => {
-        that.chatGroups = response.data.res
-      })
-    },
+ 
     convertToHtml: function (value) {
       var urlRegex = /(https?:\/\/[^\s]+)/g;
       return value.replace(urlRegex, function (url) {
@@ -616,7 +614,6 @@ export default {
     scrollToBottom() {
       setTimeout(function () {
         const container = $("#chat-gui");
-        console.log(container)
         var h = $("#chat-gui")[0].scrollHeight
         $("#chat-gui").animate({ scrollTop: h }, 'fast')
       }, 100)
@@ -636,7 +633,7 @@ export default {
         });
       });
     },
-    
+
     getCompaniesListMultiselect: function () {
       let that = this
       Api.getCompaniesList().then(response => {
@@ -705,24 +702,100 @@ export default {
           });
         });
     },
-    alphabetsOnly: function(e){
+    alphabetsOnly: function (e) {
       console.log(e.target.value)
       let char = String.fromCharCode(e.keyCode); // Get the character
-      if(/^[A-Za-z]+$/.test(char)) {
+      if (/^[A-Za-z]+$/.test(char)) {
         return true;
-      }else{
+      } else {
         e.preventDefault();
       }
     },
-    numbersOnly: function(e){
+    numbersOnly: function (e) {
       console.log(e.target.value)
       let char = String.fromCharCode(e.keyCode); // Get the character
-      if(/^[0-9]+$/.test(char)) {
+      if (/^[0-9]+$/.test(char)) {
         return true;
-      }else{
+      } else {
         e.preventDefault();
       }
-    }
+    },
+
+
+    getGroupChatMessage: function () {
+      let that = this
+      let id = this.$route.params.id
+      Api.getGroupChatMessage(id, that.groupData).then(response => {
+        that.messagesList = response.data.res
+        that.imagePath = response.data.path
+        that.total = response.data.total
+        this.scrollToBottom()
+      }
+      ).catch((error) => {
+        this.$swal({
+          icon: 'error',
+          title: 'error',
+          text: error.response.data.message,
+          showConfirmButton: true
+        })
+      })
+    },
+    getOneToOneMessage: function () {
+      let that = this
+      let id = this.$route.params.id
+      Api.getOneToOneMessage(id, that.groupData).then(response => {
+        that.messagesList = response.data.res
+        that.imagePath = response.data.path
+        that.total = response.data.total
+        this.scrollToBottom()
+      }
+      ).catch((error) => {
+        this.$swal({
+          icon: 'error',
+          title: 'error',
+          text: error.response.data.message,
+          showConfirmButton: true
+        })
+      })
+    },
+    readGroupMessage(id) {
+      Api.readGroupMessage(id).then(response => {
+        this.getChatGroups();
+      }
+      ).catch((error) => {
+        this.$swal({
+          icon: 'error',
+          title: 'error',
+          text: error.response.data.message,
+          showConfirmButton: true
+        })
+      })
+    },
+    readOneToOneMessage(id) {
+      Api.readOneToOneMessage(id).then(response => {
+        this.getEmployeesListChat()
+      }
+      ).catch((error) => {
+        this.$swal({
+          icon: 'error',
+          title: 'error',
+          text: error.response.data.message,
+          showConfirmButton: true
+        })
+      })
+    },
+    getEmployeeChat: function (id) {
+      let that = this
+      Api.getEmployee(id).then(response => {
+        that.empChat = response.data.res
+      });
+    },
+    getChatGroups: function () {
+      let that = this;
+      Api.getChatGroups(that.groupSearchData).then(response => {
+        that.chatGroups = response.data.res
+      })
+    },
 
   },
   created() {

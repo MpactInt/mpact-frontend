@@ -5,6 +5,11 @@
 .white {
   color: white;
 }
+.view-group-members{
+  font-size: 24px;
+  font-weight: bold;
+  text-align: right;
+}
 .new-message{
   padding: 0px 5px;
   background: red;
