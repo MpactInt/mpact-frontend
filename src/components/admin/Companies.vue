@@ -23,6 +23,7 @@
           <th>Selected Plan</th>
           <th>Consulting Hours Total</th>
           <th>Consulting Hours Remaining</th>
+          <th>Registered Date</th>
           <th>Action</th>
         </tr>
         <tr v-if="comapanyListLength" v-for="r in comapanyList.data" v-bind:key="r.id">
@@ -31,6 +32,7 @@
           <td>{{ r.selected_plan_id }}</td>
           <td>{{ r.total_hours }}</td>
           <td>{{ r.remaining_hours }}</td>
+          <td>{{r.created_at | timeAgo}}</td>
           <td>
             <!-- <button class="btn btn-primary" @click="getCompanyDetails(r)" v-b-modal.update-hours-modal>Update
               Hours

@@ -3,8 +3,8 @@
     <div class="user-info">
       <div class="user-img"><img class="logo-img" :src="authUser.profile_image"></div>
       <div class="user-detail">
-        <h5 class="c-name">{{ authUser.company_name }}</h5>
-        <p class="mb-0 f-name">{{ authUser.first_name }} {{ authUser.last_name }} </p>
+        <h5 class="f-name">{{ authUser.first_name }} {{ authUser.last_name }}</h5>
+        <p class="mb-0 c-name"> {{ authUser.title ? authUser.title : authUser.company_name }} </p>
       </div>
     </div>
     <div class="siderbar-link">
