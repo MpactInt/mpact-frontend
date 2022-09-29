@@ -36,6 +36,8 @@ import Todo from '@/components/employer/Todo'
 import ViewTodo from '@/components/employer/ViewTodo'
 import RequestWorkshop from '@/components/employer/RequestWorkshop'
 import FeedbackEmployee from '@/components/employer/FeedbackEmployee'
+import AskYourCareTeam from '@/components/employer/AskYourCareTeam'
+
 
 /********Load employee components */
 
@@ -61,6 +63,7 @@ import EmpMeetingRecording from '@/components/employee/MeetingRecording'
 /********Load admin components */
 
 import AdminDashboard from '@/components/admin/dashboard/Dashboard'
+import AdminProfile from '@/components/admin/Profile'
 import AdminStepConfiguration from '@/components/admin/steps/StepConfiguration'
 import AdminViewStep from '@/components/admin/steps/ViewStep'
 import AdminResources from '@/components/admin/Resources'
@@ -232,6 +235,13 @@ export const router = new Router({
       beforeEnter: guardMyroute,
       name: 'AskQuestion',
       component: AskQuestion,
+      meta: { requiresAuth: true, employerAuth: true, employeeAuth: false, adminAuth: false }
+    },
+    {
+      path: '/employer/ask-your-care-team',
+      beforeEnter: guardMyroute,
+      name: 'AskYourCareTeam',
+      component: AskYourCareTeam,
       meta: { requiresAuth: true, employerAuth: true, employeeAuth: false, adminAuth: false }
     },
     {
@@ -465,6 +475,13 @@ export const router = new Router({
       beforeEnter: guardMyroute,
       name: 'Dashboard',
       component: AdminDashboard,
+      meta: { requiresAuth: true, employerAuth: false, employeeAuth: false, adminAuth: true }
+    },
+    {
+      path: '/admin/profile',
+      beforeEnter: guardMyroute,
+      name: 'Profile',
+      component: AdminProfile,
       meta: { requiresAuth: true, employerAuth: false, employeeAuth: false, adminAuth: true }
     },
     {

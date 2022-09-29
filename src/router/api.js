@@ -199,7 +199,6 @@ class Api {
     updateProfile(data) {
         return axiosCommon.post('/update-profile', data)
     }
-
     addStep(data, headers) {
         return axiosCommon.post('/add-step', data, headers)
     }
@@ -290,8 +289,11 @@ class Api {
     submitAskQuestion(data) {
         return axiosCommon.post('/ask-question', data)
     }
-    getQuestionList(page) {
-        return axiosCommon.post('/get-question-list' + '?page=' + page)
+    getQuestionList(page,data) {
+        return axiosCommon.post('/get-question-list' + '?page=' + page,data)
+    }
+    forwardToAdmin(id){
+        return axiosCommon.get('/forward-to-admin/'+id)
     }
     getPlanDetailsBySubscriptionId(id) {
         return axiosCommon.get('/get-plan-details-by-subscription-id/' + id)
@@ -434,13 +436,11 @@ class Api {
     sendPostWorkshopSurveyEmail(id) {
         return axiosCommon.get('/send-post-workshop-survey-email/' + id)
     }
-
-
     submitCompanyFeedback(data) {
         return axiosCommon.post('/submit-company-feedback', data)
     }
-    getFeedbackList(page) {
-        return axiosCommon.get('/get-company-feedback-list?page=' + page)
+    getFeedbackList(page,data) {
+        return axiosCommon.post('/get-company-feedback-list?page=' + page,data)
     }
     addWorkshop(data, headers) {
         return axiosCommon.post('/add-workshop', data, headers)

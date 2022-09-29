@@ -1,18 +1,18 @@
 <template>
   <div class="mt-5">
     <div class="row mb-3 align-items-center">
-      <div class="col-md-3 my-2 ">
-        <select v-model="searchData.sortBy" class="form-control m-0" v-on:change="getAnnouncementsList">
-          <option value="">Sort By</option>
-          <option value="title">Title</option>
-          <option value="date">Date</option>
-        </select>
-      </div>
       <div class="col-md-6 my-2 d-flex align-items-center">
         <input type="text" v-model="searchData.keyword" class="form-control search m-0" placeholder="Search By Keyword"
           v-on:keyup="getAnnouncementsList" /><span class="search-icon"></span>
         <a href="javascript:void(0)" v-on:click="searchData.keyword = ''; getAnnouncementsList()"
           class="link px-2 mb-3">clear</a>
+      </div>
+      <div class="col-md-3 my-2 ">
+        <!-- <select v-model="searchData.sortBy" class="form-control m-0" v-on:change="getAnnouncementsList">
+          <option value="">Sort By</option>
+          <option value="title">Title</option>
+          <option value="date">Date</option>
+        </select> -->
       </div>
       <div class="col-lg-3 col-md-12 my-2" v-if="company.role == 'COMPANY_ADMIN'">
         <button class="btn btn-primary float-right" v-b-modal.add-announcement-modal>Add Announcement</button>
@@ -22,9 +22,18 @@
     <div class="table-responsive">
       <table class="table">
         <tr>
-          <th>Title</th>
-          <th>Description</th>
-          <th>Date</th>
+          <th>Title <i class="fa-solid fa-arrow-up"
+              @click="searchData.sortBy = 'title'; searchData.sortOrder='asc';getAnnouncementsList()"></i> <i
+              class="fa-solid fa-arrow-down"
+              @click="searchData.sortBy = 'title'; searchData.sortOrder='desc';getAnnouncementsList()"></i></th>
+          <th>Description<i class="fa-solid fa-arrow-up"
+              @click="searchData.sortBy = 'description'; searchData.sortOrder='asc';getAnnouncementsList()"></i> <i
+              class="fa-solid fa-arrow-down"
+              @click="searchData.sortBy = 'description'; searchData.sortOrder='desc';getAnnouncementsList()"></i></th>
+          <th>Date<i class="fa-solid fa-arrow-up"
+              @click="searchData.sortBy = 'date'; searchData.sortOrder='asc';getAnnouncementsList()"></i> <i
+              class="fa-solid fa-arrow-down"
+              @click="searchData.sortBy = 'date'; searchData.sortOrder='desc';getAnnouncementsList()"></i></th>
           <th v-if="company.role == 'COMPANY_ADMIN'">Action</th>
         </tr>
         <tr v-if="announcementsLength" v-for="a in announcementList.data" v-bind:key="a.id">
@@ -88,7 +97,8 @@ export default {
       announcementList: {},
       searchData: {
         'sortBy': '',
-        'keyword': ''
+        'keyword': '',
+        'sortOrder':''
       },
       format: true,
       announcementUpdate: {

@@ -125,6 +125,7 @@ export default {
                         that.workshop.desired_date = ''
                         that.workshop.audience = ''
                         that.workshop.requirements = ''
+                        that.workshop.expectations=''
                         that.$bvModal.hide('request-workshop-modal')
                         that.getWorkshopList()
                     });

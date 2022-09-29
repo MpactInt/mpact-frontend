@@ -9,9 +9,11 @@
 /* eslint-disable */
 import AskQuestionEmployer from '../common/AskQuestion.vue'
 import Api from '../../router/api'
+import AskYourCareTeam from '../admin/AskYourCareTeam.vue'
+
 export default {
   name: 'AskQuestion',
-  components: { AskQuestionEmployer },
+  components: { AskQuestionEmployer,AskYourCareTeam },
   data() {
     return {
 

@@ -130,7 +130,8 @@ export default {
       registered: false,
       getWorkshopData: {
         'sortBy': '',
-        'keyword': ''
+        'keyword': '',
+        'sortOrder':''
       },
       workshopPath: '',
       workshopsListDashboard: [],

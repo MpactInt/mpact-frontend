@@ -31,6 +31,9 @@
           <router-link to="/employer/ask-question">Ask Your Care Team</router-link>
         </li>
         <li>
+          <router-link to="/employer/ask-your-care-team">Ask Your Care Team by Employees</router-link>
+        </li>
+        <li>
           <router-link to="/employer/announcements">Announcements or Updates</router-link>
         </li>
         <li>

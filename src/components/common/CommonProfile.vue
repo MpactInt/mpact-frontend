@@ -16,7 +16,7 @@
           </div>
         </div> -->
 
-        <div class="col-md-12">
+        <div class="col-md-12" v-if="authUser.role!='ADMIN'">
           <h2 class="page-title text-left my-0  d-inline-block">{{ authUser.first_name }} <span>{{
           authUser.last_name
           }}</span></h2>
@@ -33,12 +33,11 @@
                   <img class="profile-img" :src="authUser.profile_image" />
                   <i class="fa fa-camera update-img-icon" aria-hidden="true" @click="$refs.file.click()"></i>
                   <input type="file" ref="file" class="d-none" @change="uploadProfileImage" accept=".jpeg, .jpg, .png">
-
                 </div>
               </div>
 
               <div class="col-lg-6">
-                <div class="profile-details">
+                <div class="profile-details"  v-if="authUser.role!='ADMIN'">
                   <label class="w-50">Full Name</label> <span>{{ authUser.first_name }} {{ authUser.last_name }} </span>
                 </div>
                 <div class="profile-details">
@@ -52,7 +51,7 @@
                 </div>
               </div>
               <div class="col-lg-6">
-                <div class="profile-details">
+                <div class="profile-details"  v-if="authUser.role!='ADMIN'">
                   <label class="w-50">Company Name</label> <span>{{ authUser.company_name }}</span>
                 </div>
                 <div class="profile-details">
@@ -63,7 +62,7 @@
                   <label class="w-50">Title</label> <span>{{ authUser.title }}</span>
                 </div>
               </div>
-              <div class="col-md-12">
+              <div class="col-md-12"  v-if="authUser.role!='ADMIN'">
                 <a href="#" @click="getProfile" class="btn-primary btn mt-4">
                   Edit Profile
                 </a>

@@ -2,67 +2,78 @@
   <section class="registration-link half-cut-bg">
     <router-link to="/employer/team-management" class="btn back">
       <!-- <button class="btn-primary"> -->
-        <img src="../../../assets/images/arrow-left.svg" alt="arrow-left" /> Back
+      <img src="../../../assets/images/arrow-left.svg" alt="arrow-left" /> Back
       <!-- </button> -->
     </router-link>
-     <h3 class="page-title text-left"><span>Employees</span></h3>
-      <div class="row mb-5">
-        <div class="col-md-2">
-          <select v-model="getEmpData.sortBy" class="form-control" v-on:change="getEmployeesList">
-            <option value="">Sort By</option>
-            <option value="first_name">Name</option>
-            <option value="email">Email</option>
-          </select>
-        </div>
-        <div class="col-md-5">
-          <div class="row">
-              <div class="col-md-6">
-                <input type="text" v-model="getEmpData.name" class="form-control" placeholder="Search By Name"
-                  v-on:keyup="getEmployeesList" />
-              </div>
-              <div class="col-md-6">
-                <input type="text" v-model="getEmpData.email" class="form-control" placeholder="Search By Email"
-                  v-on:keyup="getEmployeesList" />
-              </div>
+    <h3 class="page-title text-left"><span>Employees</span></h3>
+    <div class="row mb-5">
+      <div class="col-md-5">
+        <div class="row">
+          <div class="col-md-6">
+            <input type="text" v-model="getEmpData.name" class="form-control" placeholder="Search By Name"
+              v-on:keyup="getEmployeesList" />
+          </div>
+          <div class="col-md-6 d-flex align-items-center">
+            <input type="text" v-model="getEmpData.email" class="form-control" placeholder="Search By Email"
+              v-on:keyup="getEmployeesList" />
+              <a class="link px-2 mb-3"
+          href="javascript:void(0)" v-on:click="getEmpData.email = '';getEmpData.name='';getEmployeesList()">clear</a>
           </div>
         </div>
-        <div class="col-md-5 d-flex align-items-center">
-          <a class="links mr-3" v-b-modal.add-employee-modal>+ Add New Employee</a>
-          <button class="btn btn-primary float-right" @click="exportEmployees">Export</button>
-        </div>
       </div>
-      <div class="table-responsive">
-        <table class="table">
-          <tr>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Role</th>
-            <th>Profile Type</th>
-            <th>Last Login</th>
-            <th>Action</th>
-          </tr>
-          <tr v-if="employeesLength" v-for="e in employeesList.data" v-bind:key="e.id">
-            <td>{{ e.first_name }} {{ e.last_name }}</td>
-            <td>{{ e.email }}</td>
-            <td>{{ e.role }}</td>
-            <td>{{e.profile_type}}</td>
-            <td><span v-if="e.last_login">{{ e.last_login | timeAgo }}</span><span v-else>Not Logged in yet</span></td>
-            <td class="px-0">
-              <div class="d-flex align-items-center p-0" style="min-width: 100px;">
-                <a type="button" class="px-3" @click="getEmployee(e.id)"  width="24" height="24">
-                  <img src="../../../assets/images/table-edit.svg"  width="24" height="24" alt="table-edit" />
-                </a>
-                <a type="button" class="px-3" @click="deleteEmployee(e.id)"  width="24" height="24">
-                  <img src="../../../assets/images/table-delete.svg"  width="24" height="24" alt="table-delete" /></a>
-              </div>
-            </td>
-          </tr>
-          <tr v-if="!employeesLength">
-            <td colspan="5">No Data Found</td>
-          </tr>
-        </table>
+    <div class="col-md-4"></div>
+      <div class="col-md-3 d-flex align-items-center text-right">
+        <a class="links mr-3" v-b-modal.add-employee-modal>+ Add New Employee</a>
+        <button class="btn btn-primary float-right" @click="exportEmployees">Export</button>
       </div>
-      <pagination :data="employeesList" @pagination-change-page="getEmployeesList" />
+    </div>
+    <div class="table-responsive">
+      <table class="table">
+        <tr>
+          <th>Name <i class="fa-solid fa-arrow-up"
+              @click="getEmpData.sortBy = 'first_name'; getEmpData.sortOrder='asc';getEmployeesList()"></i> <i
+              class="fa-solid fa-arrow-down"
+              @click="getEmpData.sortBy = 'first_name'; getEmpData.sortOrder='desc';getEmployeesList()"></i></th>
+          <th>Email <i class="fa-solid fa-arrow-up"
+              @click="getEmpData.sortBy = 'email'; getEmpData.sortOrder='asc';getEmployeesList()"></i> <i
+              class="fa-solid fa-arrow-down"
+              @click="getEmpData.sortBy = 'email'; getEmpData.sortOrder='desc';getEmployeesList()"></i></th>
+          <th>Role <i class="fa-solid fa-arrow-up"
+              @click="getEmpData.sortBy = 'role'; getEmpData.sortOrder='asc';getEmployeesList()"></i> <i
+              class="fa-solid fa-arrow-down"
+              @click="getEmpData.sortBy = 'role'; getEmpData.sortOrder='desc';getEmployeesList()"></i></th>
+          <th>Profile Type <i class="fa-solid fa-arrow-up"
+              @click="getEmpData.sortBy = 'profile_type'; getEmpData.sortOrder='asc';getEmployeesList()"></i> <i
+              class="fa-solid fa-arrow-down"
+              @click="getEmpData.sortBy = 'profile_type'; getEmpData.sortOrder='desc';getEmployeesList()"></i></th>
+          <th>Last Login <i class="fa-solid fa-arrow-up"
+              @click="getEmpData.sortBy = 'last_login'; getEmpData.sortOrder='asc';getEmployeesList()"></i> <i
+              class="fa-solid fa-arrow-down"
+              @click="getEmpData.sortBy = 'last_login'; getEmpData.sortOrder='desc';getEmployeesList()"></i></th>
+          <th>Action</th>
+        </tr>
+        <tr v-if="employeesLength" v-for="e in employeesList.data" v-bind:key="e.id">
+          <td>{{ e.first_name }} {{ e.last_name }}</td>
+          <td>{{ e.email }}</td>
+          <td>{{ e.role }}</td>
+          <td>{{e.profile_type}}</td>
+          <td><span v-if="e.last_login">{{ e.last_login | timeAgo }}</span><span v-else>Not Logged in yet</span></td>
+          <td class="px-0">
+            <div class="d-flex align-items-center p-0" style="min-width: 100px;">
+              <a type="button" class="px-3" @click="getEmployee(e.id)" width="24" height="24">
+                <img src="../../../assets/images/table-edit.svg" width="24" height="24" alt="table-edit" />
+              </a>
+              <a type="button" class="px-3" @click="deleteEmployee(e.id)" width="24" height="24">
+                <img src="../../../assets/images/table-delete.svg" width="24" height="24" alt="table-delete" /></a>
+            </div>
+          </td>
+        </tr>
+        <tr v-if="!employeesLength">
+          <td colspan="5">No Data Found</td>
+        </tr>
+      </table>
+    </div>
+    <pagination :data="employeesList" @pagination-change-page="getEmployeesList" />
 
     <!--Add employee modal popup-->
     <b-modal id="add-employee-modal" title="Add New Employee" :hide-footer=hideFooter>
@@ -75,12 +86,13 @@
           </div>
           <div class="form-group">
             <label>First Name <span class="err">*</span></label>
-            <input type="text" class="form-control" id="firstname" placeholder="First Name"
-              v-model="employee.firstname" @keypress="alphabetsOnly">
+            <input type="text" class="form-control" id="firstname" placeholder="First Name" v-model="employee.firstname"
+              @keypress="alphabetsOnly">
           </div>
           <div class="form-group">
             <label>Last Name <span class="err">*</span></label>
-            <input type="text" class="form-control" id="lastname" placeholder="Last Name" v-model="employee.lastname" @keypress="alphabetsOnly">
+            <input type="text" class="form-control" id="lastname" placeholder="Last Name" v-model="employee.lastname"
+              @keypress="alphabetsOnly">
           </div>
           <div class="form-group">
             <label>Role<span class="err">*</span></label>
@@ -173,7 +185,8 @@ export default {
       getEmpData: {
         'sortBy': '',
         'name': '',
-        'email': ''
+        'email': '',
+        'sortOrder': ''
       }
     }
   },

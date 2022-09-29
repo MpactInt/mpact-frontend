@@ -1,16 +1,16 @@
 <template>
     <div class="mt-3">
         <div class="row">
-            <div class="col-md-3 my-2">
-                <select v-model="getWorkshopData.sortBy" class="form-control" v-on:change="getWorkshopList">
-                    <option value="">Sort By</option>
-                    <option value="name">Name</option>
-                </select>
-            </div>
             <div class="col-md-3 my-2  d-flex align-items-center">
                 <input type="text" v-model="getWorkshopData.keyword" class="form-control search" placeholder="Search"
                     v-on:keyup="getWorkshopList" /><span class="search-icon"></span><a href="javascript:void(0)"
                     v-on:click="getWorkshopData.keyword = ''; getWorkshopList()" class="link px-2 mb-3">clear</a>
+            </div>
+            <div class="col-md-3 my-2">
+                <!-- <select v-model="getWorkshopData.sortBy" class="form-control" v-on:change="getWorkshopList">
+                    <option value="">Sort By</option>
+                    <option value="name">Name</option>
+                </select> -->
             </div>
             <div class="col-md-3 my-2">
             </div>
@@ -22,16 +22,55 @@
             <div class="table-responsive">
                 <table class="table">
                     <tr>
-                        <th v-if="user.role == 'ADMIN'">Company Name</th>
-                        <th>Name</th>
-                        <th>Workshop Focus</th>
-                        <th>Desired Date</th>
-                        <th>Workshop Length</th>
-                        <th>Workshop Type</th>
-                        <th>Audience</th>
-                        <th>Requirements</th>
-                        <th>Expectations</th>
-                        <th>Status</th>
+                        <th v-if="user.role == 'ADMIN'">Company Name <i class="fa-solid fa-arrow-up"
+                                @click="getWorkshopData.sortBy = 'company_name'; getWorkshopData.sortOrder='asc';getWorkshopList()"></i>
+                            <i class="fa-solid fa-arrow-down"
+                                @click="getWorkshopData.sortBy = 'company_name'; getWorkshopData.sortOrder='desc';getWorkshopList()"></i></th>
+                        <th>Name <i class="fa-solid fa-arrow-up"
+                                @click="getWorkshopData.sortBy = 'name'; getWorkshopData.sortOrder='asc';getWorkshopList()"></i>
+                            <i class="fa-solid fa-arrow-down"
+                                @click="getWorkshopData.sortBy = 'name'; getWorkshopData.sortOrder='desc';getWorkshopList()"></i>
+                        </th>
+                        <th>Workshop Focus <i class="fa-solid fa-arrow-up"
+                                @click="getWorkshopData.sortBy = 'workshop_focus'; getWorkshopData.sortOrder='asc';getWorkshopList()"></i>
+                            <i class="fa-solid fa-arrow-down"
+                                @click="getWorkshopData.sortBy = 'workshop_focus'; getWorkshopData.sortOrder='desc';getWorkshopList()"></i>
+                        </th>
+                        <th>Desired Date <i class="fa-solid fa-arrow-up"
+                                @click="getWorkshopData.sortBy = 'desired_date'; getWorkshopData.sortOrder='asc';getWorkshopList()"></i>
+                            <i class="fa-solid fa-arrow-down"
+                                @click="getWorkshopData.sortBy = 'desired_date'; getWorkshopData.sortOrder='desc';getWorkshopList()"></i>
+                        </th>
+                        <th>Workshop Length <i class="fa-solid fa-arrow-up"
+                                @click="getWorkshopData.sortBy = 'workshop_length'; getWorkshopData.sortOrder='asc';getWorkshopList()"></i>
+                            <i class="fa-solid fa-arrow-down"
+                                @click="getWorkshopData.sortBy = 'workshop_length'; getWorkshopData.sortOrder='desc';getWorkshopList()"></i>
+                        </th>
+                        <th>Workshop Type <i class="fa-solid fa-arrow-up"
+                                @click="getWorkshopData.sortBy = 'workshop_type'; getWorkshopData.sortOrder='asc';getWorkshopList()"></i>
+                            <i class="fa-solid fa-arrow-down"
+                                @click="getWorkshopData.sortBy = 'workshop_type'; getWorkshopData.sortOrder='desc';getWorkshopList()"></i>
+                        </th>
+                        <th>Audience <i class="fa-solid fa-arrow-up"
+                                @click="getWorkshopData.sortBy = 'audience'; getWorkshopData.sortOrder='asc';getWorkshopList()"></i>
+                            <i class="fa-solid fa-arrow-down"
+                                @click="getWorkshopData.sortBy = 'audience'; getWorkshopData.sortOrder='desc';getWorkshopList()"></i>
+                        </th>
+                        <th>Requirements <i class="fa-solid fa-arrow-up"
+                                @click="getWorkshopData.sortBy = 'requirements'; getWorkshopData.sortOrder='asc';getWorkshopList()"></i>
+                            <i class="fa-solid fa-arrow-down"
+                                @click="getWorkshopData.sortBy = 'requirements'; getWorkshopData.sortOrder='desc';getWorkshopList()"></i>
+                        </th>
+                        <th>Expectations <i class="fa-solid fa-arrow-up"
+                                @click="getWorkshopData.sortBy = 'expectations'; getWorkshopData.sortOrder='asc';getWorkshopList()"></i>
+                            <i class="fa-solid fa-arrow-down"
+                                @click="getWorkshopData.sortBy = 'expectations'; getWorkshopData.sortOrder='desc';getWorkshopList()"></i>
+                        </th>
+                        <th>Status <i class="fa-solid fa-arrow-up"
+                                @click="getWorkshopData.sortBy = 'status'; getWorkshopData.sortOrder='asc';getWorkshopList()"></i>
+                            <i class="fa-solid fa-arrow-down"
+                                @click="getWorkshopData.sortBy = 'status'; getWorkshopData.sortOrder='desc';getWorkshopList()"></i>
+                        </th>
                         <th>Action</th>
                     </tr>
                     <tr v-if="workshopsLength" v-for="r in workshops.data" v-bind:key="r.id">
@@ -103,7 +142,8 @@ export default {
             },
             getWorkshopData: {
                 sortBy: '',
-                keyword: ''
+                keyword: '',
+                sortOrder: ''
             },
             workshopsLength: ''
         }

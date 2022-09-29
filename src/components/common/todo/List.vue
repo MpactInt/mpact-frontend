@@ -1,17 +1,17 @@
 <template>
   <div class="mt-3">
     <div class="row align-items-center">
-      <div class="col-lg-3  col-md-6 my-2">
-        <select v-model="getTodoData.sortBy" class="form-control" v-on:change="getTodoList">
-          <option value="">Sort By</option>
-          <option value="title">Title</option>
-        </select>
-      </div>
       <div class="col-lg-6  col-md-6 my-2 d-flex align-items-center">
         <input type="text" v-model="getTodoData.keyword" class="form-control search m-0" placeholder="Search"
                v-on:keyup="getTodoList"/><span class="search-icon"></span><a href="javascript:void(0)"
                                                                              v-on:click="getTodoData.keyword = ''; getTodoList()"
                                                                              class="link px-2 mb-3">clear</a>
+      </div>
+      <div class="col-lg-3  col-md-6 my-2">
+        <!-- <select v-model="getTodoData.sortBy" class="form-control" v-on:change="getTodoList">
+          <option value="">Sort By</option>
+          <option value="title">Title</option>
+        </select> -->
       </div>
       <!--  <div class="col-md-3 my-2">
       </div> -->
@@ -24,9 +24,18 @@
         <table class="table">
           <tr>
             <th v-if="user.role == 'ADMIN'">Company Name</th>
-            <th>Title</th>
-            <th>Description</th>
-            <th>Status</th>
+            <th>Title<i class="fa-solid fa-arrow-up"
+              @click="getTodoData.sortBy = 'title'; getTodoData.sortOrder='asc';getTodoList()"></i> <i
+              class="fa-solid fa-arrow-down"
+              @click="getTodoData.sortBy = 'title'; getTodoData.sortOrder='desc';getTodoList()"></i></th>
+            <th>Description<i class="fa-solid fa-arrow-up"
+              @click="getTodoData.sortBy = 'description'; getTodoData.sortOrder='asc';getTodoList()"></i> <i
+              class="fa-solid fa-arrow-down"
+              @click="getTodoData.sortBy = 'description'; getTodoData.sortOrder='desc';getTodoList()"></i></th>
+            <th>Status<i class="fa-solid fa-arrow-up"
+              @click="getTodoData.sortBy = 'status'; getTodoData.sortOrder='asc';getTodoList()"></i> <i
+              class="fa-solid fa-arrow-down"
+              @click="getTodoData.sortBy = 'status'; getTodoData.sortOrder='desc';getTodoList()"></i></th>
             <th>Action</th>
           </tr>
           <tr v-if="todosLength" v-for="r in todos.data" v-bind:key="r.id">

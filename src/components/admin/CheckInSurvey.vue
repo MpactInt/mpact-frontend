@@ -16,12 +16,14 @@
                     <th>Question</th>
                     <th>Min Rating Description</th>
                     <th>Max Rating Description</th>
+                    <th>Send Day</th>
                     <th>Action</th>
                 </tr>
                 <tr v-if="checkInSurveyLength" v-for="p in checkInSurvey.data" v-bind:key="p.id">
                     <td>{{ p.question }}</td>
                     <td>{{ p.min_desc }}</td>
                     <td>{{ p.max_desc }}</td>
+                    <td>{{p.day == 5 ? 'Every Friday' : 'Every Monday'}}</td>
                     <td>
                     <div class="d-flex align-items-center p-0" style="min-width: 100px;">
                         <a type="button" class="mx-3 d-block" @click="getCheckInSurvey(p)">
@@ -59,6 +61,15 @@
                         placeholder="Max Rating Description" />
                 </div>
                 <div class="form-group">
+                    <label>Send <span class="err">*</span></label>
+                    <br>
+                    <input type="radio" id="on" v-model="addData.day" value="1">
+                    <label for="on" class="mx-2">Every Monday</label>
+
+                    <input type="radio" id="off" v-model="addData.day" value="5">
+                    <label for="off" class="mx-2">Every Friday</label>
+                </div>
+                <div class="form-group">
                     <button type="button" @click="addCheckInSurvey" class="btn btn-primary"
                         :disabled="addData.disabled">Submit</button>
                 </div>
@@ -82,6 +93,15 @@
                         placeholder="Max Rating Description" />
                 </div>
                 <div class="form-group">
+                    <label>Send <span class="err">*</span></label>
+                    <br>
+                    <input type="radio" id="on" v-model="updateData.day" value="1">
+                    <label for="on" class="mx-2">Every Monday</label>
+
+                    <input type="radio" id="off" v-model="updateData.day" value="5">
+                    <label for="off" class="mx-2">Every Friday</label>
+                </div>
+                <div class="form-group">
                     <button type="button" @click="updateCheckInSurvey" class="btn btn-primary"
                         :disabled="updateData.disabled">Submit</button>
                 </div>
@@ -103,6 +123,7 @@ export default {
                 question: '',
                 minDesc: '',
                 maxDesc: '',
+                day:'',
                 disabled: false
             },
             updateData: {
@@ -110,6 +131,7 @@ export default {
                 question: '',
                 minDesc: '',
                 maxDesc: '',
+                day:'',
                 disabled: false
             }
         }
@@ -120,7 +142,7 @@ export default {
 
         addCheckInSurvey: function (e) {
             let that = this;
-            if (!that.addData.question || !that.addData.minDesc || !that.addData.maxDesc) {
+            if (!that.addData.question || !that.addData.minDesc || !that.addData.maxDesc || !that.addData.day) {
                 this.$swal({
                     icon: "error",
                     title: "error",
@@ -160,6 +182,7 @@ export default {
             that.updateData.question = data.question
             that.updateData.minDesc = data.min_desc
             that.updateData.maxDesc = data.max_desc
+            that.updateData.day = data.day
             that.$bvModal.show('update-modal')
         },
         updateCheckInSurvey: function (e) {

@@ -19,11 +19,26 @@
       <table class="table">
         <tr>
           <th>Logo</th>
-          <th>Company Name</th>
-          <th>Selected Plan</th>
-          <th>Consulting Hours Total</th>
-          <th>Consulting Hours Remaining</th>
-          <th>Registered Date</th>
+          <th>Company Name <i class="fa-solid fa-arrow-up"
+              @click="searchData.sortBy = 'company_name'; searchData.sortOrder='asc';getCompaniesList()"></i> <i
+              class="fa-solid fa-arrow-down"
+              @click="searchData.sortBy = 'company_name'; searchData.sortOrder='desc';getCompaniesList()"></i></th>
+          <th>Selected Plan <i class="fa-solid fa-arrow-up"
+              @click="searchData.sortBy = 'selected_plan_id'; searchData.sortOrder='asc';getCompaniesList()"></i> <i
+              class="fa-solid fa-arrow-down"
+              @click="searchData.sortBy = 'selected_plan_id'; searchData.sortOrder='desc';getCompaniesList()"></i></th>
+          <th>Consulting Hours Total<i class="fa-solid fa-arrow-up"
+              @click="searchData.sortBy = 'total_hours'; searchData.sortOrder='asc';getCompaniesList()"></i> <i
+              class="fa-solid fa-arrow-down"
+              @click="searchData.sortBy = 'total_hours'; searchData.sortOrder='desc';getCompaniesList()"></i></th>
+          <th>Consulting Hours Remaining<i class="fa-solid fa-arrow-up"
+              @click="searchData.sortBy = 'remaining_hours'; searchData.sortOrder='asc';getCompaniesList()"></i> <i
+              class="fa-solid fa-arrow-down"
+              @click="searchData.sortBy = 'remaining_hours'; searchData.sortOrder='desc';getCompaniesList()"></i></th>
+          <th>Registered Date<i class="fa-solid fa-arrow-up"
+              @click="searchData.sortBy = 'created_at'; searchData.sortOrder='asc';getCompaniesList()"></i> <i
+              class="fa-solid fa-arrow-down"
+              @click="searchData.sortBy = 'created_at'; searchData.sortOrder='desc';getCompaniesList()"></i></th>
           <th>Action</th>
         </tr>
         <tr v-if="comapanyListLength" v-for="r in comapanyList.data" v-bind:key="r.id">

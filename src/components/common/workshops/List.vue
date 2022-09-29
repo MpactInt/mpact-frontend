@@ -1,16 +1,16 @@
 <template>
   <div class="mt-5">
     <div class="row mb-3 align-items-center">
-      <div class="col-md-3 my-2">
-        <select v-model="getWorkshopData.sortBy" class="form-control" v-on:change="getWorkshopsList">
-          <option value="">Sort By</option>
-          <option value="title">Title</option>
-        </select>
-      </div>
       <div class="col-md-3 my-2 d-flex align-items-center">
         <input type="text" v-model="getWorkshopData.keyword" class="form-control mb-0 search" placeholder="Search"
           v-on:keyup="getWorkshopsList" /><span class="search-icon"></span><a href="javascript:void(0)"
           v-on:click="getWorkshopData.keyword = ''; getWorkshopsList()" class="link px-2 ">clear</a>
+      </div>
+      <div class="col-md-3 my-2">
+        <!-- <select v-model="getWorkshopData.sortBy" class="form-control" v-on:change="getWorkshopsList">
+          <option value="">Sort By</option>
+          <option value="title">Title</option>
+        </select> -->
       </div>
       <div class="col-lg-6 col-md-12 my-2 d-flex">
         <button v-if="user.role == 'ADMIN'" class="btn btn-primary ml-auto float-right" v-b-modal.add-workshop-modal>Add
@@ -23,18 +23,44 @@
         <tr>
           <th v-if="user.role == 'ADMIN'">Company</th>
           <th>Image</th>
-          <th>Title</th>
-          <th>Description</th>
-          <th>Total Hours</th>
-          <th>Date</th>
-          <th>Instructor</th>
-          <th>Meeting Type</th>
-          <th>Additional Info</th>
+          <th>Title <i class="fa-solid fa-arrow-up"
+              @click="getWorkshopData.sortBy = 'title'; getWorkshopData.sortOrder='asc';getWorkshopsList()"></i> <i
+              class="fa-solid fa-arrow-down"
+              @click="getWorkshopData.sortBy = 'title'; getWorkshopData.sortOrder='desc';getWorkshopsList()"></i></th>
+          <th>Description <i class="fa-solid fa-arrow-up"
+              @click="getWorkshopData.sortBy = 'description'; getWorkshopData.sortOrder='asc';getWorkshopsList()"></i>
+            <i class="fa-solid fa-arrow-down"
+              @click="getWorkshopData.sortBy = 'description'; getWorkshopData.sortOrder='desc';getWorkshopsList()"></i>
+          </th>
+          <th>Total Hours <i class="fa-solid fa-arrow-up"
+              @click="getWorkshopData.sortBy = 'total_hours'; getWorkshopData.sortOrder='asc';getWorkshopsList()"></i>
+            <i class="fa-solid fa-arrow-down"
+              @click="getWorkshopData.sortBy = 'total_hours'; getWorkshopData.sortOrder='desc';getWorkshopsList()"></i>
+          </th>
+          <th>Date <i class="fa-solid fa-arrow-up"
+              @click="getWorkshopData.sortBy = 'date'; getWorkshopData.sortOrder='asc';getWorkshopsList()"></i> <i
+              class="fa-solid fa-arrow-down"
+              @click="getWorkshopData.sortBy = 'date'; getWorkshopData.sortOrder='desc';getWorkshopsList()"></i></th>
+          <th>Instructor <i class="fa-solid fa-arrow-up"
+              @click="getWorkshopData.sortBy = 'instructor'; getWorkshopData.sortOrder='asc';getWorkshopsList()"></i> <i
+              class="fa-solid fa-arrow-down"
+              @click="getWorkshopData.sortBy = 'instructor'; getWorkshopData.sortOrder='desc';getWorkshopsList()"></i>
+          </th>
+          <th>Meeting Type <i class="fa-solid fa-arrow-up"
+              @click="getWorkshopData.sortBy = 'meeting_type'; getWorkshopData.sortOrder='asc';getWorkshopsList()"></i>
+            <i class="fa-solid fa-arrow-down"
+              @click="getWorkshopData.sortBy = 'meeting_type'; getWorkshopData.sortOrder='desc';getWorkshopsList()"></i>
+          </th>
+          <th>Additional Info <i class="fa-solid fa-arrow-up"
+              @click="getWorkshopData.sortBy = 'additional_info'; getWorkshopData.sortOrder='asc';getWorkshopsList()"></i>
+            <i class="fa-solid fa-arrow-down"
+              @click="getWorkshopData.sortBy = 'additional_info'; getWorkshopData.sortOrder='desc';getWorkshopsList()"></i>
+          </th>
           <th>Action</th>
         </tr>
         <tr v-if="workshopsLength" v-for="r in workshopsList.data" v-bind:key="r.id">
           <td v-if="user.role == 'ADMIN'">
-<!--            <span v-for="c in r.company" v-bind:key="c.id">{{ c.company_name }},</span>-->
+            <!--            <span v-for="c in r.company" v-bind:key="c.id">{{ c.company_name }},</span>-->
             <span>{{r.company.map(({company_name})=>company_name).join(',') }}
             </span>
           </td>

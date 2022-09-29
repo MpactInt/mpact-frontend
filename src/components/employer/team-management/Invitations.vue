@@ -8,22 +8,29 @@
      <h3 class="page-title text-left">Invitations</h3>
 
       <div class="row mb-5">
-        <div class="col-md-3">
+        <!-- <div class="col-md-3">
           <select v-model="searchData.sortBy" class="form-control" v-on:change="getInvitationsList">
             <option value="">Sort By</option>
             <option value="email">Email</option>
           </select>
-        </div>
-        <div class="col-md-3">
+        </div> -->
+        <div class="col-md-3 my-2 d-flex align-items-center">
           <input type="text" v-model="searchData.email" class="form-control" placeholder="Search By Email"
-            v-on:keyup="getInvitationsList" />
+            v-on:keyup="getInvitationsList" /><a class="link px-2 mb-3"
+          href="javascript:void(0)" v-on:click="searchData.email = '';getInvitationsList()">clear</a>
         </div>
       </div>
       <div class="table-responsive">
         <table class="table">
           <tr>
-            <th>Email</th>
-            <th>Date</th>
+            <th>Email<i class="fa-solid fa-arrow-up"
+              @click="searchData.sortBy = 'email'; searchData.sortOrder='asc';getInvitationsList()"></i> <i
+              class="fa-solid fa-arrow-down"
+              @click="searchData.sortBy = 'email'; searchData.sortOrder='desc';getInvitationsList()"></i></th>
+            <th>Date<i class="fa-solid fa-arrow-up"
+              @click="searchData.sortBy = 'created_at'; searchData.sortOrder='asc';getInvitationsList()"></i> <i
+              class="fa-solid fa-arrow-down"
+              @click="searchData.sortBy = 'created_at'; searchData.sortOrder='desc';getInvitationsList()"></i></th>
           </tr>
           <tr  v-if="invitationsLength" v-for="e in invitationsList.data" v-bind:key="e.id">
             <td>{{ e.email }}</td>
@@ -51,7 +58,8 @@ export default {
       invitationsLength:0,
       searchData: {
         'sortBy': '',
-        'email': ''
+        'email': '',
+        'sortOrder':''
       }
     }
   },
