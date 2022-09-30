@@ -589,13 +589,14 @@
                         <div class="col-md-12">
                           <!-- list start -->
                           <div class="pricing-text">
-                            <p class="w-100">-</p>
+                            <!-- <p class="w-100">-</p> -->
+                            <img src="../assets/images/check.svg" alt="check icon">
                           </div>
                         </div> <!-- list end -->
                         <div class="col-md-12">
                           <!-- list start -->
                           <div class="pricing-text">
-                            <p class="w-100">8 hours</p>
+                            <p class="w-100">96 hours</p>
                           </div>
                         </div> <!-- list end -->
                         <div class="col-md-12">

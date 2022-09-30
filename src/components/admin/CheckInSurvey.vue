@@ -1,8 +1,11 @@
 <template>
     <section class="admin-learning-plan-section half-cut-bg">
-      <h1 class="page-title text-left mt-0">Check-In Survey <span>Questions</span></h1>
+        <h1 class="page-title text-left mt-0">Check-In Survey <span>Questions</span></h1>
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-3 d-flex my-2 align-items-center">
+                <input type="text" v-model="searchData.keyword" class="form-control mb-0 search" placeholder="Search"
+                    v-on:keyup="getCheckInSurveyList" /><span class="search-icon"></span><a href="javascript:void(0)"
+                    v-on:click="searchData.keyword = ''; getCheckInSurveyList()" class="link px-2 ">clear</a>
             </div>
             <div class="col-md-3">
             </div>
@@ -10,12 +13,21 @@
                 <button class="btn btn-primary float-right ml-auto" v-b-modal.add-modal>Add Check-In Survey</button>
             </div>
         </div>
-      <div class="table-responsive">
+        <div class="table-responsive">
             <table class="table">
                 <tr>
-                    <th>Question</th>
-                    <th>Min Rating Description</th>
-                    <th>Max Rating Description</th>
+                    <th>Question<i class="fa-solid fa-arrow-up"
+              @click="searchData.sortBy = 'question'; searchData.sortOrder='asc';getCheckInSurveyList()"></i>
+            <i class="fa-solid fa-arrow-down"
+              @click="searchData.sortBy = 'question'; searchData.sortOrder='desc';getCheckInSurveyList()"></i></th>
+                    <th>Min Rating Description<i class="fa-solid fa-arrow-up"
+              @click="searchData.sortBy = 'min_desc'; searchData.sortOrder='asc';getCheckInSurveyList()"></i>
+            <i class="fa-solid fa-arrow-down"
+              @click="searchData.sortBy = 'min_desc'; searchData.sortOrder='desc';getCheckInSurveyList()"></i></th>
+                    <th>Max Rating Description<i class="fa-solid fa-arrow-up"
+              @click="searchData.sortBy = 'max_desc'; searchData.sortOrder='asc';getCheckInSurveyList()"></i>
+            <i class="fa-solid fa-arrow-down"
+              @click="searchData.sortBy = 'max_desc'; searchData.sortOrder='desc';getCheckInSurveyList()"></i></th>
                     <th>Send Day</th>
                     <th>Action</th>
                 </tr>
@@ -25,17 +37,18 @@
                     <td>{{ p.max_desc }}</td>
                     <td>{{p.day == 5 ? 'Every Friday' : 'Every Monday'}}</td>
                     <td>
-                    <div class="d-flex align-items-center p-0" style="min-width: 100px;">
-                        <a type="button" class="mx-3 d-block" @click="getCheckInSurvey(p)">
-                        <img src="../../assets/images/table-edit.svg" alt="table-edit" width="24" height="24" />
-                        </a>
-                        <a type="button" class="mx-3 d-block" @click="deleteCheckInSurvey(p.id)">
-                        <img src="../../assets/images/table-delete.svg" alt="table-delete" width="24" height="24" />
-                        </a>
-                        <router-link class="mx-3 d-block" :to="'/admin/check-in-survey/' + p.id">
-                            <img src="../../assets/images/table-eye.svg" alt="table-eye" width="24" height="24" />
-                        </router-link>
-                    </div>
+                        <div class="d-flex align-items-center p-0" style="min-width: 100px;">
+                            <a type="button" class="mx-3 d-block" @click="getCheckInSurvey(p)">
+                                <img src="../../assets/images/table-edit.svg" alt="table-edit" width="24" height="24" />
+                            </a>
+                            <a type="button" class="mx-3 d-block" @click="deleteCheckInSurvey(p.id)">
+                                <img src="../../assets/images/table-delete.svg" alt="table-delete" width="24"
+                                    height="24" />
+                            </a>
+                            <router-link class="mx-3 d-block" :to="'/admin/check-in-survey/' + p.id">
+                                <img src="../../assets/images/table-eye.svg" alt="table-eye" width="24" height="24" />
+                            </router-link>
+                        </div>
                     </td>
                 </tr>
                 <tr v-if="!checkInSurveyLength">
@@ -123,7 +136,7 @@ export default {
                 question: '',
                 minDesc: '',
                 maxDesc: '',
-                day:'',
+                day: '',
                 disabled: false
             },
             updateData: {
@@ -131,8 +144,13 @@ export default {
                 question: '',
                 minDesc: '',
                 maxDesc: '',
-                day:'',
+                day: '',
                 disabled: false
+            },
+            searchData: {
+                'sortBy': '',
+                'sortOrder': '',
+                'keyword': ''
             }
         }
     },
@@ -253,6 +271,21 @@ export default {
                         });
                     });
                 }
+            });
+        },
+        getCheckInSurveyList: function () {
+            let that = this
+            Api.getCheckInSurveyList(that.searchData).then(response => {
+                that.checkInSurvey = response.data.res
+                that.checkInSurveyLength = that.checkInSurvey.data.length
+            }).catch((error) => {
+                this.$swal({
+                    icon: "error",
+                    title: "error",
+                    text: error.response.data.message,
+                    showConfirmButton: true
+                }).then(function () {
+                });
             });
         },
     },

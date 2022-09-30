@@ -1,17 +1,15 @@
 <template>
-    <section class="admin-learning-plan-section half-cut-bg">
-      <h1 class="page-title text-left mt-0">Zoom <span>Meetings</span></h1>
+  <section class="admin-learning-plan-section half-cut-bg">
+    <h1 class="page-title text-left mt-0">Workshop<span> Meeting Time</span></h1>
     <div class="mt-5">
       <div class="row mb-3">
+        <div class="col-md-3 d-flex my-2 align-items-center">
+                <input type="text" v-model="searchData.keyword" class="form-control mb-0 search" placeholder="Search"
+                    v-on:keyup="getMeetingsList" /><span class="search-icon"></span><a href="javascript:void(0)"
+                    v-on:click="searchData.keyword = ''; getMeetingsList()" class="link px-2 ">clear</a>
+            </div>
         <div class="col-md-3">
-          <!-- <select v-model="getWorkshopData.sortBy" class="form-control" v-on:change="getWorkshopsList">
-            <option value="">Sort By</option>
-            <option value="title">Title</option>
-          </select> -->
-        </div>
-        <div class="col-md-3">
-          <!-- <input type="text" v-model="getWorkshopData.keyword" class="form-control" placeholder="Search"
-            v-on:keyup="getWorkshopsList" /> -->
+
         </div>
         <div class="col-md-6 d-flex my-2">
           <button class="btn btn-primary float-right ml-auto" v-b-modal.add-modal>Add New Meeting</button>
@@ -19,44 +17,62 @@
       </div>
 
       <div class="table-responsive">
-      <table class="table">
-        <tr>
-          <th>Workshop Title</th>
-          <th>Topic</th>
-          <th>Agenda</th>
-          <th>Type</th>
-          <th>Date</th>
-          <th>Duration</th>
-          <th>Passcode</th>
-          <th>Action</th>
-        </tr>
-        <tr v-if="meetingsLength" v-for="r in meetingsList.data" v-bind:key="r.id">
-          <td>{{ r.title }}</td>
-          <td>{{ r.topic }}</td>
-          <td>{{ r.agenda }}</td>
-          <td><span v-if="r.type == 1">Instant</span> <span v-else-if="r.type == 2">Scheduled</span><span
-              v-else-if="r.type == 3">Recurring</span><span v-else>Fixed</span></td>
-          <td>{{ r.start_time | timeAgo }}</td>
-          <td>{{ r.duration }}</td>
-          <td>{{ r.passcode }}</td>
-          <td class="pl-0">
-          <div class="d-flex justify-content-end">
-            <!-- <button class="btn btn-primary" @click="getWorkshop(r.id)"><i class="fa fa-pencil"></i></button>
+        <table class="table">
+          <tr>
+            <th>Workshop Title<i class="fa-solid fa-arrow-up"
+              @click="searchData.sortBy = 'title'; searchData.sortOrder='asc';getMeetingsList()"></i>
+            <i class="fa-solid fa-arrow-down"
+              @click="searchData.sortBy = 'title'; searchData.sortOrder='desc';getMeetingsList()"></i></th>
+            <th>Topic<i class="fa-solid fa-arrow-up"
+              @click="searchData.sortBy = 'topic'; searchData.sortOrder='asc';getMeetingsList()"></i>
+            <i class="fa-solid fa-arrow-down"
+              @click="searchData.sortBy = 'topic'; searchData.sortOrder='desc';getMeetingsList()"></i></th>
+            <th>Agenda<i class="fa-solid fa-arrow-up"
+              @click="searchData.sortBy = 'agenda'; searchData.sortOrder='asc';getMeetingsList()"></i>
+            <i class="fa-solid fa-arrow-down"
+              @click="searchData.sortBy = 'agenda'; searchData.sortOrder='desc';getMeetingsList()"></i></th>
+            <th>Type</th>
+            <th>Date<i class="fa-solid fa-arrow-up"
+              @click="searchData.sortBy = 'start_time'; searchData.sortOrder='asc';getMeetingsList()"></i>
+            <i class="fa-solid fa-arrow-down"
+              @click="searchData.sortBy = 'start_time'; searchData.sortOrder='desc';getMeetingsList()"></i></th>
+            <th>Duration<i class="fa-solid fa-arrow-up"
+              @click="searchData.sortBy = 'duration'; searchData.sortOrder='asc';getMeetingsList()"></i>
+            <i class="fa-solid fa-arrow-down"
+              @click="searchData.sortBy = 'duration'; searchData.sortOrder='desc';getMeetingsList()"></i></th>
+            <th>Passcode</th>
+            <th>Action</th>
+          </tr>
+          <tr v-if="meetingsLength" v-for="r in meetingsList.data" v-bind:key="r.id">
+            <td>{{ r.title }}</td>
+            <td>{{ r.topic }}</td>
+            <td>{{ r.agenda }}</td>
+            <td><span v-if="r.type == 1">Instant</span> <span v-else-if="r.type == 2">Scheduled</span><span
+                v-else-if="r.type == 3">Recurring</span><span v-else>Fixed</span></td>
+            <td>{{ r.start_time | timeAgo }}</td>
+            <td>{{ r.duration }}</td>
+            <td>{{ r.passcode }}</td>
+            <td class="pl-0">
+              <div class="d-flex justify-content-end">
+                <!-- <button class="btn btn-primary" @click="getWorkshop(r.id)"><i class="fa fa-pencil"></i></button>
             <button class="btn btn-primary m-2" @click="deleteWorkshop(r.id)"><i class="fa fa-trash"></i></button> -->
-            <a v-if="r.status != 'end'" class="btn btn-primary m-2" target="_blank" :href="r.start_url">Start Meeting</a>
-            <router-link v-if="r.status == 'end'" class="btn btn-primary m-2" :to="'/admin/meeting-recordings/' + r.meeting_id">View Recordings
-            </router-link>
-            <button v-if="r.status != 'end'" class="btn btn-outline-primary  m-2" @click="endMeeting(r.meeting_id)">End
-              Meeting</button>
-            <button v-if="r.status == 'end'" class="btn btn-outline-primary  m-2" @click="sendPostWorkshopSurveyEmail(r.workshop_id)"
-              :disabled="disabled">Send Survey</button>
+                <a v-if="r.status != 'end'" class="btn btn-primary m-2" target="_blank" :href="r.start_url">Start
+                  Meeting</a>
+                <router-link v-if="r.status == 'end'" class="btn btn-primary m-2"
+                  :to="'/admin/meeting-recordings/' + r.meeting_id">View Recordings
+                </router-link>
+                <button v-if="r.status != 'end'" class="btn btn-outline-primary  m-2"
+                  @click="endMeeting(r.meeting_id)">End
+                  Meeting</button>
+                <button v-if="r.status == 'end'" class="btn btn-outline-primary  m-2"
+                  @click="sendPostWorkshopSurveyEmail(r.workshop_id)" :disabled="disabled">Send Survey</button>
               </div>
-          </td>
-        </tr>
-        <tr v-if="!meetingsLength">
-          <td colspan="5">No Data Found</td>
-        </tr>
-      </table>
+            </td>
+          </tr>
+          <tr v-if="!meetingsLength">
+            <td colspan="5">No Data Found</td>
+          </tr>
+        </table>
 
       </div>
     </div>
@@ -154,9 +170,10 @@ export default {
         'disabled': false,
       },
       disabled: false,
-      getWorkshopData: {
+      searchData: {
         'sortBy': '',
-        'keyword': ''
+        'keyword': '',
+        'sortOrder': ''
       },
     }
   },
@@ -262,7 +279,23 @@ export default {
           that.disabled = false;
         });
       });
-    }
+    },
+    getMeetingsList: function (page = 1) {
+      let that = this
+      Api.getMeetingsList(page, that.searchData).then(response => {
+        let that = this
+        that.meetingsList = response.data.res
+        that.meetingsLength = that.meetingsList.data.length
+      }
+      ).catch((error) => {
+        this.$swal({
+          icon: "error",
+          title: "error",
+          text: error.response.data.message,
+          showConfirmButton: true
+        });
+      });
+    },
   },
   mounted() {
     this.getMeetingsList()

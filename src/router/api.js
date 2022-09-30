@@ -115,8 +115,8 @@ class Api {
     getWelcomeNote() {
         return axiosCommon.get('/get-welcome-note')
     }
-    getWelcomeNoteList(page) {
-        return axiosCommon.get('/get-welcome-note-list?page=' + page)
+    getWelcomeNoteList(page,data) {
+        return axiosCommon.post('/get-welcome-note-list?page=' + page,data)
     }
     getSingleWelcomeNote(id) {
         return axiosCommon.get('/get-single-welcome-note/' + id)
@@ -307,6 +307,9 @@ class Api {
     getProfileTypeList() {
         return axiosCommon.get('/get-profile-type-list')
     }
+    getProfileTypeList1(data) {
+        return axiosCommon.post('/get-profile-type-list1',data)
+    }
     getProfileTypeListMultiselect() {
         return axiosCommon.get('/get-profile-type-list-multiselect')
     }
@@ -331,8 +334,8 @@ class Api {
     downloadLearningTools(id) {
         return axiosCommon.get('/download-learning-tools/' + id, { responseType: 'blob' })
     }
-    getPopupSurveyList() {
-        return axiosCommon.post('/get-popup-survey-list')
+    getPopupSurveyList(data = {}) {
+        return axiosCommon.post('/get-popup-survey-list',data)
     }
     getPopupSurvey(id) {
         return axiosCommon.get('/get-popup-survey/' + id)
@@ -383,8 +386,8 @@ class Api {
         return axiosCommon.get('/send-email')
     }
 
-    getCheckInSurveyList() {
-        return axiosCommon.post('/get-check-in-survey-list')
+    getCheckInSurveyList(data = {}) {
+        return axiosCommon.post('/get-check-in-survey-list',data)
     }
     getCheckInSurvey(id) {
         return axiosCommon.get('/get-check-in-survey/' + id)
@@ -409,8 +412,8 @@ class Api {
     }
 
 
-    getPostWorkshopSurveyList() {
-        return axiosCommon.post('/get-post-workshop-survey-list')
+    getPostWorkshopSurveyList(data = {}) {
+        return axiosCommon.post('/get-post-workshop-survey-list',data)
     }
     getPostWorkshopSurvey(id) {
         return axiosCommon.get('/get-post-workshop-survey/' + id)
@@ -510,8 +513,8 @@ class Api {
         return axiosCommon.post('/get-learning-plan-list-dashboard')
     }
 
-    getLearningPlanFiles(id) {
-        return axiosCommon.get('/get-learning-plan-files/' + id)
+    getLearningPlanFiles(id,data) {
+        return axiosCommon.post('/get-learning-plan-files/' + id,data)
     }
     addLearningPlanFile(data) {
         return axiosCommon.post('/add-learning-plan-file', data)

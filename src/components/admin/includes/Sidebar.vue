@@ -61,7 +61,7 @@
           <router-link to="/admin/send-email">Send Email</router-link>
         </li> -->
         <li>
-          <router-link to="/admin/meetings">Zoom Meetings</router-link>
+          <router-link to="/admin/meetings">Workshop Meeting Time</router-link>
         </li>
       </ul>
 

@@ -4,16 +4,16 @@
     <h1 class="page-title text-left mt-0"><span> Steps</span></h1>
     <div class="mt-5">
       <div class="row mb-3 align-items-center">
-        <div class="col-md-3 my-2">
-          <select v-model="getStepData.sortBy" class="form-control" v-on:change="getStepsList">
-            <option value="">Sort By</option>
-            <option value="title">Title</option>
-          </select>
-        </div>
         <div class="col-md-4 my-2 d-flex align-items-center ">
           <input type="text" v-model="getStepData.keyword" class="form-control m-0 search" placeholder="Search"
             v-on:keyup="getStepsList" /><span class="search-icon"></span><a href="javascript:void(0)"
             v-on:click="getStepData.keyword = ''; getStepsList()" class="link px-2 mb-3">clear</a>
+        </div>
+        <div class="col-md-3 my-2">
+          <!-- <select v-model="getStepData.sortBy" class="form-control" v-on:change="getStepsList">
+            <option value="">Sort By</option>
+            <option value="title">Title</option>
+          </select> -->
         </div>
         <div class="col-md-5 d-flex my-2">
           <button class="btn btn-primary float-right ml-auto" v-b-modal.add-step-modal>Add New Step</button>
@@ -22,8 +22,14 @@
       <div class="table-responsive">
         <table class="table">
           <tr>
-            <th>Title</th>
-            <th>Overview</th>
+            <th>Title<i class="fa-solid fa-arrow-up"
+              @click="getStepData.sortBy = 'title'; getStepData.sortOrder='asc';getStepsList()"></i> <i
+              class="fa-solid fa-arrow-down"
+              @click="getStepData.sortBy = 'title'; getStepData.sortOrder='desc';getStepsList()"></i></th>
+            <th>Overview<i class="fa-solid fa-arrow-up"
+              @click="getStepData.sortBy = 'overview'; getStepData.sortOrder='asc';getStepsList()"></i> <i
+              class="fa-solid fa-arrow-down"
+              @click="getStepData.sortBy = 'overview'; getStepData.sortOrder='desc';getStepsList()"></i></th>
             <th>Image</th>
             <th>Action</th>
           </tr>
@@ -136,7 +142,8 @@ export default {
 
       getStepData: {
         'sortBy': '',
-        'keyword': ''
+        'keyword': '',
+        'sortOrder':''
       },
       filePath: ''
     }

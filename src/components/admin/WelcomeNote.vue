@@ -2,10 +2,12 @@
   <section class="admin-welcome-note-section pink-pattern-bg">
     <h1 class="page-title text-left mt-0">Welcome <span>Note </span></h1>
     <div class="row">
-      <div class="col-md-3">
-
+      <div class="col-md-4 my-2 d-flex align-items-center">
+        <input type="text" v-model="searchData.keyword" class="form-control mb-0 search" placeholder="Search"
+          v-on:keyup="getWelcomeNoteList" /><span class="search-icon"></span><a href="javascript:void(0)"
+          v-on:click="searchData.keyword = ''; getWelcomeNoteList()" class="link px-2 ">clear</a>
       </div>
-      <div class="col-md-3">
+      <div class="col-md-2">
 
       </div>
       <div class="col-md-6 d-flex my-2">
@@ -17,8 +19,14 @@
       <table class="table">
         <tr>
           <th>Image</th>
-          <th>Title</th>
-          <th>Description</th>
+          <th>Title<i class="fa-solid fa-arrow-up"
+              @click="searchData.sortBy = 'title'; searchData.sortOrder='asc';getWelcomeNoteList()"></i> <i
+              class="fa-solid fa-arrow-down"
+              @click="searchData.sortBy = 'title'; searchData.sortOrder='desc';getWelcomeNoteList()"></i></th>
+          <th>Description<i class="fa-solid fa-arrow-up"
+              @click="searchData.sortBy = 'description'; searchData.sortOrder='asc';getWelcomeNoteList()"></i> <i
+              class="fa-solid fa-arrow-down"
+              @click="searchData.sortBy = 'description'; searchData.sortOrder='desc';getWelcomeNoteList()"></i></th>
           <th>Company</th>
           <th>Action</th>
         </tr>
@@ -157,7 +165,12 @@ export default {
       welcome_notes: {},
       welcome_note: {},
       path: '',
-      welcome_notes_length: 0
+      welcome_notes_length: 0,
+      searchData:{
+        'sortBy':'',
+        'sortOrder':'',
+        'keyword':''
+      }
     }
   },
   components: {
@@ -241,7 +254,7 @@ export default {
     },
     getWelcomeNoteList: function (page = 1) {
       let that = this
-      Api.getWelcomeNoteList(page).then(response => {
+      Api.getWelcomeNoteList(page,that.searchData).then(response => {
         that.welcome_notes = response.data.res
         that.welcome_notes_length = that.welcome_notes.data.length
         that.path = response.data.path

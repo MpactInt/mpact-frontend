@@ -1,15 +1,32 @@
 <template>
   <section class="admin-learning-plan-section half-cut-bg">
     <h1 class="page-title text-left mt-0">Learning <span>Plan</span></h1>
-    <div class="w-100 d-flex my-2">
-      <button class="btn btn-primary float-right ml-auto" v-b-modal.add-modal>Add New Learning Plan</button>
+    <div class="row">
+      <div class="col-md-3 my-2 d-flex align-items-center">
+        <input type="text" v-model="searchData.keyword" class="form-control mb-0 search" placeholder="Search"
+          v-on:keyup="getLearningPlanList" /><span class="search-icon"></span><a href="javascript:void(0)"
+          v-on:click="searchData.keyword = ''; getLearningPlanList()" class="link px-2 ">clear</a>
+      </div>
+      <div class="col-md-3 my-2">
+      </div>
+      <div class="col-md-6 d-flex my-2" v-if="user.role == 'ADMIN'">
+        <button class="btn btn-primary float-right ml-auto" v-b-modal.add-modal>Add New Learning Plan</button>
+      </div>
     </div>
     <div class="table-responsive">
       <table class="table">
         <tr>
           <th>Image</th>
-          <th>Title</th>
-          <th>Description</th>
+          <th>Title<i class="fa-solid fa-arrow-up"
+              @click="searchData.sortBy = 'title'; searchData.sortOrder='asc';getLearningPlanList()"></i>
+            <i class="fa-solid fa-arrow-down"
+              @click="searchData.sortBy = 'title'; searchData.sortOrder='desc';getLearningPlanList()"></i>
+          </th>
+          <th>Description<i class="fa-solid fa-arrow-up"
+              @click="searchData.sortBy = 'description'; searchData.sortOrder='asc';getLearningPlanList()"></i>
+            <i class="fa-solid fa-arrow-down"
+              @click="searchData.sortBy = 'description'; searchData.sortOrder='desc';getLearningPlanList()"></i>
+          </th>
           <th>Profile Type</th>
           <th>Action</th>
         </tr>
@@ -91,9 +108,9 @@
               </option>
             </select> -->
 
-            <multiselect v-model="planUpdate.profile_type" :options="profileTypeListMultiselectUpdate" group-values="values"
-              group-label="selectAll" :multiple="true" :group-select="true" placeholder="Type to search" track-by="name"
-              label="name">
+            <multiselect v-model="planUpdate.profile_type" :options="profileTypeListMultiselectUpdate"
+              group-values="values" group-label="selectAll" :multiple="true" :group-select="true"
+              placeholder="Type to search" track-by="name" label="name">
               <span slot="noResult">Oops! No elements found. Consider changing the search query.</span>
             </multiselect>
           </div>
@@ -147,12 +164,17 @@ export default {
         'image': '',
         'disabled': false
       },
-      profileTypeListMultiselectUpdate:[
+      profileTypeListMultiselectUpdate: [
         {
           selectAll: 'Select All',
           values: []
         }
       ],
+      searchData: {
+        'sortBy': '',
+        'sortOrder': '',
+        'keyword': ''
+      }
     }
   },
   components: {},
@@ -333,6 +355,22 @@ export default {
           title: "error",
           text: error.response.data.message,
           showConfirmButton: true
+        });
+      });
+    },
+    getLearningPlanList: function (page = 1) {
+      let that = this
+      Api.getLearningPlanList(page, that.searchData).then(response => {
+        that.learningPlan = response.data.res
+        that.learningPlanLength = that.learningPlan.data.length
+        that.learningPlanPath = response.data.path
+      }).catch((error) => {
+        this.$swal({
+          icon: "error",
+          title: "error",
+          text: error.response.data.message,
+          showConfirmButton: true
+        }).then(function () {
         });
       });
     },
