@@ -12,7 +12,6 @@
       </div>
     </div>
     <div class="row">
-
       <div class="col-md-4 my-3" v-if="planFiles.length" v-for="w in planFiles" v-bind:key="w.id">
         <div class="card">
         <div class="card-body">

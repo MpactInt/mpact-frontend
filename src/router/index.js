@@ -37,6 +37,7 @@ import ViewTodo from '@/components/employer/ViewTodo'
 import RequestWorkshop from '@/components/employer/RequestWorkshop'
 import FeedbackEmployee from '@/components/employer/FeedbackEmployee'
 import AskYourCareTeam from '@/components/employer/AskYourCareTeam'
+import WorkshopView from '@/components/employer/WorkshopView'
 
 
 /********Load employee components */
@@ -331,8 +332,8 @@ export const router = new Router({
     {
       path: '/employer/view-workshop/:id',
       beforeEnter: guardMyroute,
-      name: 'AdminWorkshopView',
-      component: AdminWorkshopView,
+      name: 'WorkshopView',
+      component: WorkshopView,
       meta: { requiresAuth: true, employerAuth: true, employeeAuth: false, adminAuth: false }
     },
     // routes for employees

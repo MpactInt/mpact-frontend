@@ -43,8 +43,8 @@
                            <span>{{ r.company.map(({company_name}) => company_name).join(',') }}
             </span>
             </td>
-            <td>{{ r.title }}</td>
-            <td>{{ r.description }}</td>
+            <td>{{ r.title | truncate(20) }}</td>
+            <td>{{ r.description | truncate(40) }}</td>
             <td><small class="pink-color">{{ r.status }}</small></td>
             <td>
               <div class="d-flex align-items-center p-0" style="min-width: 100px;">

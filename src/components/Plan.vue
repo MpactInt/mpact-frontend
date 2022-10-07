@@ -559,7 +559,7 @@
                         <div class="col-md-12">
                           <!-- list start -->
                           <div class="pricing-text">
-                            <p class="w-100">1x</p>
+                            <p class="w-100">12x</p>
                           </div>
                         </div> <!-- list end -->
                         <div class="col-md-12">

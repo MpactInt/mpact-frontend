@@ -1,7 +1,7 @@
 <template>
   <section class="employee-todo-view-section half-cut-bg">
     <div class="container">
-      <router-link to="/employer/todo" class="btn back">
+      <router-link to="/employee/todo" class="btn back">
         <img src="../../assets/images/arrow-left.svg" alt="arrow-left" /> Back
     </router-link>
         <h4 class="page-title text-left">{{ todoUpdate.title }}</h4>

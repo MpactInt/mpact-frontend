@@ -86,10 +86,11 @@
                         <td>{{ r.status }}</td>
                         <td class="px-0">
                             <div class="d-flex align-items-center p-0" style="min-width: 100px;">
-                                <a type="button" class="px-3" v-if="user.role != 'ADMIN'"
+                                <a type="button" class="px-3"
                                     @click="deleteRequestWorkshop(r.id)" width="24" height="24">
-                                    <img src="../../../assets/images/table-delete.svg" width="24" height="24"
-                                        alt="table-edit" />
+                                    <i class="fa fa-trash" style="color:#C2095A"></i>
+                                    <!-- <img src="../../../assets/images/table-delete.svg" width="24" height="24"
+                                        alt="table-edit" /> -->
                                 </a>
                                 <a type="button" class="px-3" v-if="user.role == 'ADMIN' && r.status == 'NEW'"
                                     @click="acceptRequestWorkshop(r.id)" width="24" height="24">

@@ -7,6 +7,7 @@
           <option value="title">Title</option>
         </select>
       </div> -->
+
       <div class="col-md-3 my-2 d-flex align-items-center">
         <input type="text" v-model="getResourceData.keyword" class="form-control search" placeholder="Search"
           v-on:keyup="getResourcesList" /><span class="search-icon"></span><a class="link px-2 mb-3"
@@ -19,7 +20,36 @@
         </button>
       </div>
     </div>
-    <div class="table-responsive">
+    <div class="row mb-3" v-if="user.role != 'ADMIN'">
+      <div class="col-md-4 my-3" v-if="resourcesLength" v-for="r in resourcesList.data" v-bind:key="r.id">
+        <div class="card">
+          <div class="card-body">
+            <div class="row align-items-center p-0" style="min-width: 100px;">
+              <div class="col-md-9">
+                <h5 class="card-title">{{ r.title }}</h5>
+              </div>
+              <div class="col-md-3 text-right d-flex" v-if=" company.role == 'COMPANY_ADMIN'">
+                <a type="button" class="mr-3 d-block w-auto" v-b-modal.update-resource-modal @click="getResource(r.id)">
+                  <img src="../../../assets/images/table-edit.svg" alt="table-edit" width="24" height="24" />
+                </a>
+                <a type="button" class="mr-3 d-block w-auto" @click="deleteResource(r.id)">
+                  <img src="../../../assets/images/table-delete.svg" alt="table-delete" width="24" height="24" /></a>
+              </div>
+            </div>
+
+            <p class="card-text">{{ r.description }}</p>
+            <p class="card-text">
+              <a v-if="r.link" :href="r.link">{{r.link}}</a>
+            </p>
+            <a class="btn btn-read-more" v-if="r.file" @click="downloadFile(r.id, r.file)">Download File</a>
+          </div>
+        </div>
+      </div>
+      <div v-if="!resourcesLength">
+        No Data Found
+      </div>
+    </div>
+    <div v-if="user.role == 'ADMIN'" class="table-responsive">
       <table class="table">
         <tr>
           <th v-if="user.role == 'ADMIN'">Company Name <i class="fa fa-sort"></i></th>
@@ -76,6 +106,7 @@
         </tr>
       </table>
     </div>
+
     <pagination :data="resourcesList" @pagination-change-page="getResourcesList" />
 
     <!--Add resource modal popup-->
