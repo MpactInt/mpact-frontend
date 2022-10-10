@@ -217,11 +217,17 @@ class Api {
     uploadToolkit(data, headers) {
         return axiosCommon.post('/upload-toolkit', data, headers)
     }
+    updateToolkit(data, headers) {
+        return axiosCommon.post('/update-toolkit', data, headers)
+    }
     uploadGuideBook(data, headers) {
         return axiosCommon.post('/upload-guide-book', data, headers)
     }
     deleteToolkit(id) {
         return axiosCommon.post('/delete-toolkit/' + id)
+    }
+    getToolkitList(id,data){
+        return axiosCommon.post('/get-toolkit-list/' + id,data)
     }
     downloadToolkit(id) {
         return axiosCommon.get('/download-toolkit/' + id, { responseType: 'blob' })

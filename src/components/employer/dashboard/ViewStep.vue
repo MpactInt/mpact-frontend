@@ -49,7 +49,18 @@
           <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
             <div class="row mt-3">
               <h5 class="page-sub-title mt-5 mb-0">Uploaded Files</h5>
-              <div class="row mt-3  toolkit-uploaded-files">
+              <div class="row">
+                <div class="col-md-4 my-3" v-if="stepUpdate.toolkit.length" v-for="w in stepUpdate.toolkit" v-bind:key="w.id">
+                  <div class="card">
+                    <div class="card-body">
+                      <h5 class="card-title">{{ w.title }}</h5>
+                      <p class="card-text">{{ w.description }}</p>
+                      <a class="btn btn-read-more" @click="downloadToolkit(w.id, w.file)">Download File</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- <div class="row mt-3  toolkit-uploaded-files">
                 <div class="col-xl-3 col-lg-4 mb-3 col-md-6" v-if="stepUpdate.toolkit.length"
                   v-for="tk in stepUpdate.toolkit" v-bind:key="tk.id">
                   <div class="Uploaded-file-box">
@@ -70,7 +81,7 @@
                 <div v-if="!stepUpdate.toolkit.length">
                   No Data Found
                 </div>
-              </div>
+              </div> -->
             </div>
           </div>
         </div>

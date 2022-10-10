@@ -1,9 +1,9 @@
 <template>
 
   <section class="view-step-link half-cut-bg">
-    <router-link to="/admin/steps-configuration"  class="btn back">
-       <!-- <button class="btn-primary"> -->
-        <img src="../../../assets/images/arrow-left.svg" alt="arrow-left" /> Back
+    <router-link to="/admin/steps-configuration" class="btn back">
+      <!-- <button class="btn-primary"> -->
+      <img src="../../../assets/images/arrow-left.svg" alt="arrow-left" /> Back
       <!-- </button> -->
     </router-link>
 
@@ -46,55 +46,112 @@
               </div>
               <div class="row mt-5">
                 <h5>Uploaded Guide Book</h5>
-                <embed v-if="stepUpdate.guideBook" :src="toolkitPath + '/' + stepUpdate.guideBook" width="100%" height="800px" />
+                <embed v-if="stepUpdate.guideBook" :src="toolkitPath + '/' + stepUpdate.guideBook" width="100%"
+                  height="800px" />
                 <p v-if="!stepUpdate.guideBook">Guide Book Not uploaded </p>
               </div>
             </div>
           </div>
           <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
-             <p><b class="pink-color">Toolkit</b></p>
-                <div class="row">
-                <div class="col-md-6">
-                  <form @submit="uploadToolkit" enctype="multipart/form-data">
-                    <div class="form-group">
-                      <label><b>Upload Toolkit Files</b></label>
-                      <input type="file" class="form-control" id="file" ref="file" @change="fileOnChange()" />
-                    </div>
-                    <div class="form-group">
-                      <button type="submit" class="btn btn-primary" :disabled="step.disabled">Upload</button>
-                    </div>
-                  </form>
-                </div>
-                <div class="col-md-12">
-                  <h5 class="page-sub-title mt-5 mb-0">Uploaded Files</h5>
-                </div>
-                </div>
-                <div class="row mt-0 toolkit-uploaded-files">
-                  <div class="col-xl-3 col-lg-4 my-3 col-md-6" v-if="stepUpdate.toolkit.length" v-for="tk in stepUpdate.toolkit" v-bind:key="tk.id">
-                    <div class="Uploaded-file-box">
-                      <a href="javascript:void(0)" @click="downloadToolkit(tk.id, tk.file)">
-                        <i v-if="tk.type == 'png' || tk.type == 'jpg' || tk.type == 'jpeg' || tk.type == 'svg'"
-                          class="fa-solid fa-file-image fa-10x"></i>
-                        <i v-if="tk.type == 'pdf'" class="fa-solid fa-file-pdf fa-10x"></i>
-                        <i v-if="tk.type == 'ppt' || tk.type == 'pptx'" class="fa-solid fa-file-powerpoint fa-10x"></i>
-                        <i v-if="tk.type == 'doc' || tk.type == 'docx'" class="fa-solid fa-file-word fa-10x"></i>
-                        <i v-if="tk.type == 'csv'" class="fa-solid fa-file-csv fa-10x"></i>
-                        <i v-if="tk.type == 'xls' || tk.type == 'xlsx'" class="fa-solid fa-file-excel fa-10x"></i>
-                        <br>
-                        {{ tk.file | removeTimestampFromFileName }}
+            <p><b class="pink-color">Toolkit</b></p>
+            <div class="row">
+              <div class="col-md-3 my-2 d-flex align-items-center">
+                <input type="text" v-model="searchData.keyword" class="form-control mb-0 search"
+                  placeholder="Search" v-on:keyup="getToolkitList" /><span class="search-icon"></span><a href="javascript:void(0)"
+                  v-on:click="searchData.keyword = '';getToolkitList()" class="link px-2 ">clear</a>
+              </div>
+              <div class="col-md-3 my-2">
+              </div>
+              <div class="col-md-6 d-flex my-2" v-if="user.role == 'ADMIN'">
+                <button class="btn btn-primary ml-auto" v-b-modal.add-modal>Upload Toolkit</button>
+              </div>
+            </div>
+            <div class="table-responsive">
+              <table class="table">
+                <tr>
+                  <th>Title<i class="fa-solid fa-arrow-up"
+                      @click="searchData.sortBy = 'title'; searchData.sortOrder='asc';getToolkitList()"></i>
+                    <i class="fa-solid fa-arrow-down"
+                      @click="searchData.sortBy = 'title'; searchData.sortOrder='desc';getToolkitList()"></i>
+                  </th>
+                  <th>Description<i class="fa-solid fa-arrow-up"
+                      @click="searchData.sortBy = 'title'; searchData.sortOrder='asc';getToolkitList()"></i>
+                    <i class="fa-solid fa-arrow-down"
+                      @click="searchData.sortBy = 'title'; searchData.sortOrder='desc';getToolkitList()"></i>
+                  </th>
+                  <th>File</th>
+                  <th>Action</th>
+                </tr>
+                <tr v-if="toolkitList.data.length" v-for="tk in toolkitList.data" v-bind:key="tk.id">
+                  <td>{{ tk.title }}</td>
+                  <td>{{ tk.description }}</td>
+                  <td><a class="cursor-pointer links" @click="downloadToolkit(tk.id, tk.file)">Download</a>
+                  </td>
+                  <td>
+                    <div class="d-flex align-items-center p-0" style="min-width: 100px;">
+
+                      <a type="button" class="mx-3 d-block" width="24" @click="getToolkit(tk)">
+                        <img src="../../../assets/images/table-edit.svg" alt="table-edit" width="24" height="24" />
                       </a>
-                      <i class="fa fa-trash cursor-pointer" @click="deleteToolkit(tk.id)"></i>
+                      <a type="button" class="mx-3 d-block" width="24" @click="deleteToolkit(tk.id)">
+                        <img src="../../../assets/images/table-delete.svg" alt="table-delete" width="24" height="24" />
+                      </a>
                     </div>
-                  </div>
+                    <!-- <button class="btn btn-primary" @click="getLearningPlanFile(lp)"><i
+                    class="fa fa-pencil"></i></button>
+            <button class="btn btn-danger" @click="deleteLearningPlanFile(lp.id)"><i
+                    class="fa fa-trash"></i></button> -->
+                  </td>
+                </tr>
+                <tr v-if="!toolkitList.data.length">
+                  <td colspan="5">No Data Found</td>
+                </tr>
+              </table>
+            </div>
+            <b-modal id="add-modal" title="Upload Toolkit" :hide-footer=hideFooter>
+              <form @submit="uploadToolkit" enctype="multipart/form-data">
+                <div class="form-group">
+                  <label><b>Title</b></label>
+                  <input type="text" class="form-control" id="title" v-model="toolkit.title" />
                 </div>
-                <div v-if="!stepUpdate.toolkit.length">
-                  No Data Found
+                <div class="form-group">
+                  <label><b>Description</b></label>
+                  <textarea type="text" class="form-control" id="description" v-model="toolkit.description"></textarea>
                 </div>
+                <div class="form-group">
+                  <label><b>Upload Toolkit Files</b></label>
+                  <input type="file" class="form-control" id="file" ref="file" @change="fileOnChange()" />
+                </div>
+                <div class="form-group">
+                  <button type="submit" class="btn btn-primary" :disabled="toolkit.disabled">Upload</button>
+                </div>
+              </form>
+            </b-modal>
+
+            <b-modal id="update-modal" title="Update Toolkit" :hide-footer=hideFooter>
+              <form @submit="updateToolkit" enctype="multipart/form-data">
+                <div class="form-group">
+                  <label><b>Title</b></label>
+                  <input type="text" class="form-control" id="title" v-model="toolkitUpdate.title" />
+                </div>
+                <div class="form-group">
+                  <label><b>Description</b></label>
+                  <textarea type="text" class="form-control" id="description" v-model="toolkitUpdate.description"></textarea>
+                </div>
+                <div class="form-group">
+                  <label><b>Upload Toolkit Files</b></label>
+                  <input type="file" class="form-control" id="file" ref="fileUpdate" @change="fileOnChangeUpdate()" />
+                </div>
+                <div class="form-group">
+                  <button type="submit" class="btn btn-primary" :disabled="toolkitUpdate.disabled">Upload</button>
+                </div>
+              </form>
+            </b-modal>
           </div>
         </div>
       </div>
     </div>
-    </section>
+  </section>
 </template>
 
 <script>
@@ -110,13 +167,35 @@ export default {
       step: {
         'disabled': false,
         'file': '',
-        'guideBook': ''
-      }
+        'guideBook': '',
+      },
+      toolkitList:[],
+      toolkit: {
+        'title': '',
+        'description': '',
+        'file': '',
+        'disabled': false,
+      },
+      toolkitUpdate: {
+        'title': '',
+        'description': '',
+        'file': '',
+        'disabled': false,
+      },
+      searchData: {
+        'sortBy': '',
+        'sortOrder': '',
+        'keyword': ''
+      },
+      hideFooter: true,
     }
   },
   methods: {
     fileOnChange: function (e) {
-      this.step.file = this.$refs.file.files[0];
+      this.toolkit.file = this.$refs.file.files[0];
+    },
+    fileOnChangeUpdate: function (e) {
+      this.toolkitUpdate.file = this.$refs.fileUpdate.files[0];
     },
     guideBookOnChange: function (e) {
       this.step.guideBook = this.$refs.guideBook.files[0];
@@ -125,9 +204,12 @@ export default {
       e.preventDefault();
       let that = this
       const formData = new FormData();
-      formData.append('file', that.step.file);
-      formData.append('id', this.$route.params.id)
-      that.step.disabled = true;
+      formData.append('file', that.toolkit.file);
+      formData.append('id', this.$route.params.id);
+      formData.append('title', that.toolkit.title);
+      formData.append('description', that.toolkit.description);
+
+      that.toolkit.disabled = true;
       let headers = {
         'Content-Type': 'multipart/form-data',
         'Access-Control-Allow-Origin': '*'
@@ -139,13 +221,16 @@ export default {
           text: "File Uploaded Successfully",
           showConfirmButton: true
         }).then(function () {
-          that.step.disabled = false;
-          that.getStep(that.$route.params.id)
-          that.$refs.file.value = null;
+          that.toolkit.disabled = false;
+          that.toolkit.title = ''
+          that.toolkit.description = ''
+          that.$refs.file.value = null
+          that.$bvModal.hide('add-modal')
+          that.getToolkitList()
         });
       }
       ).catch((error) => {
-        that.step.disabled = false;
+        that.toolkit.disabled = false;
         this.$swal({
           icon: "error",
           title: "error",
@@ -225,7 +310,7 @@ export default {
               text: "Deleted Successfully",
               showConfirmButton: true
             }).then(() => {
-              that.getStep(that.$route.params.id)
+              that.getToolkitList()
             });
           }
           ).catch((error) => {
@@ -239,9 +324,63 @@ export default {
         }
       })
     },
+    getToolkitList: function () {
+      let that = this
+      Api.getToolkitList(that.$route.params.id,that.searchData).then(response => {
+        that.toolkitList = response.data.res
+      });
+    },
+    getToolkit: function (toolkit) {
+      let that = this
+        that.$bvModal.show('update-modal')
+        that.toolkitUpdate.id = toolkit.id
+        that.toolkitUpdate.title = toolkit.title
+        that.toolkitUpdate.description = toolkit.description
+        // that.toolkitUpdate.file = toolkit.file
+    },
+    updateToolkit: function (e) {
+      e.preventDefault();
+      let that = this
+      const formData = new FormData();
+      formData.append('file', that.toolkitUpdate.file);
+      formData.append('id', that.toolkitUpdate.id);
+      formData.append('title', that.toolkitUpdate.title);
+      formData.append('description', that.toolkitUpdate.description);
+
+      that.toolkitUpdate.disabled = true;
+      let headers = {
+        'Content-Type': 'multipart/form-data',
+        'Access-Control-Allow-Origin': '*'
+      }
+      Api.updateToolkit(formData, headers).then(response => {
+        this.$swal({
+          icon: "success",
+          title: "Success",
+          text: "Toolkit Updated Successfully",
+          showConfirmButton: true
+        }).then(function () {
+          that.toolkitUpdate.disabled = false;
+          that.toolkitUpdate.title = ''
+          that.toolkitUpdate.description = ''
+          that.$refs.fileUpdate.value = null
+          that.$bvModal.hide('update-modal')
+          that.getToolkitList();
+        });
+      }
+      ).catch((error) => {
+        that.toolkit.disabled = false;
+        this.$swal({
+          icon: "error",
+          title: "error",
+          text: error.response.data.message,
+          showConfirmButton: true
+        });
+      });
+    },
   },
   mounted() {
     this.getStep(this.$route.params.id)
+    this.getToolkitList();
   }
 }
 </script>
