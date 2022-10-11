@@ -52,7 +52,7 @@
     <div v-if="user.role == 'ADMIN'" class="table-responsive">
       <table class="table">
         <tr>
-          <th v-if="user.role == 'ADMIN'">Company Name <i class="fa fa-sort"></i></th>
+          <th v-if="user.role == 'ADMIN'">Company Name</th>
           <th>Title <i class="fa-solid fa-arrow-up"
               @click="getResourceData.sortBy = 'title'; getResourceData.sortOrder='asc';getResourcesList()"></i> <i
               class="fa-solid fa-arrow-down"

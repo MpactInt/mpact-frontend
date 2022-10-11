@@ -100,6 +100,10 @@
             <label>Title <span class="err">*</span></label>
             <input type="text" class="form-control" id="title" placeholder="Title" v-model="profileUpdate.title">
           </div>
+          <div class="form-group" v-if="authUser.role != 'COMPANY_EMP'">
+            <label>Total Employees <span class="err">*</span></label>
+            <input type="text" class="form-control" id="title" placeholder="Total Employees" v-model="profileUpdate.total_employees">
+          </div>
           <button type="button" @click="updateProfile" class="btn btn-primary" :disabled="profileUpdate.disabled">Update
           </button>
         </div>
@@ -217,6 +221,7 @@ export default {
       this.profileUpdate.company_name = this.authUser.company_name
       this.profileUpdate.company_domain = this.authUser.company_domain
       this.profileUpdate.title = this.authUser.title
+      this.profileUpdate.total_employees = this.authUser.total_employees
     }
   },
   created() {

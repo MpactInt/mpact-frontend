@@ -1,7 +1,9 @@
 .err {
   color: red;
 }
-
+.fa-arrow-up, .fa-arrow-down{
+  cursor:auto !important;
+}
 .white {
   color: white;
 }
