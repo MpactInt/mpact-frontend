@@ -307,7 +307,7 @@
                       <div class="row">
                         <div class="col-md-12">
                           <div class="pricing-title yello-bg">
-                            <p class="w-100 text-center">Bronze</p>
+                            <p class="w-100 text-center">Gold</p>
                           </div>
                         </div>
                         <div class="col-md-12">
@@ -430,7 +430,7 @@
                       <div class="row">
                         <div class="col-md-12">
                           <div class="pricing-title silver-bg">
-                            <p class="w-100 text-center">Silver</p>
+                            <p class="w-100 text-center">Diamond</p>
                           </div>
                         </div>
                         <div class="col-md-12">
@@ -794,7 +794,7 @@
                       <div class="row">
                         <div class="col-md-12">
                           <div class="pricing-title yello-bg">
-                            <p class="w-100 text-center">Bronze</p>
+                            <p class="w-100 text-center">Gold</p>
                           </div>
                         </div>
                         <div class="col-md-12">
@@ -917,7 +917,7 @@
                       <div class="row">
                         <div class="col-md-12">
                           <div class="pricing-title silver-bg">
-                            <p class="w-100 text-center">Silver</p>
+                            <p class="w-100 text-center">Diamond</p>
                           </div>
                         </div>
                         <div class="col-md-12">

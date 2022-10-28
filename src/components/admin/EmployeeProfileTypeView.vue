@@ -7,9 +7,10 @@
         </router-link>
         <h3 class="page-title text-left mt-0">Employee <span>Profile Type Details</span></h3>
         <p><b>Profile Type:</b> <span class="links">{{ profileType.profile_type }} </span></p>
-        <p><b>File:</b> <a class="cursor-pointer links" @click="downloadProfileTypeFile(profileType.id, profileType.file)">{{
-                profileType.file
-        }}</a></p>
+        <p><b>File:</b> <a class="cursor-pointer links"
+                @click="downloadProfileTypeFile(profileType.id, profileType.file)">{{
+                        profileType.file
+                }}</a></p>
         <div class="row mt-5">
             <div class="col-md-4">
                 <h2 class="blue-color"><strong>Section 1</strong></h2>
@@ -20,8 +21,12 @@
                     </div>
                     <div class="form-group">
                         <label>Description</label>
-                        <textarea class="form-control" placeholder="Description"
-                            v-model="section1.description"></textarea>
+
+                        <vue2-tinymce-editor v-model="section1.description" placeholder="Description">
+                        </vue2-tinymce-editor>
+
+                        <!-- <textarea class="form-control" placeholder="Description"
+                            v-model="section1.description"></textarea> -->
                     </div>
                     <div class="form-group">
                         <label>Image</label>
@@ -45,8 +50,9 @@
                     </div>
                     <div class="form-group">
                         <label>Description</label>
-                        <textarea class="form-control" placeholder="Description"
-                            v-model="section2.description"></textarea>
+                        <vue2-tinymce-editor v-model="section2.description" placeholder="Description">
+                        </vue2-tinymce-editor>
+
                     </div>
                     <div class="form-group form-group pt-4 mt-4">
                         <button type="submit" class="btn btn-primary">Submit</button>
@@ -62,8 +68,9 @@
                     </div>
                     <div class="form-group">
                         <label>Description</label>
-                        <textarea class="form-control" placeholder="Description"
-                            v-model="section3.description"></textarea>
+                        <vue2-tinymce-editor v-model="section3.description" placeholder="Description">
+                        </vue2-tinymce-editor>
+
                     </div>
                     <div class="form-group form-group pt-4 mt-4">
                         <button type="submit" class="btn btn-primary">Submit</button>
@@ -77,6 +84,8 @@
 /* eslint-disable */
 import AppMixin from '../../mixins/AppMixin'
 import Api from '../../router/api'
+import { Vue2TinymceEditor } from "vue2-tinymce-editor";
+
 export default {
     name: 'EmployeeProfileTypeView',
     mixins: [AppMixin],
@@ -86,6 +95,7 @@ export default {
         }
     },
     components: {
+        Vue2TinymceEditor
     },
     methods: {
         imageOnChange: function (e) {

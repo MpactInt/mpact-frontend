@@ -48,6 +48,20 @@ Vue.filter('fromNow', function (value) {
   }
 });
 
+
+Vue.filter('timeStampToDateOnly', function (value) {
+  if (value) {
+    return moment.unix(value).format('MM/DD/YYYY')
+  }
+});
+
+Vue.filter('timeStampToTimeOnly', function (value) {
+  if (value) {
+    return moment.unix(value).format('HH:mm:ss')
+  }
+});
+
+
 Vue.filter('timeStampToDate', function (value) {
   if (value) {
     return moment.unix(value).format('MM/DD/YYYY HH:mm:ss')
