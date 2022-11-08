@@ -161,7 +161,7 @@ export default {
       let that = this
       this.$swal({
         title: 'Are you sure?',
-        text: 'Ypou want to mark this todo as complete!',
+        text: 'You want to mark this todo as complete!',
         type: 'warning',
         showCancelButton: true,
         confirmButtonText: 'Yes',

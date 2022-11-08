@@ -89,6 +89,7 @@ import AdminMeetingRecording from '@/components/admin/MeetingRecording'
 import AdminWelcomeNote from '@/components/admin/WelcomeNote'
 import AdminLearningPlan from '@/components/admin/LearningPlan'
 import AdminLearningPlanView from '@/components/admin/LearningPlanView'
+import AdminLearningPlanResource from '@/components/admin/LearningPlanResource'
 Vue.use(Router)
 
 
@@ -658,6 +659,13 @@ export const router = new Router({
       beforeEnter: guardMyroute,
       name: 'AdminLearningPlanView',
       component: AdminLearningPlanView,
+      meta: { requiresAuth: true, employerAuth: false, employeeAuth: false, adminAuth: true }
+    },
+    {
+      path: '/admin/learning-plan-resources',
+      beforeEnter: guardMyroute,
+      name: 'AdminLearningPlanResource',
+      component: AdminLearningPlanResource,
       meta: { requiresAuth: true, employerAuth: false, employeeAuth: false, adminAuth: true }
     },
   ],

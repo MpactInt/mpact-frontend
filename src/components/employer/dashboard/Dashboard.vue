@@ -57,7 +57,7 @@
         </div>
         <div class="col-md-6 my-3">
           <div class="card-box statistics-box">
-            <h5>"ToDo"</h5>
+            <h5>"To Do"</h5>
             <div class="todo-map-list" v-if="todoList.length">
               <div v-for="todo in todoList" v-bind:key="todo.id">
                 <img src="../../../assets/images/todo-map-icon.svg" />

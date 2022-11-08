@@ -18,14 +18,14 @@
         <tr>
           <th>Image</th>
           <th>Title<i class="fa-solid fa-arrow-up"
-              @click="searchData.sortBy = 'title'; searchData.sortOrder='asc';getLearningPlanList()"></i>
+              @click="searchData.sortBy = 'title'; searchData.sortOrder = 'asc'; getLearningPlanList()"></i>
             <i class="fa-solid fa-arrow-down"
-              @click="searchData.sortBy = 'title'; searchData.sortOrder='desc';getLearningPlanList()"></i>
+              @click="searchData.sortBy = 'title'; searchData.sortOrder = 'desc'; getLearningPlanList()"></i>
           </th>
           <th>Description<i class="fa-solid fa-arrow-up"
-              @click="searchData.sortBy = 'description'; searchData.sortOrder='asc';getLearningPlanList()"></i>
+              @click="searchData.sortBy = 'description'; searchData.sortOrder = 'asc'; getLearningPlanList()"></i>
             <i class="fa-solid fa-arrow-down"
-              @click="searchData.sortBy = 'description'; searchData.sortOrder='desc';getLearningPlanList()"></i>
+              @click="searchData.sortBy = 'description'; searchData.sortOrder = 'desc'; getLearningPlanList()"></i>
           </th>
           <th>Profile Type</th>
           <th>Action</th>
@@ -34,7 +34,7 @@
           <td><img :src="learningPlanPath + '/' + lp.image" class="table-img" height="75" width="75" /></td>
           <td>{{ lp.title }}</td>
           <td>{{ lp.description }}</td>
-          <td> <span>{{lp.profile_type.map(({profile_type})=>profile_type).join(',') }}
+          <td> <span>{{ lp.profile_type.map(({ profile_type }) => profile_type).join(',') }}
             </span></td>
           <td>
 
@@ -65,14 +65,15 @@
         <div id="details">
           <div class="form-group" v-if="user.role == 'ADMIN'">
             <label>Select Profile Type <span class="err">*</span></label>
-            <!-- <select class="form-control" v-model="plan.profile_type">
-              <option value="">Select</option>
-              <option v-for="pt in profileType" v-bind:key="pt.id" :value="pt.id">
-                {{ pt.profile_type }}
-              </option>
-            </select> -->
-
             <multiselect v-model="plan.profile_type" :options="profileTypeListMultiselect" group-values="values"
+              group-label="selectAll" :multiple="true" :group-select="true" placeholder="Type to search" track-by="name"
+              label="name">
+              <span slot="noResult">Oops! No elements found. Consider changing the search query.</span>
+            </multiselect>
+          </div>
+          <div class="form-group" v-if="user.role == 'ADMIN'">
+            <label>Select Resources <span class="err">*</span></label>
+            <multiselect v-model="plan.resources" :options="resourcesListMultiselect" group-values="values"
               group-label="selectAll" :multiple="true" :group-select="true" placeholder="Type to search" track-by="name"
               label="name">
               <span slot="noResult">Oops! No elements found. Consider changing the search query.</span>
@@ -111,6 +112,14 @@
             <multiselect v-model="planUpdate.profile_type" :options="profileTypeListMultiselectUpdate"
               group-values="values" group-label="selectAll" :multiple="true" :group-select="true"
               placeholder="Type to search" track-by="name" label="name">
+              <span slot="noResult">Oops! No elements found. Consider changing the search query.</span>
+            </multiselect>
+          </div>
+          <div class="form-group" v-if="user.role == 'ADMIN'">
+            <label>Select Resources <span class="err">*</span></label>
+            <multiselect v-model="planUpdate.resources" :options="resourcesListMultiselect" group-values="values"
+              group-label="selectAll" :multiple="true" :group-select="true" placeholder="Type to search" track-by="name"
+              label="name">
               <span slot="noResult">Oops! No elements found. Consider changing the search query.</span>
             </multiselect>
           </div>
@@ -154,7 +163,8 @@ export default {
         'title': '',
         'description': '',
         'image': '',
-        'disabled': false
+        'disabled': false,
+        'resources':''
       },
       planUpdate: {
         'id': '',
@@ -162,9 +172,16 @@ export default {
         'title': '',
         'description': '',
         'image': '',
-        'disabled': false
+        'disabled': false,
+        'resources':''
       },
       profileTypeListMultiselectUpdate: [
+        {
+          selectAll: 'Select All',
+          values: []
+        }
+      ],
+      resourcesListMultiselect: [
         {
           selectAll: 'Select All',
           values: []
@@ -185,6 +202,7 @@ export default {
         this.planUpdate.title = response.data.res.title
         this.planUpdate.description = response.data.res.description
         this.planUpdate.profile_type = response.data.res.profile_type
+        this.planUpdate.resources = response.data.res.resources
         this.getProfileTypeListMultiselectUpdate()
         this.$bvModal.show('update-modal')
       })
@@ -250,6 +268,7 @@ export default {
         that.plan.disabled = true
         const formData = new FormData()
         formData.append('profile_type', JSON.stringify(that.plan.profile_type))
+        formData.append('resources', JSON.stringify(that.plan.resources))
         formData.append('image', that.plan.image)
         formData.append('description', that.plan.description)
         formData.append('title', that.plan.title)
@@ -303,6 +322,7 @@ export default {
         that.plan.disabled = true
         const formData = new FormData()
         formData.append('profile_type', JSON.stringify(that.planUpdate.profile_type))
+        formData.append('resources', JSON.stringify(that.planUpdate.resources))
         formData.append('image', that.planUpdate.image)
         formData.append('description', that.planUpdate.description)
         formData.append('title', that.planUpdate.title)
@@ -343,6 +363,21 @@ export default {
         })
       }
     },
+    getResourcesListMultiselect: function () {
+      let that = this
+      Api.getResourcesListMultiselect().then(response => {
+        let that = this
+        that.resourcesListMultiselect[0].values = response.data.res
+      }
+      ).catch((error) => {
+        this.$swal({
+          icon: "error",
+          title: "error",
+          text: error.response.data.message,
+          showConfirmButton: true
+        });
+      });
+    },
     getProfileTypeListMultiselectUpdate: function () {
       let that = this
       Api.getProfileTypeListMultiselectUpdate().then(response => {
@@ -379,6 +414,7 @@ export default {
     this.getProfileTypeListMultiselect()
     this.getProfileTypeListMultiselectUpdate()
     this.getLearningPlanList()
+    this.getResourcesListMultiselect()
   }
 }
 </script>

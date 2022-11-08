@@ -3,7 +3,7 @@
     <div class="row align-items-center">
       <div class="col-md-4 my-3">
         <div class="color-border">
-          <img :src="planSingle.image" class="w-100"  style="height: 250px;" alt="">
+          <img :src="planSingle.image" class="w-100" style="height: 250px;" alt="">
         </div>
       </div>
       <div class="col-md-8 my-3">
@@ -14,7 +14,7 @@
     <div class="row">
       <div class="col-md-4 my-3" v-if="planFiles.length" v-for="w in planFiles" v-bind:key="w.id">
         <div class="card">
-        <div class="card-body">
+          <div class="card-body">
             <h5 class="card-title">{{ w.title }}</h5>
             <p class="card-text">{{ w.description }}</p>
             <a class="btn btn-read-more" @click="downloadLearningPlanFile(w.id, w.image)">Download File</a>
@@ -24,7 +24,11 @@
     </div>
   </section>
 </template>
-
+<style>
+.card-text {
+  min-height: 125px !important
+}
+</style>
 <script>
 /* eslint-disable */
 import AppMixin from '../../mixins/AppMixin'
@@ -33,13 +37,13 @@ import Api from '../../router/api'
 export default {
   name: 'WelcomeNote',
   mixins: [AppMixin],
-  data () {
+  data() {
     return {
       note: {},
     }
   },
   methods: {},
-  created () {
+  created() {
     this.getLearningPlanFiles()
   }
 }

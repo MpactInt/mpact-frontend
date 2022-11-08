@@ -5,9 +5,9 @@
       <h2 class="page-title mb-0 text-left  d-inline-block">{{ section1.title }}
         <!--        <span class="yello-color">Program</span>-->
       </h2>
-      <h4 class="page-sub-title">{{ section1.description }}</h4>
+      <h4 class="page-sub-title" v-html="section1.description"></h4>
       <!--      <img src="../../assets/images/about-frame.svg" class="hero-img" alt="">-->
-      <div class="color-border"><img :src="section1.image" class="hero-img" alt=""></div>
+      <div class="color-border"><img :src="section1.image" class="hero-img card-img-top" alt=""></div>
 
     </section>
     <section class="employee-dashboard-section" v-if="section2.id">
@@ -15,37 +15,21 @@
         {{ section2.title }}
         <!--        This <span>section</span>text-->
       </h2>
-      <h4 class="page-sub-title">{{ section2.description }}</h4>
+      <h4 class="page-sub-title" v-html="section2.description"></h4>
     </section>
-    <section class="employee-dashboard-popup-survey" v-if="pg.length">
+    <section class="employee-dashboard-popup-survey">
       <h2 class="page-title mb-0 text-left  d-inline-block">Popup <span>Survey</span></h2>
       <h4 class="page-sub-title">This section will be the opening to the learning journey</h4>
       <div class="popup-survey-box col-md-12 col-lg-10">
         <CustomSurvey v-if="pg.length" :surveyProp="pg" :submitPopupSurvey="submitPopupSurvey"></CustomSurvey>
         <BarChart v-else :chartData="res" :question="chartData.question"></BarChart>
-        <!-- <h4>1. How are you feeling today?</h4>
-
-                <input class="inp-cbx d-none" name="popupsurveybox" id="morning" type="radio" checked />
-                <label class="cbx" for="morning"><span> <svg width="12px" height="10px"> <use xlink:href="#check"></use> </svg></span><span>Good</span>
-                  <img src="../../assets/images/good.png" alt="reaction"/> </label>
-
-                <input class="inp-cbx d-none" name="popupsurveybox" id="noon" type="radio"/>
-                <label class="cbx" for="noon"><span> <svg width="12px" height="10px"> <use
-                 xlink:href="#check"></use> </svg></span><span>Better</span> <img src="../../assets/images/better.png" alt="reaction"/></label>
-                 <br>
-
-                <input class="inp-cbx d-none" name="popupsurveybox" id="afternoon" type="radio"/>
-                <label class="cbx" for="afternoon"><span> <svg width="12px" height="10px"> <use xlink:href="#check"></use> </svg></span><span>Best</span><img src="../../assets/images/best.png" alt="reaction"/></label>
-
-                <input class="inp-cbx d-none" name="popupsurveybox" id="evening" type="radio"/>
-                <label class="cbx" for="evening"><span> <svg width="12px" height="10px"> <use xlink:href="#check"></use> </svg></span><span>Not Well</span><img src="../../assets/images/not-well.png" alt="reaction"/></label> -->
       </div>
     </section>
     <section class="my-learning-plan home-learning-bg" v-if="section3.id">
       <h2 class="page-title text-left mb-0  d-inline-block">{{ section3.title }}
         <!--        <span class="yello-color">About Self</span>-->
       </h2>
-      <h4 class="page-sub-title">{{ section3.description }}</h4>
+      <h4 class="page-sub-title" v-html="section3.description"></h4>
       <div class="row">
         <div class="col-md-6 col-lg-4 mb-3" v-for="img in learningPlan" v-bind:key="img.id">
           <div class="card">

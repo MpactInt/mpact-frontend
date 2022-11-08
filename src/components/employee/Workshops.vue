@@ -68,7 +68,7 @@
               </div>
               <div class="place w-100">
                 <p>
-              <span><img src="../../assets/images/Calendar-icon.svg" alt="workshops image" />Date: {{ w.date | timeStampToDate }}</span>
+              <span><img src="../../assets/images/Calendar-icon.svg" alt="workshops image" />Date: Date: {{ w.date | timeStampToDateOnly }} Time: {{w.date | timeStampToTimeOnly}}</span>
               </p>
               </div>
               <div class="read-more">

@@ -39,7 +39,7 @@
 
             <p class="card-text">{{ r.description }}</p>
             <p class="card-text">
-              <a v-if="r.link" :href="r.link">{{r.link}}</a>
+              <a v-if="r.link" :href="r.link" target="_blank">{{r.link}}</a>
             </p>
             <a class="btn btn-read-more" v-if="r.file" @click="downloadFile(r.id, r.file)">Download File</a>
           </div>

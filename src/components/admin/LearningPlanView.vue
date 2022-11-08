@@ -15,13 +15,13 @@
       <div class="col-md-6 ml-auto">
         <div class="popup-survey-lable">
           <p class="w-100 mb-0 page-sub-title">Plan Profile Type :</p>
-          <p class="w-100 pink-color"><strong><span>{{planSingle.profile_type.map(({name})=>name).join(',') }}
+          <p class="w-100 pink-color"><strong><span>{{ planSingle.profile_type.map(({ name }) => name).join(',') }}
               </span></strong></p>
         </div>
         <div class="popup-survey-lable ">
           <p class="w-100 mb-0 page-sub-title">Plan Image :</p>
           <p class="w-100"><strong>
-              <img :src="filePath+'/'+planSingle.image" class="table-img" height="75" width="75" /></strong></p>
+              <img :src="filePath + '/' + planSingle.image" class="table-img" height="75" width="75" /></strong></p>
         </div>
       </div>
       <div class="row">
@@ -32,97 +32,34 @@
         </div>
         <div class="col-md-3 my-2">
         </div>
-        <div class="col-md-6 d-flex my-2" v-if="user.role == 'ADMIN'">
-          <button class="btn btn-primary ml-auto" v-b-modal.add-modal>Add Learning Plan File</button>
-        </div>
       </div>
-
     </div>
-
     <div class="table-responsive">
       <table class="table">
         <tr>
           <th>Title<i class="fa-solid fa-arrow-up"
-              @click="searchData.sortBy = 'title'; searchData.sortOrder='asc';getLearningPlanFiles()"></i>
+              @click="searchData.sortBy = 'title'; searchData.sortOrder = 'asc'; getLearningPlanFiles()"></i>
             <i class="fa-solid fa-arrow-down"
-              @click="searchData.sortBy = 'title'; searchData.sortOrder='desc';getLearningPlanFiles()"></i>
+              @click="searchData.sortBy = 'title'; searchData.sortOrder = 'desc'; getLearningPlanFiles()"></i>
           </th>
           <th>Description<i class="fa-solid fa-arrow-up"
-              @click="searchData.sortBy = 'title'; searchData.sortOrder='asc';getLearningPlanFiles()"></i>
+              @click="searchData.sortBy = 'title'; searchData.sortOrder = 'asc'; getLearningPlanFiles()"></i>
             <i class="fa-solid fa-arrow-down"
-              @click="searchData.sortBy = 'title'; searchData.sortOrder='desc';getLearningPlanFiles()"></i>
+              @click="searchData.sortBy = 'title'; searchData.sortOrder = 'desc'; getLearningPlanFiles()"></i>
           </th>
           <th>File</th>
-          <th>Action</th>
         </tr>
         <tr v-if="planFiles.length" v-for="lp in planFiles" v-bind:key="lp.id">
           <td>{{ lp.title }}</td>
           <td>{{ lp.description }}</td>
           <td><a class="cursor-pointer links" @click="downloadLearningPlanFile(lp.id, lp.image)">Download</a></td>
-          <td>
-            <div class="d-flex align-items-center p-0" style="min-width: 100px;">
-
-              <a type="button" class="mx-3 d-block" width="24" @click="getLearningPlanFile(lp)">
-                <img src="../../assets/images/table-edit.svg" alt="table-edit" width="24" height="24" />
-              </a>
-              <a type="button" class="mx-3 d-block" width="24" @click="deleteLearningPlanFile(lp.id)">
-                <img src="../../assets/images/table-delete.svg" alt="table-delete" width="24" height="24" />
-              </a>
-            </div>
-            <!-- <button class="btn btn-primary" @click="getLearningPlanFile(lp)"><i
-                    class="fa fa-pencil"></i></button>
-            <button class="btn btn-danger" @click="deleteLearningPlanFile(lp.id)"><i
-                    class="fa fa-trash"></i></button> -->
-          </td>
         </tr>
         <tr v-if="!planFiles.length">
           <td colspan="5">No Data Found</td>
         </tr>
       </table>
     </div>
-    <b-modal id="add-modal" title="Add New Learning Plan File" :hide-footer=hideFooter>
-      <form enctype="multipart/form-data">
-        <div id="details">
-          <div class="form-group">
-            <label>Title <span class="err">*</span></label>
-            <input type="text" class="form-control" id="title" placeholder="Title" v-model="plan.title">
-          </div>
-          <div class="form-group">
-            <label>Description<span class="err">*</span></label>
-            <textarea class="form-control" id="description" placeholder="Description"
-              v-model="plan.description"></textarea>
-          </div>
-          <div class="form-group">
-            <label>Image<span class="err">*</span></label>
-            <input type="file" class="form-control" id="image" ref="image" @change="imageOnChange">
-          </div>
-          <button type="button" class="btn btn-primary" @click="addLearningPlanFile" :disabled="plan.disabled">Submit
-          </button>
-        </div>
-      </form>
-    </b-modal>
-    <b-modal id="update-modal" title="Update Learning Plan File" :hide-footer=hideFooter>
-      <form enctype="multipart/form-data">
-        <div id="details">
-          <div class="form-group">
-            <label>Title <span class="err">*</span></label>
-            <input type="text" class="form-control" id="title" placeholder="Title" v-model="planUpdate.title">
-          </div>
-          <div class="form-group">
-            <label>Description<span class="err">*</span></label>
-            <textarea class="form-control" id="description" placeholder="Description"
-              v-model="planUpdate.description"></textarea>
-          </div>
-          <div class="form-group">
-            <label>Image<span class="err">*</span></label>
-            <input type="file" class="form-control" id="image" ref="imageUpdate" @change="imageOnChangeUpdate">
-          </div>
-          <button type="button" class="btn btn-primary" @click="updateLearningPlanFile"
-            :disabled="planUpdate.disabled">Submit
-          </button>
-        </div>
-      </form>
-    </b-modal>
+
   </section>
 </template>
 <script>
@@ -137,22 +74,11 @@ export default {
     return {
       filePath: '',
       hideFooter: true,
-      plan: {
-        'my_learning_plan_id': '',
-        'title': '',
-        'description': '',
-        'image': '',
-        'disabled': false
-      },
+      totalDescriptionChar: 300,
+      totalTitleChar: 30,
+      remainingDescriptionChar: 300,
+      remainingTitleChar: 30,
 
-      planUpdate: {
-        'id': '',
-        'profile_type': '',
-        'title': '',
-        'description': '',
-        'image': '',
-        'disabled': false
-      },
       searchData: {
         'sortBy': '',
         'sortOrder': '',
@@ -330,6 +256,18 @@ export default {
         }).then(function () {
         });
       });
+    },
+    descriptionCharCount: function () {
+      this.remainingDescriptionChar = this.totalDescriptionChar - this.plan.description.length
+    },
+    titleCharCount: function () {
+      this.remainingTitleChar = this.totalTitleChar - this.plan.title.length
+    },
+    descriptionCharCountUpdate: function () {
+      this.remainingDescriptionChar = this.totalDescriptionChar - this.planUpdate.description.length
+    },
+    titleCharCountUpdate: function () {
+      this.remainingTitleChar = this.totalTitleChar - this.planUpdate.title.length
     },
   },
   mounted() {

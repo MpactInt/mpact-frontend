@@ -49,6 +49,9 @@
           <router-link to="/admin/learning-plan">Learning Plan</router-link>
         </li>
         <li>
+          <router-link to="/admin/learning-plan-resources">Learning Plan Resources</router-link>
+        </li>
+        <li>
           <router-link to="/admin/popup-surveys">Popup Surveys</router-link>
         </li>
         <li>
