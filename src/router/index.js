@@ -36,8 +36,10 @@ import Todo from '@/components/employer/Todo'
 import ViewTodo from '@/components/employer/ViewTodo'
 import RequestWorkshop from '@/components/employer/RequestWorkshop'
 import FeedbackEmployee from '@/components/employer/FeedbackEmployee'
+import CustomerSupport from '@/components/employer/CustomerSupport'
 import AskYourCareTeam from '@/components/employer/AskYourCareTeam'
 import WorkshopView from '@/components/employer/WorkshopView'
+import ViewQuestion from '@/components/employer/ViewQuestion'
 
 
 /********Load employee components */
@@ -60,6 +62,10 @@ import EmpWelcomeNote from '@/components/employee/WelcomeNote'
 import EmpLearningPlan from '@/components/employee/LearningPlan'
 import EmpLearningPlanView from '@/components/employee/LearningPlanView'
 import EmpMeetingRecording from '@/components/employee/MeetingRecording'
+import EmpAskYourCareTeam from '@/components/employee/AskYourCareTeam'
+import EmpCustomerSupport from '@/components/employee/CustomerSupport'
+import EmpViewQuestion from '@/components/employee/ViewQuestion'
+
 
 /********Load admin components */
 
@@ -90,6 +96,8 @@ import AdminWelcomeNote from '@/components/admin/WelcomeNote'
 import AdminLearningPlan from '@/components/admin/LearningPlan'
 import AdminLearningPlanView from '@/components/admin/LearningPlanView'
 import AdminLearningPlanResource from '@/components/admin/LearningPlanResource'
+import AdminViewQuestion from '@/components/admin/ViewQuestion'
+
 Vue.use(Router)
 
 
@@ -337,6 +345,20 @@ export const router = new Router({
       component: WorkshopView,
       meta: { requiresAuth: true, employerAuth: true, employeeAuth: false, adminAuth: false }
     },
+    {
+      path: '/employer/customer-support',
+      beforeEnter: guardMyroute,
+      name: 'CustomerSupport',
+      component: CustomerSupport,
+      meta: { requiresAuth: true, employerAuth: true, employeeAuth: false, adminAuth: false }
+    },
+    {
+      path: '/employer/view-question/:id',
+      beforeEnter: guardMyroute,
+      name: 'ViewQuestion',
+      component: ViewQuestion,
+      meta: { requiresAuth: true, employerAuth: true, employeeAuth: false, adminAuth: false }
+    },
     // routes for employees
     {
       path: '/employee/dashboard',
@@ -385,6 +407,13 @@ export const router = new Router({
       beforeEnter: guardMyroute,
       name: 'Announcements',
       component: EmpAnnouncements,
+      meta: { requiresAuth: true, employerAuth: false, employeeAuth: true, adminAuth: false }
+    },
+    {
+      path: '/employee/customer-support',
+      beforeEnter: guardMyroute,
+      name: 'CustomerSupport',
+      component: EmpCustomerSupport,
       meta: { requiresAuth: true, employerAuth: false, employeeAuth: true, adminAuth: false }
     },
     {
@@ -457,12 +486,25 @@ export const router = new Router({
       component: EmpLearningPlanView,
       meta: { requiresAuth: true, employerAuth: false, employeeAuth: true, adminAuth: false }
     },
- 
+    {
+      path: '/employee/ask-your-care-team',
+      beforeEnter: guardMyroute,
+      name: 'AskYourCareTeam',
+      component: EmpAskYourCareTeam,
+      meta: { requiresAuth: true, employerAuth: false, employeeAuth: true, adminAuth: false }
+    },
     {
       path: '/employee/meeting-recordings/:id',
       beforeEnter: guardMyroute,
       name: 'EmpMeetingRecording',
       component: EmpMeetingRecording,
+      meta: { requiresAuth: true, employerAuth: false, employeeAuth: true, adminAuth: false }
+    },
+    {
+      path: '/employee/view-question/:id',
+      beforeEnter: guardMyroute,
+      name: 'ViewQuestion',
+      component: EmpViewQuestion,
       meta: { requiresAuth: true, employerAuth: false, employeeAuth: true, adminAuth: false }
     },
     //routes for admin
@@ -666,6 +708,13 @@ export const router = new Router({
       beforeEnter: guardMyroute,
       name: 'AdminLearningPlanResource',
       component: AdminLearningPlanResource,
+      meta: { requiresAuth: true, employerAuth: false, employeeAuth: false, adminAuth: true }
+    },
+    {
+      path: '/admin/view-question/:id',
+      beforeEnter: guardMyroute,
+      name: 'ViewQuestion',
+      component: AdminViewQuestion,
       meta: { requiresAuth: true, employerAuth: false, employeeAuth: false, adminAuth: true }
     },
   ],

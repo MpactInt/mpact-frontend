@@ -797,7 +797,7 @@ export default {
         that.chatGroups = response.data.res
       })
     },
-
+  
   },
   created() {
     this.user = JSON.parse(localStorage.getItem("userData"));

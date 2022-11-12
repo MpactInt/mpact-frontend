@@ -298,8 +298,17 @@ class Api {
     getQuestionList(page,data) {
         return axiosCommon.post('/get-question-list' + '?page=' + page,data)
     }
+    submitResponse(data){
+        return axiosCommon.post('/submit-response', data)
+    }
     forwardToAdmin(id){
         return axiosCommon.get('/forward-to-admin/'+id)
+    }
+    archiveQuestion(id){
+        return axiosCommon.get('/archive-question/'+id)
+    }
+    getQuestion(id){
+        return axiosCommon.get('/get-question/'+id)
     }
     getPlanDetailsBySubscriptionId(id) {
         return axiosCommon.get('/get-plan-details-by-subscription-id/' + id)

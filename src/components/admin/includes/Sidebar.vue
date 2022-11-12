@@ -37,7 +37,7 @@
           <router-link to="/admin/request-workshop">Workshop Requests</router-link>
         </li>
         <li>
-          <router-link to="/admin/ask-your-care-team">Ask Your Care Team</router-link>
+          <router-link to="/admin/ask-your-care-team">Client Support</router-link>
         </li>
         <li>
           <router-link to="/admin/companies">Companies</router-link>

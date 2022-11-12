@@ -11,7 +11,9 @@
 
 <script>
 /* eslint-disable */
-import Api from '../../router/api'
+import Api from '../../../router/api'
+import AppMixin from '../../../mixins/AppMixin'
+
 export default {
   name: 'AskQuestion',
   data() {
@@ -22,6 +24,7 @@ export default {
       }
     }
   },
+  mixins: [AppMixin],
   methods: {
     submitAskQuestion: function () {
       let that = this
@@ -34,6 +37,7 @@ export default {
         })
       } else {
         that.askQuestion.disabled = true
+        that.askQuestion.role = that.company.role
         Api.submitAskQuestion(that.askQuestion).then(response => {
           that.askQuestion.disabled = false
           this.$swal({

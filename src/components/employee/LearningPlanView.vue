@@ -17,7 +17,9 @@
           <div class="card-body">
             <h5 class="card-title">{{ w.title }}</h5>
             <p class="card-text">{{ w.description }}</p>
-            <a class="btn btn-read-more" @click="downloadLearningPlanFile(w.id, w.image)">Download File</a>
+            <a class="btn btn-read-more" :href="w.link" target="_blank" v-if="w.link">Watch Video</a>
+            <a class="btn btn-read-more" v-else-if="w.image" @click="downloadLearningPlanFile(w.id, w.image)">Download File</a>
+
           </div>
         </div>
       </div>

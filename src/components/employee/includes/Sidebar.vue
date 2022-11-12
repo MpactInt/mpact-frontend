@@ -39,9 +39,13 @@
           </router-link>
         </li>
         <li>
-          <router-link to="/employee/ask-question">Ask a Question
+          <router-link to="/employee/customer-support">Customer Support
           </router-link>
         </li>
+        <!-- <li>
+          <router-link to="/employee/ask-your-care-team">Ask Your Care Team
+          </router-link>
+        </li> -->
         <!-- <li>
           <router-link to="/employee/message-my-team">Message My Team</router-link>
         </li> -->

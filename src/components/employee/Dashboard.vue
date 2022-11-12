@@ -35,7 +35,7 @@
           <div class="card">
             <img :src="learningPlanPath + '/' + img.image" class="card-img-top" alt="...">
             <div class="card-body">
-              <h5 class="card-title">{{ img.title }}</h5>
+              <h5 class="card-title">{{ img.title | truncate(15) }}</h5>
               <p class="card-text">{{ img.description | truncate(50) }}</p>
               <router-link class="links" :to="'/employee/my-learning-plan/' + img.id">
                 <!--              <a href="#" class="links">-->
@@ -59,7 +59,7 @@
             <div v-for="wl in workshopsListDashboard" v-bind:key="wl.id">
             <div class="row align-items-center">
             <div class="col-md-6">
-              <img :src="wl.image" class="w-100 workshops-img" alt="workshops image" />
+              <img :src="wl.image" class="w-100 workshops-img card-img-top" alt="workshops image" />
             </div>
             <div class="col-md-6 px-4">
               <h3 class="section-title mt-4 mb-2">{{ wl.title }}</h3>

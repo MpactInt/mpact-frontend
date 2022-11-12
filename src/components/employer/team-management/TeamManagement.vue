@@ -1,5 +1,4 @@
 <template>
-
   <div>
     <section class="team-management-section half-cut-bg">
       <h1 class="page-title text-left">
