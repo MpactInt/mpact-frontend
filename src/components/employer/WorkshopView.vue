@@ -1,4 +1,4 @@
-<template>
+c<template>
   <section class="admin-workshops-section half-cut-bg">
       <h1 class="page-title text-left mt-0">Workshops</h1>
     <div class="mt-5">

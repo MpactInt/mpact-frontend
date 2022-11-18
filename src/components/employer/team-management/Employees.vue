@@ -102,13 +102,13 @@
               <option value="COMPANY_EMP">Employee</option>
             </select>
           </div>
-          <div class="form-group">
+          <!-- <div class="form-group">
             <label>Profile Type<span class="err">*</span></label>
             <select class="form-control" id="profileType" v-model="employee.profileType">
               <option value="">Select Profile Type</option>
               <option v-for="pt in profileType" :value="pt.id" v-bind:key="pt.id">{{ pt.profile_type }}</option>
             </select>
-          </div>
+          </div> -->
           <button type="button" @click="addEmployee" class="btn btn-primary"
             :disabled="employee.disabled">Submit</button>
         </div>
@@ -136,13 +136,13 @@
               <option value="COMPANY_EMP">Employee</option>
             </select>
           </div>
-          <div class="form-group">
+          <!-- <div class="form-group">
             <label>Profile Type<span class="err">*</span></label>
             <select class="form-control" id="profileType" v-model="employeeUpdate.profileType">
               <option value="">Select Profile Type</option>
               <option v-for="pt in profileType" :value="pt.id" v-bind:key="pt.id">{{ pt.profile_type }}</option>
             </select>
-          </div>
+          </div> -->
           <button type="button" @click="updateEmployee" class="btn btn-primary"
             :disabled="employeeUpdate.disabled">Submit</button>
         </div>
@@ -230,7 +230,7 @@ export default {
     addEmployee: function (e) {
       e.preventDefault();
       let that = this;
-      if (!that.employee.firstname || !that.employee.lastname || !that.employee.email || !that.employee.role || !that.employee.profileType) {
+      if (!that.employee.firstname || !that.employee.lastname || !that.employee.email || !that.employee.role) {
         this.$swal({
           icon: "error",
           title: "error",
@@ -313,7 +313,7 @@ export default {
     },
     updateEmployee: function () {
       let that = this;
-      if (!that.employeeUpdate.firstname || !that.employeeUpdate.lastname || !that.employeeUpdate.role || !that.employeeUpdate.profileType) {
+      if (!that.employeeUpdate.firstname || !that.employeeUpdate.lastname || !that.employeeUpdate.role) {
         this.$swal({
           icon: "error",
           title: "error",

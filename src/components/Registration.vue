@@ -42,12 +42,12 @@
                 <input type="password" class="form-control" id="password" placeholder="Create Password"
                   v-model="employee.password">
               </div>
-               <div class="form-group">
+               <!-- <div class="form-group">
                <select class="form-control" id="profileType" v-model="employee.profileType">
                <option value="">Select Profile Type</option>
                <option v-for="pt in profileType" :value="pt.id" v-bind:key="pt.id">{{pt.profile_type}}</option>
                </select>
-              </div>
+              </div> -->
               <!-- <p class="term-condition"><label class="custom-container text-gray">Terms and Conditons Here.
                   <input type="checkbox">
                   <span class="custom-checkmark"></span>
@@ -90,7 +90,7 @@ export default {
     validateForm: function (e) {
       e.preventDefault();
       let that = this;
-      if (!that.employee.firstname || !that.employee.lastname || !that.employee.email || !that.employee.password || !that.employee.profileType) {
+      if (!that.employee.firstname || !that.employee.lastname || !that.employee.email || !that.employee.password) {
         this.$swal({
           icon: "error",
           title: "error",

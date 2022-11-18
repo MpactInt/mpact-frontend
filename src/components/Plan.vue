@@ -177,7 +177,7 @@
                   <div class="col-md-6">
                     <h3 class="section-title">Plans Comparison</h3>
                   </div>
-                  <div class="col-md-6 d-flex flex-wrap">
+                  <div class="col-md-6 d-flex flex-wrap plan-box">
                     <div class="custom-radio-btn ml-auto mb-3">
                       <input type="radio" id="Monthly1" name="radio-group1" v-on:click="showMonthly = true" checked>
                       <label for="Monthly1">Quarterly</label>
@@ -188,6 +188,7 @@
                     </div>
                   </div>
                 </div>
+                <div class="desktop-plans">
                 <div class="row monthly" v-if="showMonthly">
                   <div class="col-md-6">
                     <div class="pricing-box comparison-box">
@@ -674,7 +675,6 @@
                     </div>
                   </div>
                 </div>
-
                 <div class="row yearly" v-if="!showMonthly">
                   <div class="col-md-6">
                     <div class="pricing-box comparison-box">
@@ -1160,7 +1160,980 @@
                     </div>
                   </div>
                 </div>
-
+              </div>
+                <div class="mobile-plans">
+                  <VueSlickCarousel class="plan-card row monthly" v-if="showMonthly"  v-bind=" settings_shopping">
+                    <div class="col-md-6">
+                      <div class="pricing-box comparison-box">
+                        <div class="row">
+                          <div class="col-md-12">
+                            <div class="pricing-title pink-bg">
+                              <p class="w-100">Plan Features</p>
+                            </div>
+                          </div>
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <p class="w-100">Assessment Customization</p>
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <p class="w-100">Assessment Frequency</p>
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <p class="w-100">Individual Report</p>
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <p class="w-100">Organizational Report and Management Metrics Dashboard</p>
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <p class="w-100">Onboarding Support</p>
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <p class="w-100">Custom Report</p>
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <p class="w-100">Dedicated Organizational Consulting( Yearly)</p>
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <p class="w-100">Cognitive Dynamism Platform Features</p>
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <p class="w-100">24x7 Access to Employer Platform</p>
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <p class="w-100">24x7 Access to Employee Platform</p>
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <p class="w-100">Guided Leader Transformation Journey</p>
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <p class="w-100">Profile Based Employee Learning Journey</p>
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <p class="w-100">Resources</p>
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <p class="w-100">Custom Workshops (Yearly)</p>
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <p class="w-100">Attend Live Workshops (Per Year Member)</p>
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <p class="w-100">Team Announcements Messaging</p>
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <p class="w-100">Team Check-in and Pop-up Survey</p>
+                            </div>
+                          </div> <!-- list end -->
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-2">
+                      <div class="pricing-box comparison-box text-center">
+                        <div class="row">
+                          <div class="col-md-12">
+                            <div class="pricing-title yello-bg">
+                              <p class="w-100 text-center">Gold</p>
+                            </div>
+                          </div>
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <p class="w-100">1x</p>
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <img src="../assets/images/check.svg" alt="check icon">
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <img src="../assets/images/check.svg" alt="check icon">
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <img src="../assets/images/check.svg" alt="check icon">
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <img src="../assets/images/check.svg" alt="check icon">
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <p class="w-100">-</p>
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <p class="w-100">8 hours</p>
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <p class="w-100">-</p>
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <img src="../assets/images/check.svg" alt="check icon">
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <img src="../assets/images/check.svg" alt="check icon">
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <img src="../assets/images/check.svg" alt="check icon">
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <img src="../assets/images/check.svg" alt="check icon">
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <img src="../assets/images/check.svg" alt="check icon">
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <p class="w-100">-</p>
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <p class="w-100">4 hours</p>
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <img src="../assets/images/check.svg" alt="check icon">
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <img src="../assets/images/check.svg" alt="check icon">
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-btn">
+                              <router-link class="btn-primary btn"
+                                to="/create-company?plan=Package-1-Basic-USD-Every-3-months&periodUnit=month&planType=Package-1-Basic">
+                                Get
+                                Started
+                              </router-link>
+                            </div>
+                          </div> <!-- list end -->
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-2">
+                      <div class="pricing-box comparison-box text-center">
+                        <div class="row">
+                          <div class="col-md-12">
+                            <div class="pricing-title silver-bg">
+                              <p class="w-100 text-center">Diamond</p>
+                            </div>
+                          </div>
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <p class="w-100">4x</p>
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <img src="../assets/images/check.svg" alt="check icon">
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <img src="../assets/images/check.svg" alt="check icon">
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <img src="../assets/images/check.svg" alt="check icon">
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <img src="../assets/images/check.svg" alt="check icon">
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <img src="../assets/images/check.svg" alt="check icon">
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <p class="w-100">16 hours</p>
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <p class="w-100">-</p>
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <img src="../assets/images/check.svg" alt="check icon">
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <img src="../assets/images/check.svg" alt="check icon">
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <img src="../assets/images/check.svg" alt="check icon">
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <img src="../assets/images/check.svg" alt="check icon">
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <img src="../assets/images/check.svg" alt="check icon">
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <p class="w-100">2 hours (Virtual)</p>
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <p class="w-100">6 hours</p>
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <img src="../assets/images/check.svg" alt="check icon">
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <img src="../assets/images/check.svg" alt="check icon">
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-btn">
+                              <router-link class="btn-primary btn"
+                                to="/create-company?plan=Package-2-Enhanced-USD-Every-3-months&periodUnit=month&planType=Package-2-Enhanced">
+                                Get
+                                Started
+                              </router-link>
+                            </div>
+                          </div> <!-- list end -->
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-2">
+                      <div class="pricing-box comparison-box text-center">
+                        <div class="row">
+                          <div class="col-md-12">
+                            <div class="pricing-title navi-blue-bg">
+                              <p class="w-100 text-center">Platinum</p>
+                            </div>
+                          </div>
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <p class="w-100">12x</p>
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <img src="../assets/images/check.svg" alt="check icon">
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <img src="../assets/images/check.svg" alt="check icon">
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <img src="../assets/images/check.svg" alt="check icon">
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <img src="../assets/images/check.svg" alt="check icon">
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <!-- <p class="w-100">-</p> -->
+                              <img src="../assets/images/check.svg" alt="check icon">
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <p class="w-100">96 hours</p>
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <p class="w-100">-</p>
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <img src="../assets/images/check.svg" alt="check icon">
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <img src="../assets/images/check.svg" alt="check icon">
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <img src="../assets/images/check.svg" alt="check icon">
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <img src="../assets/images/check.svg" alt="check icon">
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <img src="../assets/images/check.svg" alt="check icon">
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <p class="w-100">8 hours</p>
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <p class="w-100">12 hours</p>
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <img src="../assets/images/check.svg" alt="check icon">
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <img src="../assets/images/check.svg" alt="check icon">
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-btn">
+                              <router-link class="btn-primary btn"
+                                to="/create-company?plan=Package-3-Premier-USD-Every-3-months&periodUnit=month&planType=Package-3-Premier">
+                                Get
+                                Started
+                              </router-link>
+                              <!-- <a href="#" class="btn-primary btn">Get Started</a> -->
+                            </div>
+                          </div> <!-- list end -->
+                        </div>
+                      </div>
+                    </div>
+                  </VueSlickCarousel>
+                  <VueSlickCarousel class="plan-card row yearly" v-if="!showMonthly"  v-bind=" settings_shopping">
+                    <div class="col-md-6">
+                      <div class="pricing-box comparison-box">
+                        <div class="row">
+                          <div class="col-md-12">
+                            <div class="pricing-title pink-bg">
+                              <p class="w-100">Plan Features</p>
+                            </div>
+                          </div>
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <p class="w-100">Assessment Customization</p>
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <p class="w-100">Assessment Frequency</p>
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <p class="w-100">Individual Report</p>
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <p class="w-100">Organizational Report and Management Metrics Dashboard</p>
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <p class="w-100">Onboarding Support</p>
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <p class="w-100">Custom Report</p>
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <p class="w-100">Dedicated Organizational Consulting( Yearly)</p>
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <p class="w-100">Cognitive Dynamism Platform Features</p>
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <p class="w-100">24x7 Access to Employer Platform</p>
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <p class="w-100">24x7 Access to Employee Platform</p>
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <p class="w-100">Guided Leader Transformation Journey</p>
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <p class="w-100">Profile Based Employee Learning Journey</p>
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <p class="w-100">Resources</p>
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <p class="w-100">Custom Workshops (Yearly)</p>
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <p class="w-100">Attend Live Workshops (Per Year Member)</p>
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <p class="w-100">Team Announcements Messaging</p>
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <p class="w-100">Team Check-in and Pop-up Survey</p>
+                            </div>
+                          </div> <!-- list end -->
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-2">
+                      <div class="pricing-box comparison-box text-center">
+                        <div class="row">
+                          <div class="col-md-12">
+                            <div class="pricing-title yello-bg">
+                              <p class="w-100 text-center">Gold</p>
+                            </div>
+                          </div>
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <p class="w-100">1x</p>
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <img src="../assets/images/check.svg" alt="check icon">
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <img src="../assets/images/check.svg" alt="check icon">
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <img src="../assets/images/check.svg" alt="check icon">
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <img src="../assets/images/check.svg" alt="check icon">
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <p class="w-100">-</p>
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <p class="w-100">8 hours</p>
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <p class="w-100">-</p>
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <img src="../assets/images/check.svg" alt="check icon">
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <img src="../assets/images/check.svg" alt="check icon">
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <img src="../assets/images/check.svg" alt="check icon">
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <img src="../assets/images/check.svg" alt="check icon">
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <img src="../assets/images/check.svg" alt="check icon">
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <p class="w-100">-</p>
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <p class="w-100">4 hours</p>
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <img src="../assets/images/check.svg" alt="check icon">
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <img src="../assets/images/check.svg" alt="check icon">
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-btn">
+                              <router-link class="btn-primary btn"
+                                to="/create-company?plan=Package-1-Basic-USD-Yearly&periodUnit=year&planType=Package-1-Basic">
+                                Get
+                                Started
+                              </router-link>
+                            </div>
+                          </div> <!-- list end -->
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-2">
+                      <div class="pricing-box comparison-box text-center">
+                        <div class="row">
+                          <div class="col-md-12">
+                            <div class="pricing-title silver-bg">
+                              <p class="w-100 text-center">Diamond</p>
+                            </div>
+                          </div>
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <p class="w-100">4x</p>
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <img src="../assets/images/check.svg" alt="check icon">
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <img src="../assets/images/check.svg" alt="check icon">
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <img src="../assets/images/check.svg" alt="check icon">
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <img src="../assets/images/check.svg" alt="check icon">
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <img src="../assets/images/check.svg" alt="check icon">
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <p class="w-100">16 hours</p>
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <p class="w-100">-</p>
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <img src="../assets/images/check.svg" alt="check icon">
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <img src="../assets/images/check.svg" alt="check icon">
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <img src="../assets/images/check.svg" alt="check icon">
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <img src="../assets/images/check.svg" alt="check icon">
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <img src="../assets/images/check.svg" alt="check icon">
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <p class="w-100">2 hours (Virtual)</p>
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <p class="w-100">6 hours</p>
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <img src="../assets/images/check.svg" alt="check icon">
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <img src="../assets/images/check.svg" alt="check icon">
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-btn">
+                              <router-link class="btn-primary btn"
+                                to="/create-company?plan=Package-2-Enhanced-USD-Yearly&periodUnit=year&planType=Package-2-Enhanced">
+                                Get
+                                Started
+                              </router-link>
+                            </div>
+                          </div> <!-- list end -->
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-2">
+                      <div class="pricing-box comparison-box text-center">
+                        <div class="row">
+                          <div class="col-md-12">
+                            <div class="pricing-title navi-blue-bg">
+                              <p class="w-100 text-center">Platinum</p>
+                            </div>
+                          </div>
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <p class="w-100">1x</p>
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <img src="../assets/images/check.svg" alt="check icon">
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <img src="../assets/images/check.svg" alt="check icon">
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <img src="../assets/images/check.svg" alt="check icon">
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <img src="../assets/images/check.svg" alt="check icon">
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <p class="w-100">-</p>
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <p class="w-100">8 hours</p>
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <p class="w-100">-</p>
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <img src="../assets/images/check.svg" alt="check icon">
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <img src="../assets/images/check.svg" alt="check icon">
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <img src="../assets/images/check.svg" alt="check icon">
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <img src="../assets/images/check.svg" alt="check icon">
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <img src="../assets/images/check.svg" alt="check icon">
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <p class="w-100">8 hours</p>
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <p class="w-100">12 hours</p>
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <img src="../assets/images/check.svg" alt="check icon">
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-text">
+                              <img src="../assets/images/check.svg" alt="check icon">
+                            </div>
+                          </div> <!-- list end -->
+                          <div class="col-md-12">
+                            <!-- list start -->
+                            <div class="pricing-btn">
+                              <router-link class="btn-primary btn"
+                                to="/create-company?plan=Package-3-Premier-USD-Yearly&periodUnit=year&planType=Package-3-Premier">
+                                Get
+                                Started
+                              </router-link>
+                              <!-- <a href="#" class="btn-primary btn">Get Started</a> -->
+                            </div>
+                          </div> <!-- list end -->
+                        </div>
+                      </div>
+                    </div>
+                  </VueSlickCarousel>
+              </div>
               </div>
             </div>
             <!--
@@ -1206,6 +2179,10 @@
 import Api from '../router/api'
 import HeaderEmployee from '../components/employee/includes/Header'
 import FooterEmployee from '../components/employee/includes/Footer'
+import VueSlickCarousel from 'vue-slick-carousel'
+import 'vue-slick-carousel/dist/vue-slick-carousel.css'
+// optional style for arrows & dots
+import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css'
 /* eslint-disable */
 export default {
   name: 'Plan',
@@ -1213,10 +2190,24 @@ export default {
     return {
       msg: 'Plan',
       plans: [],
-      showMonthly: true
+      showMonthly: true,
+      //plan carousel
+      settings_shopping: {
+        centerMode: false,
+        dots: true,
+        infinite: true,
+        speed: 500,
+        controls: true,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        initialSlide: 0,
+        // adaptiveHeight: true,
+        rtl: false,
+      },
     }
   },
-  components: { HeaderEmployee, FooterEmployee },
+  
+  components: { HeaderEmployee, FooterEmployee,  VueSlickCarousel },
   methods: {
     getPlans: function () {
       let that = this

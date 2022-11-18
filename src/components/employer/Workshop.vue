@@ -5,6 +5,7 @@
   </section>
 </template> -->
 <template>
+<div>
   <div class="employee-workshops-section pink-pattern-bg">
     <div class="container">
       <section class="live-classe">
@@ -86,6 +87,7 @@
       </section>
     </div>
   </div>
+</div>
 </template>
 
 <script>

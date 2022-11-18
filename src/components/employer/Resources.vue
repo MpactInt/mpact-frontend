@@ -1,8 +1,10 @@
 <template>
+  <div>
     <section class="employer-resources-section half-cut-bg">
       <h1 class="page-title text-left mt-0"><span>Resources</span></h1>
-        <List></List>
-  </section>
+      <List></List>
+    </section>
+  </div>
 </template>
 
 <script>
@@ -13,10 +15,10 @@ import List from '../common/resources/List.vue'
 export default {
   name: 'Resources',
   mixins: [AppMixin],
-  components:{List},
+  components: { List },
   data() {
     return {
-   
+
     }
   },
   methods: {

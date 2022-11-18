@@ -551,6 +551,20 @@ class Api {
     getChartData() {
         return axiosCommon.get('/get-chart-data')
     }
-
+    getRecentAnnouncementsList(id) {
+        return axiosCommon.get('/get-recent-announcement-list/'+id)
+    }
+    getRecentRequestedWorkshopList(id) {
+        return axiosCommon.get('/get-recent-requested-workshop-list/'+id)
+    }
+    getRecentWorkshopList(id) {
+        return axiosCommon.get('/get-recent-workshop-list/'+id)
+    }
+    getRecentResourceList(id) {
+        return axiosCommon.get('/get-recent-resource-list/'+id)
+    }
+    getRecentChatList(id) {
+        return axiosCommon.get('/get-recent-chat-list/'+id)
+    }
 }
 export default new Api()

@@ -1,56 +1,66 @@
 <template>
-  <div>
-    <section class="employer-dashboard pink-pattern-bg">
-      <h1 class="page-title text-left mb-0">Guided <span class="yellow-bg">Transformation</span></h1>
-      <h2 class="page-sub-title">This section will be the opening to the learning journey</h2>
-      <div class="row">
-        <div class="col-lg-3 col-md-6 my-2">
-          <router-link to="/employer/request-workshop" class="dashboard-card-link">
-            Requested Workshops
-            <img src="../../../assets/images/chevron-right.svg" alt="arrow-right" />
-          </router-link>
-        </div>
-        <div class="col-lg-3 col-md-6 my-2">
-          <router-link to="/employer/workshops" class="dashboard-card-link">
-            Workshops
-            <img src="../../../assets/images/chevron-right.svg" alt="arrow-right" />
-          </router-link>
-        </div>
-        <div class="col-lg-3 col-md-6 my-2">
-          <router-link to="/employer/announcements" class="dashboard-card-link">
-            Announcements
-            <img src="../../../assets/images/chevron-right.svg" alt="arrow-right" />
-          </router-link>
-        </div>
-        <div class="col-lg-3 col-md-6 my-2">
-          <router-link to="/employer/resources" class="dashboard-card-link">
-            Resources
-            <img src="../../../assets/images/chevron-right.svg" alt="arrow-right" />
-          </router-link>
-        </div>
-      </div>
-      <div class="row mt-5 card-row">
-        <div class="col-md-6 mb-3" v-if="stepsList.length" v-for="(step,index) in stepsList" v-bind:key="step.id">
-          <router-link :to="'/employer/view-step/' + step.id">
-            <div class="card">
-              <img :src="filePath + '/' + step.image" class="card-img-top" alt="...">
-              <div class="card-body">
-                <h6 class="card-sub-title">Step {{ index }}</h6>
-                <h5 class="card-title-2">{{ step.title }}</h5>
-              </div>
+  <div class="">
+    <div class="container-fluid">
+      <div class="row mob-row">
+        <div class="col-md-9">
+          <section class="employer-dashboard pink-pattern-bg">
+            <h1 class="page-title text-left mb-0">Guided <span class="yellow-bg">Transformation</span></h1>
+            <h2 class="page-sub-title">This section will be the opening to the learning journey</h2>
+            <!-- <div class="row">
+            <div class="col-lg-3 col-md-6 my-2">
+              <router-link to="/employer/request-workshop" class="dashboard-card-link">
+                Requested Workshops
+                <img src="../../../assets/images/chevron-right.svg" alt="arrow-right" />
+              </router-link>
             </div>
-          </router-link>
+            <div class="col-lg-3 col-md-6 my-2">
+              <router-link to="/employer/workshops" class="dashboard-card-link">
+                Workshops
+                <img src="../../../assets/images/chevron-right.svg" alt="arrow-right" />
+              </router-link>
+            </div>
+            <div class="col-lg-3 col-md-6 my-2">
+              <router-link to="/employer/announcements" class="dashboard-card-link">
+                Announcements
+                <img src="../../../assets/images/chevron-right.svg" alt="arrow-right" />
+              </router-link>
+            </div>
+            <div class="col-lg-3 col-md-6 my-2">
+              <router-link to="/employer/resources" class="dashboard-card-link">
+                Resources
+                <img src="../../../assets/images/chevron-right.svg" alt="arrow-right" />
+              </router-link>
+            </div>
+          </div> -->
+            <div class="row mt-5 card-row emplyr-card-row">
+              <div class="col-md-6 mb-3" v-if="stepsList.length" v-for="(step, index) in stepsList"
+                v-bind:key="step.id">
+                <router-link :to="'/employer/view-step/' + step.id">
+                  <div class="card">
+                    <img :src="filePath + '/' + step.image" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h6 class="card-sub-title">Step {{ index }}</h6>
+                      <h5 class="card-title-2">{{ step.title }}</h5>
+                    </div>
+                  </div>
+                </router-link>
+              </div>
+              <div v-if="!stepsList.length">No data found</div>
+            </div>
+          </section>
         </div>
-        <div v-if="!stepsList.length">No data found</div>
+        <div class="col-md-3 bg-light-clr mt-0">
+          <RecentSectionVue></RecentSectionVue>
+        </div>
       </div>
-    </section>
+    </div>
     <section class="employer-dashboard-statistics pink-pattern-bg-2">
       <div class="row">
         <div class="col-md-6 my-3">
           <div class="card-box statistics-box">
             <h5>Resources</h5>
-            <a class="pera" v-for="rl in resourcesList" v-bind:key="rl.id">{{ rl.title }} <img
-                src="../../../assets/images/chevron-right-blue.svg" /></a>
+            <router-link to="/employer/resources" class="pera" v-for="rl in resourcesList" v-bind:key="rl.id">{{ rl.title }} <img
+                src="../../../assets/images/chevron-right-blue.svg" /></router-link>
             <p v-if="!resourcesList.length">No Data Found</p>
             <router-link to="/employer/resources">View All</router-link>
           </div>
@@ -61,8 +71,8 @@
             <div class="todo-map-list" v-if="todoList.length">
               <div v-for="todo in todoList" v-bind:key="todo.id">
                 <img src="../../../assets/images/todo-map-icon.svg" />
-                <h4>Item #{{ todo.id }}</h4>
-                <p>{{ todo.title }}</p>
+                <h4>{{todo.title | truncate(4)}}</h4>
+                <p>{{ todo.description | truncate(10) }}</p>
               </div>
             </div>
             <p v-if="!todoList.length">No Data Found</p>
@@ -96,8 +106,11 @@
 /* eslint-disable */
 import AppMixin from '../../../mixins/AppMixin'
 import Api from '../../../router/api'
+import RequestWorkshop from '../../admin/RequestWorkshop.vue'
+import RecentSectionVue from '../../common/RecentSection.vue'
 
 export default {
+  components: {   RequestWorkshop, RecentSectionVue },
   name: 'Dashboard',
   mixins: [AppMixin],
   data() {
