@@ -566,5 +566,8 @@ class Api {
     getRecentChatList(id) {
         return axiosCommon.get('/get-recent-chat-list/'+id)
     }
+    // assesmentLogin(){
+    //     return axiosCommon.get('/assesment-login')
+    // }
 }
 export default new Api()

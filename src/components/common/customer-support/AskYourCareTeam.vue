@@ -36,16 +36,16 @@
           <td><p v-html="r.response ? (r.response) : 'NA'"></p></td>
           <td>
             <button type="button" class="btn btn-primary"
-              v-if="!r.forward_to_admin && (user.role == 'ADMIN' || company.role == 'COMPANY_ADMIN')"
+              v-if="!r.forward_to_admin && (user.role == 'ADMIN' || (company && company.role == 'COMPANY_ADMIN'))"
               @click="forwardToAdmin(r.id)">Forward to
               Admin</button>
             <button type="button" class="btn btn-primary"
-              v-if="r.forward_to_admin && (user.role == 'ADMIN' || company.role == 'COMPANY_ADMIN')">Forwarded</button>
+              v-if="r.forward_to_admin && (user.role == 'ADMIN' || (company && company.role == 'COMPANY_ADMIN'))">Forwarded</button>
             <button type="button" class="btn btn-primary"
-              v-if="!r.response && r.company_id != company.id && (user.role == 'ADMIN' || company.role == 'COMPANY_ADMIN')"
+              v-if="((user.role == 'ADMIN'  && !r.response)|| (company && company.role == 'COMPANY_ADMIN'  && !r.response && r.company_id != company.id))"
               v-b-modal.response-modal @click="respondQuestion(r.id)">Respond</button>
             <button type="button" class="btn btn-primary"
-              v-if="r.response && (user.role == 'ADMIN' || company.role == 'COMPANY_ADMIN')">Responded</button>
+              v-if="((user.role == 'ADMIN' && r.response)|| (company && company.role == 'COMPANY_ADMIN' && r.response))">Responded</button>
             <button type="button" class="btn btn-primary" @click="archiveQuestion(r.id)">Archive</button>
             <router-link :to="'view-question/' + r.id" class="btn btn-primary">View</router-link>
           </td>
@@ -123,6 +123,7 @@ export default {
             showConfirmButton: true
           }).then(function () {
             that.$bvModal.hide('response-modal')
+            that.response.response = ''
             that.getQuestionList();
           });
         }).catch((error) => {
@@ -219,15 +220,15 @@ export default {
     },
   },
   mounted() {
-    if(this.user.type == "ADMIN"){
-      this.type = "admin"
-    }else{
-      if(this.company.type == "COMPANY_EMP"){
-        this.type = "employee"
-      }else{
-        this.type = "employer"
-      }
-    }
+    // if(this.user.role == "ADMIN"){
+    //   this.type = "admin"
+    // }else{
+    //   if(this.company.role == "COMPANY_EMP"){
+    //     this.type = "employee"
+    //   }else{
+    //     this.type = "employer"
+    //   }
+    // }
     this.getQuestionList()
   }
 }

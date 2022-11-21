@@ -39,7 +39,7 @@
         <li>
           <router-link to="/employer/settings">Settings</router-link>
         </li>
-        <li><a href="https://assessment.mpact-int.com/login" target="_blank">Assessment</a></li>
+        <li><a href="javascript:void(0)" @click="assesmentLogin()">Assessment</a></li>
         <li>
           <router-link to="/employer/request-workshop">Request for Workshop</router-link>
         </li>

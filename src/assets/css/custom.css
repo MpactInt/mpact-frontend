@@ -416,8 +416,9 @@ label.cbx {
   display: block;
   border-radius: 4px;
   font-weight: 400;
-  font-size: 14px;
+  font-size: 1.4vh;
   position: relative;
+  line-height: 1.8;
 }
 
 .bg-light-clr .card-title {

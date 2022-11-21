@@ -1,6 +1,6 @@
 <template>
   <section class="employee-ask-question-section half-cut-bg">
-    <router-link to="/employee/customer-support" class="btn back">
+    <router-link to="/employer/customer-support" class="btn back">
         <!-- <button class="btn-primary"> -->
         <img src="../../assets/images/arrow-left.svg" alt="arrow-left" /> Back
         <!-- </button> -->
