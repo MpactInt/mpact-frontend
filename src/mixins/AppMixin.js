@@ -798,14 +798,14 @@ export default {
       })
     },
     assesmentLogin:function(){
-      var url = "http://localhost:8000/assesment-login?";
+      var url = ASSESMENT_URL+'assesment-login?';
       var c = 'id='+this.user.assesment_id+'&email='+this.user.email+'&name='+this.company.company_name+'&password='+this.user.password;
       window.open(encodeURI(url+c),'_blank')
       // let that = this;
       // Api.assesmentLogin().then(response => {
       //   window.open(response.data.url,'_blank')
       // })
-    }
+    },
   },
   created() {
     this.user = JSON.parse(localStorage.getItem("userData"));

@@ -21,6 +21,8 @@
         <li>
           <router-link to="/employee/announcements">Announcements or Updates</router-link>
         </li>
+        <li v-if="authUser.company_assesment_id"><a href="javascript:void(0)"
+            @click="assesmentLoginEmployee()">Assessment</a></li>
         <li>
           <router-link to="/employee/resources">Resources</router-link>
         </li>
@@ -58,8 +60,8 @@
             @keyup="getChatGroups" /><span class="search-icon"></span>
           <router-link v-for="e in chatGroups.data" v-bind:key="e.id" :to="'/employee/group-chat/' + e.id"
             @click.native="readGroupMessage(e.id)"><img src="../../../assets/images/back-btn.png" alt="btn" />{{
-            e.name
-            }} <span class="new-message" v-if="e.new_message.length">{{e.new_message.length}}</span>
+                e.name
+            }} <span class="new-message" v-if="e.new_message.length">{{ e.new_message.length }}</span>
           </router-link>
         </li>
         <li>
@@ -72,8 +74,8 @@
             @keyup="getEmployeesListChat" /><span class="search-icon"></span>
           <router-link v-for="e in empList.data" v-bind:key="e.id" :to="'/employee/one-to-one-chat/' + e.id"
             @click.native="readOneToOneMessage(e.id)"><img src="../../../assets/images/back-btn.png" alt="btn" /> {{
-            e.first_name
-            }} {{ e.last_name }}<span class="new-message" v-if="e.new_message.length">{{e.new_message.length}}</span>
+                e.first_name
+            }} {{ e.last_name }}<span class="new-message" v-if="e.new_message.length">{{ e.new_message.length }}</span>
           </router-link>
         </li>
       </ul>
@@ -101,7 +103,11 @@ export default {
   },
   mixins: [AppMixin],
   methods: {
-   
+    assesmentLoginEmployee: function () {
+      var url = ASSESMENT_URL + 'assesment-login-employee?';
+      var c = 'id=' + this.user.assesment_id + '&team_assesment_id=' + this.authUser.company_assesment_id + '&email=' + this.user.email + '&name=' + this.company.first_name + ' ' + this.company.last_name + '&password=' + this.user.password;
+      window.open(encodeURI(url + c), '_blank')
+    }
   },
   created() {
     if (this.isLoggedIn) {

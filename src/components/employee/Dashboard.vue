@@ -50,7 +50,7 @@
             <div class="card-body">
               <h5 class="card-title">{{ img.title | truncate(15) }}</h5>
               <p class="card-text">{{ img.description | truncate(50) }}</p>
-              <router-link class="links" :to="'/employee/my-learning-plan/' + img.id">
+              <router-link class="links" :to="'/'+currentUrl+'/my-learning-plan/' + img.id">
                 <!--              <a href="#" class="links">-->
                 Read More <img src="../../assets/images/arrow-right.svg" />
                 <!--              </a>-->
@@ -59,7 +59,7 @@
           </div>
         </div>
         <div class="col-md-12">
-          <router-link to="/employee/my-learning-plan" class="btn my-4">See More</router-link>
+          <router-link :to="'/'+currentUrl+'/my-learning-plan'" class="btn my-4">See More</router-link>
         </div>
       </div>
     </section>
@@ -119,7 +119,7 @@
       <div v-if="!todoList.length">
         No data found
       </div>
-      <router-link to="/employee/todo" class="btn mt-4 mb-5">View All</router-link>
+      <router-link :to="'/'+currentUrl+'/todo'" class="btn mt-4 mb-5">View All</router-link>
     </section>
 
   </div>
@@ -152,7 +152,8 @@ export default {
       learningPlanPath: "",
       chartData: [],
       chartDataPer: [],
-      res: []
+      res: [],
+      currentUrl:''
     };
   },
   methods: {
@@ -226,6 +227,8 @@ export default {
     }
   },
   created() {
+    var url = document.URL.split('/');
+        this.currentUrl = url[3]
     this.getTodoListDashboard();
     this.getRequestedWorkshopListDashboard();
     this.getSection1(this.company.profile_type_id);

@@ -13,6 +13,9 @@
           <router-link to="/employer/dashboard">Home</router-link>
         </li>
         <li>
+          <router-link to="/employer/employee-dashboard">Employee Dashboard</router-link>
+        </li>
+        <li>
           <router-link to="/employer/profile">Profile</router-link>
         </li>
         <li>

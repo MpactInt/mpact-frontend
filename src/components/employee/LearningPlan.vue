@@ -11,7 +11,7 @@
             <div class="card-body">
               <h5 class="card-title">{{ img.title | truncate(15) }}</h5>
               <p class="card-text">{{ img.description | truncate(100) }}</p>
-              <router-link class="links" :to="'/employee/my-learning-plan/'+img.id">
+              <router-link class="links" :to="'/'+currentUrl+'/my-learning-plan/'+img.id">
                 Read More <img src="../../assets/images/arrow-right.svg"/>
               </router-link>
             </div>
@@ -40,6 +40,8 @@ export default {
   },
   methods: {},
   created () {
+    var url = document.URL.split('/');
+        this.currentUrl = url[3]
     this.getLearningPlanList()
   }
 }

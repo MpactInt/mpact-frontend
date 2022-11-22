@@ -502,6 +502,43 @@ export const router = new Router({
                adminAuth: false
              }
            },
+           {
+            path: "/employer/employee-dashboard",
+            beforeEnter: guardMyroute,
+            name: "Dashboard",
+            component: EmpDashboard,
+            meta: {
+              requiresAuth: true,
+              employerAuth: true,
+              employeeAuth: false,
+              adminAuth: false
+            }
+          },
+          {
+            path: "/employer/my-learning-plan",
+            beforeEnter: guardMyroute,
+            name: "LearningPlan",
+            component: EmpLearningPlan,
+            meta: {
+              requiresAuth: true,
+              employerAuth: true,
+              employeeAuth: false,
+              adminAuth: false
+            }
+          },
+          {
+            path: "/employer/my-learning-plan/:id",
+            beforeEnter: guardMyroute,
+            name: "LearningPlanView",
+            component: EmpLearningPlanView,
+            meta: {
+              requiresAuth: true,
+              employerAuth: true,
+              employeeAuth: false,
+              adminAuth: false
+            }
+          },
+     
            // routes for employees
            {
              path: "/employee/dashboard",

@@ -9,21 +9,22 @@
                         </a>
                     </h5>
                     <router-link v-for="cl in chatList" v-bind:key="cl.id"
-                        :to="'/' + currentUrl + '/one-to-one-chat/' + cl.id" v-if="chatList.length" class="dashboard-card-link">
+                        :to="'/' + currentUrl + '/one-to-one-chat/' + cl.id" v-if="chatList.length"
+                        class="dashboard-card-link">
                         {{ cl.first_name }} {{ cl.last_name }}
                     </router-link>
                 </div>
             </div>
         </div>
-        <div class="mb-3">
+        <div class="mb-3" v-if="company.role == 'COMPANY_ADMIN'">
             <div class="card home-side-card mt-0">
                 <div class="card-body">
                     <h5 class="card-title">
-                        <router-link :to="'/' + currentUrl + '/request-workshops'">
+                        <router-link :to="'/' + currentUrl + '/request-workshop'">
                             Requested Workshops <img src="../../assets/images/chevron-right.svg" alt="arrow-right" />
                         </router-link>
                     </h5>
-                    <router-link :to="'/' + currentUrl + '/request-workshops'" v-if="requestedWorkshopList.length"
+                    <router-link :to="'/' + currentUrl + '/request-workshop'" v-if="requestedWorkshopList.length"
                         v-for="rw in requestedWorkshopList" v-bind:key="rw.id" class="dashboard-card-link">
                         {{ rw.name }}
                     </router-link>
@@ -39,11 +40,12 @@
                         </router-link>
                     </h5>
                     <router-link v-if="currentUrl == 'employer' && workshopList.length" v-for="rw in workshopList"
-                    :to="'/' + currentUrl + '/view-workshop/'+ rw.id" v-bind:key="rw.id" class="dashboard-card-link">
+                        :to="'/' + currentUrl + '/view-workshop/' + rw.id" v-bind:key="rw.id"
+                        class="dashboard-card-link">
                         {{ rw.title }}
                     </router-link>
                     <router-link v-if="currentUrl == 'employee' && workshopList.length" v-for="rw in workshopList"
-                    :to="'/' + currentUrl + '/workshop/'+ rw.id" v-bind:key="rw.id" class="dashboard-card-link">
+                        :to="'/' + currentUrl + '/workshop/' + rw.id" v-bind:key="rw.id" class="dashboard-card-link">
                         {{ rw.title }}
                     </router-link>
                 </div>
@@ -58,7 +60,7 @@
                             Announcements <img src="../../assets/images/chevron-right.svg" alt="arrow-right" />
                         </router-link>
                     </h5>
-                    <router-link  :to="'/' + currentUrl + '/announcements'" v-if="announcementsList.length"
+                    <router-link :to="'/' + currentUrl + '/announcements'" v-if="announcementsList.length"
                         v-for="rw in announcementsList" v-bind:key="rw.id" class="dashboard-card-link">
                         {{ rw.title }}<br>
                     </router-link>
@@ -73,8 +75,8 @@
                             Resources <img src="../../assets/images/chevron-right.svg" alt="arrow-right" />
                         </router-link>
                     </h5>
-                    <router-link :to="'/' + currentUrl + '/resources'" v-if="resourcesList.length" v-for="rw in resourcesList"
-                        v-bind:key="rw.id" class="dashboard-card-link">
+                    <router-link :to="'/' + currentUrl + '/resources'" v-if="resourcesList.length"
+                        v-for="rw in resourcesList" v-bind:key="rw.id" class="dashboard-card-link">
                         {{ rw.title }}
                     </router-link>
                 </div>
