@@ -1,10 +1,11 @@
 <template>
   <div class="card-box">
-      <textarea class="form-control" id="ask-question" v-model="askQuestion.description"
-        placeholder="Ask Your Care Team"></textarea>
+    <textarea class="form-control" id="ask-question" v-model="askQuestion.description"
+      placeholder="Ask Your Care Team"></textarea>
 
     <div class="form-group mt-4">
-      <button type="button" :disabled="askQuestion.disabled" class="btn btn-primary" @click="submitAskQuestion">Submit</button>
+      <button type="button" :disabled="askQuestion.disabled" class="btn btn-primary"
+        @click="submitAskQuestion">Submit</button>
     </div>
   </div>
 </template>
@@ -49,6 +50,14 @@ export default {
             that.askQuestion.disabled = false
             that.askQuestion.description = ''
           });
+        }).catch((error) => {
+          that.askQuestion.disabled = false
+          this.$swal({
+            icon: 'error',
+            title: 'error',
+            text: error.response.data.message,
+            showConfirmButton: true
+          })
         })
       }
     }

@@ -799,7 +799,13 @@ export default {
     },
     assesmentLogin:function(){
       var url = ASSESMENT_URL+'assesment-login?';
-      var c = 'id='+this.user.assesment_id+'&email='+this.user.email+'&name='+this.company.company_name+'&password='+this.user.password;
+      var c = 'id='+this.user.assesment_id+'&email='+this.user.email+'&name='+this.company.company_name+'&password='+this.user.password+'&is_academic=0';
+      console.log(this.authUser.company_domain.indexOf(".edu"));
+      if(this.authUser.company_domain.indexOf(".edu") > -1){
+        c = 'id='+this.user.assesment_id+'&email='+this.user.email+'&name='+this.company.company_name+'&password='+this.user.password+'&is_academic=1';
+      }
+      console.log(url+c);
+
       window.open(encodeURI(url+c),'_blank')
       // let that = this;
       // Api.assesmentLogin().then(response => {
