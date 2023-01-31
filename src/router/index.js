@@ -178,6 +178,10 @@ export const router = new Router({
              name: "Login",
              component: Login
            },
+
+
+           /************************employer routes ************************/
+
            {
              path: "/employer/team-management",
              beforeEnter: guardMyroute,
