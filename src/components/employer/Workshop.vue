@@ -65,7 +65,7 @@
             </div>
             <div class="course-details">
               <div class="time w-100">
-                <p><span><img src="../../assets/images/clock.svg" alt="icon"/> </span>Time<span>{{ w.total_hours }} Hour(s)</span>
+                <p><span><img src="../../assets/images/clock.svg" alt="icon"/> </span>Time: <span>{{ w.total_hours }} Hour(s)</span>
                 </p>
               </div>
               <div class="place w-100">

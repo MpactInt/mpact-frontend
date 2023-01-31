@@ -1385,8 +1385,8 @@ a.link:hover {
     color: #090446;
     font-size: 1.8vh;
     white-space: nowrap;
-    padding-right: 40px;
-    min-width: 50%;
+    padding-right: 10px;
+    min-width: 30%;
     word-break: break-all;
 }
 

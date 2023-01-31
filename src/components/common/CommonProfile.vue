@@ -38,28 +38,28 @@
 
               <div class="col-lg-6">
                 <div class="profile-details"  v-if="authUser.role!='ADMIN'">
-                  <label class="w-50">Full Name</label> <span>{{ authUser.first_name }} {{ authUser.last_name }} </span>
+                  <label class="">Full Name</label> <span>{{ authUser.first_name }} {{ authUser.last_name }} </span>
                 </div>
                 <div class="profile-details">
-                  <label class="w-50">Email</label> <span>{{ user.email }}</span>
+                  <label class="">Email</label> <span>{{ user.email }}</span>
                 </div>
                 <div class="profile-details" v-if="authUser.role == 'COMPANY_EMP'">
-                  <label class="w-50">Profile Type</label> <span>{{ authUser.profile_type }}</span>
+                  <label class="">Profile Type</label> <span>{{ authUser.profile_type }}</span>
                 </div>
                 <div class="profile-details border-bottom-0" v-if="authUser.role == 'COMPANY_ADMIN'">
-                  <label class="w-50">Total Employees</label> <span>{{ authUser.total_employees }}</span>
+                  <label class="">Total Employees</label> <span>{{ authUser.total_employees }}</span>
                 </div>
               </div>
               <div class="col-lg-6">
                 <div class="profile-details"  v-if="authUser.role!='ADMIN'">
-                  <label class="w-50">Company Name</label> <span>{{ authUser.company_name }}</span>
+                  <label class="">Company Name</label> <span>{{ authUser.company_name }}</span>
                 </div>
                 <div class="profile-details">
-                  <label class="w-50">Role</label> <span>{{ authUser.role | replaceUndescore }}</span>
+                  <label class="">Role</label> <span>{{ authUser.role | replaceUndescore }}</span>
                 </div>
 
                 <div class="profile-details" v-if="authUser.role != 'COMPANY_ADMIN' && authUser.title">
-                  <label class="w-50">Title</label> <span>{{ authUser.title }}</span>
+                  <label class="">Title</label> <span>{{ authUser.title }}</span>
                 </div>
               </div>
               <div class="col-md-12"  v-if="authUser.role!='ADMIN'">

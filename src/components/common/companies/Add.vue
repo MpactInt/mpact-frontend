@@ -48,7 +48,7 @@
             </div>
             <div class="col-md-12">
                 <div class="form-group">
-                    <input type="number" class="form-control" id="employees" placeholder="Number of employees *"
+                    <input type="number" class="form-control" id="employees" placeholder="Number of Employees *"
                         v-model="chargebeeUser.employees">
                 </div>
             </div>

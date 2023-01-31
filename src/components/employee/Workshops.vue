@@ -7,7 +7,7 @@
             <div class="row">
               <div class="col-md-12">
                 <h2 class="page-title mb-0 text-left">
-                  <span>Workshops</span>
+                  <span></span>
                 </h2>
                 <h3 class="page-sub-title">
                   Browse our 100% live online classes led by top instructors and

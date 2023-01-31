@@ -30,7 +30,7 @@
               <button type="button" class="d-block btn btn-primary" @click="validateForm"
                 :disabled="user.disabled">Login</button>
               <p class="forget-link text-center mt-3"> <a v-b-modal.forgot-pass-modal class="text-red">Forgot
-                  Password?</a></p>
+                  Password???</a></p>
               <div class="account-box-link text-gray">
                 Don't have account? <span>
                   <router-link class="text-blue bold" to="/">Subscribe Now</router-link>
