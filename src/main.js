@@ -51,13 +51,21 @@ Vue.filter('fromNow', function (value) {
 
 Vue.filter('timeStampToDateOnly', function (value) {
   if (value) {
-    return moment.unix(value).format('MM/DD/YYYY')
+    var dateObj = new Date(value)
+    var momentObj = moment(dateObj)
+    var momentString = momentObj.format('MM/DD/YYYY')
+    return momentString
+    //return moment.unix(value).format('MM/DD/YYYY')
   }
 });
 
 Vue.filter('timeStampToTimeOnly', function (value) {
   if (value) {
-    return moment.unix(value).format('HH:mm:ss')
+    var dateObj = new Date(value)
+    var momentObj = moment(dateObj)
+    var momentString = momentObj.format('HH:mm:ss')
+    return momentString
+    //return moment.unix(value).format('HH:mm:ss')
   }
 });
 
