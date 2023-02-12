@@ -515,7 +515,7 @@
                         <div class="col-md-12">
                           <!-- list start -->
                           <div class="pricing-text">
-                            <p class="w-100">2 hours (Virtual)</p>
+                            <p class="w-100">2 hours</p>
                           </div>
                         </div> <!-- list end -->
                         <div class="col-md-12">
@@ -1001,7 +1001,7 @@
                         <div class="col-md-12">
                           <!-- list start -->
                           <div class="pricing-text">
-                            <p class="w-100">2 hours (Virtual)</p>
+                            <p class="w-100">2 hours</p>
                           </div>
                         </div> <!-- list end -->
                         <div class="col-md-12">

@@ -67,7 +67,7 @@
                 </div>
             </div>
         </div>
-        <div class="mb-3">
+        <!-- <div class="mb-3">
             <div class="card home-side-card">
                 <div class="card-body">
                     <h5 class="card-title">
@@ -81,7 +81,7 @@
                     </router-link>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
 </template>
 <script>

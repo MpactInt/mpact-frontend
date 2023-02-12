@@ -68,7 +68,7 @@
           <td>{{ r.title }}</td>
           <td>{{ r.description }}</td>
           <td>{{ r.total_hours }}</td>
-          <td>{{ r.date | timeStampToDate }}</td>
+          <td>{{ r.date }}</td>
           <td>{{ r.instructor }}</td>
           <td>{{ r.meeting_type }}</td>
           <td><span v-html="r.additional_info"></span></td>

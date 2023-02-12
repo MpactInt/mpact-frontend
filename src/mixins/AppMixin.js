@@ -131,7 +131,7 @@ export default {
       getWorkshopData: {
         'sortBy': '',
         'keyword': '',
-        'sortOrder':''
+        'sortOrder': ''
       },
       workshopPath: '',
       workshopsListDashboard: [],
@@ -231,14 +231,14 @@ export default {
         });
       });
     },
- 
+
     getChatGroup: function (id) {
       let that = this
       Api.getChatGroup(id).then(response => {
         that.groupChat = response.data.res
       });
     },
- 
+
     convertToHtml: function (value) {
       var urlRegex = /(https?:\/\/[^\s]+)/g;
       return value.replace(urlRegex, function (url) {
@@ -303,7 +303,7 @@ export default {
         that.workshopUpdate.description = response.data.res.description
         that.workshopUpdate.additional_info = response.data.res.additional_info
         that.workshopUpdate.img = response.data.res.image
-        that.workshopUpdate.date = new Date(response.data.res.date * 1000)
+        that.workshopUpdate.date = new Date(response.data.res.date)
         that.workshopUpdate.instructor = response.data.res.instructor
         that.workshopUpdate.meeting_type = response.data.res.meeting_type
         that.workshopUpdate.companies = response.data.res.company
@@ -797,16 +797,16 @@ export default {
         that.chatGroups = response.data.res
       })
     },
-    assesmentLogin:function(){
-      var url = ASSESMENT_URL+'assesment-login?';
-      var c = 'id='+this.user.assesment_id+'&email='+this.user.email+'&name='+this.company.company_name+'&password='+this.user.password+'&is_academic=0';
+    assesmentLogin: function () {
+      var url = ASSESMENT_URL + 'assesment-login?';
+      var c = 'id=' + this.user.assesment_id + '&email=' + this.user.email + '&name=' + this.company.company_name + '&password=' + this.user.password + '&is_academic=0';
       console.log(this.authUser.company_domain.indexOf(".edu"));
-      if(this.authUser.company_domain.indexOf(".edu") > -1){
-        c = 'id='+this.user.assesment_id+'&email='+this.user.email+'&name='+this.company.company_name+'&password='+this.user.password+'&is_academic=1';
+      if (this.authUser.company_domain.indexOf(".edu") > -1) {
+        c = 'id=' + this.user.assesment_id + '&email=' + this.user.email + '&name=' + this.company.company_name + '&password=' + this.user.password + '&is_academic=1';
       }
-      console.log(url+c);
+      console.log(url + c);
 
-      window.open(encodeURI(url+c),'_blank')
+      window.open(encodeURI(url + c), '_blank')
       // let that = this;
       // Api.assesmentLogin().then(response => {
       //   window.open(response.data.url,'_blank')
