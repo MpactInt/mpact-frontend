@@ -94,7 +94,13 @@ export default {
               window.localStorage.setItem('userData', JSON.stringify(response.data.user))
               window.localStorage.setItem('companyData', JSON.stringify(response.data.company))
               window.location = '/employer/dashboard'
-            } else if (response.data.company.role == 'COMPANY_ADMIN' && !response.data.company.payment_status) {
+            } else if (response.data.company.role == 'COMPANY_SUB_ADMIN') { 
+              response.data.company.role = 'COMPANY_EMP';
+              window.localStorage.setItem('token', response.data.access_token)
+              window.localStorage.setItem('userData', JSON.stringify(response.data.user))
+              window.localStorage.setItem('companyData', JSON.stringify(response.data.company))
+              window.location = '/employee/dashboard'
+            } if (response.data.company.role == 'COMPANY_ADMIN' && !response.data.company.payment_status) {
               window.location = '/checkout/' + response.data.company.employee_registration_link
             } else {
               window.localStorage.setItem('token', response.data.access_token)
