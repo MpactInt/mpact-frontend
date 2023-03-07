@@ -9,6 +9,7 @@ import Registration from '@/components/Registration'
 import Login from '@/components/Login'
 import Plan from '@/components/Plan'
 import ResetPassword from '@/components/ResetPassword'
+import CreatePassword from '@/components/CreatePassword'
 import SubmitCheckInSurvey from '@/components/SubmitCheckInSurvey'
 import SubmitPostWorkshopSurvey from '@/components/SubmitPostWorkshopSurvey'
 
@@ -160,8 +161,8 @@ export const router = new Router({
            },
            {
              path: "/create-password/:link",
-             name: "Reset Password",
-             component: ResetPassword
+             name: "Create Password",
+             component: CreatePassword
            },
            {
              path: "/submit-checkin-survey/:link",

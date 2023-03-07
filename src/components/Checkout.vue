@@ -94,6 +94,7 @@
                       <span class="my-0 mr-0 ml-auto total-items">{{ cartItems.length }}</span></p></li>
                   </ul>
                 </div>
+                <a class="btn btn-read-more" @click="showUpdatePlanPopUp()" v-if="">Update Plan</a>
                 <!-- <h5 class="page-sub-title">Your Cart <span class="total-items">{{ cartItems.length }}</span></h5> -->
                 <div class="cart-item card m-0 h-auto" v-for="ci in cartItems" v-bind:key="ci.id">
                   <div class="card-sub-title">
@@ -117,8 +118,36 @@
         </form>
       </div>
     </div>
+
+    <!--Update plan modal popup-->
+    <b-modal id="update-plan-modal" title="Update Plan" :hide-footer=hideFooter>
+      <form>
+        <div id="update-details">
+          <div class="form-group">
+            <label>Subscription Plan <span class="err">*</span></label>
+            <multiselect v-model="companyData.plan" :options="plans" placeholder="Type to search"
+                track-by="name" label="name">
+                <span slot="noResult">Oops! No elements found. Consider changing the search query.</span>
+            </multiselect>              
+          </div>
+
+          <div class="form-group">
+            <label>Number of employees <span class="err">*</span></label>
+            <input type="text" class="form-control" id="no-of-emp" placeholder="Number of employees"
+              v-model="companyData.employees">
+          </div>
+          
+          <button type="button" @click="updatePlan" class="btn btn-primary">Update
+          </button>
+        </div>
+      </form>
+
+    </b-modal>
+
   </section>
 </template>
+<style src="vue-multiselect/dist/vue-multiselect.min.css">
+</style>
 
 <script>
 // import Api from '../router/api'
@@ -153,10 +182,11 @@ export default {
         'link': '',
         'payOffline': ''
       },
+      plans:[],
       estimateData: [],
       cartItems: [],
       countries: [],
-      currencyCode: ''
+      currencyCode: '',
     }
   },
   methods: {
@@ -170,7 +200,7 @@ export default {
     validateForm: function (e) {
       e.preventDefault()
       let that = this
-      console.log(that.companyData)
+      //console.log(that.companyData)
       if (that.companyData.billingAddress.firstName == '' || that.companyData.billingAddress.lastName == '' || that.companyData.billingAddress.email == '' ||
         that.companyData.employees == '' || that.companyData.billingAddress.company == '' || that.companyData.billingAddress.address == '' ||
         that.companyData.billingAddress.city == '' || that.companyData.billingAddress.state == '' || that.companyData.billingAddress.zip == '' || that.companyData.billingAddress.country == '') {
@@ -209,11 +239,52 @@ export default {
       ).catch((error) => {
 
       })
-    }
+    },
+    showUpdatePlanPopUp: function () {
+      let that = this
+      that.$bvModal.show('update-plan-modal')
+    },
+    updatePlan: function () { 
+      let that = this
+      if (!that.companyData.employees || !that.companyData.plan) {
+        this.$swal({
+          icon: 'error',
+          title: 'error',
+          text: 'Please fill all required fields',
+          showConfirmButton: true
+        })
+      } else {
+        Api.updatePlan(that.companyData).then(response => {
+          this.$swal({
+            icon: 'success',
+            title: 'Success',
+            text: 'Profile details updated successfully',
+            showConfirmButton: true
+          }).then(function () {
+            that.$bvModal.hide('update-plan-modal')
+            location.reload();
+          })
+        })
+      }
+    
+    },
+    getPlans: function () {
+        let that = this;
+        Api.getPlans2().then(response => { 
+            that.plans = response.data.res
+        }
+        ).catch((error) => {
+
+        });
+    },
   },
+
   mounted () {
     this.getCompanyDetails(this.$route.params.link)
     this.getCountries()
+  },
+  created() {
+      this.getPlans()
   }
 }
 </script>

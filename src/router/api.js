@@ -199,6 +199,9 @@ class Api {
     updateProfile(data) {
         return axiosCommon.post('/update-profile', data)
     }
+    updatePlan(data) {
+        return axiosCommon.post('/update-plan', data)
+    }
     addStep(data, headers) {
         return axiosCommon.post('/add-step', data, headers)
     }
