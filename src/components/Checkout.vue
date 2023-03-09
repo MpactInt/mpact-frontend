@@ -94,7 +94,7 @@
                       <span class="my-0 mr-0 ml-auto total-items">{{ cartItems.length }}</span></p></li>
                   </ul>
                 </div>
-                <a class="btn btn-read-more" @click="showUpdatePlanPopUp()" v-if="">Update Plan</a>
+                
                 <!-- <h5 class="page-sub-title">Your Cart <span class="total-items">{{ cartItems.length }}</span></h5> -->
                 <div class="cart-item card m-0 h-auto" v-for="ci in cartItems" v-bind:key="ci.id">
                   <div class="card-sub-title">
@@ -112,6 +112,8 @@
                     </h5>
                   </div>
                 </div>
+                <br/>
+                <a class="btn btn-read-more" @click="showUpdatePlanPopUp()" v-if="">Update Plan</a>
               </div>
             </div>
           </div>
@@ -125,7 +127,7 @@
         <div id="update-details">
           <div class="form-group">
             <label>Subscription Plan <span class="err">*</span></label>
-            <multiselect v-model="companyData.plan" :options="plans" placeholder="Type to search"
+            <multiselect v-model="companyData.plan.id" :options="plans" placeholder="Type to search"
                 track-by="name" label="name">
                 <span slot="noResult">Oops! No elements found. Consider changing the search query.</span>
             </multiselect>              
