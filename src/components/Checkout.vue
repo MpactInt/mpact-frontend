@@ -127,7 +127,7 @@
         <div id="update-details">
           <div class="form-group">
             <label>Subscription Plan <span class="err">*</span></label>
-            <multiselect v-model="companyData.plan.id" :options="plans" placeholder="Type to search"
+            <multiselect v-model="companyData.plan" :options="plans" placeholder="Type to search"
                 track-by="name" label="name">
                 <span slot="noResult">Oops! No elements found. Consider changing the search query.</span>
             </multiselect>              
