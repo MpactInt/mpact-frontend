@@ -331,6 +331,9 @@ class Api {
     getProfileTypeListMultiselect() {
         return axiosCommon.get('/get-profile-type-list-multiselect')
     }
+    getCompanyListMultiselectUpdate() {
+        return axiosCommon.get('/get-company-list-multiselect-update')
+    }
     getProfileTypeListMultiselectUpdate() {
         return axiosCommon.get('/get-profile-type-list-multiselect-update')
     }
@@ -529,6 +532,9 @@ class Api {
     }
     getLearningPlanList(page, data) {
         return axiosCommon.post('/get-learning-plan-list' + '?page=' + page, data)
+    }
+    getEmpLearningPlanList(page, data) {
+        return axiosCommon.post('/get-emp-learning-plan-list' + '?page=' + page, data)
     }
     getLearningPlanListDashboard(page, data) {
         return axiosCommon.post('/get-learning-plan-list-dashboard')

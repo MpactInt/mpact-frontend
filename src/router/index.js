@@ -7,6 +7,7 @@ import Checkout from '@/components/Checkout'
 import PaymentSuccess from '@/components/PaymentSuccess'
 import Registration from '@/components/Registration'
 import Login from '@/components/Login'
+import LogoutFromAssessment from '@/components/LogoutFromAssessment'
 import Plan from '@/components/Plan'
 import ResetPassword from '@/components/ResetPassword'
 import CreatePassword from '@/components/CreatePassword'
@@ -178,6 +179,17 @@ export const router = new Router({
              path: "/login",
              name: "Login",
              component: Login
+           },
+           {
+             path: "/logout-from-assessment",
+             name: "Logout From Assessment",
+             component: LogoutFromAssessment,
+             meta: {
+               requiresAuth: true,
+               employerAuth: false,
+               employeeAuth: false,
+               adminAuth: false
+             }
            },
 
 

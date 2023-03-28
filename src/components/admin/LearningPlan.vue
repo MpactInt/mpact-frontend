@@ -64,13 +64,21 @@
       <form enctype="multipart/form-data">
         <div id="details">
           <div class="form-group" v-if="user.role == 'ADMIN'">
+              <label>Select Company <span class="err">*</span></label>
+              <multiselect v-model="plan.company" :options="companiesListMultiselect" group-values="values"
+                  group-label="selectAll" :multiple="true" :group-select="true" placeholder="Type to search"
+                  track-by="name" label="name">
+                  <span slot="noResult">Oops! No elements found. Consider changing the search query.</span>
+              </multiselect>
+          </div>
+          <div class="form-group" v-if="user.role == 'ADMIN'">
             <label>Select Profile Type <span class="err">*</span></label>
             <multiselect v-model="plan.profile_type" :options="profileTypeListMultiselect" group-values="values"
               group-label="selectAll" :multiple="true" :group-select="true" placeholder="Type to search" track-by="name"
               label="name">
               <span slot="noResult">Oops! No elements found. Consider changing the search query.</span>
             </multiselect>
-          </div>
+          </div>  
           <div class="form-group" v-if="user.role == 'ADMIN'">
             <label>Select Resources <span class="err">*</span></label>
             <multiselect v-model="plan.resources" :options="resourcesListMultiselect" group-values="values"
@@ -100,6 +108,14 @@
     <b-modal id="update-modal" title="Update Learning Plan" :hide-footer=hideFooter>
       <form enctype="multipart/form-data">
         <div id="details">
+          <div class="form-group" v-if="user.role == 'ADMIN'">
+              <label>Select Company <span class="err">*</span></label>
+              <multiselect v-model="planUpdate.company" :options="companiesListMultiselect" group-values="values"
+                  group-label="selectAll" :multiple="true" :group-select="true" placeholder="Type to search"
+                  track-by="name" label="name">
+                  <span slot="noResult">Oops! No elements found. Consider changing the search query.</span>
+              </multiselect>
+          </div>
           <div class="form-group" v-if="user.role == 'ADMIN'">
             <label>Select Profile Type <span class="err">*</span></label>
             <!-- <select class="form-control" v-model="planUpdate.profile_type">
@@ -159,6 +175,7 @@ export default {
     return {
       hideFooter: true,
       plan: {
+        'company': '',
         'profile_type': '',
         'title': '',
         'description': '',
@@ -168,6 +185,7 @@ export default {
       },
       planUpdate: {
         'id': '',
+        'company': '',
         'profile_type': '',
         'title': '',
         'description': '',
@@ -175,6 +193,12 @@ export default {
         'disabled': false,
         'resources':''
       },
+      companyListMultiselectUpdate: [
+        {
+          selectAll: 'Select All',
+          values: []
+        }
+      ],
       profileTypeListMultiselectUpdate: [
         {
           selectAll: 'Select All',
@@ -201,9 +225,11 @@ export default {
         this.planUpdate.id = response.data.res.id
         this.planUpdate.title = response.data.res.title
         this.planUpdate.description = response.data.res.description
+        this.planUpdate.company = response.data.res.company
         this.planUpdate.profile_type = response.data.res.profile_type
         this.planUpdate.resources = response.data.res.resources
         this.getProfileTypeListMultiselectUpdate()
+        this.getCompanyListMultiselectUpdate()
         this.$bvModal.show('update-modal')
       })
 
@@ -267,6 +293,7 @@ export default {
       } else {
         that.plan.disabled = true
         const formData = new FormData()
+        formData.append('company', JSON.stringify(that.plan.company))
         formData.append('profile_type', JSON.stringify(that.plan.profile_type))
         formData.append('resources', JSON.stringify(that.plan.resources))
         formData.append('image', that.plan.image)
@@ -321,6 +348,7 @@ export default {
       } else {
         that.plan.disabled = true
         const formData = new FormData()
+        formData.append('company', JSON.stringify(that.planUpdate.company))
         formData.append('profile_type', JSON.stringify(that.planUpdate.profile_type))
         formData.append('resources', JSON.stringify(that.planUpdate.resources))
         formData.append('image', that.planUpdate.image)
@@ -346,6 +374,7 @@ export default {
             that.planUpdate.description = ''
             that.$refs.imageUpdate.value = null
             that.getLearningPlanList()
+            this.companyListMultiselectUpdate()
             this.profileTypeListMultiselectUpdate()
             this.profileTypeListMultiselect()
           })
@@ -368,6 +397,21 @@ export default {
       Api.getResourcesListMultiselect().then(response => {
         let that = this
         that.resourcesListMultiselect[0].values = response.data.res
+      }
+      ).catch((error) => {
+        this.$swal({
+          icon: "error",
+          title: "error",
+          text: error.response.data.message,
+          showConfirmButton: true
+        });
+      });
+    },
+    getCompanyListMultiselectUpdate: function () {
+      let that = this
+      Api.getCompanyListMultiselectUpdate().then(response => {
+        let that = this
+        that.companyListMultiselectUpdate[0].values = response.data.res
       }
       ).catch((error) => {
         this.$swal({
@@ -411,6 +455,8 @@ export default {
     },
   },
   mounted() {
+    this.getCompaniesListMultiselect()
+    //this.getCompaniesListMultiselectUpdate()
     this.getProfileTypeListMultiselect()
     this.getProfileTypeListMultiselectUpdate()
     this.getLearningPlanList()

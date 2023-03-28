@@ -21,7 +21,7 @@
       <div class="row" v-if="!learningPlanLength">
         No data found
       </div>
-      <pagination :data="learningPlan" @pagination-change-page="getLearningPlanList"/>
+      <pagination :data="learningPlan" @pagination-change-page="getEmpLearningPlanList"/>
     </section>
   </div>
 </template>
@@ -42,7 +42,7 @@ export default {
   created () {
     var url = document.URL.split('/');
         this.currentUrl = url[3]
-    this.getLearningPlanList()
+    this.getEmpLearningPlanList()
   }
 }
 </script>

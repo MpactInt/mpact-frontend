@@ -163,6 +163,8 @@ export default {
         window.localStorage.removeItem('token')
         window.localStorage.removeItem('userData')
         window.localStorage.removeItem('companyData')
+        var url = ASSESMENT_URL + 'assesment-logout';
+        window.open(encodeURI(url))
         this.$router.go('/login')
       }
       ).catch((error) => {
@@ -653,6 +655,22 @@ export default {
     getLearningPlanList: function (page = 1) {
       let that = this
       Api.getLearningPlanList(page).then(response => {
+        that.learningPlan = response.data.res
+        that.learningPlanLength = that.learningPlan.data.length
+        that.learningPlanPath = response.data.path
+      }).catch((error) => {
+        this.$swal({
+          icon: "error",
+          title: "error",
+          text: error.response.data.message,
+          showConfirmButton: true
+        }).then(function () {
+        });
+      });
+    },
+    getEmpLearningPlanList: function (page = 1) {
+      let that = this
+      Api.getEmpLearningPlanList(page).then(response => {
         that.learningPlan = response.data.res
         that.learningPlanLength = that.learningPlan.data.length
         that.learningPlanPath = response.data.path
