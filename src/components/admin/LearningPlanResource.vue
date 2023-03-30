@@ -219,11 +219,11 @@ export default {
         addLearningPlanFile: function (e) {
             e.preventDefault()
             let that = this
-            if (!that.plan.title || !that.plan.description || !that.plan.image) {
+            if (!that.plan.title || !that.plan.description ) { //|| !that.plan.image
                 this.$swal({
                     icon: 'error',
                     title: 'error',
-                    text: 'Please all required fields',
+                    text: 'Please fill all required fields',
                     showConfirmButton: true
                 })
             }else if (that.plan.link == '' && that.plan.image == '') {
@@ -257,7 +257,9 @@ export default {
                         that.$bvModal.hide('add-modal')
                         that.plan.title = ''
                         that.plan.description = ''
-                        that.$refs.image.value = null
+                        that.plan.link = ''
+                        that.plan.image = ''
+                        that.$refs.image.value = ''
                         that.getLearningPlanResources()
                     })
                 }
@@ -281,7 +283,7 @@ export default {
                 this.$swal({
                     icon: 'error',
                     title: 'error',
-                    text: 'Please all required fields',
+                    text: 'Please fill all required fields',
                     showConfirmButton: true
                 })
             } else {
@@ -309,6 +311,8 @@ export default {
                         that.$bvModal.hide('update-modal')
                         that.planUpdate.title = ''
                         that.planUpdate.description = ''
+                        that.planUpdate.link = ''
+                        that.planUpdate.image = ''
                         that.$refs.imageUpdate.value = null
                         that.getLearningPlanResources()
                     })

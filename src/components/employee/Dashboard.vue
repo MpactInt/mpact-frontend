@@ -29,9 +29,7 @@
       <h2 class="page-title mb-0 text-left  d-inline-block">
         Popup <span>Survey</span>
       </h2>
-      <h4 class="page-sub-title">
-        This section will be the opening to the learning journey
-      </h4>
+      
       <div class="popup-survey-box col-md-12 col-lg-10">
         <CustomSurvey v-if="pg.length" :surveyProp="pg" :submitPopupSurvey="submitPopupSurvey"></CustomSurvey>
         <BarChart v-else :chartData="res" :question="chartData.question"></BarChart>

@@ -10,7 +10,8 @@
             <div class="col-md-3">
             </div>
             <div class="col-md-6 my-2 d-flex" v-if="user.role == 'ADMIN'">
-                <button class="btn btn-primary float-right ml-auto" v-b-modal.add-modal>Add Popup Survey</button>
+                <button class="btn btn-primary float-right" @click="exportPopupSurvey">Export</button>
+                <button class="btn btn-primary float-right ml-auto" v-b-modal.add-modal>Add Popup Surveysss</button>
             </div>
         </div>
         <div class="table-responsive">
@@ -299,6 +300,25 @@ export default {
                     showConfirmButton: true
                 }).then(function () {
                 });
+            });
+        },
+        exportPopupSurvey: function () {
+          let that = this
+          Api.exportPopupSurvey()
+            .then(response => {
+              let blob = new Blob([response.data])
+              let link = document.createElement('a')
+              link.href = window.URL.createObjectURL(blob)
+              link.download = 'PopupSurveyExport.xlsx'
+              link.click()
+            }
+            ).catch((error) => {
+              this.$swal({
+                icon: "error",
+                title: "error",
+                text: error.response.data.message,
+                showConfirmButton: true
+              });
             });
         },
     },
