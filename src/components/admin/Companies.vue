@@ -56,6 +56,10 @@
               <a type="button" class="mx-3 d-block" width="24" @click="getCompany(r)" v-b-modal.update-modal>
                 <img src="../../assets/images/table-edit.svg" alt="table-edit" width="24" height="24" />
               </a>
+              <a type="button" class="mx-3 d-block" width="24" @click="deleteCompany(r.id)">
+                  <img src="../../assets/images/table-delete.svg" alt="table-delete" width="24"
+                      height="24" />
+              </a>
               <a type="button" class="mx-3 d-block" v-if="r.deleted_at" @click="activeInactiveCompany(r.id,1)"
                 style="width:40px">
                 <img src="../../assets/images/on.svg" alt="table-edit" width="40" height="40" />
@@ -298,6 +302,41 @@ export default {
         })
       })
     },
+    deleteCompany: function (id) {
+          let that = this
+          this.$swal({
+              title: 'Are you sure?',
+              text: 'All the related info will be deleted, you wont be able to revert !',
+              type: 'warning',
+              showCancelButton: true,
+              confirmButtonText: 'Yes Delete it!',
+              cancelButtonText: 'No, Keep it!',
+              showCloseButton: true,
+              showLoaderOnConfirm: true
+          }).then((result) => { 
+              if (result.value) {
+                  Api.deleteCompany(id).then(response => {
+                      this.$swal({
+                          icon: 'success',
+                          title: 'Success',
+                          text: 'Company deleted successfully',
+                          showConfirmButton: true
+                      }).then(function () {
+                          that.getCompaniesList()
+                      })
+                  }).catch((error) => {
+                      this.$swal({
+                          icon: 'error',
+                          title: 'error',
+                          text: error.response.data.message,
+                          showConfirmButton: true
+                      }).then(function () {
+                          that.todo.disabled = false
+                      })
+                  })
+              }
+          })
+      },
   },
   mounted() {
     this.getCompaniesList()

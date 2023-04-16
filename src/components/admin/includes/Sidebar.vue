@@ -10,61 +10,61 @@
     <div class="siderbar-link">
       <ul>
         <li>
-          <router-link to="/admin/dashboard">Home</router-link>
+          <router-link to="/admin/dashboard" :class="{ 'menu-highlight': isCurrentPath('/admin/dashboard') }">Home</router-link>
         </li>
         <li>
-          <router-link to="/admin/profile">Profile</router-link>
+          <router-link to="/admin/profile" :class="{ 'menu-highlight': isCurrentPath('/admin/profile') }">Profile</router-link>
         </li>
         <li>
-          <router-link to="/admin/welcome-note">Welcome Note</router-link>
+          <router-link to="/admin/welcome-note" :class="{ 'menu-highlight': isCurrentPath('/admin/welcome-note') }">Welcome Note</router-link>
         </li>
         <li>
-          <router-link to="/admin/steps-configuration">Steps Configuration</router-link>
+          <router-link to="/admin/steps-configuration" :class="{ 'menu-highlight': isCurrentPath('/admin/steps-configuration') }">Steps Configuration</router-link>
         </li>
         <li>
-          <router-link to="/admin/resources">Resources</router-link>
+          <router-link to="/admin/resources" :class="{ 'menu-highlight': isCurrentPath('/admin/resources') }">Resources</router-link>
         </li>
         <li>
-          <router-link to="/admin/opportunities">Opportunities</router-link>
+          <router-link to="/admin/opportunities" :class="{ 'menu-highlight': isCurrentPath('/admin/opportunities') }">Opportunities</router-link>
         </li>
         <li>
-          <router-link to="/admin/todo">To Do</router-link>
+          <router-link to="/admin/todo" :class="{ 'menu-highlight': isCurrentPath('/admin/todo') }">To Do</router-link>
         </li>
         <li>
-          <router-link to="/admin/workshops">Workshops</router-link>
+          <router-link to="/admin/workshops" :class="{ 'menu-highlight': isCurrentPath('/admin/workshops') }">Workshops</router-link>
         </li>
         <li>
-          <router-link to="/admin/request-workshop">Workshop Requests</router-link>
+          <router-link to="/admin/request-workshop" :class="{ 'menu-highlight': isCurrentPath('/admin/request-workshop') }">Workshop Requests</router-link>
         </li>
         <li>
-          <router-link to="/admin/ask-your-care-team">Client Support</router-link>
+          <router-link to="/admin/ask-your-care-team" :class="{ 'menu-highlight': isCurrentPath('/admin/ask-your-care-team') }">Client Support</router-link>
         </li>
         <li>
-          <router-link to="/admin/companies">Companies</router-link>
+          <router-link to="/admin/companies" :class="{ 'menu-highlight': isCurrentPath('/employer/companies') }">Companies</router-link>
         </li>
         <li>
-          <router-link to="/admin/employee-profile-type">Employee Profile Type</router-link>
+          <router-link to="/admin/employee-profile-type" :class="{ 'menu-highlight': isCurrentPath('/admin/employee-profile-type') }">Employee Profile Type</router-link>
         </li>
         <li>
-          <router-link to="/admin/learning-plan">Learning Plan</router-link>
+          <router-link to="/admin/learning-plan" :class="{ 'menu-highlight': isCurrentPath('/admin/learning-plan') }">Learning Plan</router-link>
         </li>
         <li>
-          <router-link to="/admin/learning-plan-resources">Learning Plan Resources</router-link>
+          <router-link to="/admin/learning-plan-resources" :class="{ 'menu-highlight': isCurrentPath('/admin/learning-plan-resources') }">Learning Plan Resources</router-link>
         </li>
         <li>
-          <router-link to="/admin/popup-surveys">Popup Surveys</router-link>
+          <router-link to="/admin/popup-surveys" :class="{ 'menu-highlight': isCurrentPath('/admin/popup-surveys') }">Popup Surveys</router-link>
         </li>
         <li>
-          <router-link to="/admin/check-in-surveys">Check-In Surveys</router-link>
+          <router-link to="/admin/check-in-surveys" :class="{ 'menu-highlight': isCurrentPath('/admin/check-in-surveys') }">Check-In Surveys</router-link>
         </li>
         <li>
-          <router-link to="/admin/post-workshop-surveys">Post Workshop Surveys</router-link>
+          <router-link to="/admin/post-workshop-surveys" :class="{ 'menu-highlight': isCurrentPath('/admin/post-workshop-surveys') }">Post Workshop Surveys</router-link>
         </li>
         <!-- <li>
-          <router-link to="/admin/send-email">Send Email</router-link>
+          <router-link to="/admin/send-email" :class="{ 'menu-highlight': isCurrentPath('/admin/send-email') }">Send Email</router-link>
         </li> -->
         <li>
-          <router-link to="/admin/meetings">Workshop Meeting Time</router-link>
+          <router-link to="/admin/meetings" :class="{ 'menu-highlight': isCurrentPath('/admin/meetings') }">Workshop Meeting Time</router-link>
         </li>
       </ul>
 
@@ -92,6 +92,9 @@ export default {
   },
   mixins: [AppMixin],
   methods: {
+    isCurrentPath(path) {
+      return this.$route.path === path;
+    }
   },
   created() {
     this.getAuthUser()

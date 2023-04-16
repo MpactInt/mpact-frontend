@@ -496,6 +496,14 @@ div#app {
     opacity: 1;
 }
 
+.siderbar-link ul li .menu-highlight{
+    background: #ADB9CA;
+    font-weight: 500;
+    opacity: 1;
+}
+
+
+
 .siderbar-link ul li input.form-control+span.search-icon:after {
     left: 56px;
     top: 28px;
@@ -1204,6 +1212,10 @@ p.copyright {
     width: 100%;
     background-repeat: no-repeat;
     background-color: #f4f4f5;
+}
+
+.modal-md {
+    max-width: 1150px;
 }
 
 .half-cut-bg {

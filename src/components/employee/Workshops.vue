@@ -81,7 +81,7 @@
                         src="../../assets/images/clock.svg"
                         alt="icon"
                       /> </span
-                    >Time<span>{{ w.total_hours }} Hour(s)</span>
+                    >Time: <span>{{ w.total_hours }} Hour(s)</span>
                   </p>
                 </div>
                 <div class="place w-100">

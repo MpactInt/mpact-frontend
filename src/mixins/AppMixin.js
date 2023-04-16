@@ -164,7 +164,7 @@ export default {
         window.localStorage.removeItem('userData')
         window.localStorage.removeItem('companyData')
         var url = ASSESMENT_URL + 'assesment-logout';
-        window.open(encodeURI(url))
+        //window.open(encodeURI(url))
         this.$router.go('/login')
       }
       ).catch((error) => {
@@ -824,7 +824,10 @@ export default {
       }
       console.log(url + c);
 
-      window.open(encodeURI(url + c), '_blank')
+      //window.open(encodeURI(url + c), '_blank')
+      console.log(encodeURI(url + c));
+      window.location = encodeURI(url + c)
+
       // let that = this;
       // Api.assesmentLogin().then(response => {
       //   window.open(response.data.url,'_blank')

@@ -4,53 +4,54 @@
       <div class="user-img"><img class="logo-img" :src="company.company_logo"></div>
       <div class="user-detail">
         <h5 class="c-name">{{ company.company_name }}</h5>
-        <p class="mb-0 f-name">{{ company.first_name }} {{ company.last_name }} </p>
+        <p class="mb-0 f-name" v-if="isCurrentPath('/employer/employee-dashboard')">Employee Dashboard</p>
+        <p class="mb-0 f-name" v-else="isCurrentPath('/employer/employee-dashboard')">{{ company.first_name }} {{ company.last_name }} </p>
       </div>
     </div>
     <div class="siderbar-link">
       <ul>
         <li>
-          <router-link to="/employer/dashboard">Home</router-link>
+          <router-link to="/employer/dashboard" :class="{ 'menu-highlight': isCurrentPath('/employer/dashboard') }">Home</router-link>
         </li>
         <li>
-          <router-link to="/employer/employee-dashboard">Employee Dashboard</router-link>
+          <router-link to="/employer/employee-dashboard" :class="{ 'menu-highlight': isCurrentPath('/employer/employee-dashboard') }">Employee Dashboard</router-link>
         </li>
         <li>
-          <router-link to="/employer/profile">Profile</router-link>
+          <router-link to="/employer/profile" :class="{ 'menu-highlight': isCurrentPath('/employer/profile') }">Profile</router-link>
         </li>
         <li>
-          <router-link to="/employer/welcome-note">Welcome Note</router-link>
+          <router-link to="/employer/welcome-note" :class="{ 'menu-highlight': isCurrentPath('/employer/welcome-note') }">Welcome Note</router-link>
         </li>
         <li>
-          <router-link to="/employer/team-management">Team and Organization Management</router-link>
+          <router-link to="/employer/team-management" :class="{ 'menu-highlight': isCurrentPath('/employer/team-management') }">Team and Organization Management</router-link>
         </li>
         <li>
-          <router-link to="/employer/membership-details">Membership Details</router-link>
+          <router-link to="/employer/membership-details" :class="{ 'menu-highlight': isCurrentPath('/employer/membership-details') }">Membership Details</router-link>
         </li>
         <li>
-          <router-link to="/employer/resources">Resources</router-link>
+          <router-link to="/employer/resources" :class="{ 'menu-highlight': isCurrentPath('/employer/resources') }">Resources</router-link>
         </li>
         <li>
-          <router-link to="/employer/customer-support">Customer Support</router-link>
+          <router-link to="/employer/customer-support" :class="{ 'menu-highlight': isCurrentPath('/employer/customer-support') }">Customer Support</router-link>
         </li>
         <!-- <li>
           <router-link to="/employer/ask-your-care-team">Ask Your Care Team by Employees</router-link>
         </li> -->
         <li>
-          <router-link to="/employer/announcements">Announcements or Updates</router-link>
+          <router-link to="/employer/announcements" :class="{ 'menu-highlight': isCurrentPath('/employer/announcements') }">Announcements or Updates</router-link>
         </li>
         <li>
-          <router-link to="/employer/settings">Settings</router-link>
+          <router-link to="/employer/settings" :class="{ 'menu-highlight': isCurrentPath('/employer/settings') }">Settings</router-link>
         </li>
         <li><a href="javascript:void(0)" @click="assesmentLogin()">Assessment</a></li>
         <li>
-          <router-link to="/employer/request-workshop">Request for Workshop</router-link>
+          <router-link to="/employer/request-workshop" :class="{ 'menu-highlight': isCurrentPath('/employer/request-workshop') }">Request for Workshop</router-link>
         </li>
         <li>
-          <router-link to="/employer/workshops">Workshops</router-link>
+          <router-link to="/employer/workshops" :class="{ 'menu-highlight': isCurrentPath('/employer/workshops') }">Workshops</router-link>
         </li>
         <li>
-          <router-link to="/employer/feedback-by-employees">Feedback by Employees</router-link>
+          <router-link to="/employer/feedback-by-employees" :class="{ 'menu-highlight': isCurrentPath('/employer/feedback-by-employees') }">Feedback by Employees</router-link>
         </li>
         <li><a href="javascript:void(0)" v-b-modal.create-group-modal>Create New Group <i class="fa fa-plus"
               aria-hidden="true"></i></a></li>
@@ -61,7 +62,7 @@
         <li v-if="showGroupList" class="manage-gap">
           <input type="text" class="form-control search" v-model="groupSearchData.keyword" placeholder="Search Groups"
             @keyup="getChatGroups" /><span class="search-icon"></span>
-          <router-link v-for="e in chatGroups.data" v-bind:key="e.id" :to="'/employer/group-chat/' + e.id"  @click.native="readGroupMessage(e.id)"><img
+          <router-link v-for="e in chatGroups.data" v-bind:key="e.id" :to="'/employer/group-chat/' + e.id"  @click.native="readGroupMessage(e.id)" :class="{ 'menu-highlight': isCurrentPath('/employer/group-chat/'+ e.id) }"><img
               src="../../../assets/images/back-btn.png" alt="btn" />{{
               e.name
               }}  <span class="new-message" v-if="e.new_message.length">{{e.new_message.length}}</span>
@@ -75,7 +76,7 @@
         <li v-if="showUserList" class="manage-gap">
           <input type="text" class="form-control search" v-model="searchData.name" placeholder="Search Employees"
             name="groupname" @keyup="getEmployeesListChat" /><span class="search-icon"></span>
-          <router-link v-for="e in empList.data" v-bind:key="e.id" :to="'/employer/one-to-one-chat/' + e.id" @click.native="readOneToOneMessage(e.id)"><img
+          <router-link v-for="e in empList.data" v-bind:key="e.id" :to="'/employer/one-to-one-chat/' + e.id" @click.native="readOneToOneMessage(e.id)"  :class="{ 'menu-highlight': isCurrentPath('/employer/one-to-one-chat/'+ e.id) }"><img
               src="../../../assets/images/back-btn.png" alt="btn" />
             {{ e.first_name}} {{ e.last_name }} <span class="new-message" v-if="e.new_message.length">{{e.new_message.length}}</span>
           </router-link>
@@ -174,6 +175,9 @@ export default {
         });
       }
     },
+    isCurrentPath(path) {
+      return this.$route.path === path;
+    }
     
   },
   created() {

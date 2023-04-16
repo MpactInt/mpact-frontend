@@ -309,7 +309,7 @@ export default {
               let blob = new Blob([response.data])
               let link = document.createElement('a')
               link.href = window.URL.createObjectURL(blob)
-              link.download = 'PopupSurveyExport.xlsx'
+              link.download = 'PopupSurveyExport.csv'
               link.click()
             }
             ).catch((error) => {

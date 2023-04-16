@@ -370,6 +370,10 @@ class Api {
     addPopupSurvey(data) {
         return axiosCommon.post('/add-popup-survey', data)
     }
+    exportPopupSurvey(data) {
+        return axiosCommon.post('/export-popup-survey', data, { responseType: 'blob' })
+    }
+
     updatePopupSurvey(data) {
         return axiosCommon.post('/update-popup-survey', data)
     }
@@ -433,6 +437,9 @@ class Api {
     }
     submitCheckInSurvey(data, id) {
         return axiosCommon.post('/submit-check-in-survey/' + id, data)
+    }
+    exportCheckInSurvey(data) {
+        return axiosCommon.post('/export-check-in-survey', data, { responseType: 'blob' })
     }
 
 
@@ -516,6 +523,9 @@ class Api {
     }
     getWelcomeNoteCompanies() {
         return axiosCommon.get('/get-welcome-note-company-list')
+    }
+    deleteCompany(id) {
+        return axiosCommon.get('/delete-company/' + id)
     }
 
     addLearningPlan(data) {

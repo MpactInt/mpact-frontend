@@ -10,46 +10,46 @@
     <div class="siderbar-link">
       <ul>
         <li>
-          <router-link to="/employee/dashboard">Home</router-link>
+          <router-link to="/employee/dashboard" :class="{ 'menu-highlight': isCurrentPath('/employee/dashboard') }">Home</router-link>
         </li>
         <li>
-          <router-link to="/employee/profile">Profile</router-link>
+          <router-link to="/employee/profile" :class="{ 'menu-highlight': isCurrentPath('/employee/profile') }">Profile</router-link>
         </li>
         <li>
-          <router-link to="/employee/workshops">Workshops</router-link>
+          <router-link to="/employee/workshops" :class="{ 'menu-highlight': isCurrentPath('/employee/workshops') }">Workshops</router-link>
         </li>
         <li>
-          <router-link to="/employee/announcements">Announcements or Updates</router-link>
+          <router-link to="/employee/announcements" :class="{ 'menu-highlight': isCurrentPath('/employee/announcements') }">Announcements or Updates</router-link>
         </li>
         <li v-if="authUser.company_assesment_id"><a href="javascript:void(0)"
             @click="assesmentLoginEmployee()">Assessment</a></li>
         <li>
-          <router-link to="/employee/resources">Resources</router-link>
+          <router-link to="/employee/resources" :class="{ 'menu-highlight': isCurrentPath('/employee/resources') }">Resources</router-link>
         </li>
         <li>
-          <router-link to="/employee/todo">To Do</router-link>
+          <router-link to="/employee/todo" :class="{ 'menu-highlight': isCurrentPath('/employee/todo') }">To Do</router-link>
         </li>
         <li>
-          <router-link to="/employee/welcome-note">Welcome Note</router-link>
+          <router-link to="/employee/welcome-note" :class="{ 'menu-highlight': isCurrentPath('/employee/welcome-note') }">Welcome Note</router-link>
         </li>
         <li>
-          <router-link to="/employee/feedback-to-company">Feedback to Company
+          <router-link to="/employee/feedback-to-company" :class="{ 'menu-highlight': isCurrentPath('/employee/feedback-to-company') }">Feedback to Company
           </router-link>
         </li>
         <li>
-          <router-link to="/employee/my-learning-plan">My Learning Plan
+          <router-link to="/employee/my-learning-plan" :class="{ 'menu-highlight': isCurrentPath('/employee/my-learning-plan') }">My Learning Plan
           </router-link>
         </li>
         <li>
-          <router-link to="/employee/customer-support">Customer Support
+          <router-link to="/employee/customer-support" :class="{ 'menu-highlight': isCurrentPath('/employee/customer-support') }">Customer Support
           </router-link>
         </li>
         <!-- <li>
-          <router-link to="/employee/ask-your-care-team">Ask Your Care Team
+          <router-link to="/employee/ask-your-care-team" :class="{ 'menu-highlight': isCurrentPath('/employee/ask-your-care-team') }">Ask Your Care Team
           </router-link>
         </li> -->
         <!-- <li>
-          <router-link to="/employee/message-my-team">Message My Team</router-link>
+          <router-link to="/employee/message-my-team" :class="{ 'menu-highlight': isCurrentPath('/employee/message-my-team') }">Message My Team</router-link>
         </li> -->
         <li>
           <a href="javascript:void(0)" @click="showGroupList = !showGroupList">Message My Team <i
@@ -59,7 +59,7 @@
           <input type="text" class="form-control search" v-model="groupSearchData.keyword" placeholder="Search Groups"
             @keyup="getChatGroups" /><span class="search-icon"></span>
           <router-link v-for="e in chatGroups.data" v-bind:key="e.id" :to="'/employee/group-chat/' + e.id"
-            @click.native="readGroupMessage(e.id)"><img src="../../../assets/images/back-btn.png" alt="btn" />{{
+            @click.native="readGroupMessage(e.id)" :class="{ 'menu-highlight': isCurrentPath('/employee/group-chat/' + e.id) }"><img src="../../../assets/images/back-btn.png" alt="btn" />{{
                 e.name
             }} <span class="new-message" v-if="e.new_message.length">{{ e.new_message.length }}</span>
           </router-link>
@@ -73,7 +73,7 @@
           <input type="text" class="form-control search" v-model="searchData.name" placeholder="Search Employees"
             @keyup="getEmployeesListChat" /><span class="search-icon"></span>
           <router-link v-for="e in empList.data" v-bind:key="e.id" :to="'/employee/one-to-one-chat/' + e.id"
-            @click.native="readOneToOneMessage(e.id)"><img src="../../../assets/images/back-btn.png" alt="btn" /> {{
+            @click.native="readOneToOneMessage(e.id)" :class="{ 'menu-highlight': isCurrentPath('/employee/one-to-one-chat/' + e.id) }"><img src="../../../assets/images/back-btn.png" alt="btn" /> {{
                 e.first_name
             }} {{ e.last_name }}<span class="new-message" v-if="e.new_message.length">{{ e.new_message.length }}</span>
           </router-link>
@@ -106,7 +106,12 @@ export default {
     assesmentLoginEmployee: function () {
       var url = ASSESMENT_URL + 'assesment-login-employee?';
       var c = 'id=' + this.user.assesment_id + '&team_assesment_id=' + this.authUser.company_assesment_id + '&email=' + this.user.email + '&name=' + this.company.first_name + ' ' + this.company.last_name + '&password=' + this.user.password;
-      window.open(encodeURI(url + c), '_blank')
+      //window.open(encodeURI(url + c), '_blank')
+      console.log(encodeURI(url + c));
+      window.location = encodeURI(url + c)
+    },
+    isCurrentPath(path) {
+      return this.$route.path === path;
     }
   },
   created() {

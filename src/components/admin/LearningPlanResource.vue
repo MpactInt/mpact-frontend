@@ -33,7 +33,10 @@
                 <tr v-if="planFiles.length" v-for="lp in planFiles" v-bind:key="lp.id">
                     <td>{{ lp.title }}</td>
                     <td>{{ lp.description }}</td>
-                    <td><a v-if="lp.link" :href="lp.link" target="_blank">Watch Video</a> <span v-else>NA</span></td>
+                    <td>
+                        <!-- <a v-if="lp.link" :href="lp.link" target="_blank">Watch Video</a> <span v-else>NA</span> -->
+                        <a class="btn btn-read-more" @click="showLearningVdo(lp.link)" v-if="lp.link">Watch Video</a> <span v-else>NA</span>
+                    </td>
                     <td><a v-if="lp.image" class="cursor-pointer links" @click="downloadLearningPlanFile(lp.id, lp.image)">Download</a> <span v-else>NA</span>
                     </td>
                     <td>
@@ -122,6 +125,13 @@
                 </div>
             </form>
         </b-modal>
+
+        <!--Video modal popup-->
+        <b-modal id="show-learning-vdo" title="Video" :hide-footer=hideFooter>
+          <div id="vdo_pop_up" v-html="vdo_pop_up.embed_code" ></div>
+        </b-modal>
+        <!--End video modal popup-->
+
     </section>
 </template>
 <script>
@@ -161,7 +171,10 @@ export default {
                 'sortBy': '',
                 'sortOrder': '',
                 'keyword': ''
-            }
+            },
+            vdo_pop_up: {
+                'embed_code': ''
+              },
         }
     },
     components: {},
@@ -206,6 +219,7 @@ export default {
             this.planUpdate.id = data.id
             this.planUpdate.title = data.title
             this.planUpdate.description = data.description
+            this.planUpdate.link = data.link
             this.$bvModal.show('update-modal')
         },
         imageOnChange: function (e) {
@@ -356,6 +370,11 @@ export default {
         },
         titleCharCountUpdate: function () {
             this.remainingTitleChar = this.totalTitleChar - this.planUpdate.title.length
+        },
+        showLearningVdo: function (embed_code) {
+          let that = this
+          that.$bvModal.show('show-learning-vdo')
+          that.vdo_pop_up.embed_code = embed_code
         },
     },
     mounted() {
