@@ -1,19 +1,15 @@
 <template>
-  <section class="employee-welcome-note-section mb-5">
-    <h2 class="page-title text-left  d-inline-block">Welcome <span>Note</span></h2>
-    <!-- <h3 class="page-sub-title pink-color mb-0">Welcome To Mpact</h3> -->
-    <div v-if="note">
-      <h4 class="section-sub-title">{{ note.title }} </h4>
-      <p v-html="note.description"></p>
-      <div class="color-border mb-5" v-if="note.image">
-        <div class="color-border-box">
-          <!-- <iframe  height="480" src="https://www.youtube.com/embed/D0UnqGm_miA" title="Dummy Video For Website" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
-          <img :src="note.image" class="w-100" alt="image" />
-        </div>
+  <section>
+    <div class="px-8 my-16">
+      <div>
+          <p class="uppercase my-4 text-4xl text-gray-400 dark:text-gray-500 uppercase font-bold">
+              <span class="text-[#0A0446] uppercase">{{ note.title }}</span>
+          </p>
+          <p v-html="note.description"></p>
+          <div class="my-4" v-if="note.image">          
+              <img class="w-full rounded-md h-auto rounded-lg" :src="note.image" alt="image">
+          </div>
       </div>
-    </div>
-    <div v-if="!note">
-      Welcome Note not added
     </div>
   </section>
 </template>

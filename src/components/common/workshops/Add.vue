@@ -11,6 +11,14 @@
                         <span slot="noResult">Oops! No elements found. Consider changing the search query.</span>
                     </multiselect>
                 </div>
+                <div class="form-group" v-if="user.role == 'ADMIN'">
+                    <label>Select Profile Type <span class="err">*</span></label>
+                    <multiselect v-model="workshop.profile_type" :options="profileTypeListMultiselect" group-values="values"
+                      group-label="selectAll" :multiple="true" :group-select="true" placeholder="Type to search" track-by="name"
+                      label="name">
+                      <span slot="noResult">Oops! No elements found. Consider changing the search query.</span>
+                    </multiselect>
+                </div>
                 <div class="form-group">
                     <label>Title <span class="err">*</span></label>
                     <input type="text" class="form-control" id="title" placeholder="Title" v-model="workshop.title">
@@ -83,6 +91,7 @@ export default {
             hideFooter: true,
             workshop: {
                 'company': '',
+                'profile_type': '',
                 'title': '',
                 'description': '',
                 'image': '',
@@ -102,7 +111,7 @@ export default {
         addWorkshop: function (e) {
             e.preventDefault();
             let that = this;
-            if (!that.workshop.company || !that.workshop.title || !that.workshop.description || !that.workshop.image || !that.workshop.total_hours || !that.workshop.instructor || !that.workshop.date || !that.workshop.additional_info) {
+            if (!that.workshop.company || !that.workshop.title || !that.workshop.description || !that.workshop.image || !that.workshop.total_hours || !that.workshop.instructor || !that.workshop.date || !that.workshop.additional_info || !that.workshop.profile_type) {
                 this.$swal({
                     icon: "error",
                     title: "error",
@@ -122,6 +131,7 @@ export default {
                 formData.append('additional_info', that.workshop.additional_info)
                 formData.append('meeting_type', that.workshop.meeting_type)
                 formData.append('company', JSON.stringify(that.workshop.company))
+                formData.append('profile_type', JSON.stringify(that.workshop.profile_type));
                 let headers = {
                     'Content-Type': 'multipart/form-data',
                     'Access-Control-Allow-Origin': '*'
@@ -141,6 +151,7 @@ export default {
                         that.workshop.date = ''
                         that.workshop.meeting_type = ''
                         that.workshop.company = ''
+                        that.workshop.profile_type = ''
                         that.workshop.additional_info = ''
                         that.$refs.image.value = null;
                         that.$bvModal.hide('add-workshop-modal')
@@ -163,6 +174,7 @@ export default {
     },
     mounted() {
         this.getCompaniesListMultiselect()
+        this.getProfileTypeListMultiselect()
     }
 }
 </script>

@@ -1,125 +1,228 @@
 <template>
-  <section class="employer-announcements-section pink-pattern-bg">
-    <div class="login-inner">
-      <div class="col-md-12 p-5 card-box">
-        <form class="login-from" @submit="validateForm" ref="createCompanyForm">
-          <div class="login-form-box">
-            <div class="logo">
-              <a href="javascript:void(0)">
-                <img src="../assets/images/logo.png">
-              </a>
+<section class="employer-announcements-section pink-pattern-bg">
+    <div class="bg-[#F7F7F7]">
+            <nav class="sticky top-0 z-50 w-full bg-white border-b border-gray-200">
+                <div class="flex flex-wrap justify-between items-center py-4 px-6">
+
+                    <a href="#" class="flex items-center">
+                        <img src="../assets/images/logo.png" class="h-8 mr-3" alt="Logo" />
+                    </a>
+
+                    <button data-collapse-toggle="mega-sidebar" type="button"
+                    class="inline-flex items-center p-2 ml-1 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+                    aria-controls="mega-sidebar" aria-expanded="false">
+                        <span class="sr-only">Open main menu</span>
+                        <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd"
+                                d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                    </button>
+                </div>
+            </nav>
+
+            <div class="py-6 px-8 px-2 py-10 border border-1 rounded-lg mx-8 my-8 shadow">
+
+                <div class="wrap justify-between">
+                    <p class="uppercase text-3xl text-gray-400 uppercase font-bold">
+                        <span class="text-[#0A0446]">CHECKOUT</span>
+                    </p>
+                </div>
+
+                <hr class="h-px my-4 bg-gray-200 border-0">
+
+
+                <div class="flex flex-row my-2 space-x-4 rounded-md">
+                    <div
+                        class="w-full md:w-[60%] px-8 py-6 border border-1 rounded-lg bg-white items-center justify-between space-y-2">
+                        <p class="font-bold text-[#0A0446] ">Billing Information
+                        </p>
+
+                        <div class="mt-2">
+                            <div class="flex justify-between py-4">
+                                <form class="w-full" @submit="validateForm" ref="createCompanyForm">
+                                    <div class="flex flex-wrap -mx-3 mb-2">
+                                        <div class="w-full md:w-1/2 px-3 mb-2 md:mb-0">
+                                            <label
+                                                class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                                                for="grid-firstname-1">
+                                                First Name
+                                            </label>
+                                            <input
+                                                class="appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 mb-3 leading-tight focus:outline-none focus:bg-white"
+                                                id="firstname" type="text" placeholder="First Name" v-model="companyData.billingAddress.firstName" @keypress="alphabetsOnly"> 
+                                        </div>
+                                        <div class="w-full md:w-1/2 px-3">
+                                            <label
+                                                class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                                                for="grid-lastname-1">
+                                                Last Name *
+                                            </label>
+                                            <input
+                                                class="appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                                                id="lastname" type="text" placeholder="Last Name" v-model="companyData.billingAddress.lastName" @keypress="alphabetsOnly">
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-wrap -mx-3 mb-2">
+                                        <div class="w-full md:w-1/2 px-3 mb-2 md:mb-0">
+                                            <label
+                                                class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                                                for="grid-email-1">
+                                                Email
+                                            </label>
+                                            <input
+                                                class="appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 mb-3 leading-tight focus:outline-none focus:bg-white"
+                                                id="email" type="email" placeholder="Email" required v-model="companyData.billingAddress.email">
+                                        </div>
+                                        <div class="w-full md:w-1/2 px-3">
+                                            <label
+                                                class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                                                for="grid-emp-num-1">
+                                                Number of Employee
+                                            </label>
+                                            <input
+                                                class="appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                                                id="employees" type="number" placeholder="0" v-model="companyData.employees">
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-wrap -mx-3 mb-2">
+                                        <div class="w-full md:w-full px-3 mb-2 md:mb-0">
+                                            <label
+                                                class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                                                for="grid-company-name-1">
+                                                Company Name
+                                            </label>
+                                            <input
+                                                class="appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 mb-3 leading-tight focus:outline-none focus:bg-white"
+                                                id="company" type="text" placeholder="Company Name" v-model="companyData.billingAddress.company">
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="flex flex-wrap -mx-3 mb-2">
+                                        <div class="w-full md:w-full px-3 mb-2 md:mb-0">
+                                            <label
+                                                class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                                                for="grid-city-name-1">
+                                                City
+                                            </label>
+                                            <input
+                                                class="appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 mb-3 leading-tight focus:outline-none focus:bg-white"
+                                                id="grid-city-name-1" type="text" placeholder="City" v-model="companyData.billingAddress.city">
+                                        </div>
+                                    </div>
+
+                                    <div class="flex flex-wrap -mx-3 mb-2">
+                                        <div class="w-full md:w-full px-3 mb-2 md:mb-0">
+                                            <label
+                                                class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                                                for="grid-state-name-1">
+                                                State
+                                            </label>
+                                            <input
+                                                class="appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 mb-3 leading-tight focus:outline-none focus:bg-white"
+                                                id="grid-state-name-1" type="text" placeholder="State" v-model="companyData.billingAddress.state">
+                                        </div>
+                                    </div>
+
+                                    <div class="flex flex-wrap -mx-3 mb-2">
+                                        <div class="w-full md:w-full px-3 mb-2 md:mb-0">
+                                            <label
+                                                class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                                                for="grid-zip-name-1">
+                                                Zip Code
+                                            </label>
+                                            <input
+                                                class="appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 mb-3 leading-tight focus:outline-none focus:bg-white"
+                                                id="grid-zip-name-1" type="number" placeholder="Zip Code" v-model="companyData.billingAddress.zip" @keypress="numbersOnly"> 
+                                        </div>
+                                    </div>
+
+                                    <div class="flex flex-wrap -mx-3 mb-2">
+                                        <div class="w-full px-3">
+                                            <label
+                                                class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                                                for="address-1">
+                                                Address
+                                            </label>
+                                            <textarea id="address-1" rows="4"
+                                                class="block p-2.5 w-full text-sm text-gray-900 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+                                                placeholder="Leave a comment..." required v-model="companyData.billingAddress.address"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-wrap -mx-3 mb-2">
+                                        <div class="w-full px-3">
+                                            <label
+                                                class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                                                for="grid-country-1">
+                                                Country
+                                            </label>
+                                            <div class="relative">
+                                                <select
+                                                    class="w-full px-3 border border-gray-200 text-gray-700 py-3 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                                                    id="country" v-model="companyData.billingAddress.country">
+                                                    <option value="">Select Country</option>
+                                                    <option v-for="c in countries" :value="c.code" v-bind:key="c.id">
+                                                      {{ c.name }}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mx-auto ">
+                                        <button type="submit"
+                                            class="b-0 flex items-center font-sixe-[20px] px-12 py-2  rounded-md bg-[#0A0446] text-white text-center text-md border border-1 border-black">
+                                            Submit
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="flex flex-col space-y-4 w-full md:w-[40%]">
+
+
+                        <div
+                            class="px-8 py-6 border border-1 bg-white rounded-lg items-center justify-between space-y-2 px-8">
+
+                            <div class="flex flex-row justify-between">
+                                <p class="font-bold text-[#0A0446]">Order Summary</p>
+                                <p class="font-medium text-white bg-[#0A0446] rounded-full px-2">{{ cartItems.length }}</p>
+                            </div>
+
+                            <hr class="h-px my-2 bg-gray-200 border-0">
+
+                            <div class="w-full">
+                                <div class="flex flex-row justify-between"  v-for="ci in cartItems" v-bind:key="ci.id">
+                                    <h1 class="text-[#0A0446] font-medium text-lg truncate ">{{ ci.description }}</h1>
+                                    <h1 class="text-[#0A0446] font-bold text-lg">{{ ci.amount / 100 | totalAmount }} {{ currencyCode }}</h1>
+                                </div>
+
+                                <hr class="h-px my-2 bg-gray-200 border-0">
+
+                                <div class="flex flex-row justify-between">
+                                    <h1 class="text-[#0A0446] font-bold text-lg truncate">Total</h1>
+                                    <h1 class="text-[#0A0446] font-bold text-lg">{{ estimateData / 100 | totalAmount }} {{ currencyCode }}</h1>
+                                </div>
+                            </div>
+                        </div>
+                        <button
+                            class="text-sm font-bold px-8 py-2.5 w-full rounded-md bg-[#0A0446] text-white text-center text-md" @click="showUpdatePlanPopUp()">
+                            Update Plan
+                        </button>
+                    </div>
+                </div>
+
             </div>
-            <h1 class="page-title text-left mt-3 "><span>Checkout</span></h1>
-            <div class="row">
-              <div class="col-md-8">
-                <h5 class="page-sub-title">Billing Information</h5>
-                <div class="row">
-                  <div class="col-lg-6">
-                    <div class="form-group">
-                      <input type="text" class="form-control" id="firstname" placeholder="First Name"
-                             v-model="companyData.billingAddress.firstName" @keypress="alphabetsOnly">
-                    </div>
-                  </div>
-                  <div class="col-lg-6">
-                    <div class="form-group">
-                      <input type="text" class="form-control" id="lastname" placeholder="Last Name"
-                             v-model="companyData.billingAddress.lastName" @keypress="alphabetsOnly">
-                    </div>
-                  </div>
-                  <div class="col-lg-6">
-                    <div class="form-group">
-                      <input type="email" class="form-control" id="email" placeholder="Email"
-                             v-model="companyData.billingAddress.email">
-                    </div>
-                  </div>
-                  <div class="col-lg-6">
-                    <div class="form-group">
-                      <input type="number" class="form-control" id="employees"
-                             placeholder="Number of employees" v-model="companyData.employees">
-                    </div>
-                  </div>
-                  <div class="col-md-12">
-                    <div class="form-group">
-                      <input type="text" class="form-control" id="company" placeholder="Company Name"
-                             v-model="companyData.billingAddress.company">
-                    </div>
-                  </div>
-                  <div class="col-md-12">
-                    <div class="form-group">
-                      <input type="text" class="form-control" id="firstName" placeholder="Address"
-                             v-model="companyData.billingAddress.address">
-                    </div>
-                  </div>
-                  <div class="col-md-12">
-                    <div class="form-group">
-                      <input type="text" class="form-control" id="lastName" placeholder="City"
-                             v-model="companyData.billingAddress.city">
-                    </div>
-                  </div>
-                  <div class="col-md-12">
-                    <div class="form-group">
-                      <input type="text" class="form-control" id="state" placeholder="State"
-                             v-model="companyData.billingAddress.state">
-                    </div>
-                  </div>
-                  <div class="col-md-12">
-                    <div class="form-group">
-                      <input type="text" class="form-control" id="zip" placeholder="Zipcode"
-                             v-model="companyData.billingAddress.zip" @keypress="numbersOnly">
-                    </div>
-                  </div>
-                  <div class="col-md-12">
-                    <div class="form-group">
-                      <select class="form-control" id="country" placeholder="Select Country"
-                              v-model="companyData.billingAddress.country">
-                        <option value="">Select Country</option>
-                        <option v-for="c in countries" :value="c.code" v-bind:key="c.id">
-                          {{ c.name }}
-                        </option>
-                      </select>
-                      <!-- <input type="text" class="form-control" id="country" placeholder="Country"
-                          v-model="companyData.billingAddress.country"> -->
-                    </div>
-                  </div>
-                  <div class="col-md-12">
-                    <button type="submit" class="d-block btn btn-primary">Submit</button>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-4">
-                <h5 class="page-sub-title">Cart Item </h5>
-                <div class="card mb-0 h-auto" style=" z-index: 9;">
-                  <ul class="list-group list-group-flush">
-                    <li class="list-group-item"><p class="card-text  d-flex align-items-center w-100"><b> Cart Item</b>
-                      <span class="my-0 mr-0 ml-auto total-items">{{ cartItems.length }}</span></p></li>
-                  </ul>
-                </div>
-                
-                <!-- <h5 class="page-sub-title">Your Cart <span class="total-items">{{ cartItems.length }}</span></h5> -->
-                <div class="cart-item card m-0 h-auto" v-for="ci in cartItems" v-bind:key="ci.id">
-                  <div class="card-sub-title">
-                    {{ ci.description }} :
-                    <span class="card-subtitle">
-                                        {{ ci.amount / 100 | totalAmount }} <small> {{ currencyCode }}</small>
-                                        </span>
-                  </div>
-                </div>
-                <div class="card  text-white bg-dark mt-0 h-auto">
-                  <div class="card-body">
-                    <h5 class="card-title white-color"> Total :
-                      {{ estimateData / 100 | totalAmount }}
-                      <small>{{ currencyCode }}</small>
-                    </h5>
-                  </div>
-                </div>
-                <br/>
-                <a class="btn btn-read-more" @click="showUpdatePlanPopUp()" v-if="">Update Plan</a>
-              </div>
-            </div>
-          </div>
-        </form>
-      </div>
-    </div>
+
+
+            <!-- footer-stat -->
+            <FooterEmployee></FooterEmployee>
+            <!-- footer-end -->
+
+        </div>
 
     <!--Update plan modal popup-->
     <b-modal id="update-plan-modal" title="Update Plan" :hide-footer=hideFooter>
@@ -152,10 +255,12 @@
 </style>
 
 <script>
+import FooterEmployee from '../components/employee/includes/Footer'
 // import Api from '../router/api'
 /* eslint-disable */
 import Api from '../router/api'
 import AppMixin from '../mixins/AppMixin'
+
 
 export default {
   name: 'CreateCompany',
@@ -191,6 +296,7 @@ export default {
       currencyCode: '',
     }
   },
+  components: {  FooterEmployee },
   methods: {
     getCountries: function () {
       let that = this

@@ -41,6 +41,7 @@ export default {
       empList: [],
       companiesList: [],
       meetingRecordingsList: [],
+      companiesListselect: [],
       companiesListMultiselect: [
         {
           selectAll: 'Select All',
@@ -48,6 +49,12 @@ export default {
         }
       ],
       profileTypeListMultiselect: [
+        {
+          selectAll: 'Select All',
+          values: []
+        }
+      ],
+      categoryListMultiselect: [
         {
           selectAll: 'Select All',
           values: []
@@ -96,6 +103,13 @@ export default {
         'additional_info': '',
         'meeting_type': '',
         'companies': '',
+        'profile_type': '',
+        'disabled': false,
+      },
+      consultinghoursUpdate: {
+        'id': '',
+        'company': '',
+        'consulting_hours': '',
         'disabled': false,
       },
       workshopUpdateUserList: [],
@@ -103,6 +117,9 @@ export default {
       todoUpdate: {
         id: '',
         company: '',
+        profile_type: '',
+        role: '',
+        part: '',
         title: '',
         description: '',
         status: '',
@@ -117,14 +134,23 @@ export default {
       postWorkshopSurvey: {},
       postWorkshopSurveyLength: 0,
       todoList: [],
+      upcomingWorkshop: [],
+      upcomingWorkshopLength: 0,
       workshopList: [],
       workshopsList: {},
       workshopsListSelect: [],
+      consultingHoursList: [],
       meetingsList: {},
       meetingRecordingLength: 0,
       meetingRecordingList: {},
       meetingsLength: 0,
       workshopsLength: 0,
+      consultingHoursLength: 0,
+      getConsultingHourData: {
+        'sortBy': '',
+        'keyword': '',
+        'sortOrder': ''
+      },
       filePath: '',
       path: '',
       registered: false,
@@ -144,6 +170,8 @@ export default {
         'title': '',
         'description': '',
         'image': '',
+        'video_path': '',
+        'vdo_path': '',
         'disabled': false
       },
       planFiles: [],
@@ -163,9 +191,20 @@ export default {
         window.localStorage.removeItem('token')
         window.localStorage.removeItem('userData')
         window.localStorage.removeItem('companyData')
+        window.localStorage.removeItem('redirectURL')
+
+        window.localStorage.removeItem('window-driver')
+
         var url = ASSESMENT_URL + 'assesment-logout';
-        //window.open(encodeURI(url))
-        this.$router.go('/login')
+        //alert(encodeURI(url))
+        window.open(encodeURI(url))
+        // this.$router.go('/login')
+        window.location =  window.location.protocol + "//" + window.location.host + "/"+"login?logout=true";
+        // this.$router.push({
+        //   path: '/login',
+        //   query: { logout: true }
+        // });
+
       }
       ).catch((error) => {
         this.$swal({
@@ -179,14 +218,16 @@ export default {
 
     checkUserAuth: function () {
       let that = this
-      if (localStorage.getItem("token")) {
+      if (localStorage.getItem("token"))
+      {
         let user = localStorage.getItem("userData");
         that.user = JSON.parse(user);
         let company = localStorage.getItem("companyData");
         that.company = JSON.parse(company);
         that.isLoggedIn = true
       }
-      else {
+      else
+      {
         that.isLoggedIn = false
       }
     },
@@ -223,6 +264,7 @@ export default {
       Api.getEmployeesListChat(that.company.id, 1, that.searchData).then(response => {
         let that = this
         that.empList = response.data.res
+        console.log({empList:response.data.res});
       }
       ).catch((error) => {
         this.$swal({
@@ -232,6 +274,14 @@ export default {
           showConfirmButton: true
         });
       });
+    },
+
+    truncateParagraph: function (text, size) {
+      if (text.length <= size) {
+        return text;
+      } else {
+        return text.slice(0, size) + '...';
+      }
     },
 
     getChatGroup: function (id) {
@@ -295,7 +345,8 @@ export default {
       this.$bvModal.show('zoom-meeting-modal')
       this.iframeSrc = url
     },
-    getWorkshop: function (id) {
+    getWorkshop: function (id)
+    {
       let that = this
       Api.getWorkshop(id).then(response => {
         that.$bvModal.show('update-workshop-modal')
@@ -309,10 +360,22 @@ export default {
         that.workshopUpdate.instructor = response.data.res.instructor
         that.workshopUpdate.meeting_type = response.data.res.meeting_type
         that.workshopUpdate.companies = response.data.res.company
+        that.workshopUpdate.profile_type = response.data.res.profile_type
         that.workshopMeetings = response.data.res.meetings
         that.workshopPath = response.data.path
         that.workshopUpdateUserList = response.data.res.users
         that.registered = response.data.registered
+      });
+    },
+    getConsultingHours: function (id)
+    {
+      let that = this
+      Api.getConsultingHours(id).then(response => {
+        console.log(response,"Edit Consulting Hours");
+        that.$bvModal.show('update-workshop-modal')
+        that.consultinghoursUpdate.id = response.data.res.id
+        that.consultinghoursUpdate.company = response.data.res.company_id
+        that.consultinghoursUpdate.consulting_hours = response.data.res.consulting_hour
       });
     },
     getWorkshopsListDashboard: function () {
@@ -330,7 +393,8 @@ export default {
         });
       });
     },
-    getWorkshopsList: function (page = 1) {
+    getWorkshopsList: function (page = 1)
+    {
       let that = this
       Api.getWorkshopsList(page, that.getWorkshopData).then(response => {
         let that = this
@@ -347,11 +411,49 @@ export default {
         });
       });
     },
-    getWorkshopsListForSelect: function () {
+    getUpcomingWorkshop: function (page = 1)
+    {
+      let that = this
+      Api.getUpcomingWorkshop().then(response => {
+        let that = this
+        that.upcomingWorkshop = response.data.res.data[0]
+        //that.upcomingWorkshopLength = response.data.res.data.length
+        that.upcomingWorkshopLength = response.data.res.data[0]
+        that.filePath = response.data.path
+      }
+      ).catch((error) => {
+        this.$swal({
+          icon: "error",
+          title: "error",
+          text: error.response.data.message,
+          showConfirmButton: true
+        });
+      });
+    },
+    getWorkshopsListForSelect: function ()
+    {
       let that = this
       Api.getWorkshopsListForSelect().then(response => {
         let that = this
         that.workshopsListSelect = response.data.res
+      }
+      ).catch((error) => {
+        this.$swal({
+          icon: "error",
+          title: "error",
+          text: error.response.data.message,
+          showConfirmButton: true
+        });
+      });
+    },
+    getConsultingHoursList: function (page = 1)
+    {
+      let that = this
+      Api.getConsultingHoursList(page, that.getConsultingHourData).then(response => {
+        let that = this
+        that.consultingHoursList = response.data.res
+        that.consultingHoursLength = that.consultingHoursList.data.length
+        console.log(that.consultingHoursLength,"getConsulting Hours List");
       }
       ).catch((error) => {
         this.$swal({
@@ -397,7 +499,8 @@ export default {
       });
 
     },
-    getCompaniesList: function () {
+    getCompaniesList: function ()
+    {
       let that = this
       Api.getCompaniesList().then(response => {
         let that = this
@@ -417,6 +520,9 @@ export default {
       Api.getTodo(id).then(response => {
         that.todoUpdate.id = response.data.res.id
         that.todoUpdate.company = response.data.res.company
+        that.todoUpdate.profile_type = response.data.res.profile_type
+        that.todoUpdate.role = response.data.res.role
+        that.todoUpdate.part = response.data.res.part
         that.todoUpdate.title = response.data.res.title
         that.todoUpdate.description = response.data.res.description
         that.todoUpdate.status = response.data.res.status
@@ -541,9 +647,9 @@ export default {
         });
       });
     },
-    getTodoListDashboard: function () {
+    getTodoListDashboard: function (part) {
       let that = this
-      Api.getTodoListDashboard().then(response => {
+      Api.getTodoListDashboard(part).then(response => {
         let that = this
         that.todoList = response.data.res
       }
@@ -621,6 +727,21 @@ export default {
         $("#chat-gui").animate({ scrollTop: h }, 'fast')
       }, 100)
     },
+    getCategoriesListMultiselect: function () {
+      let that = this
+      Api.getCategoriesListMultiselect().then(response => {
+        let that = this
+        that.categoryListMultiselect[0].values = response.data.res
+      }
+      ).catch((error) => {
+        this.$swal({
+          icon: "error",
+          title: "error",
+          text: error.response.data.message,
+          showConfirmButton: true
+        });
+      });
+    },
     getProfileTypeListMultiselect: function () {
       let that = this
       Api.getProfileTypeListMultiselect().then(response => {
@@ -637,10 +758,12 @@ export default {
       });
     },
 
-    getCompaniesListMultiselect: function () {
+    getCompaniesListMultiselect: function ()
+    {
       let that = this
       Api.getCompaniesList().then(response => {
         let that = this
+        that.companiesListselect = response.data.res;
         that.companiesListMultiselect[0].values = response.data.res
       }
       ).catch((error) => {
@@ -687,11 +810,17 @@ export default {
     getLearningPlanFiles: function () {
       let that = this
       Api.getLearningPlan(that.$route.params.id).then(response => {
+
         that.planSingle.profile_type = response.data.res.profile_type
         that.planSingle.title = response.data.res.title
         that.planSingle.description = response.data.res.description
         that.planSingle.image = response.data.res.image
+        that.planSingle.part = response.data.res.part
+        that.planSingle.video_path = response.data.res.video_path
+        that.planSingle.vdo_path = response.data.vdo_path
+
         that.planFiles = response.data.res.files
+        console.log(response,"getLearningPlanFiles");
         that.filePath = response.data.path
       }).catch((error) => {
         this.$swal({
@@ -813,6 +942,7 @@ export default {
       let that = this;
       Api.getChatGroups(that.groupSearchData).then(response => {
         that.chatGroups = response.data.res
+        console.log({chatGroups: response.data.res})
       })
     },
     assesmentLogin: function () {

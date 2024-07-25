@@ -1,81 +1,147 @@
 <template>
   <section class="admin-learning-plan-section half-cut-bg">
-    <h1 class="page-title text-left mt-0">Workshop<span> Meeting Time</span></h1>
-    <div class="mt-5">
-      <div class="row mb-3">
-        <div class="col-md-3 d-flex my-2 align-items-center">
-                <input type="text" v-model="searchData.keyword" class="form-control mb-0 search" placeholder="Search"
-                    v-on:keyup="getMeetingsList" /><span class="search-icon"></span><a href="javascript:void(0)"
-                    v-on:click="searchData.keyword = ''; getMeetingsList()" class="link px-2 ">clear</a>
-            </div>
-        <div class="col-md-3">
-
-        </div>
-        <div class="col-md-6 d-flex my-2">
-          <button class="btn btn-primary float-right ml-auto" v-b-modal.add-modal>Add New Meeting</button>
-        </div>
-      </div>
-
-      <div class="table-responsive">
-        <table class="table">
-          <tr>
-            <th>Workshop Title<i class="fa-solid fa-arrow-up"
-              @click="searchData.sortBy = 'title'; searchData.sortOrder='asc';getMeetingsList()"></i>
-            <i class="fa-solid fa-arrow-down"
-              @click="searchData.sortBy = 'title'; searchData.sortOrder='desc';getMeetingsList()"></i></th>
-            <th>Topic<i class="fa-solid fa-arrow-up"
-              @click="searchData.sortBy = 'topic'; searchData.sortOrder='asc';getMeetingsList()"></i>
-            <i class="fa-solid fa-arrow-down"
-              @click="searchData.sortBy = 'topic'; searchData.sortOrder='desc';getMeetingsList()"></i></th>
-            <th>Agenda<i class="fa-solid fa-arrow-up"
-              @click="searchData.sortBy = 'agenda'; searchData.sortOrder='asc';getMeetingsList()"></i>
-            <i class="fa-solid fa-arrow-down"
-              @click="searchData.sortBy = 'agenda'; searchData.sortOrder='desc';getMeetingsList()"></i></th>
-            <th>Type</th>
-            <th>Date<i class="fa-solid fa-arrow-up"
-              @click="searchData.sortBy = 'start_time'; searchData.sortOrder='asc';getMeetingsList()"></i>
-            <i class="fa-solid fa-arrow-down"
-              @click="searchData.sortBy = 'start_time'; searchData.sortOrder='desc';getMeetingsList()"></i></th>
-            <th>Duration<i class="fa-solid fa-arrow-up"
-              @click="searchData.sortBy = 'duration'; searchData.sortOrder='asc';getMeetingsList()"></i>
-            <i class="fa-solid fa-arrow-down"
-              @click="searchData.sortBy = 'duration'; searchData.sortOrder='desc';getMeetingsList()"></i></th>
-            <th>Passcode</th>
-            <th>Action</th>
-          </tr>
-          <tr v-if="meetingsLength" v-for="r in meetingsList.data" v-bind:key="r.id">
-            <td>{{ r.title }}</td>
-            <td>{{ r.topic }}</td>
-            <td>{{ r.agenda }}</td>
-            <td><span v-if="r.type == 1">Instant</span> <span v-else-if="r.type == 2">Scheduled</span><span
-                v-else-if="r.type == 3">Recurring</span><span v-else>Fixed</span></td>
-            <td>{{ r.start_time | timeAgo }}</td>
-            <td>{{ r.duration }}</td>
-            <td>{{ r.passcode }}</td>
-            <td class="pl-0">
-              <div class="d-flex justify-content-end">
-                <!-- <button class="btn btn-primary" @click="getWorkshop(r.id)"><i class="fa fa-pencil"></i></button>
-            <button class="btn btn-primary m-2" @click="deleteWorkshop(r.id)"><i class="fa fa-trash"></i></button> -->
-                <a v-if="r.status != 'end'" class="btn btn-primary m-2" target="_blank" :href="r.start_url">Start
-                  Meeting</a>
-                <router-link v-if="r.status == 'end'" class="btn btn-primary m-2"
-                  :to="'/admin/meeting-recordings/' + r.meeting_id">View Recordings
-                </router-link>
-                <button v-if="r.status != 'end'" class="btn btn-outline-primary  m-2"
-                  @click="endMeeting(r.meeting_id)">End
-                  Meeting</button>
-                <button v-if="r.status == 'end'" class="btn btn-outline-primary  m-2"
-                  @click="sendPostWorkshopSurveyEmail(r.workshop_id)" :disabled="disabled">Send Survey</button>
-              </div>
-            </td>
-          </tr>
-          <tr v-if="!meetingsLength">
-            <td colspan="5">No Data Found</td>
-          </tr>
-        </table>
-
-      </div>
+    <div class="py-6 flex justify-between px-8">
+        <p class="uppercase text-4xl text-gray-400 dark:text-gray-500 uppercase font-bold">
+            <span class="text-[#090446]">Workshop Archives</span>
+        </p>
     </div>
+
+    <!-- card-10 stat -->
+    <div class="w-full">
+        <div class="py-6 px-8">
+            <div class="flex justify-between py-6">
+                <form class="flex items-center">
+                    <label for="simple-search" class="sr-only">Search</label>
+                    <div class="relative w-full">
+                        <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                            <svg aria-hidden="true" class="w-5 h-5 text-gray-500" fill="currentColor"
+                                viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd"
+                                    d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                                    clip-rule="evenodd"></path>
+                            </svg>
+                        </div>
+                        <input type="text" id="simple-search"
+                            class="px-14 bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5"
+                            placeholder="Search" required v-model="searchData.keyword" v-on:keyup="getMeetingsList">
+                    </div>
+                </form>
+
+
+                <div class="flex flex-row space-x-1">
+                    <button
+                        class="flex items-center font-sixe-[20px] px-8 py-2 rounded-md bg-[#0A0446] text-white text-center text-md shadow">
+
+                        <svg class="mr-2" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M12 8V16M8 12H16M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12Z"
+                                stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                        <span class="flex-1 text-white ml-3 whitespace-nowrap" v-b-modal.add-modal>Add New Meeting</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="relative overflow-x-auto shadow-md">
+                <table class="w-full text-sm text-center text-white">
+                    <thead class="text-xs text-white bg-[#0A0446]">
+                        <tr>
+                            <th scope="col" class="px-6 py-4 rounded-tl-lg border-r border-gray-700">
+                                Workshop Title
+                            </th>
+                            <th scope="col" class="px-6 py-4 border-r border-gray-700">
+                                Topic
+                            </th>
+                            <th scope="col" class="px-6 py-4 border-r border-gray-700">
+                                Agenda
+                            </th>
+                            <th scope="col" class="px-6 py-4 border-r border-gray-700">
+                                Type
+                            </th>
+                            <th scope="col" class="px-6 py-4 border-r border-gray-700">
+                                Date
+                            </th>
+                            <th scope="col" class="px-6 py-4 border-r border-gray-700">
+                                Duration
+                            </th>
+                            <th scope="col" class="px-6 py-4 border-r border-gray-700">
+                                Passcode
+                            </th>
+                            <th scope="col" class="px-6 py-4 rounded-tr-lg">
+                                Action
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-[#090446]">
+                        <tr class="bg-white hover:bg-gray-50"  v-if="meetingsLength" v-for="r in meetingsList.data" v-bind:key="r.id">
+                            <td scope="row"
+                                class="px-6 py-4 border-r border-gray-300 font-medium whitespace-nowrap">
+                                {{ r.title }}
+                            </td>
+                            <td class="px-6 py-4 border-r border-gray-300">
+                                {{ r.topic }}
+                            </td>
+                            <td class="px-6 py-4 border-r border-gray-300">
+                                {{ r.agenda }}
+                            </td>
+                            <td class="px-6 py-4 border-r border-gray-300">
+                                <span v-if="r.type == 1">Instant</span> <span v-else-if="r.type == 2">Scheduled</span><span v-else-if="r.type == 3">Recurring</span><span v-else>Fixed</span>
+                            </td>
+                            <td class="px-6 py-4 border-r border-gray-300">
+                                {{ r.start_time | timeAgo }}
+                            </td>
+                            <td class="px-6 py-4 border-r border-gray-300">
+                                {{ r.duration }}
+                            </td>
+                            <td class="px-6 py-4 border-r border-gray-300">
+                                {{ r.passcode }}
+                            </td>
+                            <td
+                                class="px-6 py-4 border-r border-gray-300 flex items-center justify-around space-x-2 px-1 border-r border-gray-300">
+
+                                <a v-if="r.status != 'end'" class="btn btn-primary m-2" target="_blank" :href="r.start_url">
+                                    <button
+                                        class="flex items-center px-3 py-1 rounded-md bg-white text-black text-center text-md font-medium shadow border-2">
+                                       
+                                        <span class="flex-1 text-[#0A0446] ml-3 whitespace-nowrap">Start Meeting</span>
+                                    </button>
+                                </a>
+
+                                <router-link v-if="r.status == 'end'" class="btn btn-primary m-2" :to="'/admin/meeting-recordings/' + r.meeting_id">
+                                    <button
+                                        class="flex items-center px-3 py-1 rounded-md bg-white text-black text-center text-md font-medium shadow border-2">
+                                       
+                                        <span class="flex-1 text-[#0A0446] ml-3 whitespace-nowrap">View Recordings</span>
+                                    </button>
+                                </router-link>
+
+                                <button
+                                    class="flex items-center px-3 py-1 rounded-md bg-white text-black text-center text-md shadow border-2" v-if="r.status != 'end'" @click="endMeeting(r.meeting_id)">
+
+                                    <span
+                                        class="flex-1 font-medium text-gray-800 ml-3 whitespace-nowrap">End Meeting</span>
+                                </button>
+
+                                <button
+                                    class="flex items-center px-3 py-1 rounded-md bg-white text-black text-center text-md shadow border-2" v-if="r.status == 'end'" @click="sendPostWorkshopSurveyEmail(r.workshop_id)" :disabled="disabled">
+
+                                    <span
+                                        class="flex-1 font-medium text-gray-800 ml-3 whitespace-nowrap">Send Survey</span>
+                                </button>
+
+                            </td>
+                        </tr>
+                        <tr class="bg-white hover:bg-gray-50" v-if="!meetingsLength">
+                            <td scope="row" class="px-6 py-4 border-r border-gray-300 font-medium whitespace-nowrap"colspan="8">No Data Found</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- card-10 end -->
+
     <!--Add meeting modal popup-->
     <b-modal id="add-modal" title="Add New Meeting" :hide-footer=hideFooter size="lg" no-fade no-enforce-focus>
       <form>

@@ -1,68 +1,63 @@
 <template>
-    <form class="login-from" @submit="validateForm" ref="createCompanyForm" enctype="multipart/form-data">
-        <div class="row">
-            <div class="col-md-12" v-if="modalAdd">
-                <div class="form-group">
-                    <!-- <select v-modal="chargebeeUser.planData" class="form-control">
-                        <option value="">Select Plan</option>
-                        <option v-for="p in plans" v-bind:key="p.id" v-bind:value="p">
-                            {{ p.name }}
-                        </option>
-                    </select> -->
-
-                    <multiselect v-model="chargebeeUser.planData" :options="plans" placeholder="Type to search"
-                        track-by="name" label="name">
-                        <span slot="noResult">Oops! No elements found. Consider changing the search query.</span>
-                    </multiselect>
-                </div>
-            </div>
-            <div class="col-md-12">
-                <div class="form-group">
-                    <input type="text" class="form-control" id="companyname" placeholder="Company/Organization Name *"
-                        v-model="chargebeeUser.companyname">
-                </div>
-            </div>
-            <div class="col-md-12">
-                <div class="form-group">
-                    <input type="email" class="form-control" id="email"
-                        placeholder="Company/Organization Representative Email *" v-model="chargebeeUser.email">
-                </div>
-            </div>
-            <div class="col-md-12">
-                <div class="form-group">
-                    <input type="password" class="form-control" id="password" placeholder="Password *"
-                        v-model="chargebeeUser.password">
-                </div>
-            </div>
-             <div class="col-md-12">
-                <div class="form-group">
-                    <input type="password" class="form-control" id="cpassword" placeholder="Confirm Password *"
-                        v-model="chargebeeUser.cpassword">
-                </div>
-            </div>
-            <div class="col-md-12">
-                <div class="form-group">
-                    <input type="text" class="form-control" id="companydomain" placeholder="Company Url *"
-                        v-model="chargebeeUser.domain">
-                </div>
-            </div>
-            <div class="col-md-12">
-                <div class="form-group">
-                    <input type="number" class="form-control" id="employees" placeholder="Number of Employees *"
-                        v-model="chargebeeUser.employees">
-                </div>
-            </div>
-            <!-- <div class="col-md-12">
-                <div class="form-group">
-                    <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="logo" ref="logo" @change="fileOnChange">
-                        <label class="custom-file-label" for="customFile">Upload Company Logo *</label>
-                    </div>
-                </div>
-                <img v-if="url" :src="url" height="50" width="50"/>
-            </div> -->
+    <form class="sm:w-2/3 w-full px-8 lg:px-0 mx-auto" @submit="validateForm" ref="createCompanyForm" enctype="multipart/form-data">
+        <div class="pb-2 pt-4" v-if="modalAdd">
+            <multiselect v-model="chargebeeUser.planData" :options="plans" placeholder="Type to search" track-by="name" label="name">
+                <span slot="noResult">Oops! No elements found. Consider changing the search query.</span>
+            </multiselect>
         </div>
-        <button type="submit" class="d-block btn btn-primary" :disabled="chargebeeUser.disabled">Submit</button>
+        <div class="pb-2 pt-4">
+            <input type="text" id="companyname" placeholder="Company/Organization Name *" class="sm:bg-white lg:bg-[#f3f3f366] border border-1 border-[#DCDCDC] rounded-[6px] block w-full p-4 text-black text-lg bg-[#f3f3f366]" v-model="chargebeeUser.companyname">
+        </div>
+
+
+        <div class="pb-2 pt-4">
+            <input type="text" id="first_name" placeholder="First Name *" class="sm:bg-white lg:bg-[#f3f3f366] border border-1 border-[#DCDCDC] rounded-[6px] block w-full p-4 text-black text-lg bg-[#f3f3f366]" v-model="chargebeeUser.first_name">
+        </div>
+        <div class="pb-2 pt-4">
+            <input type="text" id="last_name" placeholder="Last Name *" class="sm:bg-white lg:bg-[#f3f3f366] border border-1 border-[#DCDCDC] rounded-[6px] block w-full p-4 text-black text-lg bg-[#f3f3f366]" v-model="chargebeeUser.last_name">
+        </div>
+        <div class="pb-2 pt-4">
+            <input type="email" id="email" placeholder="Company/Organization Representative Email *" class="sm:bg-white lg:bg-[#f3f3f366] border border-1 border-[#DCDCDC] rounded-[6px] block w-full p-4 text-black text-lg bg-[#f3f3f366]" v-model="chargebeeUser.email">
+        </div>
+        <div class="pb-2 pt-4">
+            <input type="password" id="password" placeholder="Password *" class="sm:bg-white lg:bg-[#f3f3f366] border border-1 border-[#DCDCDC] rounded-[6px] block w-full p-4 text-black text-lg bg-[#f3f3f366]"  v-model="chargebeeUser.password">
+        </div>
+        <div class="pb-2 pt-4">
+            <input type="password" id="cpassword" placeholder="Confirm Password *" class="sm:bg-white lg:bg-[#f3f3f366] border border-1 border-[#DCDCDC] rounded-[6px] block w-full p-4 text-black text-lg bg-[#f3f3f366]" v-model="chargebeeUser.cpassword" >
+            <input type="hidden" v-model="chargebeeUser.email_password_detail">
+        </div>
+
+        <div class="pb-2 pt-4">
+            <input type="text" id="companydomain" placeholder="Company Url *" class="sm:bg-white lg:bg-[#f3f3f366] border border-1 border-[#DCDCDC] rounded-[6px] block w-full p-4 text-black text-lg bg-[#f3f3f366]" v-model="chargebeeUser.domain">
+        </div>
+        <div class="pb-2 pt-4">
+            <input type="number" id="employees" placeholder="Number of Employees *" class="sm:bg-white lg:bg-[#f3f3f366] border border-1 border-[#DCDCDC] rounded-[6px] block w-full p-4 text-black text-lg bg-[#f3f3f366]" v-model="chargebeeUser.employees">
+        </div>
+        <div class="pb-2 pt-4" v-if="modalAdd">
+          <!-- <input type="text" id="duration" placeholder="Duration" class="sm:bg-white lg:bg-[#f3f3f366] border border-1 border-[#DCDCDC] rounded-[6px] block w-full p-4 text-black text-lg bg-[#f3f3f366]" v-model="chargebeeUser.duration"> -->
+          <label for="learning_plan_start_date">General Learning Plan Interval Duration</label>
+                <select id="duration" placeholder="Duration"  class="sm:bg-white lg:bg-[#f3f3f366] border border-1 border-[#DCDCDC] rounded-[6px] block w-full p-4 text-black text-lg bg-[#f3f3f366]" v-model="chargebeeUser.duration">
+                    <option value="">--Select--</option>
+                    <option value="1">1 Day</option>
+                    <option value="2">2 Days</option>
+                    <option value="3">3 Days</option>
+                    <option value="21">3 Weeks</option>
+                    <option value="28">4 Weeks</option>
+                    <option value="35">5 Weeks</option>
+                    <option value="42">6 Weeks</option>
+                    <option value="56">8 Weeks</option>
+                    <option value="70">10 Weeks</option>
+                    <option value="84">12 Weeks</option>
+                </select>
+        </div>
+        <div class="pb-2 pt-4"  v-if="modalAdd">
+          <label for="learning_plan_start_date">General Learning Plan Start Date</label>
+          <input type="date" id="learning_plan_start_date" placeholder="Learning plan start date" class="sm:bg-white lg:bg-[#f3f3f366] border border-1 border-[#DCDCDC] rounded-[6px] block w-full p-4 text-black text-lg bg-[#f3f3f366]" v-model="chargebeeUser.learning_plan_start_date">
+      </div>
+        <div class="px-[65px] py-2">
+            <button type="submit" class="block w-full py-2 text-lg rounded-[10px] bg-[#BE0858] hover:bg-[#ab064e] focus:outline-none" :disabled="chargebeeUser.disabled">Submit</button>
+        </div>
+
     </form>
 </template>
 <style src="vue-multiselect/dist/vue-multiselect.min.css">
@@ -87,8 +82,10 @@ export default {
                 'email': '',
                 'password': '',
                 'cpassword':'',
-                // 'firstname':'',
-                // 'lastname':'',
+                'cpassword':'',
+                'email_password_detail':0,
+                'first_name':'',
+                'last_name':'',
                 'domain': '',
                 'employees': '',
                 'plan': '',
@@ -97,7 +94,9 @@ export default {
                 'disabled': false,
                 'periodUnit': '',
                 'planType': '',
-                'planData': ''
+                'planData': '',
+                "duration":'',
+                "learning_plan_start_date":'',
                 // terms: ''
             },
             subscriptionPlans: [],
@@ -134,7 +133,7 @@ export default {
                     showConfirmButton: true
                 });
             }
-            else if (!that.chargebeeUser.companyname || !that.chargebeeUser.email || !that.chargebeeUser.password ||  !that.chargebeeUser.cpassword || !that.chargebeeUser.domain || !that.chargebeeUser.employees) {
+            else if (!that.chargebeeUser.companyname || !that.chargebeeUser.first_name || !that.chargebeeUser.last_name || !that.chargebeeUser.email || !that.chargebeeUser.password ||  !that.chargebeeUser.cpassword || !that.chargebeeUser.domain || !that.chargebeeUser.employees) {
                 this.$swal({
                     icon: "error",
                     title: "error",
@@ -153,14 +152,22 @@ export default {
                 that.chargebeeUser.disabled = true;
                 const formData = new FormData();
                 formData.append('companyname', that.chargebeeUser.companyname);
+                formData.append('first_name', that.chargebeeUser.first_name);
+                formData.append('last_name', that.chargebeeUser.last_name);
                 formData.append('email', that.chargebeeUser.email);
+                formData.append('password', that.chargebeeUser.password);
+                formData.append('email_password_detail', that.chargebeeUser.email_password_detail);
                 formData.append('domain', that.chargebeeUser.domain);
                 formData.append('employees', that.chargebeeUser.employees);
                 formData.append('plan', that.chargebeeUser.plan);
                 formData.append('periodUnit', that.chargebeeUser.periodUnit);
                 formData.append('planType', that.chargebeeUser.planType);
-                formData.append('password', that.chargebeeUser.password);
                 formData.append('addon', that.chargebeeUser.addon);
+                formData.append('duration', that.chargebeeUser.duration);
+                formData.append('learning_plan_start_date', that.chargebeeUser.learning_plan_start_date);
+
+
+
                 formData.append('logo', that.chargebeeUser.logo);
                 axios.post(APP_URL + '/create-company', formData,
                     {
@@ -210,6 +217,12 @@ export default {
     },
     created() {
         this.getPlans()
+    },
+    mounted() {
+        let that = this;
+        if (this.isLoggedIn) {
+            that.chargebeeUser.email_password_detail = 1;
+        }
     }
 }
 </script>

@@ -7,6 +7,7 @@ import Checkout from '@/components/Checkout'
 import PaymentSuccess from '@/components/PaymentSuccess'
 import Registration from '@/components/Registration'
 import Login from '@/components/Login'
+import ForgetPassword from '@/Components/ForgetPassword'
 import LogoutFromAssessment from '@/components/LogoutFromAssessment'
 import Plan from '@/components/Plan'
 import ResetPassword from '@/components/ResetPassword'
@@ -19,19 +20,24 @@ import SubmitPostWorkshopSurvey from '@/components/SubmitPostWorkshopSurvey'
 import AskQuestion from '@/components/employer/AskQuestion'
 import WelcomeNote from '@/components/employer/WelcomeNote'
 import Profile from '@/components/employer/Profile'
+import ProfileEdit from '@/components/employer/ProfileEdit'
 import NewDashboardEmplr from "@/components/employer/NewDashboardEmplr";
 import Dashboard from '@/components/employer/dashboard/Dashboard'
 import MembershipDetails from '@/components/employer/MembershipDetails'
 import Resources from '@/components/employer/Resources'
 import Workshop from '@/components/employer/Workshop'
+import WorkshopHistory from '@/components/employer/WorkshopHistory'
 import TeamManagement from '@/components/employer/team-management/TeamManagement'
 import RegistrationLink from '@/components/employer/team-management/RegistrationLink'
 import Employees from '@/components/employer/team-management/Employees'
 import Invitations from '@/components/employer/team-management/Invitations'
 import Announcements from '@/components/employer/Announcements'
 import Settings from '@/components/employer/Settings'
+import SettingsLogo from '@/components/employer/SettingsLogo'
+import SettingsPassword from '@/components/employer/SettingsPassword'
 import MessageMyTeam from '@/components/employer/MessageMyTeam'
 import OneToOneChat from '@/components/employer/OneToOneChat'
+import ChatInbox from '@/components/employer/ChatInbox'
 import GroupChat from '@/components/employer/GroupChat'
 import ViewStep from '@/components/employer/dashboard/ViewStep'
 import Opportunity from '@/components/employer/Opportunity'
@@ -49,6 +55,7 @@ import ViewQuestion from '@/components/employer/ViewQuestion'
 import NewDashboard from "@/components/employee/NewDashboard";
 import EmpDashboard from '@/components/employee/Dashboard'
 import EmpProfile from '@/components/employee/Profile'
+import EmpProfileEdit from '@/components/employee/ProfileEdit'
 import EmpResources from '@/components/employee/Resources'
 import EmpAnnouncements from '@/components/employee/Announcements'
 import EmpAskQuestion from '@/components/employee/AskQuestion'
@@ -73,7 +80,11 @@ import EmpViewQuestion from '@/components/employee/ViewQuestion'
 /********Load admin components */
 
 import AdminDashboard from '@/components/admin/dashboard/Dashboard'
+import AdminDashboard1 from '@/components/admin/dashboard1/Dashboard'
+import AdminDashboard2 from '@/components/admin/dashboard2/Dashboard'
+
 import AdminProfile from '@/components/admin/Profile'
+import AdminProfileEdit from '@/components/admin/AdminProfileEdit'
 import AdminStepConfiguration from '@/components/admin/steps/StepConfiguration'
 import AdminViewStep from '@/components/admin/steps/ViewStep'
 import AdminResources from '@/components/admin/Resources'
@@ -92,6 +103,7 @@ import AdminPostWorkshopSurveyView from '@/components/admin/PostWorkshopSurveyVi
 import AdminEmployeeProfileTypeView from '@/components/admin/EmployeeProfileTypeView'
 import AdminSendEmail from '@/components/admin/SendEmail'
 import AdminWorkshop from '@/components/admin/Workshop'
+import AdminConsultingHours from '@/components/admin/ConsultingHours'
 import AdminWorkshopView from '@/components/admin/WorkshopView'
 import AdminMeeting from '@/components/admin/Meeting'
 import AdminMeetingRecording from '@/components/admin/MeetingRecording'
@@ -100,6 +112,15 @@ import AdminLearningPlan from '@/components/admin/LearningPlan'
 import AdminLearningPlanView from '@/components/admin/LearningPlanView'
 import AdminLearningPlanResource from '@/components/admin/LearningPlanResource'
 import AdminViewQuestion from '@/components/admin/ViewQuestion'
+import AdminSettings from '@/components/admin/Settings'
+import AdminCategories from '@/components/admin/Categories'
+import AdminTips from '@/components/admin/Tips'
+import MobileUsers from '@/components/admin/MobileUsers'
+import PastTips from '@/components/admin/PastTips'
+import OldTips from '@/components/admin/OldTips'
+
+
+
 
 Vue.use(Router)
 
@@ -113,7 +134,8 @@ function guardMyroute(to, from, next) {
   } else {
     isAuthenticated = false
   }
-  if (isAuthenticated) {
+  if (isAuthenticated)
+  {
     next()
   } else {
     next('/login')
@@ -180,6 +202,11 @@ export const router = new Router({
              name: "Login",
              component: Login
            },
+           {
+            path: "/forget-password",
+            name: "ForgetPassword",
+            component: ForgetPassword
+          },
            {
              path: "/logout-from-assessment",
              name: "Logout From Assessment",
@@ -280,6 +307,18 @@ export const router = new Router({
              }
            },
            {
+             path: "/employer/edit-profile",
+             beforeEnter: guardMyroute,
+             name: "ProfileEdit",
+             component: ProfileEdit,
+             meta: {
+               requiresAuth: true,
+               employerAuth: true,
+               employeeAuth: false,
+               adminAuth: false
+             }
+           },
+           {
              path: "/employer/membership-details",
              beforeEnter: guardMyroute,
              name: "MembershipDetails",
@@ -308,6 +347,18 @@ export const router = new Router({
              beforeEnter: guardMyroute,
              name: "Workshop",
              component: Workshop,
+             meta: {
+               requiresAuth: true,
+               employerAuth: true,
+               employeeAuth: false,
+               adminAuth: false
+             }
+           },
+           {
+             path: "/employer/workshop-history",
+             beforeEnter: guardMyroute,
+             name: "WorkshopHistory",
+             component: WorkshopHistory,
              meta: {
                requiresAuth: true,
                employerAuth: true,
@@ -364,6 +415,30 @@ export const router = new Router({
              }
            },
            {
+             path: "/employer/settings-logo",
+             beforeEnter: guardMyroute,
+             name: "SettingsLogo",
+             component: SettingsLogo,
+             meta: {
+               requiresAuth: true,
+               employerAuth: true,
+               employeeAuth: false,
+               adminAuth: false
+             }
+           },
+           {
+             path: "/employer/settings-password",
+             beforeEnter: guardMyroute,
+             name: "SettingsPassword",
+             component: SettingsPassword,
+             meta: {
+               requiresAuth: true,
+               employerAuth: true,
+               employeeAuth: false,
+               adminAuth: false
+             }
+           },
+           {
              path: "/employer/welcome-note",
              beforeEnter: guardMyroute,
              name: "WelcomeNote",
@@ -400,7 +475,31 @@ export const router = new Router({
              }
            },
            {
+             path: "/employer/one-to-one-chat",
+             beforeEnter: guardMyroute,
+             name: "OneToOneChat",
+             component: OneToOneChat,
+             meta: {
+               requiresAuth: true,
+               employerAuth: true,
+               employeeAuth: false,
+               adminAuth: false
+             }
+           },
+           {
              path: "/employer/group-chat/:id",
+             beforeEnter: guardMyroute,
+             name: "GroupChat",
+             component: GroupChat,
+             meta: {
+               requiresAuth: true,
+               employerAuth: true,
+               employeeAuth: false,
+               adminAuth: false
+             }
+           },
+           {
+             path: "/employer/group-chat",
              beforeEnter: guardMyroute,
              name: "GroupChat",
              component: GroupChat,
@@ -555,7 +654,7 @@ export const router = new Router({
               adminAuth: false
             }
           },
-     
+
            // routes for employees
            {
              path: "/employee/dashboard",
@@ -582,7 +681,7 @@ export const router = new Router({
              }
            },
            {
-             path: "/employee/dashboard",
+             path: "/employee/dashboard/:popup",
              beforeEnter: guardMyroute,
              name: "Dashboard",
              component: EmpDashboard,
@@ -598,6 +697,18 @@ export const router = new Router({
              beforeEnter: guardMyroute,
              name: "Profile",
              component: EmpProfile,
+             meta: {
+               requiresAuth: true,
+               employerAuth: false,
+               employeeAuth: true,
+               adminAuth: false
+             }
+           },
+           {
+             path: "/employee/edit-profile",
+             beforeEnter: guardMyroute,
+             name: "EmpProfileEdit",
+             component: EmpProfileEdit,
              meta: {
                requiresAuth: true,
                employerAuth: false,
@@ -630,7 +741,31 @@ export const router = new Router({
              }
            },
            {
+             path: "/employee/one-to-one-chat",
+             beforeEnter: guardMyroute,
+             name: "OneToOneChat",
+             component: EmpOneToOneChat,
+             meta: {
+               requiresAuth: true,
+               employerAuth: false,
+               employeeAuth: true,
+               adminAuth: false
+             }
+           },
+           {
              path: "/employee/group-chat/:id",
+             beforeEnter: guardMyroute,
+             name: "GroupChat",
+             component: EmpGroupChat,
+             meta: {
+               requiresAuth: true,
+               employerAuth: false,
+               employeeAuth: true,
+               adminAuth: false
+             }
+           },
+           {
+             path: "/employee/group-chat",
              beforeEnter: guardMyroute,
              name: "GroupChat",
              component: EmpGroupChat,
@@ -858,10 +993,46 @@ export const router = new Router({
              }
            },
            {
+            path: "/employer/dashboard1",
+            beforeEnter: guardMyroute,
+            name: "Dashboard1",
+            component: AdminDashboard1,
+            meta: {
+              requiresAuth: true,
+              employerAuth: true,
+              employeeAuth: false,
+              adminAuth: false
+            }
+          },
+          {
+            path: "/admin/dashboard2",
+            beforeEnter: guardMyroute,
+            name: "Dashboard2",
+            component: AdminDashboard2,
+            meta: {
+              requiresAuth: true,
+              employerAuth: false,
+              employeeAuth: false,
+              adminAuth: true
+            }
+          },
+           {
              path: "/admin/profile",
              beforeEnter: guardMyroute,
              name: "Profile",
              component: AdminProfile,
+             meta: {
+               requiresAuth: true,
+               employerAuth: false,
+               employeeAuth: false,
+               adminAuth: true
+             }
+           },
+           {
+             path: "/admin/edit-profile",
+             beforeEnter: guardMyroute,
+             name: "AdminProfileEdit",
+             component: AdminProfileEdit,
              meta: {
                requiresAuth: true,
                employerAuth: false,
@@ -1098,6 +1269,18 @@ export const router = new Router({
              }
            },
            {
+            path: "/admin/consulting-hour",
+            beforeEnter: guardMyroute,
+            name: "AdminConsultingHours",
+            component: AdminConsultingHours,
+            meta: {
+              requiresAuth: true,
+              employerAuth: false,
+              employeeAuth: false,
+              adminAuth: true
+            }
+          },
+           {
              path: "/admin/meetings",
              beforeEnter: guardMyroute,
              name: "AdminMeeting",
@@ -1192,6 +1375,78 @@ export const router = new Router({
                employeeAuth: false,
                adminAuth: true
              }
+           },
+           {
+             path: "/admin/settings",
+             beforeEnter: guardMyroute,
+             name: "Settings",
+             component: AdminSettings,
+             meta: {
+               requiresAuth: true,
+               employerAuth: false,
+               employeeAuth: false,
+               adminAuth: true
+             }
+           },
+           {
+             path: "/admin/categories",
+             beforeEnter: guardMyroute,
+             name: "Categories",
+             component: AdminCategories,
+             meta: {
+               requiresAuth: true,
+               employerAuth: false,
+               employeeAuth: false,
+               adminAuth: true
+             }
+           },
+           {
+             path: "/admin/tips",
+             beforeEnter: guardMyroute,
+             name: "Tips",
+             component: AdminTips,
+             meta: {
+               requiresAuth: true,
+               employerAuth: false,
+               employeeAuth: false,
+               adminAuth: true
+             }
+           },
+           {
+             path: "/admin/mobile-users",
+             beforeEnter: guardMyroute,
+             name: "MobileUsers",
+             component: MobileUsers,
+             meta: {
+               requiresAuth: true,
+               employerAuth: false,
+               employeeAuth: false,
+               adminAuth: true
+             }
+           },
+           {
+             path: "/admin/past_tips",
+             beforeEnter: guardMyroute,
+             name: "PastTips",
+             component: PastTips,
+             meta: {
+               requiresAuth: true,
+               employerAuth: false,
+               employeeAuth: false,
+               adminAuth: true
+             }
+           },
+           {
+             path: "/admin/old_tips",
+             beforeEnter: guardMyroute,
+             name: "OldTips",
+             component: OldTips,
+             meta: {
+               requiresAuth: true,
+               employerAuth: false,
+               employeeAuth: false,
+               adminAuth: true
+             }
            }
          ],
          mode: "history",
@@ -1199,9 +1454,13 @@ export const router = new Router({
        });
 
 router.beforeEach((to, from, next) => {
+
+
+
   if (to.meta.requiresAuth) {
     var token = localStorage.getItem('token')
     if (token) {
+      localStorage.removeItem('redirectURL');
       var user = localStorage.getItem('userData')
       var company = localStorage.getItem('companyData')
       var c = JSON.parse(company)
@@ -1242,7 +1501,12 @@ router.beforeEach((to, from, next) => {
       }
     } else {
       console.log("in else");
-      console.log(next())
+
+      if(!from.name){
+        localStorage.setItem('redirectURL', to.fullPath);
+      }
+      console.log({to, from, next})
+
       next()
     }
   } else {
@@ -1263,7 +1527,7 @@ router.beforeEach((to, from, next) => {
         next('admin/dashboard')
       }
     } else {
-      next()
+      next();
     }
   }
 })

@@ -1,130 +1,160 @@
 <template>
-    <div class="mt-3">
-        <div class="row">
-            <div class="col-md-3 my-2  d-flex align-items-center">
-                <input type="text" v-model="getWorkshopData.keyword" class="form-control search" placeholder="Search"
-                    v-on:keyup="getWorkshopList" /><span class="search-icon"></span><a href="javascript:void(0)"
-                    v-on:click="getWorkshopData.keyword = ''; getWorkshopList()" class="link px-2 mb-3">clear</a>
-            </div>
-            <div class="col-md-3 my-2">
-                <!-- <select v-model="getWorkshopData.sortBy" class="form-control" v-on:change="getWorkshopList">
-                    <option value="">Sort By</option>
-                    <option value="name">Name</option>
-                </select> -->
-            </div>
-            <div class="col-md-3 my-2">
-            </div>
-            <div class="col-lg-3 col-md-12 my-2" v-if="user.role != 'ADMIN'">
-                <button class="btn btn-primary float-right" v-b-modal.request-workshop-modal>Request Workshop</button>
-            </div>
+    <section>
+        <div class="py-6 flex justify-between px-8" >
+            <p class="uppercase text-4xl text-gray-400 dark:text-gray-500 uppercase font-bold" v-if="user.role != 'ADMIN'">
+                <span class="text-[#090446]">request workshop</span>
+            </p>
+
+            <p class="uppercase text-4xl text-gray-400 dark:text-gray-500 uppercase font-bold" v-if="user.role == 'ADMIN'">
+                <span class="text-[#090446]">workshop requests</span>
+            </p>
+
+            <form class="flex items-center">
+                <label for="simple-search" class="sr-only">Search</label>
+                <div class="relative w-full">
+                    <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                        <svg aria-hidden="true" class="w-5 h-5 text-gray-500" fill="currentColor"
+                            viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd"
+                                d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                    </div>
+                    <input type="text" id="simple-search"
+                        class="px-14 bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5"
+                        placeholder="Search" required v-model="getWorkshopData.keyword" v-on:keyup="getWorkshopList">
+                </div>
+            </form>
         </div>
-        <div class="row mt-3">
-            <div class="table-responsive">
-                <table class="table">
-                    <tr>
-                        <th v-if="user.role == 'ADMIN'">Company Name <i class="fa-solid fa-arrow-up"
-                                @click="getWorkshopData.sortBy = 'company_name'; getWorkshopData.sortOrder='asc';getWorkshopList()"></i>
-                            <i class="fa-solid fa-arrow-down"
-                                @click="getWorkshopData.sortBy = 'company_name'; getWorkshopData.sortOrder='desc';getWorkshopList()"></i></th>
-                        <th>Name <i class="fa-solid fa-arrow-up"
-                                @click="getWorkshopData.sortBy = 'name'; getWorkshopData.sortOrder='asc';getWorkshopList()"></i>
-                            <i class="fa-solid fa-arrow-down"
-                                @click="getWorkshopData.sortBy = 'name'; getWorkshopData.sortOrder='desc';getWorkshopList()"></i>
-                        </th>
-                        <th>Workshop Focus <i class="fa-solid fa-arrow-up"
-                                @click="getWorkshopData.sortBy = 'workshop_focus'; getWorkshopData.sortOrder='asc';getWorkshopList()"></i>
-                            <i class="fa-solid fa-arrow-down"
-                                @click="getWorkshopData.sortBy = 'workshop_focus'; getWorkshopData.sortOrder='desc';getWorkshopList()"></i>
-                        </th>
-                        <th>Desired Date <i class="fa-solid fa-arrow-up"
-                                @click="getWorkshopData.sortBy = 'desired_date'; getWorkshopData.sortOrder='asc';getWorkshopList()"></i>
-                            <i class="fa-solid fa-arrow-down"
-                                @click="getWorkshopData.sortBy = 'desired_date'; getWorkshopData.sortOrder='desc';getWorkshopList()"></i>
-                        </th>
-                        <th>Workshop Length <i class="fa-solid fa-arrow-up"
-                                @click="getWorkshopData.sortBy = 'workshop_length'; getWorkshopData.sortOrder='asc';getWorkshopList()"></i>
-                            <i class="fa-solid fa-arrow-down"
-                                @click="getWorkshopData.sortBy = 'workshop_length'; getWorkshopData.sortOrder='desc';getWorkshopList()"></i>
-                        </th>
-                        <th>Workshop Type <i class="fa-solid fa-arrow-up"
-                                @click="getWorkshopData.sortBy = 'workshop_type'; getWorkshopData.sortOrder='asc';getWorkshopList()"></i>
-                            <i class="fa-solid fa-arrow-down"
-                                @click="getWorkshopData.sortBy = 'workshop_type'; getWorkshopData.sortOrder='desc';getWorkshopList()"></i>
-                        </th>
-                        <th>Audience <i class="fa-solid fa-arrow-up"
-                                @click="getWorkshopData.sortBy = 'audience'; getWorkshopData.sortOrder='asc';getWorkshopList()"></i>
-                            <i class="fa-solid fa-arrow-down"
-                                @click="getWorkshopData.sortBy = 'audience'; getWorkshopData.sortOrder='desc';getWorkshopList()"></i>
-                        </th>
-                        <th>Requirements <i class="fa-solid fa-arrow-up"
-                                @click="getWorkshopData.sortBy = 'requirements'; getWorkshopData.sortOrder='asc';getWorkshopList()"></i>
-                            <i class="fa-solid fa-arrow-down"
-                                @click="getWorkshopData.sortBy = 'requirements'; getWorkshopData.sortOrder='desc';getWorkshopList()"></i>
-                        </th>
-                        <th>Expectations <i class="fa-solid fa-arrow-up"
-                                @click="getWorkshopData.sortBy = 'expectations'; getWorkshopData.sortOrder='asc';getWorkshopList()"></i>
-                            <i class="fa-solid fa-arrow-down"
-                                @click="getWorkshopData.sortBy = 'expectations'; getWorkshopData.sortOrder='desc';getWorkshopList()"></i>
-                        </th>
-                        <th>Status <i class="fa-solid fa-arrow-up"
-                                @click="getWorkshopData.sortBy = 'status'; getWorkshopData.sortOrder='asc';getWorkshopList()"></i>
-                            <i class="fa-solid fa-arrow-down"
-                                @click="getWorkshopData.sortBy = 'status'; getWorkshopData.sortOrder='desc';getWorkshopList()"></i>
-                        </th>
-                        <th>Action</th>
-                    </tr>
-                    <tr v-if="workshopsLength" v-for="r in workshops.data" v-bind:key="r.id">
-                        <td v-if="user.role == 'ADMIN'">{{ r.company_name }}</td>
-                        <td>{{ r.name }}</td>
-                        <td>{{ r.workshop_focus }}</td>
-                        <td>{{ r.desired_date | timeAgo }}</td>
-                        <td>{{ r.workshop_length }}</td>
-                        <td>{{ r.workshop_type }}</td>
-                        <td>{{ r.audience }}</td>
-                        <td>{{ r.requirements }}</td>
-                        <td>{{ r.expectations }}</td>
-                        <td>{{ r.status }}</td>
-                        <td class="px-0">
-                            <div class="d-flex align-items-center p-0" style="min-width: 100px;">
-                                <a type="button" class="px-3"
-                                    @click="deleteRequestWorkshop(r.id)" width="24" height="24">
-                                    <i class="fa fa-trash" style="color:#C2095A"></i>
-                                    <!-- <img src="../../../assets/images/table-delete.svg" width="24" height="24"
-                                        alt="table-edit" /> -->
-                                </a>
-                                <a type="button" class="px-3" v-if="user.role == 'ADMIN' && r.status == 'NEW'"
+
+        <!-- card-10 stat -->
+        <div class="w-full">
+            <div class="flex flex-wrap space-x-2 space-y-1"  v-if="user.role != 'ADMIN'">
+                 <router-link to="/employer/request-workshop" class="btn">
+                    <button
+                        class="flex items-center font-sixe-[20px] px-12 py-2 mx-8 rounded-md bg-white text-black text-center text-md shadow">
+                        Request for Workshop
+                    </button>
+                </router-link>
+                <router-link to="/employer/workshop-history" class="btn">
+                    <button
+                        class="flex items-center font-sixe-[20px] px-12 py-2 mx-8 rounded-md bg-[#BE0858] text-white text-center text-md shadow">
+                        Workshop Request History
+                    </button>
+                </router-link>
+            </div>
+
+            <div class="py-6 px-8">
+                <div class="relative overflow-x-auto shadow-md">
+                    <table class="w-full text-sm text-center text-white">
+                        <thead class="text-xs text-white bg-[#0A0446]">
+                            <tr>
+                                <th scope="col" class="px-4 py-4 rounded-tl-lg border-r border-gray-700" v-if="user.role == 'ADMIN'">
+                                    Company Name
+                                </th>
+                                <th scope="col" class="px-6 py-4 border-r border-gray-700">
+                                    Name
+                                </th>
+                                <th scope="col" class="px-6 py-4 border-r border-gray-700">
+                                    Workshop Focus
+                                </th>
+                                <th scope="col" class="px-6 py-4 border-r border-gray-700">
+                                    Desired Date
+                                </th>
+                                <th scope="col" class="px-6 py-4 border-r border-gray-700">
+                                    Workshop Length
+                                </th>
+                                <th scope="col" class="px-6 py-4 border-r border-gray-700">
+                                    Workshop Type
+                                </th>
+                                <th scope="col" class="px-6 py-4 border-r border-gray-700">
+                                    Audience
+                                </th>
+                                <th scope="col" class="px-6 py-4 border-r border-gray-700">
+                                    Requirements
+                                </th>
+                                <th scope="col" class="px-6 py-4 border-r border-gray-700">
+                                    Expectations
+                                </th>
+                                <th scope="col" class="px-6 py-4 border-r border-gray-700">
+                                    Status
+                                </th>
+                                <th scope="col" class="px-6 py-4 rounded-tr-lg">
+                                    Action
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-[#090446]">
+                            <tr class="bg-white hover:bg-gray-50"  v-if="workshopsLength" v-for="r in workshops.data" v-bind:key="r.id">
+                                <td scope="row"
+                                    class="px-4 py-4 border-r border-gray-300 font-medium whitespace-nowrap" v-if="user.role == 'ADMIN'">
+                                    {{ r.company_name }}
+                                </td>
+                                <td scope="row"
+                                    class="px-4 py-4 border-r border-gray-300 font-medium whitespace-nowrap">
+                                    {{ r.name }}
+                                </td>
+                                <td class="px-6 py-4 border-r border-gray-300">
+                                    {{ r.workshop_focus }}
+                                </td>
+                                <td class="px-6 py-4 border-r border-gray-300">
+                                    {{ r.desired_date | timeAgo }}
+                                </td>
+                                <td class="px-6 py-4 border-r border-gray-300">
+                                    {{ r.workshop_length }}
+                                </td>
+                                <td class="px-6 py-4 border-r border-gray-300">
+                                    {{ r.workshop_type }}
+                                </td>
+                                <td class="px-6 py-4 border-r border-gray-300">
+                                    {{ r.audience }}
+                                </td>
+                                <td class="px-6 py-4 border-r border-gray-300">
+                                    {{ r.requirements }}
+                                </td>
+                                <td class="px-6 py-4 border-r border-gray-300">
+                                    {{ r.expectations }}
+                                </td>
+                                <td class="px-6 py-4 border-r border-gray-300">
+                                    {{ r.status }}
+                                </td>
+                                <td class="px-6 py-4 border-r border-gray-300">
+                                    <button
+                                        class="flex items-center px-3 py-1 rounded-md bg-white text-black text-center text-md shadow border-2" @click="deleteRequestWorkshop(r.id)" >
+                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M6 2H10M2 4H14M12.6667 4L12.1991 11.0129C12.129 12.065 12.0939 12.5911 11.8667 12.99C11.6666 13.3412 11.3648 13.6235 11.0011 13.7998C10.588 14 10.0607 14 9.00623 14H6.99377C5.93927 14 5.41202 14 4.99889 13.7998C4.63517 13.6235 4.33339 13.3412 4.13332 12.99C3.90607 12.5911 3.871 12.065 3.80086 11.0129L3.33333 4"
+                                                stroke="#6A6767" stroke-width="1.5" stroke-linecap="round"
+                                                stroke-linejoin="round"></path>
+                                        </svg>
+                                    </button>
+                                    <a type="button" class="px-3" v-if="user.role == 'ADMIN' && r.status == 'NEW'"
                                     @click="acceptRequestWorkshop(r.id)" width="24" height="24">
-                                    <i class="fa fa-check"></i>
-                                    <!-- <img src="../../../assets/images/table-delete.svg"  width="24" height="24" alt="table-delete" />-->
-                                </a>
-                                <a type="button" class="px-3" v-if="user.role == 'ADMIN' && r.status == 'NEW'"
-                                    @click="rejectRequestWorkshop(r.id)" width="24" height="24">
-                                    <i class="fa fa-times"></i>
-                                    <!-- <img src="../../../assets/images/table-delete.svg"  width="24" height="24" alt="table-delete" />-->
-                                </a>
-                            </div>
-                        </td>
-                        <!-- <td>
-                        <button v-if="user.role != 'ADMIN'" class="btn btn-danger"
-                            @click="deleteRequestWorkshop(r.id)"><i class="fa fa-trash"></i></button>
-                        <button v-if="user.role == 'ADMIN' && r.status == 'NEW'" class="btn btn-primary"
-                            @click="acceptRequestWorkshop(r.id)"><i class="fa fa-check"></i></button>
-                        <button v-if="user.role == 'ADMIN' && r.status == 'NEW'" class="btn btn-danger"
-                            @click="rejectRequestWorkshop(r.id)"><i class="fa fa-times"></i></button>
-                    </td> -->
-                    </tr>
-                    <tr v-if="!workshopsLength">
-                        <td colspan="5">No Data Found</td>
-                    </tr>
-                </table>
+                                        <i class="fa fa-check"></i>
+                                        <!-- <img src="../../../assets/images/table-delete.svg"  width="24" height="24" alt="table-delete" />-->
+                                    </a>
+                                    <a type="button" class="px-3" v-if="user.role == 'ADMIN' && r.status == 'NEW'"
+                                        @click="rejectRequestWorkshop(r.id)" width="24" height="24">
+                                        <i class="fa fa-times"></i>
+                                        <!-- <img src="../../../assets/images/table-delete.svg"  width="24" height="24" alt="table-delete" />-->
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr class="bg-white hover:bg-gray-50" v-if="!workshopsLength">
+                                <td scope="row"
+                                    class="px-4 py-4 border-r border-gray-300 font-medium whitespace-nowrap" colspan="11">No Data Found</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <pagination :data="workshops" @pagination-change-page="getWorkshopList" />
+                </div>
+
             </div>
-            <pagination :data="workshops" @pagination-change-page="getWorkshopList" />
         </div>
-        <!--Add resource modal popup-->
-        <Add :getWorkshopList="getWorkshopList"></Add>
-        <!--Update resource modal popup-->
-        <!-- <Edit :getWorkshopList="getWorkshopList" :workshopUpdate="workshopUpdate"></Edit> -->
-    </div>
+        <!-- card-10 end -->
+
+    </section>
 </template>
 <script>
 /* eslint-disable */

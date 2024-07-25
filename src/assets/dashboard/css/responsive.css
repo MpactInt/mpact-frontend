@@ -1,0 +1,155 @@
+@media(min-width: 992px) {
+	.modal-dialog {
+		max-width: 410px;
+	}
+
+		.modal-dialog.modal-lg {
+			max-width: 700px;
+		}
+
+		.modal-dialog.modal-md {
+			max-width: 480px;
+		}
+}
+
+@media(min-width: 1699px) {
+
+	.card.statistic-card{
+		    padding: 40px 45px;
+	}
+	
+.unique-employee-chart .chart-name-box {
+    width: auto;
+    left: 74px;
+}
+}
+
+
+@media(max-width: 1499px) {
+
+
+
+.navbar-brand, .sidebar {
+    width: 100%;
+    max-width: 250px;
+        padding: 112px 0 0;
+}
+main.after-login{
+	padding-left: 250px;
+	    padding-top: 66px;
+	        display: flex;
+    align-items: center;
+}
+.user-details-box{
+	max-width: 250px;
+	padding: 60px 13px 0 30px;
+}
+.sidebar .nav-link{
+	padding: 12px 12px 12px 30px;
+	    height: 50px;
+	        margin-bottom: 4px;
+}
+.user-details-box .user-details{
+	padding-right: 20px;
+}
+
+.navbar {
+    height: 80px;
+}
+a.nav-btn{
+	    padding: 10px 23px;
+}
+.card.statistic-card.mini-statistic-card,
+.card.statistic-card {
+    padding: 20px 20px;
+}
+.card.statistic-card .card-heading{
+	margin-bottom: 2px;
+}
+.card.statistic-card .card-heading .bootstrap-select .dropdown-toggle{
+	padding: 5px 36px 5px 18px;
+	    font-size: 18px;
+    line-height: 24px;
+}
+.unique-employee-chart{
+	max-width: 320px;
+}
+.daily-visit-doughnut{
+	    max-width: 190px;
+}
+.page-name{
+	    font-size: 28px;
+    line-height: 36px;
+}
+.page-name-nav .mb-4 {
+    margin-bottom: 10px !important;
+}
+.page-name-nav a.link img {
+    width: 40px;
+}
+.TotalTrainingHours{
+	    font-size: 30px;
+    line-height: 48px;
+}
+
+.TotalTrainingHours p {
+    font-size: 14px;
+    line-height: 14px;
+    letter-spacing: -0.5px;
+}
+.daily-visit-doughnut .chart-name-box,
+.chart-name-box{
+	    font-size: 26px;
+    line-height: 20px;
+        left: 30px;
+}
+.chart-name-box span {
+    font-size: 12px;
+    line-height: 14px;
+    letter-spacing: -0.05em;
+    max-width: 70px;
+    margin: 4px auto 0;
+}
+
+.daily-visit-doughnut .chart-name-box {
+    top: 91px;
+    left: 43px;
+}
+
+canvas#MobileAppLogins {
+    margin: -50px 0 -80px;
+}
+.total-training-hours-pie {
+    width: 270px;
+}
+
+canvas#Total-Training-Hours-pie {
+    margin: -70px 0 -100px;
+}
+
+
+.TotalTrainingHoursCard.card.statistic-card .card-heading.mini-heading {
+    flex-wrap: wrap;
+}
+.TotalTrainingHoursCard.card.statistic-card .card-heading.mini-heading .dropdown.bootstrap-select {
+    width: 100% !important;
+}
+/*
+.TotalTrainingHoursCard.card.statistic-card .card-heading.mini-heading .dropdown.bootstrap-select .btn.dropdown-toggle {
+    width: 100%;
+}*/
+
+
+
+
+
+
+
+
+
+}
+
+@media(max-width: 1299px) {
+
+
+}

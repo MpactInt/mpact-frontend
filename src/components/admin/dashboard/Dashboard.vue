@@ -1,6 +1,10 @@
 <template>
   <section class="admin-dashboard-hero-section" >
-    <h3 class="page-title mb-0 text-left  d-inline-block">Dashboard</h3>
+    <div class="py-6 flex justify-between px-8">
+        <p class="uppercase text-4xl text-gray-400 dark:text-gray-500 uppercase font-bold">
+            <span class="text-[#090446]">Dashboard</span>
+        </p>
+    </div>
   </section>
 </template>
 

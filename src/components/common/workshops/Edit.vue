@@ -11,6 +11,14 @@
                         <span slot="noResult">Oops! No elements found. Consider changing the search query.</span>
                     </multiselect>
                 </div>
+                <div class="form-group" v-if="user.role == 'ADMIN'">
+                    <label>Select Profile Type <span class="err">*</span></label>
+                    <multiselect v-model="workshopUpdateData.profile_type" :options="profileTypeListMultiselect" group-values="values"
+                      group-label="selectAll" :multiple="true" :group-select="true" placeholder="Type to search" track-by="name"
+                      label="name">
+                      <span slot="noResult">Oops! No elements found. Consider changing the search query.</span>
+                    </multiselect>
+                </div>
                 <div class="form-group">
                     <label>Title <span class="err">*</span></label>
                     <input type="text" class="form-control" id="title" placeholder="Title"
@@ -92,7 +100,7 @@ export default {
             e.preventDefault()
             let that = this;
             console.log(that.workshopUpdateData)
-            if (!that.workshopUpdateData.title || !that.workshopUpdateData.description || !that.workshopUpdateData.total_hours || !that.workshopUpdateData.instructor || !that.workshopUpdateData.date || !that.workshopUpdateData.additional_info) {
+            if (!that.workshopUpdateData.title || !that.workshopUpdateData.description || !that.workshopUpdateData.total_hours || !that.workshopUpdateData.instructor || !that.workshopUpdateData.date || !that.workshopUpdateData.additional_info || !that.workshopUpdateData.profile_type) {
                 this.$swal({
                     icon: "error",
                     title: "error",
@@ -112,6 +120,7 @@ export default {
                 formData.append('additional_info', that.workshopUpdateData.additional_info)
                 formData.append('meeting_type', that.workshopUpdateData.meeting_type)
                 formData.append('company', JSON.stringify(that.workshopUpdateData.companies))
+                formData.append('profile_type', JSON.stringify(that.workshopUpdateData.profile_type));
                 let headers = {
                     'Content-Type': 'multipart/form-data',
                     'Access-Control-Allow-Origin': '*'
@@ -143,6 +152,7 @@ export default {
     },
     mounted() {
         this.getCompaniesListMultiselect()
+        this.getProfileTypeListMultiselect()
     },
 }
 </script>

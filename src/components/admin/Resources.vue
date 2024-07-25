@@ -1,7 +1,5 @@
 <template>
-
     <section class="admin-resources-section half-cut-bg">
-      <h1 class="page-title text-left mt-0"><span>Resources</span></h1>
         <List></List>
   </section>
 </template>

@@ -1,7 +1,6 @@
 <template>
   <div>
-    <section class="employer-resources-section half-cut-bg">
-      <h1 class="page-title text-left mt-0"><span>Resources</span></h1>
+    <section>
       <List></List>
     </section>
   </div>

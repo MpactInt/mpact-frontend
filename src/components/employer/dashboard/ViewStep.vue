@@ -1,93 +1,95 @@
 <template>
-  <section class="view-step-link half-cut-bg">
-    <!--    <router-link to="/employer/dashboard">
-      <button class="btn-primary">
-        <i class="fa fa-arrow-left white"></i>
-      </button>
-    </router-link> -->
-
-    <router-link to="/employer/dashboard" class="btn back">
-      <!-- <button class="btn-primary"> -->
-      <img src="../../../assets/images/arrow-left.svg" alt="arrow-left" /> Back
-      <!-- </button> -->
-    </router-link>
-    <div class="row mt-5 tabs-ui">
-      <div class="col-md-12 pricing-section">
-        <div class="nav nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-          <button class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home"
-            type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">Overview</button>
-          <button class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile"
-            type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">Guide Book</button>
-          <button class="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages"
-            type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false">Toolkit</button>
+<section>
+    <div>
+        <div class="py-6 text-center px-8 space-y-1">
+            <p class="bg-center text-[#0A0446] uppercase font-bold">
+                Welcome To
+            </p>
+            <p class="text-3xl font-bold text-[#0A0446]">{{ stepUpdate.title }}</p>
         </div>
-      </div>
-      <div class="col-md-12">
 
-        <h3 class="view-step-title">Welcome to </h3>
-        <h3 class="section-title">{{ stepUpdate.title }}</h3>
+        <ul class="mx-5 flex flex-wrap space-x-1 items-center justify-center pb-6 nav nav-pills" id="myTab"
+            data-tabs-toggle="#myTabContent" role="tablist">
+            <li role="presentation">
 
-        <div class="tab-content" id="v-pills-tabContent">
-          <!-- <div class="row"><h3>Welcome to {{ stepUpdate.title }}</h3></div> -->
-          <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
-            <div class="mb-3">
-              <p><b>Overview</b></p>
-              {{ stepUpdate.overview }}
-            </div>
-            <div class="desc-box" v-html="stepUpdate.description"></div>
-          </div>
-          <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
-            <div class="row mt-3">
-              <div class="row">
-                <h5>Uploaded Guide Book</h5>
-                <embed v-if="stepUpdate.guideBook" :src="toolkitPath + '/' + stepUpdate.guideBook" width="100%"
-                  height="800px" />
-                <p v-if="!stepUpdate.guideBook">Guide Book Not uploaded </p>
-              </div>
-            </div>
-          </div>
-          <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
-            <div class="row mt-3">
-              <h5 class="page-sub-title mt-5 mb-0">Uploaded Files</h5>
-              <div class="row">
-                <div class="col-md-4 my-3" v-if="stepUpdate.toolkit.length" v-for="w in stepUpdate.toolkit" v-bind:key="w.id">
-                  <div class="card">
-                    <div class="card-body">
-                      <h5 class="card-title">{{ w.title }}</h5>
-                      <p class="card-text">{{ w.description }}</p>
-                      <a class="btn btn-read-more" @click="downloadToolkit(w.id, w.file)">Download File</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- <div class="row mt-3  toolkit-uploaded-files">
-                <div class="col-xl-3 col-lg-4 mb-3 col-md-6" v-if="stepUpdate.toolkit.length"
-                  v-for="tk in stepUpdate.toolkit" v-bind:key="tk.id">
-                  <div class="Uploaded-file-box">
-                    <a href="javascript:void(0)" @click="downloadToolkit(tk.id, tk.file)">
-                      <i v-if="tk.type == 'png' || tk.type == 'jpg' || tk.type == 'jpeg' || tk.type == 'svg'"
-                        class="fa-solid fa-file-image fa-10x"></i>
-                      <i v-if="tk.type == 'pdf'" class="fa-solid fa-file-pdf fa-10x"></i>
-                      <i v-if="tk.type == 'ppt' || tk.type == 'pptx'" class="fa-solid fa-file-powerpoint fa-10x"></i>
-                      <i v-if="tk.type == 'doc' || tk.type == 'docx'" class="fa-solid fa-file-word fa-10x"></i>
-                      <i v-if="tk.type == 'csv'" class="fa-solid fa-file-csv fa-10x"></i>
-                      <i v-if="tk.type == 'xls' || tk.type == 'xlsx'" class="fa-solid fa-file-excel fa-10x"></i>
-                      <br>
-                      {{ tk.file | removeTimestampFromFileName }}
-                    </a>
-
-                  </div>
-                </div>
-                <div v-if="!stepUpdate.toolkit.length">
-                  No Data Found
-                </div>
-              </div> -->
-            </div>
-          </div>
-        </div>
-      </div>
+                <button 
+                    class="b-0 flex items-center font-sixe-[20px] px-12 py-1  rounded-md  text-center text-md border border-1 border-black nav-link active"
+                    id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home"
+                    type="button" role="tab" aria-controls="v-pills-home" aria-selected="true" v-on:click="stepTab = 1">Overview</button>
+            </li>
+            <li role="presentation">
+                <button 
+                    class="b-0 flex items-center font-sixe-[20px] px-12 py-1 rounded-md text-center text-md border border-1 border-black nav-link"
+                    id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile"
+                    type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false" v-on:click="stepTab = 2">Guide Book</button>
+            </li>
+            <li role="presentation">
+                <button 
+                    class="b-0 flex items-center font-sixe-[20px] px-12 py-1 rounded-md text-center text-md border border-1 border-black nav-link"
+                    id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages"
+                    type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false" v-on:click="stepTab = 3">Toolkit</button>
+            </li>
+        </ul>
     </div>
-  </section>
+
+    <div id="myTabContent">
+        <div id="overview" role="tabpanel" aria-labelledby="overview-tab" class="flex flex-col px-8" v-if="stepTab == 1">
+            <div class="my-3 space-y-1">
+                <p class="text-xl font-bold ">Overview</p>
+                <p class="leading-7">{{ stepUpdate.overview }}</p>
+            </div>
+
+            <div class="my-3 space-y-1" v-html="stepUpdate.description"> </div>
+        </div>
+
+        <div id="book" role="tabpanel" aria-labelledby="book-tab" class="flex flex-col p-8" v-if="stepTab == 2">
+            <embed v-if="stepUpdate.guideBook" :src="toolkitPath + '/' + stepUpdate.guideBook" width="100%" height="2100px" />
+            <p v-if="!stepUpdate.guideBook">Guide Book Not uploaded </p>
+        </div>
+
+        <div id="toolkit" role="tabpanel" aria-labelledby="toolkit-tab" class="flex flex-col px-8" v-if="stepTab == 3">
+            <div class="my-3 space-y-1">
+                <p class="text-xl font-bold">Uploaded Files</p>
+            </div>
+
+            <div class="space-y-2">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <!-- card-0 stat -->
+                    <div
+                        class="flex flex-col justify-between max-w-full bg-[#E7EAEC] border border-gray-200 rounded-lg shadow text-[#0A0446]" v-if="stepUpdate.toolkit.length" v-for="w in stepUpdate.toolkit" v-bind:key="w.id">
+
+                        <div class="p-[15px]">
+                            <a href="#">
+                                <h5 class="mt-2 text-2xl font-semibold tracking-tight">{{ w.title }}</h5>
+                            </a>
+                            <p class="mt-2 text-sm text-gray-500">
+                                {{ w.description }}
+                            </p>
+                        </div>
+                        <div class="my-4 rounded">
+                            <a @click="downloadToolkit(w.id, w.file)">
+                                <button
+                                    class="flex items-center font-sixe-[14px] px-8 py-2 mx-4 rounded-md bg-[#0A0446] text-white text-center text-md">
+                                    Download File
+                                    <svg class="ml-2" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M21 21H3M18 11L12 17M12 17L6 11M12 17V3" stroke="white"
+                                            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                        </path>
+                                    </svg>
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="" v-if="!stepUpdate.toolkit.length">
+                          No file uploaded
+                    </div
+                    <!-- card-0 end -->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 </template>
 
 <script>
@@ -100,10 +102,11 @@ export default {
   mixins: [AppMixin],
   data() {
     return {
-      step: {
-        'disabled': false,
-        'file': ''
-      }
+        stepTab: 1,
+        step: {
+            'disabled': false,
+            'file': ''
+        }
     }
   },
   methods: {

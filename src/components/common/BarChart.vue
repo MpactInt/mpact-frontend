@@ -69,7 +69,8 @@ export default {
                 },
                 series: [{
                     name: 'Votes',
-                    data: this.chartData
+                    data: this.chartData,
+                    color: '#0A0446'
                 }]
             }
         };

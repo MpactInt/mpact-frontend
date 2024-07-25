@@ -1,6 +1,5 @@
 <template>
   <section class="employer-ask-question-section half-cut-bg">
-    <h1 class="page-title text-left">Support <span>Requests</span></h1>
     <AskYourCareTeamAdmin></AskYourCareTeamAdmin>
 </section>
 </template>

@@ -1,34 +1,40 @@
 <template>
   <div id="app">
     <div class="app-block" v-if="isLoggedIn">
+
       <section class="employer-section" v-if="user.role == 'COMPANY' && company.role=='COMPANY_ADMIN'">
-        <HeaderEmployer></HeaderEmployer>
-        <div class="container-fluid  p-0">
-          <div class="d-flex">
-            <div class=" sidebar" id="employerSidebar"><SidebarEmployer v-if="isLoggedIn"></SidebarEmployer></div>
-            <main class="main-col"><router-view :key="$route.fullPath" /></main>
+          <div class="sidebar" id="employerSidebar">
+              <SidebarEmployer v-if="isLoggedIn"></SidebarEmployer>
           </div>
-        </div>
-        <FooterEmployer></FooterEmployer>
-      </section>
-      <section class="employee-section" v-if="user.role == 'COMPANY' && company.role=='COMPANY_EMP'">
-        <HeaderEmployee></HeaderEmployee>
-         <div class="container-fluid p-0">
-          <div class="d-flex">
-              <div class=" sidebar" id="navbarSupportedContent"><SidebarEmployee v-if="isLoggedIn"></SidebarEmployee></div>
+          <div class="sm:ml-64 bg-[#F7F7F7]">
+              <HeaderEmployer></HeaderEmployer>
               <main class="main-col"><router-view :key="$route.fullPath" /></main>
+              <FooterEmployer></FooterEmployer>
           </div>
-        </div>
-        <FooterEmployee></FooterEmployee>
       </section>
+
+      <section class="employee-section" v-if="user.role == 'COMPANY' && company.role=='COMPANY_EMP'">
+        <div class="sidebar" id="navbarSupportedContent">
+            <SidebarEmployee v-if="isLoggedIn"></SidebarEmployee>
+        </div>
+        <div class="sm:ml-64 bg-[#F7F7F7]">
+            <HeaderEmployee></HeaderEmployee>
+            <main class="main-col"><router-view :key="$route.fullPath" /></main>
+            <FooterEmployee></FooterEmployee>
+        </div>
+      </section>
+
       <section class="admin-section" v-if="user.role == 'ADMIN'">
-        <HeaderAdmin></HeaderAdmin>
-        <div class="container-fluid p-0">
-          <div class="d-flex">
-            <div class=" sidebar" id="adminSidebar"><SidebarAdmin v-if="isLoggedIn"></SidebarAdmin></div><main class="main-col"><router-view :key="$route.fullPath" /></main></div>
-        </div>
-        <FooterAdmin></FooterAdmin>
+           <div class="sidebar" id="adminSidebar">
+              <SidebarAdmin v-if="isLoggedIn"></SidebarAdmin>
+          </div>
+          <div class="sm:ml-64 bg-[#F7F7F7]">
+              <HeaderAdmin></HeaderAdmin>
+              <main class="main-col"><router-view :key="$route.fullPath" /></main>
+              <FooterAdmin></FooterAdmin>
+          </div>
       </section>
+
     </div>
     <div v-else>
       <router-view :key="$route.fullPath" />
@@ -66,12 +72,3 @@ export default {
   components: { FooterEmployer, HeaderEmployer, SidebarEmployer, HeaderEmployee, FooterEmployee, SidebarEmployee, HeaderAdmin, FooterAdmin, SidebarAdmin }
 }
 </script>
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  /* text-align: center; */
-  color: #2c3e50;
-}
-</style>

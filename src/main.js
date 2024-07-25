@@ -9,14 +9,14 @@ import VueSweetalert2 from 'vue-sweetalert2'
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 import moment from 'moment'
 import VueClipboard from 'vue-clipboard2'
-import './assets/css/bootstrap.css'
+//import './assets/css/bootstrap.css'
 import LaravelVuePagination from 'laravel-vue-pagination'
 import Echo from 'laravel-echo'
 import Pusher from 'pusher-js'
 
 // If you don't need the styles, do not connect
 import 'sweetalert2/dist/sweetalert2.min.css'
-import 'bootstrap-vue/dist/bootstrap-vue.css'
+//import 'bootstrap-vue/dist/bootstrap-vue.css'
 import './assets/fonts/avenir-font.css'
 import VueChatScroll from 'vue-chat-scroll'
 import Multiselect from 'vue-multiselect'
@@ -63,7 +63,7 @@ Vue.filter('timeStampToTimeOnly', function (value) {
   if (value) {
     var dateObj = new Date(value)
     var momentObj = moment(dateObj)
-    var momentString = momentObj.format('HH:mm:ss')
+    var momentString = momentObj.format('HH:mm')
     return momentString
     //return moment.unix(value).format('HH:mm:ss')
   }
@@ -129,6 +129,8 @@ new Vue({
   template: '<App/>'
 })
 
-import './assets/css/employee-style.css'
-import './assets/css/style.css'
+//import './assets/css/employee-style.css'
+//import './assets/css/style.css'
+import './assets/css/styles.css'
 import './assets/css/custom.css'
+import './assets/css/modal.css'

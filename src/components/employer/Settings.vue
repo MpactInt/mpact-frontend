@@ -1,84 +1,108 @@
 <template>
-<section class="employer-dashboard  pettern-bg">
-    <h1 class="page-title text-left"><span>Settings</span></h1>
-    <div class="row">
-      <div class="col-lg-6">
-        <form @submit="addWelcomeNote" ref="addWelcomeNoteForm" enctype="multipart/form-data">
-          <div class="form-group">
-            <label><b>Welcome</b></label><br>
-            <label>Title <span class="err">*</span></label>
-            <input type="text" class="form-control" id="welcome_note" v-model="note.title" placeholder="Title"
-              autocomplete="off" />
-          </div>
-          <div class="form-group">
-            <label>Description <span class="err">*</span></label>
-            <vue2-tinymce-editor v-model="note.description" placeholder="Description"></vue2-tinymce-editor>
-          </div>
-
-          <div class="row align-items-center">
-            <div class="col-md-6 my-2">
-              <div class="form-group">
-                <label>Upload Image <span class="err">*</span></label> <input type="file" class="form-control" ref="welcome_image" id="welcome_image"
-                  @change="imageOnChange" accept=".jpg, .jpeg, .png" />
-              </div>
-            </div>
-            <div class="col-md-3 my-2">
-              <div class="form-group" v-if="note.oldImage">
-                <label>Uploaded Image</label>
-                <img :src="note.oldImage" height="70" width="70" />
-              </div>
-            </div>
-            <div class="col-md-3 my-2">
-              <div class="form-group mt-3 mb-0">
-                <button type="submit" class="btn btn-outline-primary" :disabled="note.disabled">Update</button>
-              </div>
-            </div>
-          </div>
-        </form>
-      </div>
-      <div class="col-lg-6">
-        <form @submit="uploadLogo" ref="createCompanyForm" enctype="multipart/form-data">
-          <div class="row align-items-center">
-            <div class="col-md-9 my-2">
-              <div class="form-group">
-                <label><b>Change Logo </b></label>
-                <br>
-                <label>Upload your logo <span class="err">*</span></label>
-                <input type="file" class="form-control" ref="logo" id="logo" @change="fileOnChange"
-                  accept=".jpg, .jpeg, .png" />
-              </div>
-            </div>
-            <div class="col-md-3 my-2">
-              <div class="form-group mt-3 mb-0">
-                <button type="submit" class="btn btn-outline-primary" :disabled="upload.disabled">Upload</button>
-              </div>
-            </div>
-          </div>
-        </form>
-
-        <label><b>Change Password</b></label>
-        <div class="form-group">
-          <label>Enter Old Password <span class="err">*</span></label>
-          <input type="password" class="form-control" id="password" placeholder="Old Password"
-            v-model="changePass.oldPassword">
-        </div>
-        <div class="form-group">
-          <label>Enter New Password <span class="err">*</span></label>
-          <input type="password" class="form-control" id="password" placeholder="New Password"
-            v-model="changePass.newPassword">
-        </div>
-        <div class="form-group">
-          <label>Retype New Password <span class="err">*</span></label>
-          <input type="password" class="form-control" id="cpassword" placeholder="New Password"
-            v-model="changePass.confirmNewPassword">
-        </div>
-        <div class="form-group">
-          <button type="button" class="btn btn-primary" :disabled="changePass.disabled"
-            @click="changePassword">Change</button>
-        </div>
-      </div>
+<section>
+    <div class="py-6 flex justify-between px-8">
+        <p class="uppercase text-4xl text-gray-400 dark:text-gray-500 uppercase font-bold">
+            <span class="text-[#090446]">Settings</span>
+        </p>
     </div>
-  </section>
+
+    <!-- card-10 stat -->
+    <div class="w-full">
+        <div class="mx-5 flex flex-wrap space-x-1 items-center">
+            <button
+                class="m-1 flex items-center font-sixe-[20px] px-12 py-2 rounded-md bg-[#BE0858] text-white text-center text-md shadow">
+                <span class="flex-1 text-white ml-3 whitespace-nowrap">
+                    <router-link to="/employer/settings">Welcome Note</router-link>
+                </span>
+            </button>
+            <button
+                class="m-1 flex items-center font-sixe-[20px] px-12 py-2 mx-8 rounded-md bg-white text-black text-center text-md shadow">
+                <span class="flex-1 text-[#0A0446] ml-3 whitespace-nowrap">
+                    <router-link to="/employer/settings-logo">Change Logo</router-link>
+                </span>
+            </button>
+            <button
+                class="m-1 flex items-center font-sixe-[20px] px-12 py-2 mx-8 rounded-md bg-white text-black text-center text-md shadow">
+                <span class="flex-1 text-[#0A0446] ml-3 whitespace-nowrap">
+                    <router-link to="/employer/settings-password">Change Password</router-link>
+                </span>
+            </button>
+        </div>
+        <div class="w-full">
+            <div class="p-6 flex justify-between px-8">
+                <form class="w-full" @submit="addWelcomeNote" ref="addWelcomeNoteForm" enctype="multipart/form-data">
+                    <div class="flex flex-wrap -mx-3 mb-2">
+                        <div class="w-full px-3 mb-2 md:mb-0">
+                            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                                for="grid-title-1">
+                                Title 
+                            </label>
+                            <input
+                                class="appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 px-8 mb-3 leading-tight focus:outline-none focus:bg-white"
+                                id="welcome_note" type="text" v-model="note.title" placeholder="Title" autocomplete="off">
+                            <p class="text-red-500 text-xs italic hidden">Please fill out this field.</p>
+                        </div>
+
+                    </div>
+
+                    <div class="flex flex-wrap -mx-3 mb-2">
+                        <div class="w-full">
+                            <div class="w-full  px-3">
+                                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                                    for="description">
+                                    Description 
+                                </label>
+                                <vue2-tinymce-editor v-model="note.description" placeholder="Description"></vue2-tinymce-editor>
+                            </div>
+                        </div>
+                        
+                    </div>
+
+                    <div class="flex items-center justify-center w-full mb-4">
+                        <div class="flex flex-col w-full">
+                            <p class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">Upload Image </p>
+                            <label for="welcome_image"
+                                class="flex flex-col items-center justify-center w-full h-64 border border-gray-300 rounded-lg cursor-pointer bg-gray-50  hover:bg-gray-100 ">
+                                <div class="flex flex-col items-center justify-center pt-5 pb-6">
+
+                                    <svg class="w-10 h-10 mb-3 text-gray-400" viewBox="0 0 40 40" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <rect width="40" height="40" fill="#F5F5F5" />
+                                        <path
+                                            d="M31.6668 13.3335V3.3335M26.6668 8.3335H36.6668M36.6668 20.0002V28.6668C36.6668 31.4671 36.6668 32.8672 36.1219 33.9368C35.6425 34.8776 34.8776 35.6425 33.9368 36.1219C32.8672 36.6668 31.4671 36.6668 28.6668 36.6668H11.3335C8.53323 36.6668 7.1331 36.6668 6.06354 36.1219C5.12273 35.6425 4.35783 34.8776 3.87846 33.9368C3.3335 32.8672 3.3335 31.4671 3.3335 28.6668V11.3335C3.3335 8.53323 3.3335 7.1331 3.87846 6.06354C4.35783 5.12273 5.12273 4.35783 6.06354 3.87846C7.1331 3.3335 8.53323 3.3335 11.3335 3.3335H20.0002M3.5764 33.2107C4.3583 30.3978 6.93816 28.3335 10.0002 28.3335H21.6668C23.2157 28.3335 23.9901 28.3335 24.6341 28.4616C27.2787 28.9876 29.346 31.055 29.8721 33.6996C30.0002 34.3436 30.0002 35.118 30.0002 36.6668M23.3335 15.8335C23.3335 19.5154 20.3487 22.5002 16.6668 22.5002C12.9849 22.5002 10.0002 19.5154 10.0002 15.8335C10.0002 12.1516 12.9849 9.16683 16.6668 9.16683C20.3487 9.16683 23.3335 12.1516 23.3335 15.8335Z"
+                                            stroke="#BE0858" stroke-width="1.5" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                    </svg>
+
+                                    <p class="mb-2 text-sm text-gray-500 "><span class="font-semibold">Click to
+                                            upload</span> or drag and drop</p>
+                                    <p class="text-xs text-gray-500 ">SVG, PNG, JPG or GIF (MAX.
+                                        800x400px)</p>
+                                </div>
+                            </label>
+                            <input type="file" class="hidden" ref="welcome_image" id="welcome_image" @change="imageOnChange" accept=".jpg, .jpeg, .png" />
+                        </div>
+                    </div>
+                    
+                    <div class="mx-auto ">
+                        <div class="form-group" v-if="note.oldImage">
+                          <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" >Uploaded Image </label>
+                          <img :src="note.oldImage" height="70" width="70" />
+                        </div>
+                    </div>
+
+                    <div class="mx-auto ">
+                        <button
+                            class="b-0 flex items-center font-sixe-[20px] px-12 py-2  rounded-md bg-[#0A0446] text-white text-center text-md border border-1 border-black" type="submit" :disabled="note.disabled">
+                            Submit
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- card-10 end -->
+</section>
 </template>
 
 <script>
@@ -95,12 +119,6 @@ export default {
       upload: {
         'logo': '',
         'disabled': false
-      },
-      changePass: {
-        'oldPassword': '',
-        'newPassword': '',
-        'confirmNewPassword': '',
-        'disabled': false
       }
     }
   },
@@ -113,39 +131,6 @@ export default {
       let that = this;
       this.upload.logo = this.$refs.logo.files[0];
     },
-    uploadLogo: function (e) {
-      e.preventDefault();
-      let that = this
-      const formData = new FormData();
-      formData.append('logo', that.upload.logo);
-      that.upload.disabled = true;
-      let headers = {
-        'Content-Type': 'multipart/form-data',
-        'Access-Control-Allow-Origin': '*'
-      }
-      Api.uploadLogo(formData, headers).then(response => {
-        this.$swal({
-          icon: "success",
-          title: "Success",
-          text: "Logo Changed Successfully",
-          showConfirmButton: true
-        }).then(function () {
-          that.upload.disabled = false;
-          that.$refs.logo.value = null;
-          $('.logo-img').attr('src', response.data.res.company_logo)
-        });
-      }
-      ).catch((error) => {
-        this.$swal({
-          icon: "error",
-          title: "error",
-          text: error.response.data.message,
-          showConfirmButton: true
-        }).then(function () {
-          that.upload.disabled = false;
-        });
-      });
-    },
     imageOnChange: function (e) {
       let that = this;
       that.note.image = ''
@@ -154,7 +139,7 @@ export default {
     addWelcomeNote: function (e) {
       e.preventDefault()
       let that = this;
-      if (!that.note.title || !that.note.description || !that.note.image) {
+      if (0) { //if (!that.note.title || !that.note.description || !that.note.image) {
         this.$swal({
           icon: "error",
           title: "error",
@@ -200,49 +185,6 @@ export default {
       }
     },
 
-    changePassword: function () {
-      let that = this;
-      if (!that.changePass.oldPassword || !that.changePass.newPassword || !that.changePass.confirmNewPassword) {
-        this.$swal({
-          icon: "error",
-          title: "error",
-          text: "Please fill all required fields",
-          showConfirmButton: true
-        });
-      } else if (that.changePass.newPassword != that.changePass.confirmNewPassword) {
-        this.$swal({
-          icon: "error",
-          title: "error",
-          text: "New password and Confirm password not matched",
-          showConfirmButton: true
-        });
-      } else {
-        that.changePass.disabled = true;
-        Api.changePassword(that.changePass).then(response => {
-          that.changePass.disabled = false;
-          this.$swal({
-            icon: "success",
-            title: "Success",
-            text: "Password changed successfully",
-            showConfirmButton: true
-          }).then(function () {
-            that.changePass.disabled = false
-            that.changePass.oldPassword = ''
-            that.changePass.newPassword = ''
-            that.changePass.confirmNewPassword = ''
-          });
-        }).catch((error) => {
-          this.$swal({
-            icon: "error",
-            title: "error",
-            text: error.response.data.message,
-            showConfirmButton: true
-          }).then(function () {
-            that.changePass.disabled = false;
-          });
-        });
-      }
-    },
   },
   mounted() {
     this.getWelcomeNote()

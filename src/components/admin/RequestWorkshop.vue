@@ -1,6 +1,5 @@
 <template>
     <section class="admin-workshops-section half-cut-bg">
-      <h1 class="page-title text-left mt-0">Workshop <span>Requests</span></h1>
         <List></List>
     </section>
 </template>

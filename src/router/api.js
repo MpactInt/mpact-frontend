@@ -1,8 +1,9 @@
 /* eslint-disable */
 import axiosCommon from './axiosCommon'
-
+   
 class Api {
-    login(data) {
+    login(data) 
+    {
         return axiosCommon.post('/login', data)
     }
     registration(data) {
@@ -32,7 +33,8 @@ class Api {
     selectAddon(id, data) {
         return axiosCommon.post('/select-addon/' + id, data)
     }
-    logout() {
+    logout() 
+    {
         return axiosCommon.get('/logout')
     }
     forgotPasswordSendEmail(data) {
@@ -117,7 +119,7 @@ class Api {
     }
     getWelcomeNoteList(page,data) {
         return axiosCommon.post('/get-welcome-note-list?page=' + page,data)
-    }
+    } 
     getSingleWelcomeNote(id) {
         return axiosCommon.get('/get-single-welcome-note/' + id)
     }
@@ -199,6 +201,9 @@ class Api {
     updateProfile(data) {
         return axiosCommon.post('/update-profile', data)
     }
+    updateAdminProfile(data) {
+        return axiosCommon.post('/update-admin-profile', data)
+    }
     updatePlan(data) {
         return axiosCommon.post('/update-plan', data)
     }
@@ -268,8 +273,8 @@ class Api {
     deleteTodo(id) {
         return axiosCommon.get('/delete-todo/' + id)
     }
-    getTodoListDashboard() {
-        return axiosCommon.get('/get-todo-list-dashboard')
+    getTodoListDashboard(part) {
+        return axiosCommon.get('/get-todo-list-dashboard' + '?part=' + part)
     }
     completeTodo(id) {
         return axiosCommon.get('/complete-todo/' + id)
@@ -298,8 +303,8 @@ class Api {
     submitAskQuestion(data) {
         return axiosCommon.post('/ask-question', data)
     }
-    getQuestionList(page,data) {
-        return axiosCommon.post('/get-question-list' + '?page=' + page,data)
+    getQuestionList(page, data) {
+        return axiosCommon.post('/get-question-list' + '?page=' + page, data)
     }
     submitResponse(data){
         return axiosCommon.post('/submit-response', data)
@@ -316,7 +321,11 @@ class Api {
     getPlanDetailsBySubscriptionId(id) {
         return axiosCommon.get('/get-plan-details-by-subscription-id/' + id)
     }
-    getCompaniesList2(page, data) {
+    getCategoriesListMultiselect() {
+        return axiosCommon.get('/get-categories-list-multiselect')
+    }
+    getCompaniesList2(page, data) 
+    {
         return axiosCommon.post('/get-companies-list?page=' + page, data)
     }
     getCompaniesList() {
@@ -342,7 +351,7 @@ class Api {
     }
     getProfileType(id) {
         return axiosCommon.get('/get-profile-type/' + id)
-    }
+    } 
     addProfileTypeF(data) {
         return axiosCommon.post('/add-profile-type', data)
     }
@@ -382,7 +391,7 @@ class Api {
     }
     addUpdateSection1(data) {
         return axiosCommon.post('/add-update-section1', data)
-    }
+    }  
     addUpdateSection2(data) {
         return axiosCommon.post('/add-update-section2', data)
     }
@@ -473,20 +482,26 @@ class Api {
     submitCompanyFeedback(data) {
         return axiosCommon.post('/submit-company-feedback', data)
     }
-    getFeedbackList(page,data) {
-        return axiosCommon.post('/get-company-feedback-list?page=' + page,data)
+    getFeedbackList(page, data) {
+        return axiosCommon.post('/get-company-feedback-list?page=' + page, data)
     }
     addWorkshop(data, headers) {
         return axiosCommon.post('/add-workshop', data, headers)
     }
-    updateWorkshop(data, headers) {
+    updateWorkshop(data, headers) 
+    {
         return axiosCommon.post('/update-workshop', data, headers)
     }
-    getWorkshop(id) {
+    getWorkshop(id) 
+    {
         return axiosCommon.get('/get-workshop/' + id)
     }
-    getWorkshopsList(page, data) {
+    getWorkshopsList(page, data) 
+    {
         return axiosCommon.post('/get-workshops-list' + '?page=' + page, data)
+    }
+    getUpcomingWorkshop() {
+        return axiosCommon.get('/get-upcoming-workshop')
     }
     deleteWorkshop(id) {
         return axiosCommon.get('/delete-workshop/' + id)
@@ -496,6 +511,18 @@ class Api {
     }
     getWorkshopsListForSelect() {
         return axiosCommon.get('/get-workshops-list-for-select')
+    }
+    getConsultingHoursList(page, data)
+    {
+        return axiosCommon.post('/get-consultinghours-list' + '?page=' + page, data)
+    }
+    getConsultingHours(id) 
+    {
+        return axiosCommon.get('/get-consulting-hours/' + id)
+    }
+    updateConsultingHours(data, headers) 
+    {
+        return axiosCommon.post('/update-consulting-hours', data, headers)
     }
     addMeeting(data) {
         return axiosCommon.post('/add-meeting', data)
@@ -546,14 +573,16 @@ class Api {
     getEmpLearningPlanList(page, data) {
         return axiosCommon.post('/get-emp-learning-plan-list' + '?page=' + page, data)
     }
-    getLearningPlanListDashboard(page, data) {
-        return axiosCommon.post('/get-learning-plan-list-dashboard')
+    getLearningPlanListDashboard(part) 
+    { //alert(part)
+        return axiosCommon.post('/get-learning-plan-list-dashboard' + '?part=' + part)
     }
-    getLearningPlanFiles(id,data) {
+    getLearningPlanFiles(id,data) 
+    {
         return axiosCommon.post('/get-learning-plan-files/' + id,data)
-    }
-    getLearningPlanResources(data) {
-        return axiosCommon.post('/get-learning-plan-resources',data)
+    } 
+    getLearningPlanResources(page, data) {
+        return axiosCommon.post('/get-learning-plan-resources?page=' + page, data)
     }
     addLearningPlanFile(data) {
         return axiosCommon.post('/add-learning-plan-file', data)
@@ -573,6 +602,9 @@ class Api {
     getRecentAnnouncementsList(id) {
         return axiosCommon.get('/get-recent-announcement-list/'+id)
     }
+    shouldGoNextTab(data) {
+        return axiosCommon.post('/should_go_next_tab',data)
+    }
     getRecentRequestedWorkshopList(id) {
         return axiosCommon.get('/get-recent-requested-workshop-list/'+id)
     }
@@ -585,6 +617,84 @@ class Api {
     getRecentChatList(id) {
         return axiosCommon.get('/get-recent-chat-list/'+id)
     }
+    getSettingsList(data, page) {
+        return axiosCommon.post('/get-settings-list' + '?page=' + page, data)
+    }
+    getSetting(key) {
+        return axiosCommon.post('/get-setting/' + key)
+    }
+    updateSettings(data) {
+        return axiosCommon.post('/update-setting', data)
+    }
+    addCategory(data) {
+        return axiosCommon.post('/add-category', data)
+    }
+    getCategoriesList(page, data) {
+        return axiosCommon.post('/get-categories-list' + '?page=' + page, data)
+    }
+    deleteCategory(id) {
+        return axiosCommon.get('/delete-category/' + id)
+    }
+    getCategory(id) {
+        return axiosCommon.get('/get-category/' + id)
+    }
+    updateCategory(data) {
+        return axiosCommon.post('/update-category', data)
+    }
+    addTip(data) {
+        return axiosCommon.post('/add-tip', data)
+    }
+    updateTip(data) {
+        return axiosCommon.post('/update-tip', data)
+    }
+    getTipById(data) {
+        return axiosCommon.post('/get-tip-by-id', data)
+    }
+    getTipsList(data, page) {
+        return axiosCommon.get('/get-tips-list' + '?page=' + page, data)
+    }
+    getPastTipsList(data, page) {
+        return axiosCommon.get('/get-past-tips-list' + '?page=' + page, data)
+    }
+    getOldTipsList(data, page) {
+        return axiosCommon.get('/get-old-tips-list' + '?page=' + page, data)
+    }
+    deleteTip(id) {
+        return axiosCommon.get('/delete-tip/' + id) 
+    }
+    getPersonalizedTips() { 
+        return axiosCommon.get('/get-personalized-tips')
+    }
+    getMobileUsersList(page, data) {
+        return axiosCommon.post('/get-mobile-users-list' + '?page=' + page, data)
+    }
+    updateLearningPlanView( data) {
+        return axiosCommon.post('/update-learning-plan-view', data)
+    }
+    dailyVisit() {
+        return axiosCommon.post('/daily_visit', {});
+    }
+    getTotalVisitingHours(data) {
+        return axiosCommon.post('/get_total_visiting_hours', data);
+    }
+    getPartPercentage(data) {
+        return axiosCommon.post('/get_part_percentage', data);
+    }
+    getAdminPartPercentage(data) 
+    {
+        return axiosCommon.get('/get_admin_part_percentage/' + data);
+    }
+    getAdminConsultingHours(data) 
+    {
+        return axiosCommon.get('/get_admin_consulting_hours/' + data); 
+    }
+
+    setDashboardStatusUpdate(data) 
+    {
+        return axiosCommon.post('/set_dashboard_status_update',data);
+    }
+      
+     
     // assesmentLogin(){
     //     return axiosCommon.get('/assesment-login')
     // }

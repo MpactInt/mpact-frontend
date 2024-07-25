@@ -10,13 +10,40 @@
                 </multiselect>
             </div>
             <div class="form-group">
+                <label>Select Profile Type <span class="err">*</span></label>
+                <multiselect v-model="todoUpdate.profile_type" :options="profileTypeListMultiselect" group-values="values"
+                  group-label="selectAll" :multiple="true" :group-select="true" placeholder="Type to search" track-by="name"
+                  label="name">
+                  <span slot="noResult">Oops! No elements found. Consider changing the search query.</span>
+                </multiselect>
+            </div>
+            <div class="form-group">
+                <label>Role<span class="err">*</span></label>
+                <select v-model="todoUpdate.role" class="form-control">
+                  <option value="">Select Role</option>
+                  <option value="COMPANY_ADMIN">Admin</option>
+                  <option value="COMPANY_SUB_ADMIN">Sub Admin</option>
+                  <option value="COMPANY_EMP">Employee</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Select Part <span class="err">*</span></label>
+                <select class="form-control" v-model="todoUpdate.part">
+                    <option value="part1">Part 1</option>
+                    <option value="part2">Part 2</option>
+                    <option value="part3">Part 3</option>
+                    <option value="part4">Part 4</option>
+                    <option value="general">General</option>
+                </select>
+            </div>
+            <div class="form-group">
                 <label>Title <span class="err">*</span></label>
                 <input class="form-control" type="text" v-model="todoUpdate.title" placeholder="Title" />
             </div>
             <div class="form-group">
                 <label>Description <span class="err">*</span></label>
-                <textarea class="form-control" v-model="todoUpdate.description" placeholder="Description">
-                </textarea>
+                <vue2-tinymce-editor v-model="todoUpdate.description" placeholder="Description">
+                </vue2-tinymce-editor>
             </div>
             <div class="form-group">
                 <button type="button" class="btn btn-primary" @click="updateTodo"
@@ -34,6 +61,9 @@ import { Vue2TinymceEditor } from "vue2-tinymce-editor";
 export default {
     name: 'Edit',
     mixins: [AppMixin],
+    components: {
+        Vue2TinymceEditor
+    },
     props: [
         'getTodoList',
         'todoUpdate'
@@ -46,7 +76,7 @@ export default {
     methods: {
         updateTodo: function () {
             let that = this;
-            if (!that.todoUpdate.description || !that.todoUpdate.company || !that.todoUpdate.title) {
+            if (!that.todoUpdate.title || !that.todoUpdate.description || !that.todoUpdate.company || !that.todoUpdate.profile_type) {
                 this.$swal({
                     icon: "error",
                     title: "error",
@@ -82,6 +112,7 @@ export default {
     },
     mounted() {
         this.getCompaniesListMultiselect()
+        this.getProfileTypeListMultiselect()
     }
 }
 </script>

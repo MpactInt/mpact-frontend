@@ -1,62 +1,102 @@
 <template>
-  <section class="admin-workshops-section half-cut-bg">
-    <!-- <h1 class="page-title text-left mt-0">ASK YOUR <span>CARE TEAM</span></h1> -->
-    <div class="table-responsive">
-      <table class="table">
-        <tr>
-          <th>Name <i class="fa-solid fa-arrow-up"
-              @click="searchData.sortBy = 'first_name'; searchData.sortOrder = 'asc'; getQuestionList()"></i> <i
-              class="fa-solid fa-arrow-down"
-              @click="searchData.sortBy = 'first_name'; searchData.sortOrder = 'desc'; getQuestionList()"></i></th>
-          <!-- <th>Company Name <i class="fa-solid fa-arrow-up"
-              @click="searchData.sortBy = 'company_name'; searchData.sortOrder='asc';getQuestionList()"></i> <i
-              class="fa-solid fa-arrow-down"
-              @click="searchData.sortBy = 'company_name'; searchData.sortOrder='desc';getQuestionList()"></i></th> -->
-          <th>Description <i class="fa-solid fa-arrow-up"
-              @click="searchData.sortBy = 'description'; searchData.sortOrder = 'asc'; getQuestionList()"></i> <i
-              class="fa-solid fa-arrow-down"
-              @click="searchData.sortBy = 'description'; searchData.sortOrder = 'desc'; getQuestionList()"></i></th>
-          <th>Date <i class="fa-solid fa-arrow-up"
-              @click="searchData.sortBy = 'created_at'; searchData.sortOrder = 'asc'; getQuestionList()"></i> <i
-              class="fa-solid fa-arrow-down"
-              @click="searchData.sortBy = 'created_at'; searchData.sortOrder = 'desc'; getQuestionList()"></i></th>
-          <th>Response <i class="fa-solid fa-arrow-up"
-              @click="searchData.sortBy = 'response'; searchData.sortOrder = 'asc'; getQuestionList()"></i> <i
-              class="fa-solid fa-arrow-down"
-              @click="searchData.sortBy = 'response'; searchData.sortOrder = 'desc'; getQuestionList()"></i></th>
-          <th>Action</th>
-        </tr>
-        <tr v-if="questionListLength" v-for="r in questionList.data" v-bind:key="r.id">
-          <td>{{ r.first_name }} {{ r.last_name }}</td>
-          <!-- <td>{{ r.company_name }}</td> -->
-          <td>
-            <p>{{ r.description | truncate(20)}}</p>
-          </td>
-          <td>{{ r.created_at | timeAgo }}</td>
-          <td><p v-html="r.response ? (r.response) : 'NA'"></p></td>
-          <td>
-            <button type="button" class="btn btn-primary"
-              v-if="!r.forward_to_admin && (user.role == 'ADMIN' || (company && company.role == 'COMPANY_ADMIN'))"
-              @click="forwardToAdmin(r.id)">Forward to
-              Admin</button>
-            <button type="button" class="btn btn-primary"
-              v-if="r.forward_to_admin && (user.role == 'ADMIN' || (company && company.role == 'COMPANY_ADMIN'))">Forwarded</button>
-            <button type="button" class="btn btn-primary"
-              v-if="((user.role == 'ADMIN'  && !r.response)|| (company && company.role == 'COMPANY_ADMIN'  && !r.response && r.company_id != company.id))"
-              v-b-modal.response-modal @click="respondQuestion(r.id)">Respond</button>
-            <button type="button" class="btn btn-primary"
-              v-if="((user.role == 'ADMIN' && r.response)|| (company && company.role == 'COMPANY_ADMIN' && r.response))">Responded</button>
-            <button type="button" class="btn btn-primary" @click="archiveQuestion(r.id)">Archive</button>
-            <router-link :to="'view-question/' + r.id" class="btn btn-primary">View</router-link>
-          </td>
-        </tr>
-        <tr v-if="!questionListLength">
-          <td colspan="5">No Data Found</td>
-        </tr>
-      </table>
-      <pagination :data="questionList" @pagination-change-page="getQuestionList" />
+  <section>
+    <div class="py-6 flex justify-between px-8">
+        <p class="uppercase text-4xl text-gray-400 dark:text-gray-500 uppercase font-bold">
+            <span class="text-[#090446]">Support Requests</span>
+        </p>
     </div>
-    <!-- </div> -->
+    <!-- card-10 stat -->
+    <div class="w-full">
+        <div class="py-6 px-8">
+            <div class="relative overflow-x-auto shadow-md">
+                <table class="w-full text-sm text-center text-white">
+                    <thead class="text-xs text-white bg-[#0A0446]">
+                        <tr>
+                            <th scope="col" class="px-6 py-4 rounded-tl-lg border-r border-gray-700">
+                                Name
+                            </th>
+                            <th scope="col" class="px-6 py-4 border-r border-gray-700">
+                                Description
+                            </th>
+                            <th scope="col" class="px-6 py-4 border-r border-gray-700">
+                                Date
+                            </th>
+                            <th scope="col" class="px-6 py-4 border-r border-gray-700">
+                                Response
+                            </th>
+                            <th scope="col" class="px-6 py-4 rounded-tr-lg">
+                                Action
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-[#090446]">
+                        <tr class="bg-white hover:bg-gray-50" v-if="questionListLength" v-for="r in questionList.data" v-bind:key="r.id">
+                            <td scope="row"
+                                class="px-6 py-4 border-r border-gray-300 font-medium whitespace-nowrap">
+                                {{ r.first_name }} {{ r.last_name }}
+                            </td>
+                            <td class="px-6 py-4 border-r border-gray-300">
+                                <p>{{ r.description | truncate(20)}}</p>
+                            </td>
+                            <td class="px-6 py-4 border-r border-gray-300">
+                                {{ r.created_at | timeAgo }}
+                            </td>
+                            <td class="px-6 py-4 border-r border-gray-300">
+                                <p v-html="r.response ? (r.response) : 'NA'"></p>
+                            </td>
+                            <td
+                                class="px-6 py-4 border-r border-gray-300 flex items-center justify-around space-x-2 px-1 border-r border-gray-300">
+                                <button
+                                    class="flex items-center px-3 py-1 rounded-md bg-white text-black text-center text-md font-medium shadow border-2" v-if="!r.forward_to_admin && (user.role == 'ADMIN' || (company && company.role == 'COMPANY_ADMIN'))" @click="forwardToAdmin(r.id)">
+                                    <span class="flex-1 text-[#0A0446] ml-3 whitespace-nowrap">Forward to Admin</span>
+                                </button>
+
+                                <button
+                                    class="flex items-center px-3 py-1 rounded-md bg-white text-black text-center text-md shadow border-2" v-if="r.forward_to_admin && (user.role == 'ADMIN' || (company && company.role == 'COMPANY_ADMIN'))">
+                                    <span
+                                        class="flex-1 font-medium text-gray-800 ml-3 whitespace-nowrap">Forwarded</span>
+                                </button>
+
+                                <button
+                                    class="flex items-center px-3 py-1 rounded-md bg-white text-black text-center text-md shadow border-2" v-if="((user.role == 'ADMIN'  && !r.response)|| (company && company.role == 'COMPANY_ADMIN'  && !r.response && r.company_id != company.id))" v-b-modal.response-modal @click="respondQuestion(r.id)">
+                                    <span
+                                        class="flex-1 font-medium text-gray-800 ml-3 whitespace-nowrap">Respond</span>
+                                </button>
+
+                                <button
+                                    class="flex items-center px-3 py-1 rounded-md bg-white text-black text-center text-md shadow border-2" v-if="((user.role == 'ADMIN' && r.response)|| (company && company.role == 'COMPANY_ADMIN' && r.response))">
+                                    <span
+                                        class="flex-1 font-medium text-gray-800 ml-3 whitespace-nowrap">Responded</span>
+                                </button>
+
+                                <button
+                                    class="flex items-center px-3 py-1 rounded-md bg-white text-black text-center text-md shadow border-2" @click="archiveQuestion(r.id)">
+                                    <span
+                                        class="flex-1 font-medium text-gray-800 ml-3 whitespace-nowrap">Archive</span>
+                                </button>
+
+                                <router-link :to="'view-question/' + r.id" class="btn btn-primary">
+                                    <button
+                                        class="flex items-center px-3 py-1 rounded-md bg-white text-black text-center text-md shadow border-2">
+                                        <span
+                                            class="flex-1 font-medium text-gray-800 ml-3 whitespace-nowrap">View</span>
+                                    </button>
+                                </router-link>
+
+                            </td>
+                        </tr>
+                        <tr class="bg-white hover:bg-gray-50" v-if="!questionListLength">
+                            <td scope="row"
+                                class="px-6 py-4 border-r border-gray-300 font-medium whitespace-nowrap" colspan="5"> No Data Found </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <pagination :data="questionList" @pagination-change-page="getQuestionList" />
+            </div>
+        </div>
+    </div>
+    <!-- card-10 end -->
+
     <b-modal id="response-modal" size="lg" title="Respond to Question" :hide-footer=hideFooter no-enforce-focus>
       <div class="form-group">
         <label>Response <span class="err">*</span></label>
@@ -67,6 +107,7 @@
       <button type="button" class="btn btn-primary" @click="submitResponse" :disabled="response.disabled">Submit
       </button>
     </b-modal>
+
   </section>
 </template>
 
