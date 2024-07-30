@@ -13,6 +13,8 @@ import Plan from '@/components/Plan'
 import ResetPassword from '@/components/ResetPassword'
 import CreatePassword from '@/components/CreatePassword'
 import SubmitCheckInSurvey from '@/components/SubmitCheckInSurvey'
+import SurveyConsent from '@/components/SurveyConsent'
+import NonEmployeeSurvey from '@/components/NonEmployeeSurvey'
 import SubmitPostWorkshopSurvey from '@/components/SubmitPostWorkshopSurvey'
 
 /******Load Employer Components*********/
@@ -31,6 +33,7 @@ import TeamManagement from '@/components/employer/team-management/TeamManagement
 import RegistrationLink from '@/components/employer/team-management/RegistrationLink'
 import Employees from '@/components/employer/team-management/Employees'
 import Invitations from '@/components/employer/team-management/Invitations'
+import SurveyInvite from '@/components/employer/team-management/SurveyInvite'
 import Announcements from '@/components/employer/Announcements'
 import Settings from '@/components/employer/Settings'
 import SettingsLogo from '@/components/employer/SettingsLogo'
@@ -188,6 +191,16 @@ export const router = new Router({
              component: CreatePassword
            },
            {
+             path: "/survey-consent/:link",
+             name: "SurveyConsent",
+             component: SurveyConsent
+           },
+           {
+             path: "/non-employee-survey/:link",
+             name: "NonEmployeeSurvey",
+             component: NonEmployeeSurvey
+           },
+           {
              path: "/submit-checkin-survey/:link",
              name: "SubmitCheckInSurvey",
              component: SubmitCheckInSurvey
@@ -263,6 +276,18 @@ export const router = new Router({
              beforeEnter: guardMyroute,
              name: "Invitations",
              component: Invitations,
+             meta: {
+               requiresAuth: true,
+               employerAuth: true,
+               employeeAuth: false,
+               adminAuth: false
+             }
+           },
+           {
+             path: "/employer/team-management/survey-invite",
+             beforeEnter: guardMyroute,
+             name: "SurveyInvite",
+             component: SurveyInvite,
              meta: {
                requiresAuth: true,
                employerAuth: true,

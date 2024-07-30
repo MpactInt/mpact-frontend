@@ -55,6 +55,9 @@ class Api {
     sendLinkToEmail(data) {
         return axiosCommon.post('/send-link-to-email', data)
     }
+    sendSurveyInviteLinkToEmail(data) {
+        return axiosCommon.post('/send-survey-invite-link-to-email', data)
+    }
     getEmployeesList(id, page, data) {
         return axiosCommon.post('/get-employees-list/' + id + '?page=' + page, data)
     }
